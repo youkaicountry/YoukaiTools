@@ -73,7 +73,7 @@ class MazeMap:
     
     def getWall(self, x, y, dir):
         space = self.__getEffectiveSpace(x, y, dir)
-        return self.walls[space[1]][space[0]][space[2]]
+        return self.walls[int(space[1])][int(space[0])][int(space[2])]
     
     def setWall(self, x, y, dir, val):
         space = self.__getEffectiveSpace(x, y, dir)

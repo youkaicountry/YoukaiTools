@@ -35,7 +35,7 @@ def getType(obj):
     return type2name[type(obj)]
 
 def loadArray(filename):
-    l = LineLoader.loadLines(filename, comments=[])
+    l = LineLoader.loadLinesFilename(filename, comments=[])
     return lines2Array(l)
     
 def saveArray(filename, array):
