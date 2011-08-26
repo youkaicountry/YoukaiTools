@@ -1,0 +1,7 @@
+Comparison - Functions that compare 2 images
+Create     - Functions that create new images
+Metric     - Functions that generate statistics from 
+Modify     - Functions which modify an existing image
+PowerTools - Functions which do powerful functions of all sorts
+SubImage   - Functions which create new images based upon other images
+

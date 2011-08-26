@@ -1,0 +1,12 @@
+*.pyc
+*~
+*#
+*.bmp
+*.png
+*.jpg
+*.jpeg
+*.gif
+.project
+.pydevproject
+.settings/
+*.marks
