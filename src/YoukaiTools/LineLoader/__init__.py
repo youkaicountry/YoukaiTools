@@ -1,6 +1,29 @@
 #append things to end
 #block comments
 
+#make paramsep None to not have parameters
+def loadConfig(f, comments=["#"], lstrip=True, rstrip=True, killblanks=True, assign="=", namestrip=True, valstrip=True, paramsep=" "):
+    lines = loadLines(f, comments, lstrip, rstrip, killblanks)
+    #further process into a dictionary
+    data_dic = {}
+    for l in lines:
+        ls, rs = l.split(assign)
+        if namestrip: ls = ls.strip()
+        if valstrip: rs = rs.strip()
+        params = [rs]
+        if paramsep is not None:
+            params = rs.split(paramsep)
+            if killblanks:
+                params = [p for p in params if p.strip() != ""]
+        data_dic[ls] = params
+    return data_dic
+
+def loadConfigFilename(filename, comments=["#"], lstrip=True, rstrip=True, killblanks=True, assign="=", namestrip=True, valstrip=True, paramsep=" "):
+    f = open(filename, "r")
+    l = loadConfig(f, comments, lstrip, rstrip, killblanks, assign, namestrip, valstrip, paramsep)
+    f.close()
+    return l
+
 def loadLines(f, comments=["#"], lstrip=True, rstrip=True, killblanks=True):
     l = f.readlines()
     if comments==None: com=[]
@@ -23,4 +46,3 @@ def loadLinesFilename(filename, comments=["#"], lstrip=True, rstrip=True, killbl
     l = loadLines(f, comments, lstrip, rstrip, killblanks)
     f.close()
     return l
-
