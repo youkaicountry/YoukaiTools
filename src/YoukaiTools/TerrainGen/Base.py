@@ -66,20 +66,16 @@ class TerrainFeature2D:
         
         return cval
     
-#    public void setBoundsRequiresValue(boolean brv)
-#    {
-#        this.bounds_requires_value = brv;
-#        return;
-#    }
-#    
-#    protected void flushCache()
-#    {
-#        this.cached_x = Double.NaN;
-#        this.cached_y = Double.NaN;
-#        this.cached_value = Double.NaN;
-#        return;
-#    }
-#    
+    def setBoundsRequiresValue(self, brv):
+        self.bounds_requires_value = brv
+        return
+    
+    def flushCache(self):
+        self.cached_x = None
+        self.cached_y = None
+        self.cached_value = None
+        return
+    
 #    public boolean isInBounds(double x, double y, double under_value)
 #    {
 #        double cval = Double.NaN;
