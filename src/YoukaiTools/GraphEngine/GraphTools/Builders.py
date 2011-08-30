@@ -1,5 +1,7 @@
 #FUNCTIONS THAT INVOLVE BUILDING AND MODIFYING BASIC GRAPHS
 
+#have buildgraph accept list instead of just ints
+
 #takes an int specifying the number of vertices, and
 #a list of the edges [(0, 1), (1, 2), (0, 2), (2, 4, 1)] (the third parameter, if given, is the order of a directed edge)
 #with that, it clears and reconstructs the graph.
