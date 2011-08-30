@@ -1,3 +1,5 @@
+import collections
+
 #FUNCTIONS THAT INVOLVE BUILDING AND MODIFYING BASIC GRAPHS
 
 #have buildgraph accept list instead of just ints
@@ -14,9 +16,14 @@ def buildGraph(g, vertices, edges, vdata={}, edata={}):
     
     """
     g.clearGraph()
+
+    if isinstance(vertices, collections.Iterable):
+        uvertices = vertices
+    else:
+        uvertices = range(vertices)
     
-    for x in range(vertices):
-        g.addVertex()
+    for x in uvertices:
+        g.addVertex(x)
     
     for x in edges:
         l = 0
