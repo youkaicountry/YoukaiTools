@@ -1,5 +1,5 @@
 class TerrainFeature2D:
-    def __init__(self):
+    def __init__(self, age=0, bounds_requires_value=False, mul=1, add=0, use_clamp=False, clamp_low=0.0, clamp_high=1.0, use_cache=True):
         self.age = 0                          #A general number that represents the order in which to apply modifiers
         
         #Use the cache to speed up repeated hits on the same location. You should NOT use it if
@@ -18,26 +18,13 @@ class TerrainFeature2D:
         self.add = 0                          #value add
     
         self.bounds_requires_value = False    #must be true if the bounds function requires the value
-        
-    #public TerrainFeature2D()
-    #{
-    #    this.setAge(0);
-    #    this.setBoundsRequiresValue(false);
-    #    this.setMulAdd(1, 0);
-    #    this.useClamp(false, 0, 1.0);
-    #    this.useCache(true);
-    #    return;
-    #}
-    
-    #public TerrainFeature2D(double age, boolean bounds_requires_value, double mul, double add, boolean use_clamp, double clamp_low, double clamp_high, boolean use_cache)
-    #{
-    #    this.setAge(age);
-    #    this.setBoundsRequiresValue(bounds_requires_value);
-    #    this.setMulAdd(mul, add);
-    #    this.useClamp(use_clamp, clamp_low, clamp_high);
-    #    this.useCache(use_cache);
-    #    return;
-    #}
+
+        this.setAge(age)
+        this.setBoundsRequiresValue(bounds_requires_value)
+        this.setMulAdd(mul, add)
+        this.useClamp(use_clamp, clamp_low, clamp_high)
+        this.useCache(use_cache)
+        return
     
     def getValue(self, x, y, under_value):
         cval = 0
@@ -76,71 +63,53 @@ class TerrainFeature2D:
         self.cached_value = None
         return
     
-#    public boolean isInBounds(double x, double y, double under_value)
-#    {
-#        double cval = Double.NaN;
-#        if (this.bounds_requires_value)
-#        {
-#            if (this.use_cache && (this.cached_x == x) && (this.cached_y == y))
-#            {
-#                cval = this.cached_value;
-#            }
-#            else
-#            {
-#                cval = this.getValue(x, y, under_value);
-#            }
-#        }
-#        
-#        return this.generateInBounds(x, y, cval, under_value);
-#    }
-#    
-#    public void useCache(boolean use_cache)
-#    {
-#        this.use_cache = use_cache;
-#        return;
-#    }
-#    
-#    public void setMulAdd(double mul, double add)
-#    {
-#        this.mul = mul;
-#        this.add = add;
-#        this.flushCache();
-#        return;
-#    }
-#    
-#    public void setMul(double mul)
-#    {
-#        this.mul = mul;
-#        this.flushCache();
-#        return;
-#    }
-#    
-#    public void setAdd(double add)
-#    {
-#        this.add = add;
-#        this.flushCache();
-#        return;
-#    }
-#    
-#    public void useClamp(boolean use_clamp, double clamp_low, double clamp_high)
-#    {
-#        this.use_clamp = use_clamp;
-#        this.clamp_low = clamp_low;
-#        this.clamp_high = clamp_high;
-#        this.flushCache();
-#        return;
-#    }
-#    
-#    public abstract double generateValue(double x, double y, double under_value);
-#    
-#    public abstract boolean generateInBounds(double x, double y, double this_value, double under_value);
-#    
-#    public void setAge(double age)
-#    {
-#        this.age = age;
-#    }
-#    
-#    public double getAge()
-#    {
-#        return this.age;
-#    }
+    def isInBounds(self, x, y, under_value):
+        cval = None
+        if self.bounds_requires_value:
+            if self.use_cache and (self.cached_x == x) and (self.cached_y == y)
+                cval = self.cached_value
+            else
+                cval = self.getValue(x, y, under_value)
+        return self.generateInBounds(x, y, cval, under_value)
+    
+    def useCache(self, use_cache):
+        this.use_cache = use_cache
+        return
+    
+    def setMulAdd(self, mul, add):
+        self.mul = mul
+        self.add = add
+        self.flushCache()
+        return
+
+    def setMul(self, mul):
+        self.mul = mul
+        self.flushCache()
+        return
+    
+    def setAdd(self, add):
+        self.add = add
+        self.flushCache()
+        return
+    
+    def useClamp(self, use_clamp, clamp_low, clamp_high):
+        self.use_clamp = use_clamp
+        self.clamp_low = clamp_low
+        self.clamp_high = clamp_high
+        self.flushCache()
+        return
+
+    #THIS MUST BE FILLED IN BY THE USER CLASS
+    def generateValue(self, x, y, under_value):
+        return
+
+    #THIS MUST BE FILLED IN BY THE USER CLASS
+    def generateInBounds(self, x, y, this_value, under_value):
+        return
+    
+    def setAge(self, age):
+        self.age = age
+        return
+    
+    public double getAge(self)
+        return self.age
