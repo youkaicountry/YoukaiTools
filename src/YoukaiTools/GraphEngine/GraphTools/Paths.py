@@ -139,8 +139,10 @@ def AStarPath(g, source, destination, costdata=None, heuristic=hEuclidean2D, hpa
 #if it isn't, then only one destination will be used and a non iterable path
 #will be returned
 def dijkstraPaths(g, source, destinations, costdata=None):
+    it=True
     if not isinstance(destinations, collections.Iterable):
         destinations = [destinations]
+        it=False
     vdic = {}
     remaining = set(destinations)
     #S = set()
@@ -171,7 +173,7 @@ def dijkstraPaths(g, source, destinations, costdata=None):
     print(vdic)
     for v in destinations:
         out.append(pathTree2Path((source, vdic), v))
-    return out if len(out) > 1 else out[0]
+    return out if it==True else out[0]
 
 def dijkstraTree(g, source, costdata=None):
     vdic = {}
