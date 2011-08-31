@@ -170,7 +170,7 @@ def dijkstraPaths(g, source, destinations, costdata=None):
             if bestcostav is None or herecost <= bestcostav:
                 heapq.heappush(Q, (herecost, ae, av))
     out = []
-    print(vdic)
+    #print(vdic)
     for v in destinations:
         out.append(pathTree2Path((source, vdic), v))
     return out if it==True else out[0]
