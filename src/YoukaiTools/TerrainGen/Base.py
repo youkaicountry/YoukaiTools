@@ -1,7 +1,7 @@
 class TerrainFeature2D:
     def __init__(self, age=0, bounds_requires_value=False, mul=1, add=0, use_clamp=False, clamp_low=0.0, clamp_high=1.0, use_cache=True):
         self.age = 0                          #A general number that represents the order in which to apply modifiers
-        
+
         #Use the cache to speed up repeated hits on the same location. You should NOT use it if
         #there are random elements at play in determining the value.
         #TODO: Have a larger cache
@@ -19,11 +19,11 @@ class TerrainFeature2D:
     
         self.bounds_requires_value = False    #must be true if the bounds function requires the value
 
-        this.setAge(age)
-        this.setBoundsRequiresValue(bounds_requires_value)
-        this.setMulAdd(mul, add)
-        this.useClamp(use_clamp, clamp_low, clamp_high)
-        this.useCache(use_cache)
+        self.setAge(age)
+        self.setBoundsRequiresValue(bounds_requires_value)
+        self.setMulAdd(mul, add)
+        self.useClamp(use_clamp, clamp_low, clamp_high)
+        self.useCache(use_cache)
         return
     
     def getValue(self, x, y, under_value):
@@ -66,14 +66,14 @@ class TerrainFeature2D:
     def isInBounds(self, x, y, under_value):
         cval = None
         if self.bounds_requires_value:
-            if self.use_cache and (self.cached_x == x) and (self.cached_y == y)
+            if self.use_cache and (self.cached_x == x) and (self.cached_y == y):
                 cval = self.cached_value
-            else
+            else:
                 cval = self.getValue(x, y, under_value)
         return self.generateInBounds(x, y, cval, under_value)
     
     def useCache(self, use_cache):
-        this.use_cache = use_cache
+        self.use_cache = use_cache
         return
     
     def setMulAdd(self, mul, add):
@@ -111,5 +111,5 @@ class TerrainFeature2D:
         self.age = age
         return
     
-    public double getAge(self)
+    def getAge(self):
         return self.age
