@@ -2,7 +2,7 @@ import BaseGA
 
 class Community(BaseGA.BaseGA):
     
-    def __init__(self, genes, options, communitysize, savehistoryperiod, maxhistorylength):
+    def __init__(self, genes, options, communitysize, savehistoryperiod=10000, maxhistorylength=10):
         BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength) #call super constructor
         self.communitysize = communitysize
         o = self.options.fill.getFills(communitysize)
@@ -34,7 +34,7 @@ class Community(BaseGA.BaseGA):
 
 class Pool(BaseGA.BaseGA):
     
-    def __init__(self, genes, options, poolsize, savehistoryperiod, maxhistorylength):
+    def __init__(self, genes, options, poolsize, savehistoryperiod=10000, maxhistorylength=10):
         BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength)
         self.poolsize = poolsize        
         o = self.options.fill.getFills(1)
@@ -61,7 +61,7 @@ class Pool(BaseGA.BaseGA):
         self.genelist.sort()
 
 class HillClimb(BaseGA.BaseGA):
-    def __init__(self, genes, options, savehistoryperiod, maxhistorylength):
+    def __init__(self, genes, options, savehistoryperiod=10000, maxhistorylength=10):
         BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength)
         o = self.options.fill.getFills(1)
         self.genelist = [(self.genes.getFitness(o[0]), o[0])]

@@ -1,4 +1,4 @@
-import GeneAlg
+from YoukaiTools import GeneAlg
 import testmath
 import random
 
@@ -66,7 +66,7 @@ class test(GeneAlg.User.Gene):
 
 #FUND IT!
 t = test()
-t.GA.doGeneration(500000)
+t.GA.doGeneration(500000, 100)
 ab = t.GA.getBest()
 print ab
 print ab[1].a

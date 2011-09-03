@@ -6,7 +6,7 @@ class BaseSelect:
     
     #should return the actual object
     def getSelection(self, objectlist):
-        return fitnesslist[0]
+        return objectlist[0]
     
     def getSettingsInfo(self):
         return ["info",]
@@ -21,5 +21,5 @@ class BaseFill:
         self.genes = genes
         
     def getFills(self, number):
-        return [genes.getBasic(),]
+        return [self.genes.getBasic(),]
     

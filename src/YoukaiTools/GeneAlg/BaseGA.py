@@ -3,7 +3,7 @@ import random
 #the Base GA class
 class BaseGA:
     
-    def __init__(self, genes, options, savehistoryperiod, maxhistorylength):
+    def __init__(self, genes, options, savehistoryperiod=10000, maxhistorylength=10):
         self.genes = genes
         self.options = options
         self.genelist = []
@@ -54,7 +54,7 @@ class BaseGA:
             self.genelist.sort()
             a = self.getBest()
             self.history.append((self.generation, a[0], a[1]))
-            if len(self.history) > maxhistorylength:
+            if len(self.history) > self.maxhistorylength:
                 a = len(self.history)-self.maxhistorylength
                 self.history = self.history[a:]
         return
