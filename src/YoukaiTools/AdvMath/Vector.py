@@ -124,14 +124,14 @@ def subtractVectorsN(result, vec1, vec2, n=None):
 # SCALE
 ################################################################################
 def scaleVector2(result, vec1, scale):
-    result[0] = vec[0] * scale
-    result[1] = vec[1] * scale
+    result[0] = vec1[0] * scale
+    result[1] = vec1[1] * scale
     return
     
 def scaleVector3(result, vec1, scale):
-    result[0] = vec[0] * scale
-    result[1] = vec[1] * scale
-    result[2] = vec[2] * scale
+    result[0] = vec1[0] * scale
+    result[1] = vec1[1] * scale
+    result[2] = vec1[2] * scale
     return
     
 def scaleVectorN(result, vec, scale, n=None):
