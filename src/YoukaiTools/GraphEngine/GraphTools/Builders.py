@@ -65,7 +65,46 @@ def buildGraph(g, vertices, edges=None, vdata={}, edata={}):
    
     return
 
-
+#Builds the graphs from dictionaries
+#vertices should be either a number or a dictionary.
+#If it is a number, then that many vertices will simply be added with
+#integer ids.
+#If it is a dictionary, then each entry is a vertex. There are 2 entries that are important:
+#"data" and "name". "data" should be a dictionary of data entries attached to that vertex. "name" is
+#the name of the vertex. if this is not present, then the dictionary key in vertices of that entry will
+#be used.
+#edges should be None or a dictionary. If None, then there will be no edges. If a dictionary. 
+#then each entry will be an edge. #There are 4 important entries to each edge. "name", "vertices", "directed", and "data".
+#"data" and "name" work the same as with vertices. "vertices" is a tuple containing the 2 vertices connected by
+#the edge. "directed" should be True or False. If True, then it is directed from the first vertex in the "vertices" tuple
+#to the second. You could also set "directed" to -1 to have it be directed from the second to the first.
+def buildGraphD(g, vertices, edges=None):
+    g.clearGraph()
+    if not isinstance(vertices, collections.Iterable):
+        o = {}
+        for v in range(vertices):
+            o[v] = {"name":v}
+        vertices = o
+        
+    for key in vertices.keys():
+        name = vertices[key]["name"] if "name" in vertices[key] else key
+        datadic = vertices[key]["data"] if "data" in vertices[key] else None
+        g.addVertex(name)
+        if datadic is not None:
+            for k in datadic.keys():
+                g.setVertexData(name, k, datadic[k])
+    
+    if edges is not None:
+        for key in edges.keys():
+            name = edges[key]["name"] if "name" in edges[key] else key
+            vertices = edges[key]["vertices"] 
+            directed = edges[key]["directed"] if "directed" in edges[key] else 0
+            datadic = edges[key]["data"] if "data" in edges[key] else None
+            g.addEdge(vertices[0], vertices[1], directed, name)
+            if datadic is not None:
+                for k in datadic.keys():
+                    g.setEdgeData(name, k, datadic[k])
+    return
 
 #appends g2 and all of its properties to g. Returns the first vertex id and the first edge id
 def appendGraph(g, g2):
