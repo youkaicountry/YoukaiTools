@@ -44,7 +44,7 @@ MazeGen - A library that has become somewhat obsolete because of GraphEngine,
    maze data structures.
 
 PyRange - A library for interpolation and extrapolation. Allows the creation of
-   nonuniform functions, which can then be queried for values on which
+   non-uniform functions, which can then be queried for values on which
    interpolation and extrapolation will be automatically done if needed.
 
 QuadTree - A library for quadtrees.
