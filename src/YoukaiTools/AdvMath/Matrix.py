@@ -38,7 +38,7 @@ def makeIdentity3(fillval=0, oneval=1):
     out[2][2] = oneval
     return out
 
-def setIdentity2(result, fillval=0, oneval=1):
+def setIdentity3(result, fillval=0, oneval=1):
     result[0][0] = oneval
     result[1][1] = oneval
     result[2][2] = oneval
