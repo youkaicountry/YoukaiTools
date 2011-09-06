@@ -26,7 +26,7 @@ import collections
 #a list of the edges [(0, 1), (1, 2), (0, 2), (2, 4, 1)] (the third parameter, if given, is the order of a directed edge)
 #with that, it clears and reconstructs the graph.
 #TODO: make a directed version of this
-def buildGraph(g, vertices, edges, vdata={}, edata={}):
+def buildGraph(g, vertices, edges=None, vdata={}, edata={}):
     """
     @param g: The graph to write to.
     @type g: L{GraphEngine.BaseObjects.BaseGraph}
@@ -43,14 +43,15 @@ def buildGraph(g, vertices, edges, vdata={}, edata={}):
     for x in uvertices:
         g.addVertex(x)
     
-    for x in edges:
-        l = 0
-        if len(x) >= 3:
-            l = x[2]       
-        e = g.addEdge(x[0], x[1], l)
-        if len(x) == 4:
-            for i in x[3]:
-                g.setEdgeData(e, i[0], i[1])
+    if edges is not None:
+        for x in edges:
+            l = 0
+            if len(x) >= 3:
+                l = x[2]       
+            e = g.addEdge(x[0], x[1], l)
+            if len(x) == 4:
+                for i in x[3]:
+                    g.setEdgeData(e, i[0], i[1])
     
     #print(vdata)   
     for vd in vdata.keys():
