@@ -30,8 +30,8 @@ def setEdgeDataToAll(g, index, data, edgeids=None):
 def getVertexDataRange(g, index, vertexids=None):
     if vertexids is None:
         vertexids = g.getVertexList()
-    low = AdvMath.Constants.POS_INF
-    high = AdvMath.Constants.NEG_INF
+    low = AdvMath.POSITIVE_INFINITY
+    high = AdvMath.NEGATIVE_INFINITY
     for v in vertexids:
         vd = g.getVertexData(v, index)
         if vd < low: low = vd
@@ -77,8 +77,8 @@ def normalizeDoubleVertexData(g, indices, vertexids=None, smallrange=(0,0, 1.0))
 def normalizeEdgeData(g, index, edgeids=None, nrange=(0.0, 1.0)):
     if edgeids is None:
         edgeids = g.getEdgeList()
-    low = AdvMath.Constants.POS_INF
-    high = AdvMath.Constants.NEG_INF
+    low = AdvMath.POSITIVE_INFINITY
+    high = AdvMath.NEGATIVE_INFINITY
     for v in edgeids:
         vd = g.getEdgeData(v, index)
         if vd < low: low = vd

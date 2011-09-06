@@ -1,5 +1,5 @@
 from . import datatypes
-from YoukaiTools import AdvFunctions
+import YoukaiTools.AdvMath.Numbers
 from YoukaiTools import LineLoader
 
 #intype should be a string or None to have it automatic.
@@ -117,8 +117,8 @@ def blockMap2MazeMap(blockmap):
 def blockMap2MazeMapOptimal(blockmap):
     size = blockmap.getSize()
     #make the proper width and height
-    w = int(size[0]/2) if not AdvFunctions.isEven(size[0]) else int(size[0]/2 - 1)
-    h = int(size[1]/2) if not AdvFunctions.isEven(size[1]) else int(size[1]/2 - 1)
+    w = int(size[0]/2) if not YoukaiTools.AdvMath.Numbers.isEven(size[0]) else int(size[0]/2 - 1)
+    h = int(size[1]/2) if not YoukaiTools.AdvMath.Numbers.isEven(size[1]) else int(size[1]/2 - 1)
     m = datatypes.MazeMap(w, h)
     for y in range(h):
         yloc = y*2 + 1

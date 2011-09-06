@@ -3,7 +3,7 @@ from .. import SubImage
 from .. import Metric
 from .. import Comparison
 from .. import settings
-import AdvFunctions
+import YoukaiTools.AdvMath
 
 #returns list of tiles that make up a mosaic, and a list of average colors if requested
 #image size should be a multiple of the tile size
@@ -40,7 +40,7 @@ def makeMosaic(image, imagepool, usecolor=True, manhattan=1.0, average_col=.25, 
             #get the sub image
             si = SubImage.getSubImage(image, nx, ny, tilewidth, tileheight)
             ac = Metric.calculateAverageColor(si)
-            index = AdvFunctions.spatial.arrayIndex2To1(x, y, tilesx, 3)
+            index = YoukaiTools.AdvMath.Indices.arrayIndex2To1(x, y, tilesx, 3)
             #print(index)
             average_color[index] = ac[:]
             if usecolor == False:

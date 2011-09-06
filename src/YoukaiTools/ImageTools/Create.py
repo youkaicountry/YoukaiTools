@@ -1,5 +1,3 @@
-from YoukaiTools import AdvFunctions
-
 #This file contains functions that create new images either from simple
 #parameters, or from simple modifications to given input images
 

@@ -1,6 +1,6 @@
 from .. import SubImage
-import AdvFunctions
-import PyRange
+import YoukaiTools.AdvMath
+import YoukaiTools.PyRange
 
 #the incoming image should be cleaned up and rotated already at this point,
 #may fix that later
@@ -34,10 +34,10 @@ def __scanLines(image, lines, weights):
     for x in range(image[0]):
         adder = 0.0
         for i, y in enumerate(lines):
-            ind = AdvFunctions.spatial.arrayIndex2To1(x, y, image[0], 3)
+            ind = YoukaiTools.AdvMath.Indices.arrayIndex2To1(x, y, image[0], 3)
             adder += image[ind][0]*weights[i]
         adder /= div
         points.append([x, adder])
-    dg = PyRange.DataGraph.DataGraph1D()
+    dg = YoukaiTools.PyRange.DataGraph.DataGraph1D()
     dg.setFromPoints(points)
     return

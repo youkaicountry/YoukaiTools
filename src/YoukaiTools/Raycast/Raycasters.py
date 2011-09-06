@@ -1,7 +1,7 @@
 import math
 from . import Base
 from YoukaiTools import PyRange
-from YoukaiTools import AdvFunctions
+import YoukaiTools.AdvMath.Trig
 from YoukaiTools import MazeGen
 
 pi_o_2 = math.pi / 2
@@ -56,8 +56,8 @@ class RaycastMaze(Base.RayCaster):
         if self.stepposition >= 1: self.stepstate = "still"
         if self.stepstate != "turning":
             #make sure the player is facing a cardinal direction
-            at = AdvFunctions.realatan2(self.direction[1], self.direction[0])
-            at2 = AdvFunctions.realatan2(math.floor(self.direction[1] + .5), math.floor(self.direction[0] + .5))
+            at = YoukaiTools.AdvMath.Trig.atan2_angle(self.direction[1], self.direction[0])
+            at2 = YoukaiTools.AdvMath.Trig.atan2_angle(math.floor(self.direction[1] + .5), math.floor(self.direction[0] + .5))
             self.turn(at2 - at)
             if self.stepstate != "moving" and self.stepstate != "blocked":
                 self.position[0] = int(self.position[0])+.5

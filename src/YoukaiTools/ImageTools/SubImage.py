@@ -1,7 +1,7 @@
 from . import Create
 from . import Modify
 from . import CombineFunctions
-from YoukaiTools import AdvFunctions
+import YoukaiTools.AdvMath.Indices
 
 #return a new image with combined the channels
 #can be used to create an image from a single channel, or to
@@ -28,7 +28,7 @@ def getSubImage(image, x, y, width, height):
     oi = 3
     for ty in range(height):
         for tx in range(width):
-            i = AdvFunctions.spatial.arrayIndex2To1(tx+x, ty+y, image[0], 3)
+            i = YoukaiTools.AdvMath.Indices.arrayIndex2To1(tx+x, ty+y, image[0], 3)
             outimage[oi] = image[i][:]
             oi += 1
     return outimage
@@ -60,7 +60,7 @@ def tileImage(imagepool, tile_map, colormap=None, tintcombine=CombineFunctions.m
     outimage = Create.newImage(tile_map[0]*imagepool[0][0], tile_map[1]*imagepool[0][1], initialcolor=0, channels=imagepool[0][2])
     for tmy in range(tile_map[1]):
         for tmx in range(tile_map[0]):
-            i = AdvFunctions.spatial.arrayIndex2To1(tmx, tmy, tile_map[0], 3)
+            i = YoukaiTools.AdvMath.Indices.arrayIndex2To1(tmx, tmy, tile_map[0], 3)
             if colormap != None:
                 tile = clone(imagepool[tile_map[i][0]])
                 Modify.applyColor(tile, colormap[i], tintcombine, tintcparams)
@@ -74,8 +74,8 @@ def verticalFlip(image):
     for y in range(image[1]):
         ny = (image[1]-1) - y
         for x in range(image[0]):
-            inew = AdvFunctions.spatial.arrayIndex2To1(x, ny, image[0], 3)
-            iold = AdvFunctions.spatial.arrayIndex2To1(x, y, image[0], 3)
+            inew = YoukaiTools.AdvMath.Indices.arrayIndex2To1(x, ny, image[0], 3)
+            iold = YoukaiTools.AdvMath.Indices.arrayIndex2To1(x, y, image[0], 3)
             outimage[iold] = image[inew][:]
     return outimage
 
@@ -115,11 +115,11 @@ def shrinkImage(image, newwidth, newheight):
             t = [0 for x in range(image[2])]
             for py in range(ystart, yend):
                 for px in range(xstart, xend):
-                    index = AdvFunctions.spatial.arrayIndex2To1(px, py, image[0], 3)
+                    index = YoukaiTools.AdvMath.Indices.arrayIndex2To1(px, py, image[0], 3)
                     for i, c in enumerate(image[index]):
                         t[i] += c
             for i in range(len(t)):
                 t[i] /= div
-            nindex = AdvFunctions.spatial.arrayIndex2To1(gx, gy, newwidth, 3)
+            nindex = YoukaiTools.AdvMath.Indices.arrayIndex2To1(gx, gy, newwidth, 3)
             outimage[nindex] = t[:]
     return outimage

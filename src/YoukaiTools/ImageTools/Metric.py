@@ -1,4 +1,4 @@
-from YoukaiTools import AdvFunctions
+import YoukaiTools.AdvMath.Indices
 
 #calculate different metrics about an image
 def calculateAverageColor(image):
@@ -12,6 +12,6 @@ def calculateAverageColor(image):
     return adder
 
 def getColorAt(image, x, y):
-    i = AdvFunctions.spatial.arrayIndex2To1(x, y, image[0], 3)
+    i = YoukaiTools.AdvMath.Indices.arrayIndex2To1(x, y, image[0], 3)
     return image[i]
 

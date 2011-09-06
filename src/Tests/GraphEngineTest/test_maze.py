@@ -1,7 +1,7 @@
-import GraphEngine
+from YoukaiTools import GraphEngine
 import random
-from GraphEngine.GraphTools.SpecialTypes import GridGraph
-from GraphEngine.GraphTools.Span import Worms
+from YoukaiTools.GraphEngine.GraphTools.SpecialTypes import GridGraph
+from YoukaiTools.GraphEngine.GraphTools.Span import Worms
 
 kruskal_animation = False
 recurse_animation = False

@@ -29,5 +29,6 @@ class RayCaster:
         self.camplane[0] = self.camplane[0] * math.cos(angle) - self.camplane[1] * math.sin(angle)
         self.camplane[1] = oldplanex * math.sin(angle) + self.camplane[1] * math.cos(angle)
        
-    def raycast(screen=None):
+    def raycast(self, screen=None):
         return
+    

@@ -32,7 +32,7 @@ def kruskal(g, cost=None, r=None, makegraph=None):
                 vid[v] = id1
             id_list[id2] = []
     if makegraph is not None:
-        GraphEngine.GraphTools.SubGraph.copyGraph(makegraph, g, edgelist=out)
+        YoukaiTools.GraphEngine.GraphTools.SubGraph.copyGraph(makegraph, g, edgelist=out)
     return out
 
 def recursiveBacktrack(g, cost=None, r=None, start=None, makegraph=None):
