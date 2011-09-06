@@ -1,5 +1,5 @@
-# 01_basic_graphs.py
-# Basic examples of creating and using graphs.
+# 02_graph_building.py
+# Easily creating larger graphs using graph builders.
 
 
 # This is free and unencumbered software released into the public domain.
@@ -25,31 +25,9 @@
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-
-# First, import the GraphEngine module
+# Import the GraphEngine module
 import YoukaiTools.GraphEngine as GraphEngine
 
 # Create an empty graph
 graph = GraphEngine.BasicGraph()
 
-# Add 3 vertices named "vertex_a", "vertex_b", and "vertex_c".
-graph.addVertex("vertex_a")
-graph.addVertex("vertex_b")
-graph.addVertex("vertex_c")
-
-# Connect "vertex_a" and "vertex_b" with an undirected edge named "edge_a",
-# and "vertex_a" and "vertex_c" with an undirected edge named "edge_b".
-graph.addEdge("vertex_a", "vertex_b", edgeid="edge_a")
-graph.addEdge("vertex_a", "vertex_c", edgeid="edge_b")
-
-# Print the list of vertices and edges.
-print("Vertices: " + str(graph.getVertexList()))
-print("Edges   : " + str(graph.getEdgeList()))
-
-# Print the size and order of the graph
-print("Order: " + str(graph.getOrder()))
-print("Size : " + str(graph.getSize()))
-
-# Print list of vertices adjacent to each vertex
-for vertex in graph.getVertexList():
-    print(vertex + " neighbors: " + str(graph.getAdjacentVertices(vertex)))
