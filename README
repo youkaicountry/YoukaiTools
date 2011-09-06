@@ -1,0 +1,62 @@
+YoukaiTools
+
+YoukaiTools is a collection of python libraries currently being developed by 
+Nathaniel Caldwell for personal projects. It contains useful tools for many 
+kinds of applications, including games, procedural content, and data analysis.
+
+Having been developed for personal use, YoukaiTools has some major areas in
+need of improvement. Namely it needs documentation, unit testing, optimization,
+Error handling, and some interface standardization.
+
+Even until that happens it can be of some use in python projects.
+
+Without serious documentation, the best way to figure out how to use some of
+the functionality is to look in the Tests packages, which contains some
+examples of usage. (Not nearly everything is covered in it right now, though).
+
+The main packages are:
+
+AdvMath - Collections of various useful mathematical functions such as vectors,
+   matrices, rounding functions, and more.
+
+AdvRandom - Random number generation utilities.
+
+GameTools - Various functionality for creating games, including a game state
+   manager, a keyboard manager, tile based game manager, a class for handling
+   animated objects, and a 2d camera with scaling and zooming.
+
+GeneAlg - A library for handling genetic algorithms and evolving objects.
+
+GraphEngine - A library for general purpose graphs. Has many tools including
+   automata simulation, pathfinding, maze generation, graph spanning, planar
+   graph solving, and graph image rendering.
+
+ImageTools - A pure python image processing library. Presently supports BMP
+   and PNG images. Has tools for procedural image creation, (very very simple 
+   and currently incomplete) font rendering, image saving and loading, and 
+   quite a bit of other tools.
+
+LineLoader - Some functions for doing some of the mundane work when loading 
+   human readable files.
+
+MazeGen - A library that has become somewhat obsolete because of GraphEngine,
+   but it still has a few features that are of some use involving grid based
+   maze data structures.
+
+PyRange - A library for interpolation and extrapolation. Allows the creation of
+   nonuniform functions, which can then be queried for values on which
+   interpolation and extrapolation will be automatically done if needed.
+
+QuadTree - A library for quadtrees.
+
+Raycast - A raycasting engine. Contains a module for using it with pygame, 
+   but it can also just output general data that can then be used with some
+   graphics engine (or other purposes).
+
+RollingDictionary - A simple tree data structure intended for storing actual
+   human language dictionary entries somewhat space efficiently.
+
+ShiroiNeko - A simple 2d mass-spring physics engine.
+
+Tester - A somewhat unfinished unit testing module.
+ 
