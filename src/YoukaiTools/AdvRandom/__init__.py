@@ -40,6 +40,9 @@ class AdvRandom:
             if p >= r:
                 return e
         raise RuntimeError("Could not find element (total="+str(total)+", r="+str(r))
+    
+    def distribution(self, dist_func):
+        return dist_func(self.r.random())
         
     def __partialsum(self, seq):
         total = 0.0
