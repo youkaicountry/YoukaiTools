@@ -32,7 +32,7 @@ def dotProduct3(vec1, vec2):
     return vec1[0]*vec2[0] + vec1[1]*vec2[1] + vec1[2]*vec2[2]
 
 def dotProductN(vec1, vec2, n=None):
-    if n == None: n = len(vec1)
+    if n is None: n = len(vec1)
     out = 0
     for i in range(n):
         out += vec1[i]*vec2[i]
@@ -57,7 +57,7 @@ def vectorLength3(vec):
     return math.sqrt(vec[0]**2 + vec[1]**2 + vec[2]**2)
     
 def vectorLengthN(vec, n=None):
-    if n == None: n = len(vec)
+    if n is None: n = len(vec)
     add = 0
     for i in range(n):
         add += vec[i]**2
@@ -84,7 +84,7 @@ def normalizeVector3(result, vec):
     return result
 
 def normalizeVectorN(result, vec, n=None):
-    if n == None: n = len(vec)
+    if n is None: n = len(vec)
     vlength = vectorLengthN(vec, n)
     if vlength != 0:
         vlength = 1.0/vlength
@@ -115,7 +115,7 @@ def addVectors3(result, vec1, vec2):
     return
     
 def addVectorsN(result, vec1, vec2, n=None):
-    if n == None: n = len(vec1)
+    if n is None: n = len(vec1)
     for i in range(n):
         result[i] = vec1[i] + vec2[i]
     return
@@ -135,7 +135,7 @@ def subtractVectors3(result, vec1, vec2):
     return
     
 def subtractVectorsN(result, vec1, vec2, n=None):
-    if n == None: n = len(vec1)
+    if n is None: n = len(vec1)
     for i in range(n):
         result[i] = vec1[i] - vec2[i]
     return
@@ -155,7 +155,7 @@ def scaleVector3(result, vec1, scale):
     return
     
 def scaleVectorN(result, vec, scale, n=None):
-    if n == None: n = len(vec)
+    if n is None: n = len(vec)
     for i in range(n):
         result[i] = vec[i] * scale
     return
@@ -175,7 +175,7 @@ def scaleAddVectors3(result, vec1, vec2, scale):
     return
     
 def scaleAddVectorsN(result, vec1, vec2, scale, n=None):
-    if n == None: n = len(vec1)
+    if n is None: n = len(vec1)
     for i in range(n):
         result[i] = vec1[i] + vec2[i] * scale
     return

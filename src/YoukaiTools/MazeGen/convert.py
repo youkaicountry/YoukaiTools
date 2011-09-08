@@ -32,7 +32,7 @@ from YoukaiTools import LineLoader
 #blockmap - given as a BlockMap object
 #mazemap - given as a MazeMap object
 def convertTo(inobj, outtype, intype=None, optimal=True, blocked=-1):
-    if intype == None: it=getType(inobj)
+    if intype is None: it=getType(inobj)
     else: it=intype
     l = types2funcs[(it, outtype, optimal)]
     out = inobj
@@ -84,7 +84,7 @@ def array2Lines(array):
         s = ""
         for x in range(len(array[0])):
             v = array[y][x]
-            if v == None: v = "x"
+            if v is None: v = "x"
             s = s + str(v) + " "
         out.append(s)
     return out

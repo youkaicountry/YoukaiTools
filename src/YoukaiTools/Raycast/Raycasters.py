@@ -166,7 +166,7 @@ class RaycastMaze(Base.RayCaster):
         return
         
     def raycast(self, screen=None):
-        if screen == None: op = self.output
+        if screen is None: op = self.output
         else: op = screen
         for x in range(self.screensize[0]):
             camerax = (2.0 * x / float(self.screensize[0])) - 1.0 #x-coordinate in camera space

@@ -27,7 +27,7 @@ import YoukaiTools.GraphEngine
 #data["nodereturn"] = return value
 #edges:
 #MUST BE DIRECTED
-#data["transition"] = (object), 'object == None' means that it is empty (free move)
+#data["transition"] = (object), 'object is None' means that it is empty (free move)
 
 #dfa - properly formed dfa
 #indata - list whose objects are the string to be simulated
@@ -59,7 +59,7 @@ def eclosure(nfa, state):
         for o in l: #objects in tocheck
             edges = nfa.getConnectingEdges(o)
             for e in edges:
-                if nfa.getEdgeData(e, "transition") == None:
+                if nfa.getEdgeData(e, "transition") is None:
                     end = nfa.getEdgeEnd(o, e)
                     if end not in checked : tocheck.add(end)
             checked.add(o)

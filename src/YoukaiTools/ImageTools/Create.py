@@ -29,10 +29,10 @@
 def newImage(width, height, initialcolor=[0, 0, 0], channels=None, indata=None):
     if indata != None:
         c = channels
-        if channels == None:
+        if channels is None:
             c = len(indata[0])
         return [width, height, c] + indata
-    if channels == None: 
+    if channels is None: 
         ic = initialcolor
         number_channels = len(initialcolor)
     else:

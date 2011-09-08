@@ -32,7 +32,7 @@ import struct
 
 def getBasicUnifiedHeader(image=None, f=None):
     uh = UHEAD.getBlankUnifiedHeader()
-    if image == None:
+    if image is None:
         uh["bits_per_pixel"] = 24
         uh["data_pad_bits"] = 0
         uh["dpi_x"] = 300
@@ -102,7 +102,7 @@ def saveFile(filename, image, uh=None):
 #uh should have bitsperpixel=24, data_pad_bits (should be 0 or a multiple of 8)
 #the image should have at least 3 channels, RGB
 def save(f, image, uh=None):
-    if uh == None: uh = getBasicUnifiedHeader(image)
+    if uh is None: uh = getBasicUnifiedHeader(image)
     width = image[0] if uh["width"] is None else uh["width"]
     height = image[1] if uh["height"] is None else uh["height"]
     dpi_x = uh["dpi_x"] if uh["dpi_x"] is not None else 300
@@ -120,8 +120,8 @@ def save(f, image, uh=None):
 
 def __save_bmp24(f, image, uh):
     flipped = SubImage.verticalFlip(image)
-    width = image[0] if uh["width"] == None else uh["width"]
-    height = image[1] if uh["height"] == None else uh["height"]
+    width = image[0] if uh["width"] is None else uh["width"]
+    height = image[1] if uh["height"] is None else uh["height"]
     row_padding = __getRowPadding(width)
     #print(width, height)
     row_padding = __getRowPadding(width)

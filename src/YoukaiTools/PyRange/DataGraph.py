@@ -150,7 +150,7 @@ class DataGraph1D:
     def getResample(self, samples, xr=None, addsadd=1, addmul=1, dxsadd=1, dxmul=1, interp=None, tension=None, bias=None):
         outputx = []
         outputy = []
-        if xr == None:
+        if xr is None:
             uxr = self.fdomain
         else:
             uxr = xr
@@ -167,11 +167,11 @@ class DataGraph1D:
     #outputs (points, xaxis, yaxis)
     def getGraphPrint(self, xslices, yslices, xr=None, yr=None, clip=True, interp=None, tension=None, bias=None):
         output = []
-        if xr == None:
+        if xr is None:
             uxr = self.fdomain
         else:
             uxr = xr
-        if yr == None:
+        if yr is None:
             uyr = self.frange
         else:
             uyr = yr

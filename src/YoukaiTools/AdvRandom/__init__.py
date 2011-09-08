@@ -23,7 +23,7 @@ import itertools
 
 class AdvRandom:
     def __init__(self, r=None):
-        if r == None:
+        if r is None:
             self.r = random.Random()
         else:
             self.r = r
@@ -32,7 +32,7 @@ class AdvRandom:
     def biasedChoice(self, seq, probseq=None):
         #Chooses an element from seq at random
         #Probability of each element given in probseq
-        if probseq == None:
+        if probseq is None:
             probseq = itertools.repeat(1.0)
         total = sum(p for e,p in zip(seq, probseq))
         r = random.uniform(0.0, total)

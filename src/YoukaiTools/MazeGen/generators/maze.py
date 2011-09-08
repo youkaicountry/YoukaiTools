@@ -56,13 +56,13 @@ class recursiveBacktrackMaze():
          #print "OUT: "+str(n)
          realn = []
          for o in n:
-            if self.found.getSpace(o[0], o[1]) == None:
+            if self.found.getSpace(o[0], o[1]) is None:
                realn.append(o)
          if len(realn) > 0:
             self.path.append((nx, ny))
             #self.r.shuffle(realn)
             choice = self.r.randint(0, len(realn)-1)
-            if self.found.getSpace(realn[choice][0], realn[choice][1]) == None:
+            if self.found.getSpace(realn[choice][0], realn[choice][1]) is None:
                dir = self.maze.getDirection(nx, ny, realn[choice][0], realn[choice][1])
                self.maze.setWall(nx, ny, dir, None)
                nx = realn[choice][0]

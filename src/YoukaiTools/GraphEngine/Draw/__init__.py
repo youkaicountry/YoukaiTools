@@ -63,7 +63,7 @@ def drawSimple(g, imagename=None, locindices=("x", "y"), layers=[["edge", (None,
         if layer[0] == "vertex":
             radius = int(smallwidth*layer[1])
             for v in g.getVertexList():
-                if layer[2][0] == None:
+                if layer[2][0] is None:
                     c = layer[2][1]
                 else:
                     if layer[2][0] in g.getVertexDataKeys(v):
@@ -77,7 +77,7 @@ def drawSimple(g, imagename=None, locindices=("x", "y"), layers=[["edge", (None,
                 ei = g.getEdgeInfo(e)
                 p1 = ploc[ei[0]]
                 p2 = ploc[ei[1]]
-                if layer[1][0] == None:
+                if layer[1][0] is None:
                     c = layer[1][1]
                 else:
                     if layer[1][0] in g.getEdgeDataKeys(e):

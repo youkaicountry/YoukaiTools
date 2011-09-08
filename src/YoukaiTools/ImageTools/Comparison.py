@@ -43,18 +43,18 @@ def manhattanAverageDistance(image1, image2, div=None):
 
 #must have same number of channels
 def averageColorDist(image1, image2, averagecolor1=None, averagecolor2=None):
-    a1 = Metric.calculateAverageColor(image1) if averagecolor1 == None else averagecolor1
-    a2 = Metric.calculateAverageColor(image2) if averagecolor2 == None else averagecolor2
+    a1 = Metric.calculateAverageColor(image1) if averagecolor1 is None else averagecolor1
+    a2 = Metric.calculateAverageColor(image2) if averagecolor2 is None else averagecolor2
     adder = 0
     for i in range(len(a1)):
         adder += abs(a1[i] - a2[i])
     return adder
 
 def averageValueDist(image1, image2, valueimage1=None, valueimage2=None, averagevcolor1=None, averagevcolor2=None):
-    ni1 = SubImage.averageChannels(image1) if valueimage1 == None else valueimage1
-    ni2 = SubImage.averageChannels(image2) if valueimage2 == None else valueimage2
-    a1 = Metric.calculateAverageColor(ni1) if averagevcolor1 == None else averagevcolor1
-    a2 = Metric.calculateAverageColor(ni2) if averagevcolor2 == None else averagevcolor2
+    ni1 = SubImage.averageChannels(image1) if valueimage1 is None else valueimage1
+    ni2 = SubImage.averageChannels(image2) if valueimage2 is None else valueimage2
+    a1 = Metric.calculateAverageColor(ni1) if averagevcolor1 is None else averagevcolor1
+    a2 = Metric.calculateAverageColor(ni2) if averagevcolor2 is None else averagevcolor2
     return averageColorDist(ni1, ni2)
 
 #given an image and an image pool, return the (index,fitvalue) of the image that fits best

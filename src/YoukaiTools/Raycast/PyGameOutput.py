@@ -40,7 +40,7 @@ class PyGameOutput:
     def drawScreen(self, screen, rayresult):
         for x in range(self.size[0]):
             r = rayresult[x]
-            if r[0] == None: continue
+            if r[0] is None: continue
             if r[0] > self.size[1]:
                 frac = self.size[1] / r[0]
                 h = self.size[1]

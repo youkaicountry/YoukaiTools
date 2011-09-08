@@ -28,7 +28,7 @@ import YoukaiTools.AdvMath.Indices
 #average the values of certain channels together
 #if channels == None, then it is the straight average value
 def averageChannels(image, channels=None):
-    if channels == None:
+    if channels is None:
         use_channels = [i for i in range(image[2])]
     else:
         use_channels = channels

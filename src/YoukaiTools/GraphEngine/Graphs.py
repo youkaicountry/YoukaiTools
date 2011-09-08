@@ -32,7 +32,7 @@ class BasicGraph(BaseObjects.BaseGraph):
 
    def addVertex(self, vertexid=None):
       #the list is: connected vertices, connected edges, and data
-      if (vertexid == None): 
+      if (vertexid is None): 
           usev = self.vertextop
           self.vertextop+=1
       else:
@@ -58,7 +58,7 @@ class BasicGraph(BaseObjects.BaseGraph):
 
    def addEdge(self, vertex1, vertex2, direction=0, edgeid=None):
       #the list is: connection info, and data
-      if (edgeid == None): 
+      if (edgeid is None): 
           usev = self.edgetop
           self.edgetop+=1
       else:
