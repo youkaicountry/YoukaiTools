@@ -27,8 +27,45 @@
 
 # Import the GraphEngine module
 import YoukaiTools.GraphEngine as GraphEngine
-#import YoukaiTools.GraphEngine.Builders as Builders
 
 # Create an empty graph
 graph = GraphEngine.BasicGraph()
 
+# Make a grid, like might appear in an overhead game
+# To do this, we will use the BlockMap class from
+# MazeGen.
+# First, import it
+import YoukaiTools.MazeGen.datatypes
+
+# Make a small 5x5 world for this example
+bmap = YoukaiTools.MazeGen.datatypes.BlockMap(5, 5)
+
+# Put some walls in it by setting them to True
+bmap.setSpaces([(2, 0), (2, 1), (2, 2), (2, 4)], True)
+
+# Now make a graph out of it
+# First we import the 'special types' GridGraph
+import YoukaiTools.GraphEngine.GraphTools.SpecialTypes.GridGraph as GridGraph
+
+# Now call the buildGridGraphFromBlockMap function
+GridGraph.buildGridGraphFromBlockMap(graph, bmap)
+
+# graph now contains a graph representing our map.
+# Let's do standard game style A* pathfinding on the map
+# from space (0, 0) to space (4, 0).
+# Of course A* needs a heuristic. The default it tries to use
+# is euclidean2d. It looks at the data values 'x' and 'y' of your
+# nodes. Those have already been set automatically by the
+# buildGridGraphFromBlockmap function, but if you are rolling
+# your own graph, then you will need to set them.
+
+# Import the pathfinding module
+import YoukaiTools.GraphEngine.GraphTools.Paths as Paths
+
+# Now run the algorithm
+path = Paths.AStarPath(graph, (0, 0), (4, 0))
+
+# What it returns is a list of tuples that make up the path.
+# The tuples each contain a vertex, and the next edge in the path.
+# so the output looks like this [(vertex, edge), (vertex, edge), ...]
+print(path)
