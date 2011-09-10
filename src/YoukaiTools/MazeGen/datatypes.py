@@ -108,12 +108,12 @@ class MazeMap:
         return out
         
     def getAllNeighborsFull(self, x, y):
-       out = 4*[None]
-       if y > 0: out[0] = (x, y-1)
-       if x < self.width-1: out[1] = (x+1, y)
-       if y < self.height-1: out[2] = (x, y+1)
-       if x > 0: out[3] = (x-1, y)
-       return out
+        out = 4*[None]
+        if y > 0: out[0] = (x, y-1)
+        if x < self.width-1: out[1] = (x+1, y)
+        if y < self.height-1: out[2] = (x, y+1)
+        if x > 0: out[3] = (x-1, y)
+        return out
    
     def getAllNeighborDirections(self, x, y):
         out = []
@@ -127,11 +127,11 @@ class MazeMap:
         return [v for v in self.getAllNeighbors(x, y) if self.getWall(x, y, self.getDirection(x, y, v[0], v[1])) != blocked]
    
     def getDirection(self, fromx, fromy, tox, toy):
-      if tox > fromx: return DIR_EAST
-      if toy > fromy: return DIR_SOUTH
-      if toy < fromy: return DIR_NORTH
-      if tox < fromx: return DIR_WEST
-      return None
+        if tox > fromx: return DIR_EAST
+        if toy > fromy: return DIR_SOUTH
+        if toy < fromy: return DIR_NORTH
+        if tox < fromx: return DIR_WEST
+        return None
     
 class BlockMap:
     def __init__(self, width, height, initval=None):
@@ -151,11 +151,20 @@ class BlockMap:
         return True
     
     def getSize(self):
-      return (self.width, self.height)
+        return (self.width, self.height)
     
     def getSpace(self, x, y):
-      return self.map[y][x]
+        return self.map[y][x]
     
     def setSpace(self, x, y, val):
-      self.map[y][x] = val
+        self.map[y][x] = val
     
+    # spaces should be a list of tuples (x, y, val),
+    # if they are only (x, y), then default_val will be used
+    def setSpaces(self, spaces, default_val=True):
+        for space in spaces:
+            if len(space) == 3:
+                self.map[space[1]][space[0]] = space[2]
+            else:
+                self.map[space[1]][space[0]] = default_val
+        return
