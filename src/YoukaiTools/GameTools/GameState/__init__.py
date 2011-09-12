@@ -35,9 +35,9 @@ class GameStateManager:
     # CONTROL FLOW
     ############################################################################
     def run(self):   #when it returns, it's over 
-         while len(self.state_instance) != 0:
-             if self.run_limited(1) == True: break
-         return
+        while len(self.state_instance) != 0:
+            if self.run_limited(1) == True: break
+        return
     
     #returns whether the end flag has been tripped
     def run_limited(self, times):

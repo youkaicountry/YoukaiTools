@@ -20,16 +20,16 @@
 
 class BaseGraph(object):
     def __init__(self):
-       return
+        return
     
     #VERTEX METHODS
     def addVertex(self, vertexid=None):
-       """
-       Adds a new vertex to the graph.
-       @param vertexid: The id to use for the vertex. If None, an id will be automatically generated.
-       @return: The id of the newly created vertex.
-       """
-       return
+        """
+        Adds a new vertex to the graph.
+        @param vertexid: The id to use for the vertex. If None, an id will be automatically generated.
+        @return: The id of the newly created vertex.
+        """
+        return
     
     def renameVertex(self, vertexidold, vertexidnew):
         return
@@ -41,21 +41,21 @@ class BaseGraph(object):
         return
         
     def getOrder(self):
-       """
-       Returns the order (number of vertices) of the graph.
-       @return: The order of the Graph.
-       @rtype: C{int}
-       """
-       return
+        """
+        Returns the order (number of vertices) of the graph.
+        @return: The order of the Graph.
+        @rtype: C{int}
+        """
+        return
    
     def containsVertex(self, vertexid):
-       """
-       Checks whether the given vertex id is in the graph.
-       @param vertexid: The vertex id to check for.
-       @return: Whether or not the graph contains the vertex.
-       @rtype: C{bool}
-       """
-       return
+        """
+        Checks whether the given vertex id is in the graph.
+        @param vertexid: The vertex id to check for.
+        @return: Whether or not the graph contains the vertex.
+        @rtype: C{bool}
+        """
+        return
        
     def getAdjacentVertices(self, vertexid):
         return
@@ -77,15 +77,15 @@ class BaseGraph(object):
     
     #EDGE METHODS
     def addEdge(self, vertex1, vertex2, direction=0, edgeid=None):
-       """
-       Adds a new edge to the graph.
-       @param vertex1: The id of the first vertex the edge connects.
-       @param vertex2: The id of the second vertex the edge connects.
-       @param direction: If 0, the edge is undirected. If 1, the edge is directed vertex1->vertex2. If -1, the edge is directed vertex2->vertex1.
-       @param edgeid: The id to use for the edge.
-       @return: The id of the newly created edge.
-       """
-       return
+        """
+        Adds a new edge to the graph.
+        @param vertex1: The id of the first vertex the edge connects.
+        @param vertex2: The id of the second vertex the edge connects.
+        @param direction: If 0, the edge is undirected. If 1, the edge is directed vertex1->vertex2. If -1, the edge is directed vertex2->vertex1.
+        @param edgeid: The id to use for the edge.
+        @return: The id of the newly created edge.
+        """
+        return
     
     def renameEdge(self, edgeidold, edgeidnew):
         return
@@ -100,12 +100,12 @@ class BaseGraph(object):
         return
         
     def getSize(self):
-       """
-       Returns the size (number of edges) of the graph.
-       @return: The size of the graph.
-       @rtype: C{int}
-       """
-       return
+        """
+        Returns the size (number of edges) of the graph.
+        @return: The size of the graph.
+        @rtype: C{int}
+        """
+        return
        
     def containsEdge(self, edgeid):
         return
