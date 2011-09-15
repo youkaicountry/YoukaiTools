@@ -30,7 +30,7 @@ class State:
     def transitionIn(self, state, data):
         return
     
-    def transitionOut(self, state, data):
+    def transitionOut(self, to_state, data):
         return
     
     def setStateMachine(self, state_machine):
@@ -48,22 +48,22 @@ class StateMachine:
     
     def addState(self, state_name, state_obj):
         self.states[state_name] = state_obj
+        self.states[state_name].setStateMachine(self)
         return
     
     def spawnInstance(self, start_state_name=None):
         instance = {}
-        instance["state"] = None
-        instance["data"] = None
+        self.__modify_instance(instance, None, None)
         if start_state_name is not None:
             self.transition(instance, start_state_name)
         return instance
     
     def transition(self, instance, to_state_name):
-        if instance["state"] is not None:
-            instance["state"][1].transtionOut(to_state_name, instance["data"])
-        
         s = self.getState(to_state_name)
-        d = s[1].generate_data(s)
+        if instance["state"] is not None:
+            instance["state"][1].transtionOut(s, instance["data"])
+        
+        d = s[1].generateData(s)
         self.__modify_instance(instance, s, d)
         instance["state"][1].transitionIn(s, instance["data"])
         return 
@@ -74,11 +74,13 @@ class StateMachine:
         return
     
     def getState(self, state_name):
+        if state_name is None: return (None, None)
         if state_name in self.states:
-            return (state_name, self.state[state_name])
+            return (state_name, self.states[state_name])
         else:
             if self.state_generator is not None:
                 return (state_name, self.state_generator)
             else:
                 raise Exception, "No state generator."
         return
+    
