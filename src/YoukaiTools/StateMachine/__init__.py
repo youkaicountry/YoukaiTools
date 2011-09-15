@@ -18,69 +18,55 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-#Base state
-#Upon transition to a new state, 
-class State:
-    def __init__(self, state_machine):
-        return
+#def data_func(state_machine)
+#def transition_in_func(state_machine, from_state, from_data)
+#def transition_out_func(state_machine, to_state)
+
+#data_func is a pointer to a function takes the state machine and returns arbitrary data
+#transition_in_func is a pointer to a function that takes the state machine and the from_state and does whatever it wants 
+def newState(data_func, transition_in_func, transition_out_func):
+    return (data_func, transition_in_func, transition_out_func)
     
-    def generateData(self, state):
-        return None
+#{"current_state":(name, state), "current_data":data, "states":states, "state_generator":state_generator}
+#states should be a list of tuples [(state_name, state), ...], or None.
+def newStateMachine(states=None, state_generator=None, start_state_name=None):
+    state_generator = state_generator
+    sm = {"current_state":(None, None), "current_data":None, "states":{}, "state_generator":state_generator}
+    if states is not None:
+        for s in states:
+            addState(sm, *s)
+    transition(sm, start_state_name)
+    return sm
     
-    def transitionIn(self, state, data):
-        return
+def addState(sm, state_name, state_obj):
+    sm["states"][state_name] = state_obj
+    return
     
-    def transitionOut(self, to_state, data):
-        return
+def transition(state_machine, to_state_name):
+    s = getState(state_machine, to_state_name)
+    if s == (None, None): return
+    os = state_machine["current_state"]
+    od = state_machine["current_data"]
+    if state_machine["current_state"] != (None, None):
+        #transition out
+        state_machine["current_state"][1][2](state_machine, s)
+    state_machine["current_state"] = s
+    #generate data
+    state_machine["current_data"] = s[1][0](state_machine)
     
-    def setStateMachine(self, state_machine):
-        self.state_machine = state_machine
+    #transition in
+    state_machine["current_state"][1][1](state_machine, os, od)
     
-class StateMachine:
-    #states should be a list of tuples [(state_name, state), ...], or None.
-    def __init__(self, states=None, state_generator=None):
-        self.states = {}
-        if states is not None:
-            for s in states:
-                self.addState(*s)
-        self.state_generator = state_generator
-        return
+    return 
     
-    def addState(self, state_name, state_obj):
-        self.states[state_name] = state_obj
-        self.states[state_name].setStateMachine(self)
-        return
-    
-    def spawnInstance(self, start_state_name=None):
-        instance = {}
-        self.__modify_instance(instance, None, None)
-        if start_state_name is not None:
-            self.transition(instance, start_state_name)
-        return instance
-    
-    def transition(self, instance, to_state_name):
-        s = self.getState(to_state_name)
-        if instance["state"] is not None:
-            instance["state"][1].transtionOut(s, instance["data"])
-        
-        d = s[1].generateData(s)
-        self.__modify_instance(instance, s, d)
-        instance["state"][1].transitionIn(s, instance["data"])
-        return 
-    
-    def __modify_instance(self, instance, state, data):
-        instance["state"] = state
-        instance["data"] = data
-        return
-    
-    def getState(self, state_name):
-        if state_name is None: return (None, None)
-        if state_name in self.states:
-            return (state_name, self.states[state_name])
+def getState(state_machine, state_name):
+    if state_name is None: return (None, None)
+    if state_name in state_machine["states"]:
+        return (state_name, state_machine["states"][state_name])
+    else:
+        if state_machine["state_generator"] is not None:
+            return (state_name, state_machine["state_generator"])
         else:
-            if self.state_generator is not None:
-                return (state_name, self.state_generator)
-            else:
-                raise Exception, "No state generator."
-        return
+            raise Exception, "No state generator."
+    return
     

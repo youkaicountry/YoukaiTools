@@ -20,45 +20,37 @@
 
 import YoukaiTools.StateMachine as StateMachine
 
-class state1(StateMachine.State):
-    def __init__(self):
-        return
-    
-    def generateData(self, state):
-        return {1:1}
-    
-    def transitionIn(self, state, data):
-        print("1 transition in.")
-        data[1] = data[1] + 1
-        print(data)
-        return
-    
-    def transitionOut(self, state, data):
-        print("1 transition out")
-        print(data)
-        return
-    
-class state2(StateMachine.State):
-    def __init__(self):
-        return
-    
-    def generateData(self, state):
-        return {2:2}
-    
-    def transitionIn(self, state, data):
-        print("2 transition in.")
-        data[1] = data[1] + 2
-        print(data)
-        return
-    
-    def transitionOut(self, state, data):
-        print("2 transition out")
-        print(data)
-        return
+def s1_data(sm):
+    print("s1 data")
+    return {1:1}
 
-s1 = state1()
-s2 = state2()
+def s1_tin(sm, from_s, from_d):
+    print("s1 tin")
+    sm["current_data"][1] += 1
+    return
 
-sm = StateMachine.StateMachine([("state1", s1), ("state2", s2)])
-inst = sm.spawnInstance("state1")
-print(inst)
+def s1_tout(sm, to_s):
+    print("s1 tout")
+    print(sm["current_data"])
+    return
+
+def s2_data(sm):
+    print("s2 data")
+    return {2:2}
+
+def s2_tin(sm, from_s, from_d):
+    print("s2 tin")
+    sm["current_data"][2] += 1
+    return
+
+def s2_tout(sm, to_s):
+    print("s2 tout")
+    print(sm["current_data"])
+    return
+
+s1 = StateMachine.newState(s1_data, s1_tin, s1_tout)
+s2 = StateMachine.newState(s2_data, s2_tin, s2_tout)
+
+sm = StateMachine.newStateMachine([("state1", s1), ("state2", s2)], start_state_name="state1")
+StateMachine.transition(sm, "state2")
+StateMachine.transition(sm, "state1")
