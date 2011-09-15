@@ -220,22 +220,22 @@ class RaycastMaze(Base.RayCaster):
             
             #perform DDA
             while hit == 0:
-               #jump to next map square, OR in x-direction, OR in y-direction
-               if sidedistx < sidedisty:
-                  sidedistx += deltadistx
-                  mapx += stepx
-                  side = 0
-               else:
-                  sidedisty += deltadisty
-                  mapy += stepy
-                  side = 1
-               #Check if ray has hit a wall
-               if side == 0:
-                   mapval = self.mazemap.getWall(mapx, mapy, mxd)
-                   if mapval != None: hit = 1
-               else:
-                   mapval =  self.mazemap.getWall(mapx, mapy, myd)
-                   if mapval != None: hit = 1
+                #jump to next map square, OR in x-direction, OR in y-direction
+                if sidedistx < sidedisty:
+                    sidedistx += deltadistx
+                    mapx += stepx
+                    side = 0
+                else:
+                    sidedisty += deltadisty
+                    mapy += stepy
+                    side = 1
+                #Check if ray has hit a wall
+                if side == 0:
+                    mapval = self.mazemap.getWall(mapx, mapy, mxd)
+                    if mapval != None: hit = 1
+                else:
+                    mapval =  self.mazemap.getWall(mapx, mapy, myd)
+                    if mapval != None: hit = 1
             
             #Calculate distance projected on camera direction (oblique distance will give fisheye effect!)
             if side == 0:
@@ -257,9 +257,9 @@ class RaycastMaze(Base.RayCaster):
             #calculate value of wallX
             wallx = 0 #where exactly the wall was hit
             if side == 1:
-               wallx = rayposx + ((mapy - rayposy + (1 - stepy) / 2) / raydiry) * raydirx
+                wallx = rayposx + ((mapy - rayposy + (1 - stepy) / 2) / raydiry) * raydirx
             else:
-               wallx = rayposy + ((mapx - rayposx + (1 - stepx) / 2) / raydirx) * raydiry
+                wallx = rayposy + ((mapx - rayposx + (1 - stepx) / 2) / raydirx) * raydiry
             wallx -= int((wallx))
             
             mu = wallx

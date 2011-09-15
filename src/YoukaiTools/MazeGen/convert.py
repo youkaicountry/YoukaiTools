@@ -156,35 +156,35 @@ def blockMap2MazeMapOptimal(blockmap):
 
 #make this use None as unblocked, anything else as blocked
 def mazeMap2BlockMap(mazemap, blocked=True):
-   msize = mazemap.getSize()
-   #construct the block map
-   blockmap = datatypes.BlockMap(msize[0]*2 + 1, msize[1]*2 + 1, None)
-   bsize = blockmap.getSize()
-   
-   #construct the dots
-   for y in range(0, bsize[1], 2):
-      for x in range(0, bsize[0], 2):
-         blockmap.setSpace(x, y, blocked)
+    msize = mazemap.getSize()
+    #construct the block map
+    blockmap = datatypes.BlockMap(msize[0]*2 + 1, msize[1]*2 + 1, None)
+    bsize = blockmap.getSize()
+    
+    #construct the dots
+    for y in range(0, bsize[1], 2):
+        for x in range(0, bsize[0], 2):
+            blockmap.setSpace(x, y, blocked)
          
-   #fill the top
-   for x in range(msize[0]):
-      blockmap.setSpace(x*2 + 1, 0, mazemap.getWall(x, 0, datatypes.DIR_NORTH))
+    #fill the top
+    for x in range(msize[0]):
+        blockmap.setSpace(x*2 + 1, 0, mazemap.getWall(x, 0, datatypes.DIR_NORTH))
          
-   #fill the left
-   for y in range(msize[1]):
-      blockmap.setSpace(0, y*2 + 1, mazemap.getWall(0, y, datatypes.DIR_WEST))
+    #fill the left
+    for y in range(msize[1]):
+        blockmap.setSpace(0, y*2 + 1, mazemap.getWall(0, y, datatypes.DIR_WEST))
       
-   #fill in the East Walls
-   for y in range(msize[1]):
-      for x in range(msize[0]):
-         blockmap.setSpace(x*2 + 2, y*2 + 1, mazemap.getWall(x, y, datatypes.DIR_EAST))
+    #fill in the East Walls
+    for y in range(msize[1]):
+        for x in range(msize[0]):
+            blockmap.setSpace(x*2 + 2, y*2 + 1, mazemap.getWall(x, y, datatypes.DIR_EAST))
    
-   #fill in the East Walls
-   for y in range(msize[1]):
-      for x in range(msize[0]):
-         blockmap.setSpace(x*2 + 1, y*2 + 2, mazemap.getWall(x, y, datatypes.DIR_SOUTH))
+    #fill in the East Walls
+    for y in range(msize[1]):
+        for x in range(msize[0]):
+            blockmap.setSpace(x*2 + 1, y*2 + 2, mazemap.getWall(x, y, datatypes.DIR_SOUTH))
          
-   return blockmap
+    return blockmap
    
 type2name = {}
 type2name[list] = "array"
