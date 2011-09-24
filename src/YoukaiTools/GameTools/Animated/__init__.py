@@ -19,12 +19,9 @@
 #SOFTWARE.
 
 class AnimatedObject:
-    def __init__(self, animation_set):
+    def __init__(self, animation_set, start_animation=None, start_time=0):
         self.animation_set = animation_set
-        self.current_state = 0
-        self.current_frame = 0 #
-        self.current_time = 0
-        self.loop_count = 0
+        self.setAnimation(start_animation, start_time)
         return
     
     def update(self, dt=1):
