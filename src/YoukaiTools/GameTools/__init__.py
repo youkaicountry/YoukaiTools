@@ -24,7 +24,8 @@ from . import KeyManager as __km
 from . import TileManager as __tm
 from . import Camera2D as __cam
 
-Animated = __anim.Animated
+AnimationSet = __anim.AnimationSet
+AnimatedObject = __anim.AnimatedObject
 
 KeyManager = __km.KeyManager
 
