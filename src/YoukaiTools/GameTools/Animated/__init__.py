@@ -45,7 +45,12 @@ class AnimatedObject:
     def getSprite(self):
         return self.animation_set.frames[self.current_state][self.current_frame]
    
-    def setAnimation(self, animation, start_time = 0):
+    #if try set is true, it will not set the animation if the object is already
+    #on the animation
+    def setAnimation(self, animation, start_time = 0, try_set=False):
+        if try_set:
+            if self.current_state == animation:
+                return 
         self.current_state = animation
         self.current_frame = 0
         self.current_time = start_time
