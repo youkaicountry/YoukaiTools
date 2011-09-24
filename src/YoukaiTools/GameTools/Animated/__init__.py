@@ -65,12 +65,14 @@ class AnimationSet:
     #timedata - length of each frame [3, 2, 5, 3], etc
     #loops - times to loop. <0 means infinite
     #next_animation - the name of the animation to go to after all loops. None means it just stops at the end         
-    def addAnimation(self, name, framedata, timedata, loops = -1, next_animation = None):
+    def addAnimation(self, name, framedata, timedata=None, loops = -1, next_animation = None):
         t = []
+        timedata = timedata if timedata is not None else [1 for x in range(len(framedata))]
         adder = 0
         for x in timedata:
             adder += x
             t.append(adder)
+        t = list(t)
         f = framedata[:]
         self.frames[name] = f
         self.times[name] = t
