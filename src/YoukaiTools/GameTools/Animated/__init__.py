@@ -18,6 +18,8 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+import collections
+
 class AnimatedObject:
     def __init__(self, animation_set, start_animation=None, start_time=0):
         self.animation_set = animation_set
@@ -64,12 +66,19 @@ class AnimationSet:
         
     #name - name of animation
     #framedata - list of the sprite objects
-    #timedata - length of each frame [3, 2, 5, 3], etc
+    #timedata - length of each frame [3, 2, 5, 3], etc. If None, will be 1 for each frame.
+    #           if a number, will be that number for each frame 
     #loops - times to loop. <0 means infinite
     #next_animation - the name of the animation to go to after all loops. None means it just stops at the end         
     def addAnimation(self, name, framedata, timedata=None, loops = -1, next_animation = None):
+        if not isinstance(timedata, collections.Iterable):
+            if timedata is None:
+                k = 1
+            else:
+                k = timedata
+            timedata = [k for x in range(len(framedata))]
+        
         t = []
-        timedata = timedata if timedata is not None else [1 for x in range(len(framedata))]
         adder = 0
         for x in timedata:
             adder += x
