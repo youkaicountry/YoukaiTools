@@ -22,7 +22,7 @@ import YoukaiTools.GameTools as GameTools
 
 aset = GameTools.AnimationSet()
 aset.addAnimation("loopy", [1, 2, 3, 4], [1, 1, 2, 2], 2, "final")
-aset.addAnimation("final", ["A", "B"], [1, 1])
+aset.addAnimation("final", ["A", "B"])
 
 ao = GameTools.AnimatedObject(aset)
 ao.setAnimation("loopy")
