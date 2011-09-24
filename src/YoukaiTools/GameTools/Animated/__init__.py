@@ -31,8 +31,8 @@ class AnimatedObject:
         #print("frame: " + str(self.current_frame) + " time: " + str(self.current_time)) 
         if self.current_time >= self.animation_set.times[self.current_state][self.current_frame]: 
             self.current_frame += 1 
-            if self.current_frame >= len(self.frames[self.current_state]): 
-                if self.animation_set.loop_count >= self.animation_set.loops[self.current_state] and self.animation_set.loops[self.current_state] >= 0:
+            if self.current_frame >= len(self.animation_set.frames[self.current_state]): 
+                if self.loop_count >= self.animation_set.loops[self.current_state] and self.animation_set.loops[self.current_state] >= 0:
                     if self.next[self.current_state] != None:
                         self.current_state = self.animation_set.next[self.current_state] 
                         self.loop_count = 0 
