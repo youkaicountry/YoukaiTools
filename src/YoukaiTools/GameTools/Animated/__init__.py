@@ -33,7 +33,7 @@ class AnimatedObject:
             self.current_frame += 1 
             if self.current_frame >= len(self.animation_set.frames[self.current_state]): 
                 if self.loop_count >= self.animation_set.loops[self.current_state] and self.animation_set.loops[self.current_state] >= 0:
-                    if self.next[self.current_state] != None:
+                    if self.animation_set.next[self.current_state] != None:
                         self.current_state = self.animation_set.next[self.current_state] 
                         self.loop_count = 0 
                         self.current_time = 0 
