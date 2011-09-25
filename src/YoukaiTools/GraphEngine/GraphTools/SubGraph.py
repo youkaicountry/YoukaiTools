@@ -70,6 +70,7 @@ def copyEdge(g, cg, e, copyvdata=True, copyedata=True):
 #graph reduction for graphs whose important vertices are the ones with
 #junctionscorridorGraphReduction
 #Only use this on an undirected graph
+#given graph g, reduces and stores in graph rg
 def corridorGraphReduction(g, rg, cost=None, outcost="cost", edataname="edata", pathname = "path", reversepathname="reversepath"):
     vset = set()
     eset = set()

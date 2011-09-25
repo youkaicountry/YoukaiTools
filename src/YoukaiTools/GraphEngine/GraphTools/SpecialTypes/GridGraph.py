@@ -80,3 +80,27 @@ def gridInGrid(g, cg, size):
     
     buildGridGraph(g, gvl)
     return
+
+def enforceWrap(g, xbounds, ybounds, wrap_x=True, wrap_y=True):
+    y = ybounds[0]
+    x = xbounds[0]
+    if wrap_y:
+        vl = []
+        while x < xbounds[1]:
+            if g.containsVertex((x, ybounds[0])):
+                vl.append(x)
+            x += 1
+        for v in vl:
+            if g.containsVertex((v, ybounds[1])):
+                g.addEdge((v, ybounds[0]), (v, ybounds[1]))
+                
+    if wrap_x:
+        vl = []
+        while y < ybounds[1]:
+            if g.containsVertex((xbounds[0], y)):
+                vl.append(y)
+            y += 1
+        for v in vl:
+            if g.containsVertex((xbounds[1], v)):
+                g.addEdge((xbounds[0], v), (xbounds[1], v))
+    return
