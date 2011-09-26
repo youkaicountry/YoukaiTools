@@ -44,15 +44,16 @@ class RollingDictionary(object):
         else:
             raise KeyError, str(word) + " not in dictionary."
     
-    def setData(self, word):
-        return
-    
     #BUILT IN SPECIAL FUNCTIONS:
     def __contains__(self, x):
         return self.__lookupWord(x)[0]
     
     def __getitem__(self, key):
         return self.getEntry(key)
+    
+    def __setitem__(self, key, value):
+        self.addEntry(key, value)
+        return
     
     #returns last letter
     def __addWord(self, word):
