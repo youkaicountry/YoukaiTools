@@ -38,7 +38,8 @@ class RollingDictionary(object):
     
     def getEntry(self, word):
         x = self.__lookupWord(word)
-        if x[0]:
+        d = self.dic[x[1]][2]
+        if x[0] and (d is not None):
             return self.dic[x[1]][2]
         else:
             raise KeyError, str(word) + " not in dictionary."
