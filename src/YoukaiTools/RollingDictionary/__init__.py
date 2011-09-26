@@ -44,6 +44,9 @@ class RollingDictionary(object):
         else:
             raise KeyError, str(word) + " not in dictionary."
     
+    def setData(self, word):
+        return
+    
     #BUILT IN SPECIAL FUNCTIONS:
     def __contains__(self, x):
         return self.__lookupWord(x)[0]
@@ -100,7 +103,7 @@ class RollingDictionary(object):
                 here = self.dic[here][1][o]
             else:
                 return (False, here, word[i:])
-        return (True, here, None)
+        return (True, here, [])
     
     def __wordContains(self, last_letter, next_letter):
         if self.dic[last_letter][1] is None: return False
