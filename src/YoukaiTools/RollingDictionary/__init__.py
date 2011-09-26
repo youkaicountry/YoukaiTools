@@ -29,14 +29,26 @@ class RollingDictionary(object):
         #and remove lowest number of lookups when need a new space
         return
     
-    def __contains__(self, x):
-        return self.__lookupWord(x)[0]
     
     #returns last letter
     def addEntry(self, word, data):
         here = self.__addWord(word)
         self.__addDataByLastLetter(here, data)
         return
+    
+    def getEntry(self, word):
+        x = self.__lookupWord(word)
+        if x[0]:
+            return self.dic[x[1]][2]
+        else:
+            raise KeyError, str(word) + " not in dictionary."
+    
+    #BUILT IN SPECIAL FUNCTIONS:
+    def __contains__(self, x):
+        return self.__lookupWord(x)[0]
+    
+    def __getitem__(self, key):
+        return self.getEntry(key)
     
     #returns last letter
     def __addWord(self, word):
