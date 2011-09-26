@@ -38,4 +38,9 @@ if __name__ == '__main__':
     nd["man"] = 1
     nd["mantis"] = 2
     nd["mantle"] = 3
-    pass
+    
+    print(rd["mantis"])
+    print(rd["mantle"])
+    print(rd["manti"])
+    
+    
