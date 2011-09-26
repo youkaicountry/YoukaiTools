@@ -32,6 +32,7 @@ if __name__ == '__main__':
     rd.addEntry("man", 1)
     rd.addEntry("mantis", 2)
     rd.addEntry("mantle", 3)
+    rd.addEntry("mantle", 4)
     print(rd.dic)
     
     nd = {}
@@ -41,6 +42,5 @@ if __name__ == '__main__':
     
     print(rd["mantis"])
     print(rd["mantle"])
-    print(rd["manti"])
     
     
