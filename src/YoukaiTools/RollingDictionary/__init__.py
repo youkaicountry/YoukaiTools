@@ -45,6 +45,13 @@ class RollingDictionary(object):
         else:
             raise KeyError, str(word) + " not in dictionary."
     
+    def getEntryList(self):
+        leaves = self.__findLeaves()
+        entries = []
+        for leaf in leaves:
+            entries.append(self.__wordFromLeaf(leaf))
+        return entries
+    
     #BUILT IN SPECIAL FUNCTIONS:
     def __contains__(self, x):
         return self.__lookupWord(x)[0]
@@ -112,10 +119,24 @@ class RollingDictionary(object):
         return next_letter in self.dic[last_letter][1]
     
     def __findLeaves(self):
-        return [x for x in self.dic.keys if self.dic[x][2] is not None]
+        return [x for x in self.dic.keys() if self.dic[x][2] is not None]
     
     def __wordFromLeaf(self, leaf):
-        
-        return
-
+        here = self.dic[leaf][0]
+        prev = leaf
+        rword = []
+        while self.dic[prev][0] != self.rootname:
+            rword.append(self.__reverseLookup(self.dic[here][1], prev))
+            prev = here
+            here = self.dic[here][0]
+        rword.append(self.__reverseLookup(self.dic[here][1], prev))
+        rword.reverse()
+        return rword
+    
+    def __reverseLookup(self, d, val):
+        for key in d.keys():
+            if d[key] == val:
+                return key
+        return None
+                
 #(parent, childrendic, entriesdic)
