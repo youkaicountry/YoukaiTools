@@ -110,5 +110,12 @@ class RollingDictionary(object):
     def __wordContains(self, last_letter, next_letter):
         if self.dic[last_letter][1] is None: return False
         return next_letter in self.dic[last_letter][1]
+    
+    def __findLeaves(self):
+        return [x for x in self.dic.keys if self.dic[x][2] is not None]
+    
+    def __wordFromLeaf(self, leaf):
+        
+        return
 
 #(parent, childrendic, entriesdic)
