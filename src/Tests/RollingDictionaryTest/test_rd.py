@@ -30,15 +30,15 @@ Created on Jun 15, 2011
 if __name__ == '__main__':
     rd = RollingDictionary.RollingDictionary()
     rd["man"] = 1
-    rd.addEntry("mantis", 2)
-    rd.addEntry("mantle", 3)
-    rd.addEntry("mantle", 4)
-    print(rd.dic)
+    rd["mantis"] = 2
+    rd["mantle"] = 3
+    rd["mantle"] = 4
     
-    nd = {}
-    nd["man"] = 1
-    nd["mantis"] = 2
-    nd["mantle"] = 3
+    
+    #rd["today"] = 100
+    #print("to" in rd)
+    #print("today" in rd)
+    print(rd.dic)
     
     print(rd["mantis"])
     print(rd["mantle"])
