@@ -54,7 +54,9 @@ class RollingDictionary(object):
     
     #BUILT IN SPECIAL FUNCTIONS:
     def __contains__(self, x):
-        return self.__lookupWord(x)[0]
+        x = self.__lookupWord(x)
+        d = self.dic[x[1]][2]
+        return x[0] and (d is not None)
     
     def __getitem__(self, key):
         return self.getEntry(key)
@@ -73,6 +75,7 @@ class RollingDictionary(object):
     #adds the rest of a word from a lookup return with rest
     def __addWordFrom(self, lookup_return):
         here = lookup_return[1]
+        if lookup_return[2] is None: return here
         for o in lookup_return[2]:
             here = self.__addLetter(here, o)
         return here
@@ -112,7 +115,7 @@ class RollingDictionary(object):
                 here = self.dic[here][1][o]
             else:
                 return (False, here, word[i:])
-        return (True, here, [])
+        return (True, here, None)
     
     def __wordContains(self, last_letter, next_letter):
         if self.dic[last_letter][1] is None: return False
