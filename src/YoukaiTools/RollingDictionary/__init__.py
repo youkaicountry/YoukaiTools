@@ -22,8 +22,9 @@
 #many similar roots
 
 class RollingDictionary(object):
-    def __init__(self):
-        self.dic = {"root": (None, None, None)}
+    def __init__(self, rootname="rt"):
+        self.rootname = rootname
+        self.dic = {self.rootname: (None, None, None)}
         self.next = 0
         #have a cache of last n words, with number of lookups
         #and remove lowest number of lookups when need a new space
@@ -88,7 +89,7 @@ class RollingDictionary(object):
     
     #returns (isIn, last_letter)
     def __lookupWord(self, word):
-        here = "root"
+        here = self.rootname
         for i, o in enumerate(word):
             if self.__wordContains(here, o):
                 here = self.dic[here][1][o]
@@ -98,7 +99,7 @@ class RollingDictionary(object):
     
     #returns (isIn, last_letter, remaining)
     def __lookupWordWithRest(self, word):
-        here = "root"
+        here = self.rootname
         for i, o in enumerate(word):
             if self.__wordContains(here, o):
                 here = self.dic[here][1][o]
