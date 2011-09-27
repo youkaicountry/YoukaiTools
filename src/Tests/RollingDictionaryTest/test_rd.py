@@ -29,7 +29,7 @@ Created on Jun 15, 2011
 
 if __name__ == '__main__':
     rd = RollingDictionary.RollingDictionary()
-    rd.addEntry("man", 1)
+    rd["man"] = 1
     rd.addEntry("mantis", 2)
     rd.addEntry("mantle", 3)
     rd.addEntry("mantle", 4)
@@ -43,4 +43,5 @@ if __name__ == '__main__':
     print(rd["mantis"])
     print(rd["mantle"])
     
+    print(rd.getEntryList())
     
