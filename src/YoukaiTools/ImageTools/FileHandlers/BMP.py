@@ -59,7 +59,7 @@ def getBasicFormatHeader(image=None, f=None):
     return
 
 #only loads 24 bit uncompressed bmp
-def load(f, uh=None):
+def load(f):
     #get file header
     s = f.read(14)
     file_header = struct.unpack_from("=HIHHI", s)
@@ -86,9 +86,9 @@ def load(f, uh=None):
     
     return (bmp_load_dispatch[uh["bits_per_pixel"]](f, uh, fh), uh, fh)
 
-def loadFile(filename, uh=None):
+def loadFile(filename):
     f = open(filename, "rb")
-    o = load(f, uh)
+    o = load(f)
     f.close()
     return o
     

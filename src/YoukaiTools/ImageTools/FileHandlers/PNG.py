@@ -208,7 +208,6 @@ def encodehex(s):
 def load(f):
     a = Reader(file=f)
     b = a.read()
-    print(b)
     m = list(b[2])
     imagedata = []
     for row in m:

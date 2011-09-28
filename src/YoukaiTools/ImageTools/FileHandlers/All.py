@@ -34,7 +34,7 @@ def getFormat(filename):
 def loadFile(filename, uh=None):
     f = open(filename, "rb")
     uformat = getFormat(filename)
-    o = uformat.load(f, uh)
+    o = uformat.load(f)
     f.close()
     return o
 
