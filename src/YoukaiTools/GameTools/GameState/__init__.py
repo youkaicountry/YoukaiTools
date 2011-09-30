@@ -213,9 +213,7 @@ class GameStateManager:
         for i in range(len(self.state_instance_priority_list)):
             self.state_instance_priority[self.state_instance_priority_list[i]] = i
         return
-
-
-
+    
 ################################################################################
 # THE GAME STATE OBJECT
 ################################################################################
@@ -225,20 +223,26 @@ class GameState:
         self.name = ""
         return
     
+    #run only once, upon initialization
     def initialize(self, name, manager, data):
         return
     
+    #called every cycle when unpaused
     def update(self):
         return
     
+    #called initially upon pause
     def pause_initialize(self, message):
         return
     
+    #called every cycle while paused
     def pause_update(self):
         return
     
+    #called initially when resumed
     def resume_initialize(self, message):
         return
     
+    #called when the state is removed.
     def destroy(self, data):
         return
