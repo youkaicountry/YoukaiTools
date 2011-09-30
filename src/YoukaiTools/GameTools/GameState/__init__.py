@@ -22,7 +22,7 @@ class GameStateManager:
     def __init__(self):
         self.state_types = {}                                                   #name to object of base state objects
         self.state_instance = {}                                                #the actual instances
-        self.state_instance_paused = {}                                         #boolean that tells if each value is paused or not
+        self.state_instance_process = {}                                         #boolean that tells if each value is paused or not
         self.state_instance_priority_list = []                                  #the list of all the instances, in order (prio, 
         self.state_instance_priority = {}                                       #the priority number of each instance
         self.state_instance_type = {}                                           #the specific types of each instance
@@ -44,20 +44,16 @@ class GameStateManager:
         for x in range(times):
             l = self.state_instance_priority_list[:]
             for x in l:
-                if not self.state_instance_paused[x]: self.state_instance[x].update()
-                else: self.state_instance[x].pause_update()
+                getattr(self.state_instance[x], self.state_instance_process[x]+'_update')()
             self.__doKills()
             if self.end: break
         return self.end
-        
-    def pause_instance(self, name):
-        self.state_instance_paused[name] = True
-        self.state_instance[name].pause_initialize()
-        return
-        
-    def resume_instance(self, name):
-        self.state_instance_paused[name] = False
-        self.state_instance[name].resume_initialize()
+    
+    def change_process(self, name, new_process):
+        old = self.state_instance_process[name]                     # get the name of the old process
+        getattr(self.state_instance[name], old + '_end')()          # call the end function for the old process
+        self.state_instance_process[name] = new_process             # update the process to the new one
+        getattr(self.state_instance[name], new_process + '_begin')  # call the begin function for the new process
         return
     
     def endProgram(self):
@@ -81,17 +77,18 @@ class GameStateManager:
     # INSTANCES
     ############################################################################
     #create a new object of type state_type, with name instance
-    def startInstance(self, state_type, name, data=None):
+    def startInstance(self, state_type, name, process, data=None):
         s = self.state_types[state_type]()                                      #make the actual new instance
         s_name = self.__unique_identifier(name)                                 #get a unique name for the instance
         self.state_instance[s_name] = s                                         #add the instance to the instance list
-        self.state_instance_paused[s_name] = False                              #add the instance to the paused list as unpaused
+        self.state_instance_process[s_name] = process                          #add the instance to the paused list as unpaused
         self.state_instance_priority[s_name] = len(self.state_instance_priority_list)    #set the instance's priority to the lowest (should be done before adding to the list)
         self.state_instance_priority_list.append(s_name)                        #add the instance to the actual priority list
         self.state_instance_type[s_name] = state_type
         self.state_instance[s_name].manager = self
         self.state_instance[s_name].name = s_name
         self.state_instance[s_name].initialize(s_name, self, data)              #run the intialization (needs to be the last thing)
+        getattr(self.state_instance[s_name], process + '_begin')()
         self.messages[s_name] = []
         return s_name
     
@@ -182,7 +179,7 @@ class GameStateManager:
     def __kill(self, name, data):
         self.state_instance[name].destroy(data)
         self.state_instance.pop(name)
-        self.state_instance_paused.pop(name)
+        self.state_instance_process.pop(name)
         self.state_instance_priority_list.pop(self.state_instance_priority[name])
         self.state_instance_priority.pop(name)
         self.state_instance_type.pop(name)
