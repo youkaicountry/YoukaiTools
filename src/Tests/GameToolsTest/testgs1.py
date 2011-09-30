@@ -29,7 +29,10 @@ class A(GameTools.GameState):
         print("A(" + self.name+ ") INIT")
         return
     
-    def update(self):
+    def run_begin(self):
+        return
+    
+    def run_update(self):
         print("A(" + self.name + ") UPDATE " + str(self.i))
         self.i += 1
         if self.i == 5: self.manager.killInstance("game")
@@ -37,6 +40,9 @@ class A(GameTools.GameState):
             a = self.manager.getInstancesOfType("B")
             self.manager.setInstancePriority(a[0], 0)
         if self.i == 15: self.manager.endProgram() 
+        return
+    
+    def run_end(self):
         return
         
     def destroy(self, data):
@@ -51,10 +57,16 @@ class B(GameTools.GameState):
     def initialize(self, name, manager, data):
         print("B(" + self.name+ ") INIT")
         return
-        
-    def update(self):
+    
+    def run_begin(self):
+        return
+    
+    def run_update(self):
         print("B(" + self.name+ ") UPDATE " + str(self.i))
         self.i += 1
+        return
+    
+    def run_end(self):
         return
         
     def destroy(self, data):
@@ -64,7 +76,7 @@ class B(GameTools.GameState):
 gsm = GameTools.GameStateManager()
 gsm.addType("A", A)
 gsm.addType("B", B)
-gsm.startInstance("A", "main_driver")
-gsm.startInstance("B", "game")
-gsm.startInstance("B", "game")
+gsm.startInstance("A", "main_driver", "run")
+gsm.startInstance("B", "game", "run")
+gsm.startInstance("B", "game", "run")
 gsm.run()
