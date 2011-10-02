@@ -13,7 +13,7 @@
 #THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 #FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAAGES OR OTHER
 #LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
@@ -41,6 +41,14 @@ class BaseNeuron:
             self.input_set[k] = False
         self.output_set = False
     
+    def setInput(self, name, value):
+        self.inputs[name] = value
+        self.input_set[name] = True
+        return
+    
+    def getOutput(self, name):
+        return self.outputs[name]
+    
     def needsCalc(self):
         if self.output_set:
             return False
@@ -54,12 +62,12 @@ class BaseNeuron:
     def calculate(self):
         if not self.needsCalc():
             return
-        self.__doCaclulation()
+        self.doCalculation()
         self.output_set = True
         return
     
-    #override this. This is where the magic happends.
+    #override this. This is where the magic happens.
     #Take the values in inputs, and work the magic on them
-    def __doCalculation(self):
+    def doCalculation(self):
         return
     
