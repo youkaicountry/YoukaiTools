@@ -12,7 +12,6 @@ class InvertNeuron(Neuron.BaseNeuron):
             self.outputs[k] = -self.inputs[k]
         return
 
-
 class TestKeyManager(unittest.TestCase):
     def test_basicoverride(self):
         inv = InvertNeuron(3)
