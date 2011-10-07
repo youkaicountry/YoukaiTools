@@ -39,6 +39,19 @@ class AndXBit():
     def doCalculation(self):
         for p in range(self.numpins):
             stp = str(p)
-            self.outputs[stp] = self.inputs[stp+"a"] and self.inputs[stp+"b"]
+            self.outputs[stp] = self.inputs["a"+stp] and self.inputs["b"+stp]
+        return
+    
+class OrXBit():
+    def __init__(self, numinputs):
+        pins = __xbit_pins(numinputs)
+        self.setup(*pins)
+        self.numpins = numinputs
+        return
+    
+    def doCalculation(self):
+        for p in range(self.numpins):
+            stp = str(p)
+            self.outputs[stp] = self.inputs["a"+stp] or self.inputs["b"+stp]
         return
     
