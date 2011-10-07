@@ -18,3 +18,16 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+from . import BaseNeuron as __bn
+BaseNeuron = __bn.BaseNeuron
+
+#A neuron that takes all of its input, and inverts them.
+class InvertNeuron(BaseNeuron):
+    def __init__(self, numinputs):
+        self.setup([str(x) for x in range(numinputs)], [str(x) for x in range(numinputs)])
+        return
+    
+    def doCalculation(self):
+        for k in self.inputs.keys():
+            self.outputs[k] = -self.inputs[k]
+        return
