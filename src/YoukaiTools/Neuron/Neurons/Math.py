@@ -18,7 +18,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-from . import BaseNeuron as __bn
+import YoukaiTools.Neuron.BaseNeuron as __bn
 BaseNeuron = __bn.BaseNeuron
 
 #A neuron that takes all of its input, and inverts them.
@@ -31,3 +31,4 @@ class InvertNeuron(BaseNeuron):
         for k in self.inputs.keys():
             self.outputs[k] = -self.inputs[k]
         return
+    
