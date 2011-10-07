@@ -18,3 +18,27 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+import YoukaiTools.Neuron.BaseNeuron as __bn
+BaseNeuron = __bn.BaseNeuron
+
+def __xbit_pins(numinputs):
+    inpa = ["a"+str(x) for x in range(numinputs)]
+    inpb = ["b"+str(x) for x in range(numinputs)]
+    outp = [str(x) for x in range(numinputs)]
+    return (inpa+inpb, outp)
+
+#take 2 buses of size 'numinputs'.
+#they will be named: 'a0, a1, a2,...a(n-1)' & 'b0, b1, b2, ...b(n-1)'.
+class AndXBit():
+    def __init__(self, numinputs):
+        pins = __xbit_pins(numinputs)
+        self.setup(*pins)
+        self.numpins = numinputs
+        return
+    
+    def doCalculation(self):
+        for p in range(self.numpins):
+            stp = str(p)
+            self.outputs[stp] = self.inputs[stp+"a"] and self.inputs[stp+"b"]
+        return
+    
