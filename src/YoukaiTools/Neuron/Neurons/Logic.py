@@ -18,8 +18,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import YoukaiTools.Neuron.BaseNeuron as __bn
-BaseNeuron = __bn.BaseNeuron
+from ..BaseNeuron import BaseNeuron
 
 def __xbit_pins(numinputs):
     inpa = ["a"+str(x) for x in range(numinputs)]

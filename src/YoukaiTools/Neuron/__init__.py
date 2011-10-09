@@ -19,5 +19,6 @@
 #SOFTWARE.
 
 import BaseNeuron as __bn
+import Neurons
 
 BaseNeuron = __bn.BaseNeuron
