@@ -38,7 +38,7 @@ def toEdgeMathNotation(g):
       elif ei[2] == -1:
          st = st + "(v" + str(ei[1]) + ", v" + str(ei[0]) + "), "
       s = s + st
-   if g.getEdgeNum() > 0: s = s[:-2]
+   if g.getSize() > 0: s = s[:-2]
    s += "}"
    return s
 
