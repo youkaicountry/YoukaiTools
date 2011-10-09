@@ -18,3 +18,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+import YoukaiTools.Neuron.BaseNeuron as __bn
+BaseNeuron = __bn.BaseNeuron
+
+class BreadBoard(BaseNeuron):
