@@ -30,4 +30,3 @@ class InvertNeuron(BaseNeuron):
         for k in self.inputs.keys():
             self.outputs[k] = -self.inputs[k]
         return
-    
