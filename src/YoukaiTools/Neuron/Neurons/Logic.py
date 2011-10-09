@@ -29,7 +29,7 @@ def __xbit_pins(numinputs):
 
 #take 2 buses of size 'numinputs'.
 #they will be named: 'a0, a1, a2,...a(n-1)' & 'b0, b1, b2, ...b(n-1)'.
-class AndXBit():
+class AndXBit(BaseNeuron):
     def __init__(self, numinputs):
         pins = __xbit_pins(numinputs)
         self.setup(*pins)
@@ -42,7 +42,7 @@ class AndXBit():
             self.outputs[stp] = self.inputs["a"+stp] and self.inputs["b"+stp]
         return
     
-class OrXBit():
+class OrXBit(BaseNeuron):
     def __init__(self, numinputs):
         pins = __xbit_pins(numinputs)
         self.setup(*pins)
