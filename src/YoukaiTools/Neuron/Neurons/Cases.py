@@ -97,13 +97,14 @@ class BreadBoard(BaseNeuron):
         #set the proper inputs
         #remove resolved neuron from the list of unresolved
         #repeat if there are still unresolved
-        takeout = set()
         while len(unresolved) > 0:
+            takeout = set()
             for n in unresolved:
                 thisneuron = self.neurons[n]
                 if thisneuron.calculate():
+                    print("takeout: " + n)
                     takeout.add(n)
-                    outbound = GraphEngine.GraphTools.Paths.getInboundEdges(self.graph, n)
+                    outbound = GraphEngine.GraphTools.Paths.getOutboundEdges(self.graph, n)
                     for o in outbound:
                         outpin = self.graph.getEdgeData(o, "outpin")
                         inpin = self.graph.getEdgeData(o, "inpin")

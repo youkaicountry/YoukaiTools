@@ -23,8 +23,16 @@ class TestBreadBoard(unittest.TestCase):
         bbinputs = {"inv1.0":"0", "inv1.1":"1", "inv2.2":"2"}
         bboutputs = {"inv2.0":"0", "inv2.1":"1", "inv2.2":"2"}
         bbconstants = {}
-        bbwires=[("inv1.0", "inv2.0"), ("inv1.0", "inv2.1")]
+        bbwires=[("inv1.0", "inv2.0"), ("inv1.1", "inv2.1")]
         bb = Neuron.Neurons.Cases.BreadBoard(bbneurons, bbinputs, bboutputs, bbconstants, bbwires)
+        
+        bb.setInput('0', 100)
+        bb.setInput('1', 200)
+        bb.setInput('2', 300)
+        bb.calculate()
+        print(bb.getOutput('0'))
+        print(bb.getOutput('1'))
+        print(bb.getOutput('2'))
         return
     
 if __name__ == '__main__':
