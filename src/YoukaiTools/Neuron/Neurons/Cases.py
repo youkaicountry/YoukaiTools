@@ -70,22 +70,52 @@ class BreadBoard(BaseNeuron):
             e = self.graph.addEdge(outp[0], inp[0], True)
             self.graph.setEdgeData(e, "outpin", outp[1])
             self.graph.setEdgeData(e, "inpin", inp[1])
+            self.graph.setEdgeData(e, "end", inp[0])
         return
     
     def doCalculation(self):
+        #prep the unresolved set
+        unresolved = set()
+        for k in self.neurons.keys():
+            unresolved.add(k)
+        
         #reset all neurons
+        for k in unresolved:
+            self.neurons[k].reset()
         
         #set all constant inputs
+        for c in self.constants:
+            self.neurons[c[0][0]].inputs[c[0][1]] = c[1]
         
         #carry through input_map pins to the proper inputs
+        for k in self.inputs.keys():
+            inf = self.input_map[k]
+            self.neurons[inf[0]].setInput(inf[1], self.inputs[k])
         
         #iterate through the list of unresolved neurons
         #when one complete, find outbound edges on graph
         #set the proper inputs
         #remove resolved neuron from the list of unresolved
         #repeat if there are still unresolved
+        takeout = set()
+        while len(unresolved) > 0:
+            for n in unresolved:
+                thisneuron = self.neurons[n]
+                if thisneuron.calculate():
+                    takeout.add(n)
+                    outbound = GraphEngine.GraphTools.Paths.getInboundEdges(self.graph, n)
+                    for o in outbound:
+                        outpin = self.graph.getEdgeData(o, "outpin")
+                        inpin = self.graph.getEdgeData(o, "inpin")
+                        end = self.graph.getEdgeData(o, "end")
+                        self.neurons[end].setInput(inpin, thisneuron.getOutput(outpin))
+            unresolved = unresolved - takeout
         
         #carry through output_map pins to the case outputs
+        for k in self.outputs.keys():
+            outf = self.output_map[k]
+            self.outputs[k] = self.neurons[outf[0]].getOutput(outf[1])
+            
         return
     
     def __getTuple(self, name):
