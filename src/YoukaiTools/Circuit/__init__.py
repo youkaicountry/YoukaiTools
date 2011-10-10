@@ -18,7 +18,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import BaseNeuron as __bn
-import Neurons
+import BaseChip as __bn
+import Chips
 
-BaseNeuron = __bn.BaseNeuron
+BaseChip = __bn.BaseChip

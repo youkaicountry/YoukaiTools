@@ -18,15 +18,39 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-from ..BaseNeuron import BaseNeuron
+from ..BaseChip import BaseChip
 
-#A neuron that takes all of its input, and inverts them.
-class InvertNeuron(BaseNeuron):
+def __xbit_pins(numinputs):
+    inpa = ["a"+str(x) for x in range(numinputs)]
+    inpb = ["b"+str(x) for x in range(numinputs)]
+    outp = [str(x) for x in range(numinputs)]
+    return (inpa+inpb, outp)
+
+#take 2 buses of size 'numinputs'.
+#they will be named: 'a0, a1, a2,...a(n-1)' & 'b0, b1, b2, ...b(n-1)'.
+class AndXBit(BaseChip):
     def __init__(self, numinputs):
-        self.setup([str(x) for x in range(numinputs)], [str(x) for x in range(numinputs)])
+        pins = __xbit_pins(numinputs)
+        self.setup(*pins)
+        self.numpins = numinputs
         return
     
     def doCalculation(self):
-        for k in self.inputs.keys():
-            self.outputs[k] = -self.inputs[k]
+        for p in range(self.numpins):
+            stp = str(p)
+            self.outputs[stp] = self.inputs["a"+stp] and self.inputs["b"+stp]
         return
+    
+class OrXBit(BaseChip):
+    def __init__(self, numinputs):
+        pins = __xbit_pins(numinputs)
+        self.setup(*pins)
+        self.numpins = numinputs
+        return
+    
+    def doCalculation(self):
+        for p in range(self.numpins):
+            stp = str(p)
+            self.outputs[stp] = self.inputs["a"+stp] or self.inputs["b"+stp]
+        return
+    

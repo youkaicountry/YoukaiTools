@@ -18,25 +18,25 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-from ..BaseNeuron import BaseNeuron
+from ..BaseChip import BaseChip
 
 import YoukaiTools.GraphEngine as GraphEngine
 
-class BreadBoard(BaseNeuron):
-    #neurons should be a dic {"neuron_name": neuron, ...}
+class BreadBoard(BaseChip):
+    #chips should be a dic {"chip_name": chip, ...}
     #inputs should be a dictionary {"inp": "what_to_call_it"}
     #constants should be a dic {"inp":const, ...}
     #wires should be [("output", "input"), ...]
-    def __init__(self, neurons, input_names, output_names, constants, wires, default=0):
-        self.neurons = neurons
+    def __init__(self, chips, input_names, output_names, constants, wires, default=0):
+        self.chips = chips
         inputset = set(input_names.keys())
         missinginputpins = []
         internalinputpins = set()
         #enumerate the internal pins, and missing problem pins
         for w in wires:
             internalinputpins.add(w[1])
-        for k in neurons.keys():
-            for inp in neurons[k].inputs.keys():
+        for k in chips.keys():
+            for inp in chips[k].inputs.keys():
                 thisi = k+"."+inp
                 if (thisi not in inputset) and (thisi not in internalinputpins) and (thisi not in constants):
                     missinginputpins.append(thisi)
@@ -57,12 +57,12 @@ class BreadBoard(BaseNeuron):
         for k in output_names:
             self.output_map[output_names[k]] = self.__getTuple(k)
         
-        #call the base neuron setup
+        #call the base chip setup
         self.setup([i for i in self.input_map.keys()], [i for i in self.output_map.keys()])
         
         #construct the graph of the wires
         self.graph = GraphEngine.BasicGraph()
-        for n in neurons:
+        for n in chips:
             self.graph.addVertex(n)
         for w in wires:
             outp = self.__getTuple(w[0])
@@ -76,32 +76,32 @@ class BreadBoard(BaseNeuron):
     def doCalculation(self):
         #prep the unresolved set
         unresolved = set()
-        for k in self.neurons.keys():
+        for k in self.chips.keys():
             unresolved.add(k)
         
-        #reset all neurons
+        #reset all chips
         for k in unresolved:
-            self.neurons[k].reset()
+            self.chips[k].reset()
         
         #set all constant inputs
         for c in self.constants:
-            self.neurons[c[0][0]].inputs[c[0][1]] = c[1]
+            self.chips[c[0][0]].inputs[c[0][1]] = c[1]
         
         #carry through input_map pins to the proper inputs
         for k in self.inputs.keys():
             inf = self.input_map[k]
-            self.neurons[inf[0]].setInput(inf[1], self.inputs[k])
+            self.chips[inf[0]].setInput(inf[1], self.inputs[k])
         
-        #iterate through the list of unresolved neurons
+        #iterate through the list of unresolved chips
         #when one complete, find outbound edges on graph
         #set the proper inputs
-        #remove resolved neuron from the list of unresolved
+        #remove resolved chip from the list of unresolved
         #repeat if there are still unresolved
         while len(unresolved) > 0:
             takeout = set()
             for n in unresolved:
-                thisneuron = self.neurons[n]
-                if thisneuron.calculate():
+                thischip = self.chips[n]
+                if thischip.calculate():
                     print("takeout: " + n)
                     takeout.add(n)
                     outbound = GraphEngine.GraphTools.Paths.getOutboundEdges(self.graph, n)
@@ -109,13 +109,13 @@ class BreadBoard(BaseNeuron):
                         outpin = self.graph.getEdgeData(o, "outpin")
                         inpin = self.graph.getEdgeData(o, "inpin")
                         end = self.graph.getEdgeData(o, "end")
-                        self.neurons[end].setInput(inpin, thisneuron.getOutput(outpin))
+                        self.chips[end].setInput(inpin, thischip.getOutput(outpin))
             unresolved = unresolved - takeout
         
         #carry through output_map pins to the case outputs
         for k in self.outputs.keys():
             outf = self.output_map[k]
-            self.outputs[k] = self.neurons[outf[0]].getOutput(outf[1])
+            self.outputs[k] = self.chips[outf[0]].getOutput(outf[1])
             
         return
     
