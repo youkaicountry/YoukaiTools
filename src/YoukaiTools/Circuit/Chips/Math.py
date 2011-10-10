@@ -19,14 +19,17 @@
 #SOFTWARE.
 
 from ..BaseChip import BaseChip
+import itertools
 
 #A neuron that takes all of its input, and inverts them.
 class InvertNeuron(BaseChip):
     def __init__(self, numinputs):
-        self.setup([str(x) for x in range(numinputs)], [str(x) for x in range(numinputs)])
+        self.inp = ["in"+str(x) for x in range(numinputs)]
+        self.out = ["out"+str(x) for x in range(numinputs)]
+        self.setup(self.inp, self.out)
         return
     
     def doCalculation(self):
-        for k in self.inputs.keys():
-            self.outputs[k] = -self.inputs[k]
+        for i, o in itertools.izip(self.inp, self.out):
+            self.outputs[o] = -self.inputs[i]
         return

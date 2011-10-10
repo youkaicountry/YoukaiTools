@@ -23,7 +23,7 @@ from ..BaseChip import BaseChip
 def __xbit_pins(numinputs):
     inpa = ["a"+str(x) for x in range(numinputs)]
     inpb = ["b"+str(x) for x in range(numinputs)]
-    outp = [str(x) for x in range(numinputs)]
+    outp = ["out"+str(x) for x in range(numinputs)]
     return (inpa+inpb, outp)
 
 #take 2 buses of size 'numinputs'.
