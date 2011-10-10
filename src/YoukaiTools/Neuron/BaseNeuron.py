@@ -61,10 +61,10 @@ class BaseNeuron:
     
     def calculate(self):
         if not self.needsCalc():
-            return
+            return False
         self.doCalculation()
         self.output_set = True
-        return
+        return True
     
     #override this. This is where the magic happens.
     #Take the values in inputs, and work the magic on them
