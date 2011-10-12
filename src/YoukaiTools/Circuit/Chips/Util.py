@@ -20,3 +20,13 @@
 
 from ..BaseChip import BaseChip
 
+class Split(BaseChip):
+    def __init__(self, ways):
+        self.setup(["in"], [str(i)+"out" for i in range(ways)])
+        return
+    
+    def doCalculation(self):
+        inp = self.inputs["in"]
+        for k in self.outputs.keys():
+            self.outputs[k] = inp
+        return
