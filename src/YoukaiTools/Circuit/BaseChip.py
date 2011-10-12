@@ -44,6 +44,7 @@ class BaseChip:
     def setInput(self, name, value):
         self.inputs[name] = value
         self.input_set[name] = True
+        self.output_set = False
         return
     
     def getOutput(self, name):
