@@ -19,4 +19,37 @@
 #SOFTWARE.
 
 from ..BaseChip import BaseChip
+import math
 
+# Threshold functions.
+def thresh_spin(u, T):
+    return 1.0 if u > T else -1.0
+
+def thresh_meanfield(u, T):
+    return math.tanh(u/T)
+
+def thresh_passthrough(u, T):
+    return u
+
+class ArtificalNeuron(BaseChip):
+    #if threshold_const is None, there will be an input pin for it, else it will
+    #be set to the value given
+    #if threshold_func is None, there will be no threshold function, else it
+    #calls the function given with (u, T) as parameters
+    def __init__(self, numinputs, threshold_const=1.0, threshold_func=thresh_meanfield):
+        self.threshold_const = threshold_const
+        self.threshold_func = threshold_func
+        self.inp = ["in"+str(i) for i in range(numinputs)]
+        self.weight = ["w"+str(i) for i in range(numinputs)]
+        t = ["T"] if threshold_const is None else []
+        self.setup(self.inp+self.weight+t, ["out"])
+        self.numinputs = numinputs
+        return
+    
+    def doCalculation(self):
+        u = 0
+        for i in range(self.numinputs):
+            u += self.inputs[self.inp[i]] * self.inputs[self.weight[i]]
+        T = self.inputs["T"] if self.threshold_const is None else self.threshold_const
+        self.outputs["out"] = u if self.threshold_func is None else self.threshold_func(u, T)
+        return
