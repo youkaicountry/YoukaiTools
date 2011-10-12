@@ -65,6 +65,8 @@ class BaseChip:
             return False
         self.doCalculation()
         self.output_set = True
+        for k in self.inputs.keys():
+            self.input_set[k] = False
         return True
     
     #override this. This is where the magic happens.
