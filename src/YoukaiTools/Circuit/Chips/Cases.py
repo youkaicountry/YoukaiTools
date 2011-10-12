@@ -102,7 +102,6 @@ class BreadBoard(BaseChip):
             for n in unresolved:
                 thischip = self.chips[n]
                 if thischip.calculate():
-                    print("takeout: " + n)
                     takeout.add(n)
                     outbound = GraphEngine.GraphTools.Paths.getOutboundEdges(self.graph, n)
                     for o in outbound:

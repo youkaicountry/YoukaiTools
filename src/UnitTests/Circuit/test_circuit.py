@@ -15,7 +15,6 @@ class TestKeyManager(unittest.TestCase):
 
 class TestBreadBoard(unittest.TestCase):
     def test_breadboard(self):
-        print("bread")
         inv1 = Circuit.Chips.Math.InvertNeuron(2)
         inv2 = Circuit.Chips.Math.InvertNeuron(3)
         
@@ -30,9 +29,9 @@ class TestBreadBoard(unittest.TestCase):
         bb.setInput('in1', 200)
         bb.setInput('in2', 300)
         bb.calculate()
-        print(bb.getOutput('out0'))
-        print(bb.getOutput('out1'))
-        print(bb.getOutput('out2'))
+        self.assertEqual(bb.getOutput('out0'), 100)
+        self.assertEqual(bb.getOutput('out1'), 200)
+        self.assertEqual(bb.getOutput('out2'), -300)
         return
 
 class TestArtificialNeuron(unittest.TestCase):
