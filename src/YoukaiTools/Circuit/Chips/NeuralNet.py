@@ -18,9 +18,5 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-from . import Math
-from . import Logic
-from . import Cases
-from . import Util
-from . import NeuralNet
+from ..BaseChip import BaseChip
 
