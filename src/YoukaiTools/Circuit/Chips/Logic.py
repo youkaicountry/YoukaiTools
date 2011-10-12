@@ -53,4 +53,16 @@ class OrXBit(BaseChip):
             stp = str(p)
             self.outputs[stp] = self.inputs["a"+stp] or self.inputs["b"+stp]
         return
+
+class Register(BaseChip):
+    def __init__(self, default_val = False):
+        self.value = default_val
+        self.setup(["in", "set"], ["out"])
+        return
     
+    def doCalculation(self):
+        if self.inputs["load"]:
+            self.value = self.inputs["in"]
+        self.outputs["out"] = self.value
+        return
+        
