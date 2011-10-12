@@ -80,6 +80,7 @@ class BreadBoard(BaseChip):
             unresolved.add(k)
         
         #reset all chips
+        #TODO: THIS MAY NOT BE NEEDED ANYMORE.
         for k in unresolved:
             self.chips[k].reset()
         
