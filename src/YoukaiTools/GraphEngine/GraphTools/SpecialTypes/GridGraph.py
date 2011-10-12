@@ -86,7 +86,7 @@ def enforceWrap(g, xbounds, ybounds, wrap_x=True, wrap_y=True):
     x = xbounds[0]
     if wrap_y:
         vl = []
-        while x < xbounds[1]:
+        while x < xbounds[1]+1:
             if g.containsVertex((x, ybounds[0])):
                 vl.append(x)
             x += 1
@@ -96,7 +96,7 @@ def enforceWrap(g, xbounds, ybounds, wrap_x=True, wrap_y=True):
                 
     if wrap_x:
         vl = []
-        while y < ybounds[1]:
+        while y < ybounds[1]+1:
             if g.containsVertex((xbounds[0], y)):
                 vl.append(y)
             y += 1
