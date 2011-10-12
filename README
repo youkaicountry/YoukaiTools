@@ -21,6 +21,9 @@ AdvMath - Collections of various useful mathematical functions such as vectors,
 
 AdvRandom - Random number generation utilities.
 
+Circuit - A library with tools for simulation various networks/circuits,
+   including neural networks and gate logic.
+
 GameTools - Various functionality for creating games, including a game state
    manager, a keyboard manager, tile based game manager, a class for handling
    animated objects, and a 2d camera with scaling and zooming.
