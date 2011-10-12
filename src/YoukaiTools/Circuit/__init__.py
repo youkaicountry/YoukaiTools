@@ -18,6 +18,11 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+# TODO:
+# From Graph
+# From HDL
+# Have input pins be nodes? Maybe?
+
 import BaseChip as __bn
 import Chips
 
