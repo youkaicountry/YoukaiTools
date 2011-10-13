@@ -33,6 +33,24 @@ class TestBreadBoard(unittest.TestCase):
         self.assertEqual(bb.getOutput('out1'), 200)
         self.assertEqual(bb.getOutput('out2'), -300)
         return
+    
+    def test_emptybreadboard(self):
+        bbchips = {}
+        bbinputs = ["in0", "in1"]
+        bboutputs = ["out0", "out1", "out2"]
+        bbconstants = {}
+        bbwires=[("in0", "out0"), ("in0", "out2"), ("in1", "out1")]
+        bb = Circuit.Chips.Cases.BreadBoard(bbchips, bbinputs, bboutputs, bbconstants, bbwires)
+        bb.setInput("in0", 51)
+        bb.setInput("in1", 88)
+        bb.calculate()
+        self.assertEqual(bb.getOutput("out0"), 51)
+        self.assertEqual(bb.getOutput("out1"), 88)
+        self.assertEqual(bb.getOutput("out2"), 51)
+        return
+    
+    def test_constant(self):
+        return
 
 class TestArtificialNeuron(unittest.TestCase):
     #has only positives, meanfield, and T
@@ -125,9 +143,6 @@ class TestLogicGates(unittest.TestCase):
         notg = Circuit.Chips.Logic.Not()
         self.__tester(notg, self.not_truth)
         
-        return
-    
-    def test_xbitgates(self):
         return
 
 if __name__ == '__main__':

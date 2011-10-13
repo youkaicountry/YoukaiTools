@@ -20,7 +20,7 @@
 
 from ..BaseChip import BaseChip
 
-import YoukaiTools.GraphEngine as GraphEngine
+#import YoukaiTools.GraphEngine as GraphEngine
 
 class BreadBoard(BaseChip):
     #chips should be a dic {"chip_name": chip, ...}
