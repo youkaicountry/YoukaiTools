@@ -96,10 +96,12 @@ class TestLogicGates(unittest.TestCase):
         and1 = Circuit.Chips.Logic.And()
         nand2 = Circuit.Chips.Logic.Nand()
         bbchips = {"not1":not1, "nand1":nand1, "not2":not2, "and1":and1, "nand2":nand2}
-        bbinputs = {"inv1.a":"in0", "inv1.in1":"in1", "inv2.in2":"in2"}
-        bboutputs = {"inv2.out0":"out0", "inv2.out1":"out1", "inv2.out2":"out2"}
+        bbinputs = ["a", "b"]
+        bboutputs = ["out"]
         bbconstants = {}
-        bbwires=[("inv1.out0", "inv2.in0"), ("inv1.out1", "inv2.in1")]
+        bbwires=[("a", "not1.a"), ("a", "nand1.a"), ("b", "nand1.b"), ("b", "not2.a"), ("not1.out", "and1.a"), ("nand1.out", "and1.b"), ("and1.out", "nand2.a"), ("not2.out", "nand2.b"), ("nand2.out", "out")]
+        bb = Circuit.Chips.Cases.BreadBoard(bbchips, bbinputs, bboutputs, bbconstants, bbwires)
+        self.__tester2(bb, self.or_truth)
         return
     
     def test_simplegates(self):
