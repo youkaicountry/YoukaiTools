@@ -22,6 +22,16 @@ from ..BaseChip import BaseChip
 
 #import YoukaiTools.GraphEngine as GraphEngine
 
+#Allows setting inputs on a contained chip to variables whose default values are tracked and retained
+class VariableChip(BaseChip):
+    #variables should be a dictionary {"vname": ("inputname", defaultval)}
+    def __init__(self, chip, variables):
+        var = set(variables.keys())
+        inputs = [x for x in (var - set(chip.inputs.keys()))]
+        outputs = [x for x in chip.outputs.keys()]
+        
+        return
+
 class BreadBoard(BaseChip):
     #chips should be a dic {"chip_name": chip, ...}
     #inputs should be a dictionary {"inp": "what_to_call_it"}
