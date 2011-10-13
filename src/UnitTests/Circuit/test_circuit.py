@@ -68,6 +68,66 @@ class TestArtificialNeuron(unittest.TestCase):
             self.assertAlmostEqual(an.outputs["out"], t[-1])
         return
 
+class TestLogicGates(unittest.TestCase):
+    def setUp(self):
+        self.and_truth = ([0, 0, 0], [0, 1, 0], [1, 0, 0], [1, 1, 1])
+        self.nand_truth = ([0, 0, 1], [0, 1, 1], [1, 0, 1], [1, 1, 0])
+        self.or_truth = ([0, 0, 0], [0, 1, 1], [1, 0, 1], [1, 1, 1])
+        self.xor_truth = ([0, 0, 0], [0, 1, 1], [1, 0, 1], [1, 1, 0])
+        self.not_truth = [[0, 1], [1, 0]]
+    
+    def __tester(self, gate, truth):
+        for s in truth:
+            gate.setInput("a", s[0])
+            gate.calculate()
+            self.assertEqual(gate.getOutput("out"), s[1])
+    
+    def __tester2(self, gate, truth):
+        for s in truth:
+            gate.setInput("a", s[0])
+            gate.setInput("b", s[1])
+            gate.calculate()
+            self.assertEqual(gate.getOutput("out"), s[2])
+    
+    def test_complexgate(self):
+        not1 = Circuit.Chips.Logic.Not()
+        nand1 = Circuit.Chips.Logic.Nand()
+        not2 = Circuit.Chips.Logic.Not()
+        and1 = Circuit.Chips.Logic.And()
+        nand2 = Circuit.Chips.Logic.Nand()
+        bbchips = {"not1":not1, "nand1":nand1, "not2":not2, "and1":and1, "nand2":nand2}
+        bbinputs = {"inv1.a":"in0", "inv1.in1":"in1", "inv2.in2":"in2"}
+        bboutputs = {"inv2.out0":"out0", "inv2.out1":"out1", "inv2.out2":"out2"}
+        bbconstants = {}
+        bbwires=[("inv1.out0", "inv2.in0"), ("inv1.out1", "inv2.in1")]
+        return
+    
+    def test_simplegates(self):
+        #nand
+        nand = Circuit.Chips.Logic.Nand()
+        self.__tester2(nand, self.nand_truth)
+        
+        #and
+        andg = Circuit.Chips.Logic.And()
+        self.__tester2(andg, self.and_truth)
+        
+        #or
+        org = Circuit.Chips.Logic.Or()
+        self.__tester2(org, self.or_truth)
+        
+        #xor
+        xor = Circuit.Chips.Logic.Xor()
+        self.__tester2(xor, self.xor_truth)
+        
+        #not
+        notg = Circuit.Chips.Logic.Not()
+        self.__tester(notg, self.not_truth)
+        
+        return
+    
+    def test_xbitgates(self):
+        return
+
 if __name__ == '__main__':
     unittest.main()
     

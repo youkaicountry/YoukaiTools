@@ -24,34 +24,91 @@ def __xbit_pins(numinputs):
     inpa = ["a"+str(x) for x in range(numinputs)]
     inpb = ["b"+str(x) for x in range(numinputs)]
     outp = ["out"+str(x) for x in range(numinputs)]
-    return (inpa+inpb, outp)
+    return (inpa, inpb, outp)
+
+class Nand(BaseChip):
+    def __init__(self):
+        self.setup(["a", "b"], ["out"])
+    
+    def doCalculation(self):
+        self.outputs["out"] = not(self.inputs["a"] and self.inputs["b"])
+
+class And(BaseChip):
+    def __init__(self):
+        self.setup(["a", "b"], ["out"])
+    
+    def doCalculation(self):
+        self.outputs["out"] = self.inputs["a"] and self.inputs["b"]
+
+class Or(BaseChip):
+    def __init__(self):
+        self.setup(["a", "b"], ["out"])
+    
+    def doCalculation(self):
+        self.outputs["out"] = self.inputs["a"] or self.inputs["b"]
+
+class Xor(BaseChip):
+    def __init__(self):
+        self.setup(["a", "b"], ["out"])
+    
+    def doCalculation(self):
+        a = self.inputs["a"]
+        b = self.inputs["b"]
+        self.outputs["out"] = (a or b) and not (a and b)
+
+class Not(BaseChip):
+    def __init__(self):
+        self.setup(["a"], ["out"])
+        return
+    
+    def doCalculation(self):
+        self.outputs["out"] = not self.inputs["a"]
 
 #take 2 buses of size 'numinputs'.
 #they will be named: 'a0, a1, a2,...a(n-1)' & 'b0, b1, b2, ...b(n-1)'.
 class AndXBit(BaseChip):
     def __init__(self, numinputs):
         pins = __xbit_pins(numinputs)
-        self.setup(*pins)
+        self.setup(pins[0]+pins[1], pins[2])
         self.numpins = numinputs
+        self.ina = pins[0]
+        self.inb = pins[1]
+        self.out = pins[2]
         return
     
     def doCalculation(self):
-        for p in range(self.numpins):
-            stp = str(p)
-            self.outputs[stp] = self.inputs["a"+stp] and self.inputs["b"+stp]
+        for i in range(self.numpins):
+            self.outputs[self.out[i]] = self.inputs[self.ina] and self.inputs[self.inb]
         return
     
 class OrXBit(BaseChip):
     def __init__(self, numinputs):
         pins = __xbit_pins(numinputs)
-        self.setup(*pins)
+        self.setup(pins[0]+pins[1], pins[2])
         self.numpins = numinputs
+        self.ina = pins[0]
+        self.inb = pins[1]
+        self.out = pins[2]
         return
     
     def doCalculation(self):
-        for p in range(self.numpins):
-            stp = str(p)
-            self.outputs[stp] = self.inputs["a"+stp] or self.inputs["b"+stp]
+        for i in range(self.numpins):
+            self.outputs[self.out[i]] = self.inputs[self.ina] or self.inputs[self.inb]
+        return
+
+class NandXBit(BaseChip):
+    def __init__(self, numinputs):
+        pins = __xbit_pins(numinputs)
+        self.setup(pins[0]+pins[1], pins[2])
+        self.numpins = numinputs
+        self.ina = pins[0]
+        self.inb = pins[1]
+        self.out = pins[2]
+        return
+    
+    def doCalculation(self):
+        for i in range(self.numpins):
+            self.outputs[self.out[i]] = not(self.inputs[self.ina] and self.inputs[self.inb])
         return
 
 class Register(BaseChip):
@@ -65,4 +122,3 @@ class Register(BaseChip):
             self.value = self.inputs["in"]
         self.outputs["out"] = self.value
         return
-        
