@@ -40,7 +40,6 @@ class BreadBoard(BaseChip):
                 thisi = k+"."+inp
                 if  (thisi not in internalinputpins) and (thisi not in constants):
                     missinginputpins.append(thisi)
-        
         #set the constants, including missing pins
         self.constants = []
         for c in constants:
@@ -85,7 +84,7 @@ class BreadBoard(BaseChip):
         
         #set all constant inputs
         for c in self.constants:
-            self.chips[c[0][0]].inputs[c[0][1]] = c[1]
+            self.chips[c[0][0]].setInput(c[0][1], c[1])
         
         #carry through input_map pins to the proper inputs
         #for k in self.inputs.keys():

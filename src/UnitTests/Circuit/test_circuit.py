@@ -50,6 +50,19 @@ class TestBreadBoard(unittest.TestCase):
         return
     
     def test_constant(self):
+        tcases = [(5, 70), (-2, 0), (40, 420), (22.6, 246)]
+        add = Circuit.Chips.Math.Add()
+        multiply = Circuit.Chips.Math.Multiply()
+        bbchips = {"add":add, "multiply":multiply}
+        bbinputs = ["in"]
+        bboutputs = ["out"]
+        bbconstants = {"add.b":2}
+        bbwires=[("in", "add.a"), ("add.out", "multiply.a"), ("multiply.out", "out")]
+        bb = Circuit.Chips.Cases.BreadBoard(bbchips, bbinputs, bboutputs, bbconstants, bbwires, default=10)
+        for t in tcases:
+            bb.setInput("in", t[0])
+            bb.calculate()
+            self.assertEqual(bb.getOutput("out"), t[1])
         return
 
 class TestArtificialNeuron(unittest.TestCase):
