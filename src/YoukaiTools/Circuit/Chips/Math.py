@@ -33,3 +33,19 @@ class InvertNeuron(BaseChip):
         for i, o in itertools.izip(self.inp, self.out):
             self.outputs[o] = -self.inputs[i]
         return
+
+class Add(BaseChip):
+    def __init__(self):
+        self.setup(["a", "b"], ["out"])
+    
+    def doCalculation(self):
+        self.outputs["out"] = self.inputs["a"] + self.inputs["b"]
+        return
+
+class Multiply(BaseChip):
+    def __init__(self):
+        self.setup(["a", "b"], ["out"])
+    
+    def doCalculation(self):
+        self.outputs["out"] = self.inputs["a"] * self.inputs["b"]
+        return
