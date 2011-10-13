@@ -19,10 +19,10 @@ class TestBreadBoard(unittest.TestCase):
         inv2 = Circuit.Chips.Math.InvertNeuron(3)
         
         bbchips = {"inv1":inv1, "inv2":inv2}
-        bbinputs = {"inv1.in0":"in0", "inv1.in1":"in1", "inv2.in2":"in2"}
-        bboutputs = {"inv2.out0":"out0", "inv2.out1":"out1", "inv2.out2":"out2"}
+        bbinputs = ["in0", "in1", "in2"]
+        bboutputs = ["out0", "out1", "out2"]
         bbconstants = {}
-        bbwires=[("inv1.out0", "inv2.in0"), ("inv1.out1", "inv2.in1")]
+        bbwires=[("in0", "inv1.in0"), ("in1", "inv1.in1"), ("in2", "inv2.in2"), ("inv1.out0", "inv2.in0"), ("inv1.out1", "inv2.in1"), ("inv2.out0", "out0"), ("inv2.out1", "out1"), ("inv2.out2", "out2")]
         bb = Circuit.Chips.Cases.BreadBoard(bbchips, bbinputs, bboutputs, bbconstants, bbwires)
         
         bb.setInput('in0', 100)
