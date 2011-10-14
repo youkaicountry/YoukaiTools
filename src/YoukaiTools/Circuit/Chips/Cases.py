@@ -57,6 +57,7 @@ class VariableChip(BaseChip):
             self.outputs[k] = self.chip.getOutput(k)
         return
 
+#TODO: If optimize and order is None, have it statically analyze and come up with the order itself.
 class BreadBoard(BaseChip):
     #chips should be a dic {"chip_name": chip, ...}
     #inputs should be a dictionary {"inp": "what_to_call_it"}
