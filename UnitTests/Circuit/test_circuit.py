@@ -13,7 +13,23 @@ class TestKeyManager(unittest.TestCase):
         self.assertEqual(inv.getOutput("out2"), 0)
         return
 
-class TestBreadBoard(unittest.TestCase):
+class TestCases(unittest.TestCase):
+    def test_variablechip(self):
+        add = Circuit.Chips.Math.Add()
+        vchip = Circuit.Chips.Cases.VariableChip(add, {"b":("b", 10)})
+        vchip.setInput("a", 3)
+        vchip.calculate()
+        self.assertEqual(vchip.getOutput("out"), 13)
+        vchip.setInput("a", 18)
+        vchip.calculate()
+        self.assertEqual(vchip.getOutput("out"), 28)
+        self.assertIn("b", vchip.getVariableList())
+        vchip.setVariable("b", -50)
+        vchip.setInput("a", 3)
+        vchip.calculate()
+        self.assertEqual(vchip.getOutput("out"), -47)
+        return
+    
     def test_breadboard(self):
         inv1 = Circuit.Chips.Math.InvertNeuron(2)
         inv2 = Circuit.Chips.Math.InvertNeuron(3)

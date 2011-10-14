@@ -27,9 +27,34 @@ class VariableChip(BaseChip):
     #variables should be a dictionary {"vname": ("inputname", defaultval)}
     def __init__(self, chip, variables):
         var = set(variables.keys())
-        inputs = [x for x in (var - set(chip.inputs.keys()))]
+        self.chip = chip
+        inputs = [x for x in (set(chip.inputs.keys())-var)]
         outputs = [x for x in chip.outputs.keys()]
-        
+        self.setup(inputs, outputs)
+        self.vinp = {}
+        self.vval = {}
+        for v in var:
+            self.vinp[v] = variables[v][0]
+            self.vval[v] = variables[v][1]
+        return
+    
+    def getVariable(self, v):
+        return self.vval[v]
+    
+    def setVariable(self, v, value):
+        self.vval[v] = value
+    
+    def getVariableList(self):
+        return self.vinp.keys()
+    
+    def doCalculation(self):
+        for v in self.vinp.keys():
+            self.chip.setInput(self.vinp[v], self.vval[v])
+        for k in self.inputs.keys():
+            self.chip.setInput(k, self.inputs[k])
+        self.chip.calculate()
+        for k in self.outputs.keys():
+            self.outputs[k] = self.chip.getOutput(k)
         return
 
 class BreadBoard(BaseChip):
