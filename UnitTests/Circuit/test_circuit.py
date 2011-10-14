@@ -39,7 +39,8 @@ class TestCases(unittest.TestCase):
         bboutputs = ["out0", "out1", "out2"]
         bbconstants = {}
         bbwires=[("in0", "inv1.in0"), ("in1", "inv1.in1"), ("in2", "inv2.in2"), ("inv1.out0", "inv2.in0"), ("inv1.out1", "inv2.in1"), ("inv2.out0", "out0"), ("inv2.out1", "out1"), ("inv2.out2", "out2")]
-        bb = Circuit.Chips.Cases.BreadBoard(bbchips, bbinputs, bboutputs, bbconstants, bbwires)
+        bborder = ["inv1", "inv2"]
+        bb = Circuit.Chips.Cases.BreadBoard(bbchips, bbinputs, bboutputs, bbconstants, bbwires, optimized_order=bborder)
         
         bb.setInput('in0', 100)
         bb.setInput('in1', 200)
@@ -67,10 +68,12 @@ class TestCases(unittest.TestCase):
         #pass through
         bbchips = {}
         bbwires = []
+        bborder = []
         for i in range(100):
             pn = "p"+str(i)
             pnp1 = "p"+str(i+1)
             bbchips["p"+str(i)] = Circuit.Chips.Util.Split(1)
+            bborder.append(pn)
             if i < 99:
                 bbwires.append((pn+".out0", pnp1+".in"))
         bbwires.append(("in", "p0.in"))
@@ -78,10 +81,13 @@ class TestCases(unittest.TestCase):
         bbinputs = ["in"]
         bboutputs = ["out"]
         bbconstants = {}
-        bb = Circuit.Chips.Cases.BreadBoard(bbchips, bbinputs, bboutputs, bbconstants, bbwires)
+        bb = Circuit.Chips.Cases.BreadBoard(bbchips, bbinputs, bboutputs, bbconstants, bbwires, optimized_order=bborder)
         bb.setInput("in", 58)
         bb.calculate()
         self.assertEqual(bb.getOutput("out"), 58)
+        bb.setInput("in", 71)
+        bb.calculate()
+        self.assertEqual(bb.getOutput("out"), 71)
         return
     
     def test_constant(self):

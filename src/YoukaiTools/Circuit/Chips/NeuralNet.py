@@ -66,9 +66,11 @@ class ForwardFeedNeuralNetwork(BaseChip):
         wires = []
         inputs = []
         outputs = []
+        order = []
         for layer in range(len(layers)):
             for chip in range(layers[layer]):
                 name = "l"+str(layer)+"c"+str(chip)
+                order.append(name)
                 inpnum = 1 if layer == 0 else layers[layer-1]
                 chips[name] = ArtificalNeuron(inpnum, layer_tconst[layer], layer_tfunc[layer])
                 for inum in range(inpnum):
@@ -92,7 +94,7 @@ class ForwardFeedNeuralNetwork(BaseChip):
                     ln = "l"+str(l)
                     for c in range(layers[l]):
                         wires.append((name+".out", ln+"c"+str(c)+".in"+str(chip)))
-        bb = Cases.BreadBoard(chips, inputs, outputs, constants, wires)
+        bb = Cases.BreadBoard(chips, inputs, outputs, constants, wires, optimized_order=order)
         #inputs = ["in"+str(i) for i in range(layers[0])]
         #outputs = ["out"+str(i) for i in range(layers[-1])]
         

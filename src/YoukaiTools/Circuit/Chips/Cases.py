@@ -62,7 +62,9 @@ class BreadBoard(BaseChip):
     #inputs should be a dictionary {"inp": "what_to_call_it"}
     #constants should be a dic {"inp":const, ...}
     #wires should be [("output", "input"), ...]
-    def __init__(self, chips, input_names, output_names, constants, wires, default=0):
+    def __init__(self, chips, input_names, output_names, constants, wires, default=0, optimized_order=None, optimize=True):
+        self.optimized_order = optimized_order
+        self.optimize = optimize
         self.chips = chips
         missinginputpins = []
         internalinputpins = set()
@@ -132,21 +134,26 @@ class BreadBoard(BaseChip):
         #set the proper inputs
         #remove resolved chip from the list of unresolved
         #repeat if there are still unresolved
-        while len(unresolved) > 0:
-            takeout = set()
-            for n in unresolved:
-                thischip = self.chips[n]
-                if thischip.calculate():
-                    takeout.add(n)
-                    #outbound = GraphEngine.GraphTools.Paths.getOutboundEdges(self.graph, n)
-                    self.__carryWire(n)
-                    #for o in outbound:
-                    #    outpin = self.graph.getEdgeData(o, "outpin")
-                    #    inpin = self.graph.getEdgeData(o, "inpin")
-                    #    end = self.graph.getEdgeData(o, "end")
-                    #    self.chips[end].setInput(inpin, thischip.getOutput(outpin))
-            unresolved = unresolved - takeout
         
+        if self.optimized_order is None:
+            if self.optimize:
+                self.optimized_order = []
+            while len(unresolved) > 0:
+                takeout = set()
+                for n in unresolved:
+                    thischip = self.chips[n]
+                    if thischip.calculate():
+                        takeout.add(n)
+                        self.__carryWire(n)
+                        if self.optimize:
+                            self.optimized_order.append(n)
+                unresolved = unresolved - takeout
+        else:
+            for n in self.optimized_order:
+                thischip = self.chips[n]
+                thischip.calculate()
+                self.__carryWire(n)
+    
         #carry through output_map pins to the case outputs
         #for k in self.outputs.keys():
         #    outf = self.output_map[k]
