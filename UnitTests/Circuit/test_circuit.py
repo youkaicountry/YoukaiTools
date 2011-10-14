@@ -63,6 +63,25 @@ class TestCases(unittest.TestCase):
         self.assertEqual(bb.getOutput("out0"), 51)
         self.assertEqual(bb.getOutput("out1"), 88)
         self.assertEqual(bb.getOutput("out2"), 51)
+        
+        #pass through
+        bbchips = {}
+        bbwires = []
+        for i in range(100):
+            pn = "p"+str(i)
+            pnp1 = "p"+str(i+1)
+            bbchips["p"+str(i)] = Circuit.Chips.Util.Split(1)
+            if i < 99:
+                bbwires.append((pn+".out0", pnp1+".in"))
+        bbwires.append(("in", "p0.in"))
+        bbwires.append(("p99.out0", "out"))
+        bbinputs = ["in"]
+        bboutputs = ["out"]
+        bbconstants = {}
+        bb = Circuit.Chips.Cases.BreadBoard(bbchips, bbinputs, bboutputs, bbconstants, bbwires)
+        bb.setInput("in", 58)
+        bb.calculate()
+        self.assertEqual(bb.getOutput("out"), 58)
         return
     
     def test_constant(self):

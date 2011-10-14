@@ -22,7 +22,7 @@ from ..BaseChip import BaseChip
 
 class Split(BaseChip):
     def __init__(self, ways):
-        self.setup(["in"], [str(i)+"out" for i in range(ways)])
+        self.setup(["in"], ["out"+str(i) for i in range(ways)])
         return
     
     def doCalculation(self):
