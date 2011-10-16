@@ -20,6 +20,18 @@
 
 #from . import Vector
 
+#rect should be (left, top, right, bottom)
+#if calcirect, return will be (intersect?, irect)
+#else return will be intersect?
+def rectxRect(rect1, rect2, calcirect=True):
+    intersect = not((rect2[0]>rect1[2])or(rect2[2]<rect1[0])or(rect2[1]>rect1[3])or(rect2[3]<rect1[1]))
+    if not calcirect: return intersect
+    if not intersect:
+        irect=(0, 0, 0, 0)
+    else:
+        irect=(max(rect1[0], rect2[0]), max(rect1[1], rect2[1]), min(rect1[2], rect2[2]), min(rect1[3], rect2[3]))
+    return (intersect, irect)
+
 #UNFINISHED
 #intersectpoint = result, vector3
 #normal = the plane's normal
