@@ -32,7 +32,7 @@
 
 #add data like in the GraphEngine
 
-import collections.deque
+from collections import deque
 
 #for each node, save region, parent, children
 
@@ -69,7 +69,7 @@ class QuadTree:
     #the function to use to test this object
     def addObject(self, obj, test_func=None):
         o = (obj, test_func)
-        nodes = self.__findContainingNodes(obj, test_func)
+        nodes = self.__findContainingNodes(obj, self.objfunc if test_func is None else test_func)
         for n in nodes:
             self.__putInNode(o, n)
         return
@@ -77,12 +77,12 @@ class QuadTree:
     #given an object and a region test function, efficiently
     #find all of the leaf nodes that it fits in
     def __findContainingNodes(self, obj, test_func, start_node=0):
-        q = collections.deque()
+        q = deque()
         containing = []
         q.append(start_node)
         while len(q) > 0:
             check = q.popleft()
-            if q in self.leafnodes:
+            if check in self.leafnodes:
                 if test_func(obj, self.nodes[check].region):
                     containing.append(check)
             else:
@@ -108,7 +108,7 @@ class QuadTree:
     #
     def __cascade(self, node):
         self.splitNode(node)
-        for c in node.objectcontainers:
+        for c in self.nodes[node].objectcontainers:
             tf = self.objfunc if c[1] is None else c[1]
             nn = self.__findContainingNodes(c[0], tf, node)
             for n in nn:
