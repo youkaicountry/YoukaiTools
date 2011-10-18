@@ -18,12 +18,18 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import YoukaiTools.AdvMath
-from YoukaiTools.AdvMath import Intersect as Intersect
+import YoukaiTools.QuadTree as QuadTree
 import unittest
 
-class TestRect(unittest.TestCase):
-    def test_rectXRect(self):
+class TestQuadTree(unittest.TestCase):
+    def test_add(self):
+        qt = QuadTree.QuadTree((0.0, 0.0, 1.0, 1.0), 2)
+        qt.addObject((.3, .45))
+        qt.addObject((.2, .87))
+        qt.addObject((.8, .1)) #SPLIT!
+        qt.addObject((.1, .2))
+        qt.addObject((.25, .13)) #SPLIT!
+        print(qt.nodes)
         return
         
 if __name__ == '__main__':
