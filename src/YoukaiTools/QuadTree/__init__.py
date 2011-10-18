@@ -32,6 +32,7 @@
 
 #add data like in the GraphEngine
 
+import collections.deque
 
 #for each node, save region, parent, children
 
@@ -43,15 +44,75 @@ quadlook = []
 quadlook.append([4, 1])
 quadlook.append([3, 2])
 
+def fPoint(p, region):
+    return (p[0] <= region[2]) and (p[0] >= region[0]) and (p[1] <= region[3]) and (p[1] >= region[1]) 
+
 class QuadTree:
     #region = (x1, y1, x2, y2) in float
-    def __init__(self, region):
+    #bucketsize is the maximum number of objects in a particular section.
+    #any more and they will be split.
+    #objfunc is a function that takes (obj, region), and should return True if
+    #that region contains the object (or a piece of it), or False if it does not.
+    def __init__(self, region, bucketsize=4, objfunc=fPoint):
         self.x1, self.y1, self.x2, self.y2 = self.region = region
         self.nodes = {}
         self.top = 0
+        self.bucketsize = bucketsize
+        self.objfunc = objfunc
         self.__makeNode(None, region)
         self.leafnodes = set() #points to all of the lead nodes
         self.leafnodes.add(0)
+        return
+    
+    #obj if the actual object to contain.
+    #test_data should be None to use the objfunc, or
+    #the function to use to test this object
+    def addObject(self, obj, test_func=None):
+        o = (obj, test_func)
+        nodes = self.__findContainingNodes(obj, test_func)
+        for n in nodes:
+            self.__putInNode(o, n)
+        return
+    
+    #given an object and a region test function, efficiently
+    #find all of the leaf nodes that it fits in
+    def __findContainingNodes(self, obj, test_func, start_node=0):
+        q = collections.deque()
+        containing = []
+        q.append(start_node)
+        while len(q) > 0:
+            check = q.popleft()
+            if q in self.leafnodes:
+                if test_func(obj, self.nodes[check].region):
+                    containing.append(check)
+            else:
+                n = self.nodes[check]
+                if test_func(obj, self.nodes[n.childQ1].region):
+                    q.append(n.childQ1)
+                if test_func(obj, self.nodes[n.childQ2].region):
+                    q.append(n.childQ2)
+                if test_func(obj, self.nodes[n.childQ3].region):
+                    q.append(n.childQ3)
+                if test_func(obj, self.nodes[n.childQ4].region):
+                    q.append(n.childQ4)
+        return containing
+    
+    #puts the given ocontainer in the given node, and cascades if the
+    #node is over the bucketsize
+    def __putInNode(self, ocontainer, node):
+        self.nodes[node].objectcontainers.append(ocontainer)
+        if len(self.nodes[node].objectcontainers) > self.bucketsize:
+            self.__cascade(node)
+        return
+    
+    #
+    def __cascade(self, node):
+        self.splitNode(node)
+        for c in node.objectcontainers:
+            tf = self.objfunc if c[1] is None else c[1]
+            nn = self.__findContainingNodes(c[0], tf, node)
+            for n in nn:
+                self.__putInNode(c, n)
         return
    
     #You can only split a leaf node. (That node has no children/is pointed to by leafnodes)   
@@ -116,7 +177,7 @@ class QuadTree:
       
     def __makeNode(self, parent, region):
         self.nodes[self.top] = Node(parent, region)
-        self.nodes[self.top].setChildren
+        #self.nodes[self.top].setChildren
         out = self.top
         self.top += 1
         return out
@@ -130,6 +191,7 @@ class Node:
         self.childQ2 = None
         self.childQ3 = None
         self.childQ4 = None
+        self.objectcontainers = []
         return
    
     def getRegion(self):
