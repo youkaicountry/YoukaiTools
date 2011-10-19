@@ -57,6 +57,7 @@ class QuadTree:
         self.x1, self.y1, self.x2, self.y2 = self.region = region
         self.nodes = {}
         self.top = 0
+        self.root=0
         self.bucketsize = bucketsize
         self.objfunc = objfunc
         self.__makeNode(None, region)
