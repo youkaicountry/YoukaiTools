@@ -53,7 +53,7 @@ def drawQuadTree(quadtree, image_size=(256,256), back_color=(0.0,0.0,0.0), draw_
         else:
             if draw_objects:
                 for c in quadtree.nodes[n].objectcontainers:
-                    obs = object_point_function(c[0])
+                    obs = object_point_function(c[0][0])
                     for l in obs:
                         if len(l) == 1:
                             xp = toImageSpace(l[0][0], xmin, xdiv, xscale)

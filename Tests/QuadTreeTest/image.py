@@ -24,7 +24,7 @@ import YoukaiTools.ImageTools.FileHandlers.All as All
 import random
 r = random.Random(1134)
 qt = QuadTree.QuadTree((0.0, 0.0, 1.0, 1.0), 2)
-for i in range(1000):
-    qt.addObject((r.random(), r.random()))
-im = QuadTree.Draw.drawQuadTree(qt, (512,512))
+for i in range(5):
+    qt.addObject((r.random(), r.random()), edge=True)
+im = QuadTree.Draw.drawQuadTree(qt, (512,512), draw_objects=True)
 All.saveFile("quadtree.png", im)

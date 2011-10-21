@@ -44,8 +44,9 @@ quadlook = []
 quadlook.append([4, 1])
 quadlook.append([3, 2])
 
+#should return (in region?, is edge?)
 def fPoint(p, region):
-    return (p[0] <= region[2]) and (p[0] >= region[0]) and (p[1] <= region[3]) and (p[1] >= region[1]) 
+    return ((p[0] <= region[2]) and (p[0] >= region[0]) and (p[1] <= region[3]) and (p[1] >= region[1]), True) 
 
 class QuadTree:
     #region = (x1, y1, x2, y2) in float
@@ -53,26 +54,33 @@ class QuadTree:
     #any more and they will be split.
     #objfunc is a function that takes (obj, region), and should return True if
     #that region contains the object (or a piece of it), or False if it does not.
-    def __init__(self, region, bucketsize=4, objfunc=fPoint):
+    def __init__(self, region, bucketsize=4, edgeres=6, objfunc=fPoint):
         self.x1, self.y1, self.x2, self.y2 = self.region = region
         self.nodes = {}
         self.top = 0
         self.root=0
         self.bucketsize = bucketsize
+        self.edgeres = edgeres
         self.objfunc = objfunc
-        self.__makeNode(None, region)
+        self.__makeNode(None, region, 0)
         self.leafnodes = set() #points to all of the lead nodes
         self.leafnodes.add(0)
+        self.object_nodes = {}
         return
     
     #obj if the actual object to contain.
     #test_data should be None to use the objfunc, or
     #the function to use to test this object
-    def addObject(self, obj, test_func=None):
+    def addObject(self, obj, test_func=None, bucket=True, edge=False):
+        self.object_nodes[obj] = set()
         o = (obj, test_func)
-        nodes = self.__findContainingNodes(obj, self.objfunc if test_func is None else test_func)
-        for n in nodes:
-            self.__putInNode(o, n)
+        nodec = self.__findContainingNodes(obj, self.objfunc if test_func is None else test_func)
+        for n in nodec:
+            self.__putInNode(o, n, bucket=bucket, edge=edge)
+        #if edge:
+        #    drop_list = [x for x in self.object_nodes[obj]]
+        #    for n in drop_list:
+                
         return
     
     #given an object and a region test function, efficiently
@@ -84,8 +92,9 @@ class QuadTree:
         while len(q) > 0:
             check = q.popleft()
             if check in self.leafnodes:
-                if test_func(obj, self.nodes[check].region):
-                    containing.append(check)
+                tf = test_func(obj, self.nodes[check].region)
+                if tf[0]:
+                    containing.append((check, tf[1]))
             else:
                 n = self.nodes[check]
                 if test_func(obj, self.nodes[n.childQ1].region):
@@ -100,20 +109,25 @@ class QuadTree:
     
     #puts the given ocontainer in the given node, and cascades if the
     #node is over the bucketsize
-    def __putInNode(self, ocontainer, node):
-        self.nodes[node].objectcontainers.append(ocontainer)
-        if len(self.nodes[node].objectcontainers) > self.bucketsize:
-            self.__cascade(node)
+    def __putInNode(self, ocontainer, node, bucket=True, edge=False):
+        self.object_nodes[ocontainer[0]].add(node[0])
+        self.nodes[node[0]].objectcontainers.add((ocontainer, node[1]))
+        if bucket and (len(self.nodes[node[0]].objectcontainers) > self.bucketsize):
+            self.__cascade(node[0], bucket, edge)
+        elif edge and node[1] and (self.nodes[node[0]].depth < self.edgeres):
+            self.__cascade(node[0], bucket, edge)
         return
     
     #
-    def __cascade(self, node):
+    def __cascade(self, node, bucket, edge):
         self.splitNode(node)
         for c in self.nodes[node].objectcontainers:
-            tf = self.objfunc if c[1] is None else c[1]
-            nn = self.__findContainingNodes(c[0], tf, node)
+            self.object_nodes[c[0][0]].remove(node)
+            tf = self.objfunc if c[0][1] is None else c[0][1]
+            nn = self.__findContainingNodes(c[0][0], tf, node)
             for n in nn:
-                self.__putInNode(c, n)
+                self.__putInNode(c[0], n, bucket, edge)
+        self.nodes[node].objectcontainers = set()
         return
    
     #You can only split a leaf node. (That node has no children/is pointed to by leafnodes)   
@@ -126,11 +140,13 @@ class QuadTree:
         #calculate the halfway points
         hx = ((nx2 - nx1) / 2.0) + nx1 #X halfway mark
         hy = ((ny2 - ny1) / 2.0) + ny1 #Y halfway mark
+        #the node's depth
+        depth = node.depth + 1
         #make the nodes
-        q1 = self.__makeNode(nid, (hx, ny1, nx2, hy)) #upper right (Quadrant 1)
-        q2 = self.__makeNode(nid, (nx1, ny1, hx, hy)) #upper left  (Quadrant 2)
-        q3 = self.__makeNode(nid, (nx1, hy, hx, ny2)) #lower left  (Quadrant 3)
-        q4 = self.__makeNode(nid, (hx, hy, nx2, ny2)) #lower right (Quadrant 4)
+        q1 = self.__makeNode(nid, (hx, ny1, nx2, hy), depth) #upper right (Quadrant 1)
+        q2 = self.__makeNode(nid, (nx1, ny1, hx, hy), depth) #upper left  (Quadrant 2)
+        q3 = self.__makeNode(nid, (nx1, hy, hx, ny2), depth) #lower left  (Quadrant 3)
+        q4 = self.__makeNode(nid, (hx, hy, nx2, ny2), depth) #lower right (Quadrant 4)
         #set them as the children of the split node
         node.setChildren( (q1, q2, q3, q4) )
         #change leafnode info
@@ -145,12 +161,12 @@ class QuadTree:
         return self.nodes[nid].getRegion() 
       
     def getNodeDepth(self, nid):
-        pid = self.nodes[nid].getParent()
-        depth = 0
-        while pid != None:
-            pid = self.nodes[pid].getParent()
-            depth += 1
-        return depth 
+        #pid = self.nodes[nid].getParent()
+        #depth = 0
+        #while pid != None:
+        #    pid = self.nodes[pid].getParent()
+        #    depth += 1
+        return self.nodes[nid].depth 
    
     def getNodeByLocation(self, location):
         #test if location is out of origin region first...
@@ -176,8 +192,8 @@ class QuadTree:
         ay = location[1] < hy
         return quadlook[lx][ay]
       
-    def __makeNode(self, parent, region):
-        self.nodes[self.top] = Node(parent, region)
+    def __makeNode(self, parent, region, depth):
+        self.nodes[self.top] = Node(parent, region, depth)
         #self.nodes[self.top].setChildren
         out = self.top
         self.top += 1
@@ -185,14 +201,15 @@ class QuadTree:
 
 #region is (x1, y1, x2, y2)      
 class Node:
-    def __init__(self, parentid, region):
+    def __init__(self, parentid, region, depth):
         self.parentid = parentid
         self.region = region
         self.childQ1 = None
         self.childQ2 = None
         self.childQ3 = None
         self.childQ4 = None
-        self.objectcontainers = []
+        self.objectcontainers = set()
+        self.depth = depth
         return
    
     def getRegion(self):
