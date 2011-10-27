@@ -22,20 +22,27 @@ from ..BaseChip import BaseChip
 
 #import YoukaiTools.GraphEngine as GraphEngine
 
+#Variables are basically constants whose inputs are exposed and changeable, and
+#constants are inputs whose values cannot be changed.
 #Allows setting inputs on a contained chip to variables whose default values are tracked and retained
 class VariableChip(BaseChip):
     #variables should be a dictionary {"vname": ("inputname", defaultval)}
-    def __init__(self, chip, variables):
-        var = set(variables.keys())
+    #constants should be a list: [ ("inputname", value), ...]
+    def __init__(self, chip, variables, constants):
+        vin = set([x[0] for x in variables.keys()])
+        const = set([x[0] for x in constants])
         self.chip = chip
-        inputs = [x for x in (set(chip.inputs.keys())-var)]
+        inputs = [x for x in ((set(chip.inputs.keys())-vin)-const)]
         outputs = [x for x in chip.outputs.keys()]
         self.setup(inputs, outputs)
         self.vinp = {}
         self.vval = {}
-        for v in var:
+        self.const = {}
+        for v in variables.keys():
             self.vinp[v] = variables[v][0]
             self.vval[v] = variables[v][1]
+        for c in constants:
+            self.const[c[0]] = c[1]
         return
     
     def getVariable(self, v):
@@ -48,11 +55,18 @@ class VariableChip(BaseChip):
         return self.vinp.keys()
     
     def doCalculation(self):
+        #set variable values
         for v in self.vinp.keys():
             self.chip.setInput(self.vinp[v], self.vval[v])
+        #set constant values
+        for c in self.const.keys():
+            self.chip.setInput(c, self.const[c])
+        #carry through this chip's inputs to the contained chip's inputs
         for k in self.inputs.keys():
             self.chip.setInput(k, self.inputs[k])
+        #run calculate on the contained chip
         self.chip.calculate()
+        #carry the outputs to this chip's outputs
         for k in self.outputs.keys():
             self.outputs[k] = self.chip.getOutput(k)
         return
