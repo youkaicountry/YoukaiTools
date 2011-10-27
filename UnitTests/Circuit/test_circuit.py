@@ -21,7 +21,7 @@
 import YoukaiTools.Circuit as Circuit
 import unittest
 
-class TestKeyManager(unittest.TestCase):
+class TestBasic(unittest.TestCase):
     def test_basicoverride(self):
         inv = Circuit.Chips.Math.InvertNeuron(3)
         inv.setInput("in0", 1.2)
@@ -33,10 +33,14 @@ class TestKeyManager(unittest.TestCase):
         self.assertEqual(inv.getOutput("out2"), 0)
         return
 
-class TestCases(unittest.TestCase):
+class TestChips(unittest.TestCase):
+    
     def test_variablechip(self):
         add = Circuit.Chips.Math.Add()
         vchip = Circuit.Chips.Cases.VariableChip(add, {"b":("b", 10)})
+        self.assertItemsEqual(["a"], vchip.getInputList())
+        self.assertItemsEqual(["out"], vchip.getOutputList())
+        self.assertEqual(vchip.getVariable("b"), 10)
         vchip.setInput("a", 3)
         vchip.calculate()
         self.assertEqual(vchip.getOutput("out"), 13)
@@ -45,9 +49,17 @@ class TestCases(unittest.TestCase):
         self.assertEqual(vchip.getOutput("out"), 28)
         self.assertIn("b", vchip.getVariableList())
         vchip.setVariable("b", -50)
+        self.assertEqual(vchip.getVariable("b"), -50)
         vchip.setInput("a", 3)
         vchip.calculate()
         self.assertEqual(vchip.getOutput("out"), -47)
+        self.assertIn("b", vchip.getVariableList())
+        self.assertEqual(len(vchip.getVariableList()), 1)
+        
+        andxb = Circuit.Chips.Logic.AndXBit(3)
+        vchip = Circuit.Chips.Cases.VariableChip(andxb, {"a0":("a0", True), "b2":("b2", False)}, [("a1", True)])
+        self.assertItemsEqual(["b0", "b1", "a2"], vchip.getInputList())
+        self.assertItemsEqual(["out0", "out1", "out2"], vchip.getOutputList())
         return
     
     def test_breadboard(self):

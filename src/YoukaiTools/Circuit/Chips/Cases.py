@@ -28,8 +28,8 @@ from ..BaseChip import BaseChip
 class VariableChip(BaseChip):
     #variables should be a dictionary {"vname": ("inputname", defaultval)}
     #constants should be a list: [ ("inputname", value), ...]
-    def __init__(self, chip, variables, constants):
-        vin = set([x[0] for x in variables.keys()])
+    def __init__(self, chip, variables={}, constants=[]):
+        vin = set([x for x in variables.keys()])
         const = set([x[0] for x in constants])
         self.chip = chip
         inputs = [x for x in ((set(chip.inputs.keys())-vin)-const)]

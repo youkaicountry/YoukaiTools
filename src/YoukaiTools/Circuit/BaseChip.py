@@ -41,6 +41,12 @@ class BaseChip:
             self.input_set[k] = False
         self.output_set = False
     
+    def getInputList(self):
+        return self.inputs.keys()
+    
+    def getOutputList(self):
+        return self.outputs.keys()
+    
     def setInput(self, name, value):
         self.inputs[name] = value
         self.input_set[name] = True

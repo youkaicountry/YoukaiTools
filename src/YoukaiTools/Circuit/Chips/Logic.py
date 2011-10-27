@@ -20,7 +20,7 @@
 
 from ..BaseChip import BaseChip
 
-def __xbit_pins(numinputs):
+def xbit_pins(numinputs):
     inpa = ["a"+str(x) for x in range(numinputs)]
     inpb = ["b"+str(x) for x in range(numinputs)]
     outp = ["out"+str(x) for x in range(numinputs)]
@@ -68,7 +68,7 @@ class Not(BaseChip):
 #they will be named: 'a0, a1, a2,...a(n-1)' & 'b0, b1, b2, ...b(n-1)'.
 class AndXBit(BaseChip):
     def __init__(self, numinputs):
-        pins = __xbit_pins(numinputs)
+        pins = xbit_pins(numinputs)
         self.setup(pins[0]+pins[1], pins[2])
         self.numpins = numinputs
         self.ina = pins[0]
@@ -83,7 +83,7 @@ class AndXBit(BaseChip):
     
 class OrXBit(BaseChip):
     def __init__(self, numinputs):
-        pins = __xbit_pins(numinputs)
+        pins = xbit_pins(numinputs)
         self.setup(pins[0]+pins[1], pins[2])
         self.numpins = numinputs
         self.ina = pins[0]
@@ -98,7 +98,7 @@ class OrXBit(BaseChip):
 
 class NandXBit(BaseChip):
     def __init__(self, numinputs):
-        pins = __xbit_pins(numinputs)
+        pins = xbit_pins(numinputs)
         self.setup(pins[0]+pins[1], pins[2])
         self.numpins = numinputs
         self.ina = pins[0]
