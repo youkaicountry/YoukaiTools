@@ -28,7 +28,7 @@ class Community(BaseGA.BaseGA):
         o = self.options["fill"](communitysize, self.genes)
         self.genelist = []
         for i in range(self.communitysize):
-            self.genelist.append((self.genes.getFitness(o[i]), o[i]))
+            self.genelist.append((self.genes["fitness"](o[i]), o[i]))
             
         self.genelist.sort()        
             
@@ -43,11 +43,11 @@ class Community(BaseGA.BaseGA):
                 s2 = self.getSelectionNew(oldlist)
                 o = self.mateNew(oldlist[s1][1], oldlist[s2][1])
                 f = self.mutateNew(o)
-                self.genelist.append((self.genes.getFitness(f), f))
+                self.genelist.append((self.genes["fitness"](f), f))
         self.generation+=1
         if self.generation % honkevery == 0:
                 a = self.getBest()
-                self.genes.report(a[1], a[0], self.generation, topgeneration)
+                self.genes["report"](a[1], a[0], self.generation, topgeneration)
         self.saveHistory()
         
         self.genelist.sort()
@@ -58,7 +58,7 @@ class Pool(BaseGA.BaseGA):
         BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength)
         self.poolsize = poolsize        
         o = self.options["fill"](1, self.genes)
-        self.genelist = [(self.genes.getFitness(o[0]), o[0])]
+        self.genelist = [(self.genes["fitness"](o[0]), o[0])]
         
     def doGeneration(self, number, honkevery):
         topgeneration = self.generation + number
@@ -68,14 +68,14 @@ class Pool(BaseGA.BaseGA):
             o = self.mateInPlace(s1, s2)
             f = self.mutateNew(o)
             if len(self.genelist) < self.poolsize:
-                self.genelist.append((self.genes.getFitness(f), f))
+                self.genelist.append((self.genes["fitness"](f), f))
             else:
                 d = self.getDeletionInPlace()
-                self.genelist[d] = (self.genes.getFitness(f), f)
+                self.genelist[d] = (self.genes["fitness"](f), f)
             self.generation+=1
             if self.generation % honkevery == 0:
                 a = self.getBest()
-                self.genes.report(a[1], a[0], self.generation, topgeneration)
+                self.genes["report"](a[1], a[0], self.generation, topgeneration)
             self.saveHistory()
             
         self.genelist.sort()
@@ -84,18 +84,18 @@ class HillClimb(BaseGA.BaseGA):
     def __init__(self, genes, options, savehistoryperiod=10000, maxhistorylength=10):
         BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength)
         o = self.options["fill"](1, self.genes)
-        self.genelist = [(self.genes.getFitness(o[0]), o[0])]
+        self.genelist = [(self.genes["fitness"](o[0]), o[0])]
         
     def doGeneration(self, number, honkevery):
         topgeneration = self.generation + number
         for i in xrange(number):
             o = self.mutateInPlace(0)
-            fit = self.genes.getFitness(o)
+            fit = self.genes["fitness"](o)
             if fit >= self.genelist[0][0]:
                 self.genelist[0] = (fit, o)
             self.generation += 1
             if self.generation % honkevery == 0:
                 a = self.getBest()
-                self.genes.report(a[1], a[0], self.generation, topgeneration)
+                self.genes["report"](a[1], a[0], self.generation, topgeneration)
             self.saveHistory()
         self.genelist.sort()

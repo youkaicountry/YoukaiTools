@@ -50,7 +50,7 @@ class BaseGA:
             c = random.random()
             c *= self.options["mutation_intensity_max"]-self.options["mutation_intensity_min"]
             c += self.options["mutation_intensity_min"]
-            o = self.genes.mutate(c, self.genelist[index][1])
+            o = self.genes["mutate"](c, self.genelist[index][1])
             return o
         return self.genelist[index][1]
     
@@ -62,7 +62,7 @@ class BaseGA:
             c = random.random()
             c *= self.options["mutation_intensity_max"]-self.options["mutation_intensity_min"]
             c += self.options["mutation_intensity_min"]
-            o = self.genes.mutate(c, obj)
+            o = self.genes["mutate"](c, obj)
             return o
         return obj
     
@@ -78,10 +78,10 @@ class BaseGA:
     
     #returns the mated object(object only)
     def mateInPlace(self, index1, index2):
-        return self.genes.mate(self.genelist[index1][1], self.genelist[index2][1])
+        return self.genes["mate"](self.genelist[index1][1], self.genelist[index2][1])
     
     def mateNew(self, obj1, obj2):
-        return self.genes.mate(obj1, obj2)    
+        return self.genes["mate"](obj1, obj2)    
     
     #does a single generation
     def doGeneration(self, number, honkevery):
@@ -95,3 +95,4 @@ class BaseGA:
     
     def clearHistory(self):
         self.history = []
+        

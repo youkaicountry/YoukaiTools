@@ -23,5 +23,5 @@ import BaseOptions
 def basic_fill(number, genes):
     r = []
     for i in range(number):
-        r.append(genes.getBasic())
+        r.append(genes["basic_dna"]())
     return r

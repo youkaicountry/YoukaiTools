@@ -21,73 +21,68 @@
 from YoukaiTools import GeneAlg
 import testmath
 import random
+    
+def fitness(obj):
+    return obj.fit()
 
-class test(GeneAlg.User.Gene):
-    GA = 0
-    x = 0
-    
-    def __init__(self):
-        st = GeneAlg.SelectionTypes.tourney_select
-        dt = GeneAlg.SelectionTypes.tourney_low_select
-        fill = GeneAlg.FillTypes.basic_fill
-        #fi = 
+def mate(obj1, obj2):
+    #print "mate"
+    o = testmath.testmath(obj1.c)        
+    r = random.randint(0, 1)
+    if r == 0:
+        o.a = obj1.a
+    else:
+        o.a = obj2.a
+    r = random.randint(0, 1)
+    if r == 0:
+        o.b = obj1.b
+    else:
+        o.b = obj2.b
+    return o
 
-        op = GeneAlg.User.makeOptions(st, (5,), dt, (5,), fill, (), .3, .00, .5)
-        #self.GA = GeneAlg.Algorithms.Community(self, op, 30)
-        self.GA = GeneAlg.Algorithms.Pool(self, op, 200)
+def mutate(intensity, obj):
+    #print "mutate"
+    o = testmath.testmath(obj.c)
+    o.a = obj.a
+    o.b = obj.b
+    r = random.randint(0, 1)
+    if r == 0:
+        o.a += intensity
+    else:
+        o.a -= intensity
+    r = random.randint(0, 1)
+    if r == 0:
+        o.b += intensity
+    else:
+        o.b -= intensity
+    return o
+
+def random_dna():
+    o = testmath.testmath(1000)
+    o.a = 1
+    o.b = 1
+    return o
     
-    def getFitness(self, obj):
-        return obj.fit()
-    
-    def mate(self, obj1, obj2):
-        #print "mate"
-        o = testmath.testmath(obj1.c)        
-        r = random.randint(0, 1)
-        if r == 0:
-            o.a = obj1.a
-        else:
-            o.a = obj2.a
-        r = random.randint(0, 1)
-        if r == 0:
-            o.b = obj1.b
-        else:
-            o.b = obj2.b
-        return o
-    
-    def mutate(self, intensity, obj):
-        #print "mutate"
-        o = testmath.testmath(obj.c)
-        o.a = obj.a
-        o.b = obj.b
-        r = random.randint(0, 1)
-        if r == 0:
-            o.a += intensity
-        else:
-            o.a -= intensity
-        r = random.randint(0, 1)
-        if r == 0:
-            o.b += intensity
-        else:
-            o.b -= intensity
-        return o
-    
-    def getRandom(self):
-        o = testmath.testmath(1000)
-        o.a = 1
-        o.b = 1
-        return o
-        
-    def getBasic(self):
-        o = testmath.testmath(1000)
-        o.a = 1
-        o.b = 1
-        return o
+def basic_dna():
+    o = testmath.testmath(1000)
+    o.a = 1
+    o.b = 1
+    return o
     
 
 #FUND IT!
-t = test()
-t.GA.doGeneration(500000, 100)
-ab = t.GA.getBest()
+st = GeneAlg.SelectionTypes.tourney_select
+dt = GeneAlg.SelectionTypes.tourney_low_select
+fill = GeneAlg.FillTypes.basic_fill
+#fi = 
+
+op = GeneAlg.make_options(st, (5,), dt, (5,), fill, (), .3, .00, .5)
+#self.GA = GeneAlg.Algorithms.Community(self, op, 30)
+gene = GeneAlg.make_gene(fitness, mate, mutate, random_dna, basic_dna)
+GA = GeneAlg.Algorithms.Pool(gene, op, 200)
+
+GA.doGeneration(100000, 100)
+ab = GA.getBest()
 print ab
 print ab[1].a
 print ab[1].b
