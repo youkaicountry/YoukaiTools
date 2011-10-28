@@ -43,18 +43,15 @@ class Gene:
     def report(self, obj, fitness, generation, topgeneration):
         return 1
 
-#the options class
-class Options:
-    selection = 0
-    deletion = 0
-    fill = 0
-    mutationchance = 0
-    mutationintensitymin = 0
-    mutationintensitymax = 0
-    def __init__(self, selection, deletion, fill, mc, mimin, mimax):
-        self.selection = selection
-        self.deletion = deletion
-        self.fill = fill
-        self.mutationchance = mc
-        self.mutationintensitymin = mimin
-        self.mutationintensitymax = mimax
+def makeOptions(selection, selection_settings, deletion, deletion_settings, fill, fill_settings, mc, mimin, mimax):
+    d = {}
+    d["selection"] = selection
+    d["selection_settings"] = selection_settings
+    d["deletion"] = deletion
+    d["deletion_settings"] = deletion_settings
+    d["fill"] = fill
+    d["fill_settings"] = fill_settings
+    d["mutation_chance"] = mc
+    d["mutation_intensity_min"] = mimin
+    d["mutation_intensity_max"] = mimax
+    return d

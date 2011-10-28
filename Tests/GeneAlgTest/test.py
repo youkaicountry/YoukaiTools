@@ -27,12 +27,12 @@ class test(GeneAlg.User.Gene):
     x = 0
     
     def __init__(self):
-        st = GeneAlg.SelectionTypes.TourneySelect(5)
-        dt = GeneAlg.SelectionTypes.TourneyLowSelect(5)
-        fill = GeneAlg.FillTypes.BasicFill(self)
+        st = GeneAlg.SelectionTypes.tourney_select
+        dt = GeneAlg.SelectionTypes.tourney_low_select
+        fill = GeneAlg.FillTypes.basic_fill
         #fi = 
 
-        op = GeneAlg.User.Options(st, dt, fill, .3, .00, .5)
+        op = GeneAlg.User.makeOptions(st, (5,), dt, (5,), fill, (), .3, .00, .5)
         #self.GA = GeneAlg.Algorithms.Community(self, op, 30)
         self.GA = GeneAlg.Algorithms.Pool(self, op, 200)
     

@@ -1,5 +1,3 @@
-#Copyright (c) <2011> <Nathaniel Caldwell>
-
 #Permission is hereby granted, free of charge, to any person obtaining a copy
 #of this software and associated documentation files (the "Software"), to deal
 #in the Software without restriction, including without limitation the rights
@@ -22,7 +20,6 @@ import random
 
 #the Base GA class
 class BaseGA:
-    
     def __init__(self, genes, options, savehistoryperiod=10000, maxhistorylength=10):
         self.genes = genes
         self.options = options
@@ -34,25 +31,25 @@ class BaseGA:
         
     #returns the index of the selected object
     def getSelectionInPlace(self):
-        return self.options.selection.getSelection(self.genelist)
+        return self.options["selection"](self.genelist, *self.options["selection_settings"])
     
     def getSelectionNew(self, objectlist):
-        return self.options.selection.getSelection(objectlist)
+        return self.options["selection"](objectlist, *self.options["selection_settings"])
     
     #returns the index of the object to be deleted
     def getDeletionInPlace(self):
-        return self.options.deletion.getSelection(self.genelist)
+        return self.options["deletion"](self.genelist, *self.options["deletion_settings"])
     
     def getDeletionNew(self, objectlist):
-        return self.options.deletion.getSelection(objectlist)
+        return self.options["deletion"](objectlist, *self.options["deletion_settings"])
     
     #returns the mutated object genelist object (fitness, obj)
     def mutateInPlace(self, index):
         r = random.random()
-        if r <= self.options.mutationchance:
+        if r <= self.options["mutation_chance"]:
             c = random.random()
-            c *= self.options.mutationintensitymax-self.options.mutationintensitymin
-            c += self.options.mutationintensitymin
+            c *= self.options["mutation_intensity_max"]-self.options["mutation_intensity_min"]
+            c += self.options["mutation_intensity_min"]
             o = self.genes.mutate(c, self.genelist[index][1])
             return o
         return self.genelist[index][1]
@@ -60,11 +57,11 @@ class BaseGA:
     #returns the mutated object genelist object (fitness, obj)
     def mutateNew(self, obj):
         r = random.random()
-        if r <= self.options.mutationchance:
+        if r <= self.options["mutation_chance"]:
             #print "chance"
             c = random.random()
-            c *= self.options.mutationintensitymax-self.options.mutationintensitymin
-            c += self.options.mutationintensitymin
+            c *= self.options["mutation_intensity_max"]-self.options["mutation_intensity_min"]
+            c += self.options["mutation_intensity_min"]
             o = self.genes.mutate(c, obj)
             return o
         return obj

@@ -25,7 +25,7 @@ class Community(BaseGA.BaseGA):
     def __init__(self, genes, options, communitysize, savehistoryperiod=10000, maxhistorylength=10):
         BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength) #call super constructor
         self.communitysize = communitysize
-        o = self.options.fill.getFills(communitysize)
+        o = self.options["fill"](communitysize, self.genes)
         self.genelist = []
         for i in range(self.communitysize):
             self.genelist.append((self.genes.getFitness(o[i]), o[i]))
@@ -57,7 +57,7 @@ class Pool(BaseGA.BaseGA):
     def __init__(self, genes, options, poolsize, savehistoryperiod=10000, maxhistorylength=10):
         BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength)
         self.poolsize = poolsize        
-        o = self.options.fill.getFills(1)
+        o = self.options["fill"](1, self.genes)
         self.genelist = [(self.genes.getFitness(o[0]), o[0])]
         
     def doGeneration(self, number, honkevery):
@@ -83,7 +83,7 @@ class Pool(BaseGA.BaseGA):
 class HillClimb(BaseGA.BaseGA):
     def __init__(self, genes, options, savehistoryperiod=10000, maxhistorylength=10):
         BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength)
-        o = self.options.fill.getFills(1)
+        o = self.options["fill"](1, self.genes)
         self.genelist = [(self.genes.getFitness(o[0]), o[0])]
         
     def doGeneration(self, number, honkevery):
