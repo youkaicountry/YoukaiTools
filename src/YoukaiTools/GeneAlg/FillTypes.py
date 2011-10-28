@@ -25,3 +25,9 @@ def basic_fill(number, genes):
     for i in range(number):
         r.append(genes["basic_dna"]())
     return r
+
+def random_fill(number, genes):
+    r = []
+    for i in range(number):
+        r.append(genes["random_dna"]())
+    return r

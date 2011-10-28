@@ -99,3 +99,4 @@ class HillClimb(BaseGA.BaseGA):
                 self.genes["report"](a[1], a[0], self.generation, topgeneration)
             self.saveHistory()
         self.genelist.sort()
+        

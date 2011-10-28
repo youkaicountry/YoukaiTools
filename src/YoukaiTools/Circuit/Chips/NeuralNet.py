@@ -56,9 +56,8 @@ class ArtificalNeuron(BaseChip):
 
 #layers = [num, num, num, ...], where num is the number of chips
 #in each layer
-#layer types is a list of the chip type for each layer
-#layerIO is a list of tuples which contain ("in", "out") for the chip type in that layer
-#layer_Tconst is a list of thresholds for each layer. each should be None if no consts
+#layer_Tconst is a list of thresholds for each layer. each should be None if no consts 
+#layer_tfunc is a list of what threshold function to use in each layer
 class ForwardFeedNeuralNetwork(BaseChip):
     def __init__(self, layers, layer_tconst, layer_tfunc, default_const=0):
         chips = {}
@@ -94,9 +93,16 @@ class ForwardFeedNeuralNetwork(BaseChip):
                     ln = "l"+str(l)
                     for c in range(layers[l]):
                         wires.append((name+".out", ln+"c"+str(c)+".in"+str(chip)))
-        bb = Cases.BreadBoard(chips, inputs, outputs, constants, wires, optimized_order=order)
+        self.bb = Cases.BreadBoard(chips, inputs, outputs, constants, wires, optimized_order=order)
         #inputs = ["in"+str(i) for i in range(layers[0])]
         #outputs = ["out"+str(i) for i in range(layers[-1])]
-        
-        
+        self.setup(inputs, outputs)
         return
+
+    def doCalculation(self):
+        for x in self.inputs:
+            self.bb.inputs[x] = self.inputs[x]
+        self.bb.doCalculation()
+        for x in self.outputs:
+            self.outputs[x] = self.bb.outputs[x]
+
