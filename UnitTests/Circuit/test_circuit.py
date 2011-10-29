@@ -172,6 +172,18 @@ class TestNeuralNetwork(unittest.TestCase):
             self.assertAlmostEqual(an.outputs["out"], t[-1])
         return
     
+    def test_basic_neuron(self):
+        an = Circuit.Chips.NeuralNet.ArtificalNeuron(3, threshold_func=Circuit.Chips.NeuralNet.thresh_passthrough)
+        an.setInput("in0", .3)
+        an.setInput("in1", .7)
+        an.setInput("in2", .1)
+        an.setInput("w0", .4)
+        an.setInput("w1", .7)
+        an.setInput("w2", .4)
+        an.doCalculation()
+        self.assertAlmostEqual(an.getOutput("out"), .65)
+        return
+    
     def test_FF(self):
         tr = Circuit.Chips.NeuralNet.thresh_meanfield
         ff = Circuit.Chips.NeuralNet.ForwardFeedNeuralNetwork([2,3,1], [1.0, 1.0, 1.0], [tr,tr,tr])

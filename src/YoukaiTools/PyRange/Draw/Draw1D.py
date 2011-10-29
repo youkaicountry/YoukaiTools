@@ -32,7 +32,7 @@ def makeDefaultSettings():
     s["mincolor"] = (.8, .1, .1)
     s["maxcolor"] = (.1, .8, .1)
     s["color"] = (.1, .1, .8)
-    s["interpolation"] = Interpolation.quadratic
+    s["interpolation"] = Interpolation.linear
     s["tension"] = 0
     s["bias"] = 0
     s["size"] = (800, 600)
@@ -83,14 +83,14 @@ def saveDataGraph1D(f, dg, format = "png", settings=None):
             ImageTools.Modify.drawLine(im, i-1, lastval, i, herey, usettings["color"])
         lastval = herey
     for mi in dg.minima:
-        m = dg.xvalues[mi]
+        m = dg.xvalues[int(mi)]
         if m >= domain[0] and m <= domain[1]:
             i = int(Ranges.rangeToRange(float(m), domain[0], domain[1], 0.0, float(usettings["size"][0]-1)))
             y = vals[i]
             herey = __getImageY(y, usettings["size"][1], min, max) + usettings["marktopheight"]
             ImageTools.Modify.drawLine(im, i, herey-usettings["marktopheight"], i, herey+usettings["marktopheight"], usettings["maxcolor"])
     for mi in dg.maxima:
-        m = dg.xvalues[mi]
+        m = dg.xvalues[int(mi)]
         if m >= domain[0] and m <= domain[1]:
             i = int(Ranges.rangeToRange(float(m), domain[0], domain[1], 0.0, float(usettings["size"][0]-1)))
             y = vals[i]

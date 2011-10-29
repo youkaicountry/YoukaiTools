@@ -306,9 +306,9 @@ class DataGraph1D:
             minima.append(self.regions[0][0])
         else: #it is flat, then
             if self.regions[1][2] == -1:
-                maxima.append((float(self.xvalues[self.regions[0][0]])+float(self.xvalues[self.regions[0][1]]))/2.0)
+                maxima.append(int((float(self.regions[0][0])+float(self.regions[0][1]))/2.0))
             else:
-                minima.append((float(self.xvalues[self.regions[0][0]])+float(self.xvalues[self.regions[0][1]]))/2.0)
+                minima.append(int((float(self.regions[0][0])+float(self.regions[0][1]))/2.0))
         for i in range(len(self.regions)):
             if self.regions[i][2] == -1:
                 minima.append(self.regions[i][1])
@@ -316,9 +316,9 @@ class DataGraph1D:
                 maxima.append(self.regions[i][1])
             else: #it is flat, then
                 if self.regions[i][2] == -1:
-                    minima.append((float(self.xvalues[self.regions[i][0]])+float(self.xvalues[self.regions[i][1]]))/2.0)
+                    minima.append(int((float(self.regions[i][0])+float(self.regions[i][1]))/2.0))
                 else:
-                    maxima.append((float(self.xvalues[self.regions[i][0]])+float(self.xvalues[self.regions[i][1]]))/2.0)
+                    maxima.append(int((float(self.regions[i][0])+float(self.regions[i][1]))/2.0))
         self.minima = minima
         self.maxima = maxima
         #print(minima)

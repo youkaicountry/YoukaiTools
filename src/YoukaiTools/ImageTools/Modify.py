@@ -141,7 +141,7 @@ def drawCircle(image, cx, cy, radius, color, combine=CombineFunctions.paint, cpa
     return
 
 def drawLine(image, x0, y0, x1, y1, color, combine=CombineFunctions.paint, cparams=[]):
-    print(x0, y0, x1, y1, color)
+    #print(x0, y0, x1, y1, color)
     dy = y1 - y0
     dx = x1 - x0
     stepx = 0

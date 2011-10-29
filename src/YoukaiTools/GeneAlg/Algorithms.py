@@ -44,11 +44,11 @@ class Community(BaseGA.BaseGA):
                 o = self.mateNew(oldlist[s1][1], oldlist[s2][1])
                 f = self.mutateNew(o)
                 self.genelist.append((self.genes["fitness"](f), f))
-        self.generation+=1
-        if self.generation % honkevery == 0:
-                a = self.getBest()
-                self.genes["report"](a[1], a[0], self.generation, topgeneration)
-        self.saveHistory()
+            self.generation+=1
+            if self.generation % honkevery == 0:
+                    a = self.getBest()
+                    self.genes["report"](a[1], a[0], self.generation, topgeneration)
+            self.saveHistory()
         
         self.genelist.sort()
 
