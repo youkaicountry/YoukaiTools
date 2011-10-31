@@ -25,11 +25,16 @@ class Community(BaseGA.BaseGA):
     def __init__(self, genes, options, communitysize, savehistoryperiod=10000, maxhistorylength=10):
         BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength) #call super constructor
         self.communitysize = communitysize
-        o = self.options["fill"](communitysize, self.genes)
         self.genelist = []
-        for i in range(self.communitysize):
+        o = []
+        if self.options["seeds"] is not None:
+            for x in self.options["seeds"]:
+                self.genelist.append((self.genes["fitness"](x), x))
+        left = communitysize - len(self.options["seeds"])
+        if left < 0: left = 0
+        o = self.options["fill"](left, self.genes)
+        for i in range(len(o)):
             self.genelist.append((self.genes["fitness"](o[i]), o[i]))
-            
         self.genelist.sort()        
             
         
@@ -56,9 +61,17 @@ class Pool(BaseGA.BaseGA):
     
     def __init__(self, genes, options, poolsize, savehistoryperiod=10000, maxhistorylength=10):
         BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength)
-        self.poolsize = poolsize        
-        o = self.options["fill"](1, self.genes)
-        self.genelist = [(self.genes["fitness"](o[0]), o[0])]
+        self.poolsize = poolsize
+        self.genelist = []
+        o = []
+        if self.options["seeds"] is not None:
+            for x in self.options["seeds"]:
+                self.genelist.append((self.genes["fitness"](x), x))
+        else:
+            o = self.options["fill"](1, self.genes)
+        for i in range(len(o)):
+            self.genelist.append((self.genes["fitness"](o[i]), o[i]))
+        #self.genelist = [(self.genes["fitness"](o[0]), o[0])]
         
     def doGeneration(self, number, honkevery):
         topgeneration = self.generation + number
@@ -77,14 +90,19 @@ class Pool(BaseGA.BaseGA):
                 a = self.getBest()
                 self.genes["report"](a[1], a[0], self.generation, topgeneration)
             self.saveHistory()
-            
         self.genelist.sort()
 
 class HillClimb(BaseGA.BaseGA):
     def __init__(self, genes, options, savehistoryperiod=10000, maxhistorylength=10):
         BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength)
-        o = self.options["fill"](1, self.genes)
-        self.genelist = [(self.genes["fitness"](o[0]), o[0])]
+        self.genelist = []
+        o = []
+        if self.options["seeds"] is not None:
+            s = self.options["seeds"][0]
+            self.genelist.append((self.genes["fitness"](s), s))
+        else:
+            o = self.options["fill"](1, self.genes)
+            self.genelist = [(self.genes["fitness"](o[0]), o[0])]
         
     def doGeneration(self, number, honkevery):
         topgeneration = self.generation + number

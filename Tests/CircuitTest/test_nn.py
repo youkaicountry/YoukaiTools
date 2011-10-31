@@ -5,12 +5,13 @@ import YoukaiTools.AdvRandom as AdvRandom
 from YoukaiTools import GeneAlg
 import YoukaiTools.PyRange as PyRange
 import YoukaiTools.PyRange.Draw.Draw1D as Draw1D
+import math
 
 fitnessx = []
 fitnessy = []
 
 mf = Circuit.Chips.NeuralNet.thresh_meanfield
-nn = Circuit.Chips.NeuralNet.ForwardFeedNeuralNetwork([3, 4, 4, 3], [1.0, 1.0, 1.0, None], [mf, mf, mf, mf])
+nn = Circuit.Chips.NeuralNet.ForwardFeedNeuralNetwork([3, 8, 8, 3], [1.0, 1.0, 1.0, 1.0], [mf, mf, mf, mf])
 #nn = Circuit.Chips.NeuralNet.ForwardFeedNeuralNetwork([3, 5, 3], [1.0, 1.0, 1.0], [mf, mf, mf])
 ss = set(["in0", "in1", "in2"])
 vs = set([x for x in nn.inputs.keys()])
@@ -27,7 +28,7 @@ for i in range(110):
     test_cases.append((rgb, hsi))
 
 def fitness(obj):
-    mindiff = .00000000001
+    mindiff = .000001
     sum = 0
     for t in test_cases:
         for k in obj.keys():
@@ -45,12 +46,13 @@ def fitness(obj):
                     ma = max(x, v)
                     diff = min(abs(v - x), (1.0-ma)+mi)
                     diff = max(diff, mindiff)
-                sum += 1.0/diff
+                sum += (1.0/diff)*2.0
             else:
                 diff = abs(vc.getOutput("out"+str(i)) - x)
                 diff = max(diff, mindiff)
-                sum += 1.0/diff
-    return sum
+                m = 1.0 if i == 1 else .5
+                sum += (1.0/diff)*m
+    return math.log(sum)
 
 def mate(obj1, obj2):
     d = {}
@@ -113,7 +115,7 @@ GA = GeneAlg.Algorithms.HillClimb(gene, op)
 #op = GeneAlg.make_options(st, (2,), dt, (2,), fill, (), 1.0, .00, .75)
 #GA = GeneAlg.Algorithms.Community(gene, op, 15)
 
-GA.doGeneration(50000, 100)
+GA.doGeneration(500000, 100)
 ab = GA.getBest()
 print ab
 #test our function!
@@ -128,9 +130,9 @@ for i in range(3):
     nnhsi = (vc.getOutput("out0"), vc.getOutput("out1"), vc.getOutput("out2"))
     print("RGB:    " + str(rgb))
     print("HSI:    " + str(hsi))
-    print("NN HSI: " + str(nnhsi)) 
+    print("NN HSI: " + str(nnhsi))
 
 #make a graph image
 dg = PyRange.DataGraph1D(default_interp=PyRange.Interpolation.linear)
 dg.setFromXY(fitnessx, fitnessy)
-Draw1D.saveDataGraph1DFile("./hill3.png", dg)
+Draw1D.saveDataGraph1DFile("./hill6.png", dg)

@@ -28,7 +28,11 @@ class BaseGA:
         self.generation = 0
         self.savehistoryperiod = savehistoryperiod
         self.maxhistorylength = maxhistorylength
-        
+    
+    #a list of tuples [(fitness, dna), ...]
+    def getGeneList(self):
+        return self.genelist
+    
     #returns the index of the selected object
     def getSelectionInPlace(self):
         return self.options["selection"](self.genelist, *self.options["selection_settings"])
