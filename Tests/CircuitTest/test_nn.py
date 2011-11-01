@@ -11,7 +11,7 @@ fitnessx = []
 fitnessy = []
 
 mf = Circuit.Chips.NeuralNet.thresh_meanfield
-nn = Circuit.Chips.NeuralNet.ForwardFeedNeuralNetwork([3, 8, 8, 3], [1.0, 1.0, 1.0, 1.0], [mf, mf, mf, mf])
+nn = Circuit.Chips.NeuralNet.ForwardFeedNeuralNetwork([3, 4, 4, 3], [1.0, 1.0, 1.0, 1.0], [mf, mf, mf, mf])
 #nn = Circuit.Chips.NeuralNet.ForwardFeedNeuralNetwork([3, 5, 3], [1.0, 1.0, 1.0], [mf, mf, mf])
 ss = set(["in0", "in1", "in2"])
 vs = set([x for x in nn.inputs.keys()])
@@ -19,7 +19,6 @@ vars = {}
 for v in vs-ss:
     vars[v] = (v, 0)    
 vc = Circuit.Chips.Cases.VariableChip(nn, vars)
-print(vc.getVariableList())
 
 test_cases = []
 for i in range(110):
@@ -92,12 +91,14 @@ def basic_dna():
         o[k] = 0
     return o
 
-def report(obj,fitness,generation,topgeneration):
-    print("GENERATION: " + str(generation))
-    print("PROGRESS: " + str(round(float(generation)/float(topgeneration), 6)*100.0)+"%")
-    print("TOP: " + str(fitness))
-    fitnessx.append(generation)
-    fitnessy.append(fitness)
+def report(report):
+    print("GENERATION: " + str(report["generation"]))
+    #print("PROGRESS: " + str(round(float(report["generation"])/float(report["termination_generation"]), 6)*100.0)+"%")
+    print("TIME: " + str(report["time"]))
+    print("generation: "+str(report["generation"]))
+    print("TOP: " + str(report["top_fitness"]))
+    fitnessx.append(report["generation"])
+    fitnessy.append(report["top_fitness"])
     print("")
     return
 
@@ -115,7 +116,11 @@ GA = GeneAlg.Algorithms.HillClimb(gene, op)
 #op = GeneAlg.make_options(st, (2,), dt, (2,), fill, (), 1.0, .00, .75)
 #GA = GeneAlg.Algorithms.Community(gene, op, 15)
 
-GA.doGeneration(500000, 100)
+reportc = GeneAlg.make_criteria(None, 100)
+savec = GeneAlg.make_criteria(None, 100)
+termc = GeneAlg.make_criteria(100, None)
+
+GA.run(reportc, savec, termc)
 ab = GA.getBest()
 print ab
 #test our function!

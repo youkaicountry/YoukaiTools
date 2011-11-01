@@ -17,6 +17,8 @@
 #SOFTWARE.
 
 import random
+import time
+import Data
 
 #the Base GA class
 class BaseGA:
@@ -28,6 +30,45 @@ class BaseGA:
         self.generation = 0
         self.savehistoryperiod = savehistoryperiod
         self.maxhistorylength = maxhistorylength
+        self.time = 0
+        self.need_sort = True
+
+    #make criteria checked variables relative to start condition
+    def run(self, report_criteria, save_criteria, termination_criteria, batch_size=1):
+        crit_objs = [self.__make_crit(), self.__make_crit(), self.__make_crit()]
+        while True:
+            t0 = time.clock()
+            for i in range(batch_size):
+                self.doGeneration()
+                if self.need_sort: self.genelist.sort()
+            tdelta = time.clock() - t0
+            gdelta = batch_size
+            self.generation += gdelta
+            self.time += tdelta
+            for c in crit_objs:
+                c["generations"] += gdelta
+                c["time"] += tdelta
+            a = self.getBest()
+            r = Data.make_report(a[1], a[0], self.generation, termination_criteria["generations"], self.time, termination_criteria["time"])
+            if self.checkCriteria(report_criteria, crit_objs[0]): self.genes["report"](r)
+            if self.checkCriteria(save_criteria, crit_objs[1]): self.saveHistory()
+            if self.checkCriteria(termination_criteria, crit_objs[2]): break
+        return
+    
+    def __make_crit(self):
+        d = {}
+        d["generations"] = 0
+        d["time"] = 0
+        return d
+    
+    def checkCriteria(self, criteria, cobj):
+        t = False
+        for k in criteria.keys():
+            if criteria[k] is not None:
+                if cobj[k] >= criteria[k]:
+                    t = True
+                    cobj[k] = 0
+        return t
     
     #a list of tuples [(fitness, dna), ...]
     def getGeneList(self):
@@ -71,13 +112,11 @@ class BaseGA:
         return obj
     
     def saveHistory(self):
-        if (self.generation % self.savehistoryperiod) == 0:
-            self.genelist.sort()
-            a = self.getBest()
-            self.history.append((self.generation, a[0], a[1]))
-            if len(self.history) > self.maxhistorylength:
-                a = len(self.history)-self.maxhistorylength
-                self.history = self.history[a:]
+        a = self.getBest()
+        self.history.append((self.generation, a[0], a[1]))
+        if len(self.history) > self.maxhistorylength:
+            a = len(self.history)-self.maxhistorylength
+            self.history = self.history[a:]
         return
     
     #returns the mated object(object only)

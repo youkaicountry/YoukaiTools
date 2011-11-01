@@ -18,8 +18,6 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import BaseOptions
-
 def basic_fill(number, genes):
     r = []
     for i in range(number):

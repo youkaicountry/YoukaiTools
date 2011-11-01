@@ -19,6 +19,7 @@
 #SOFTWARE.
 
 import BaseGA
+import Data
 
 class Community(BaseGA.BaseGA):
     
@@ -26,6 +27,7 @@ class Community(BaseGA.BaseGA):
         BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength) #call super constructor
         self.communitysize = communitysize
         self.genelist = []
+        self.need_sort = True
         o = []
         if self.options["seeds"] is not None:
             for x in self.options["seeds"]:
@@ -52,7 +54,8 @@ class Community(BaseGA.BaseGA):
             self.generation+=1
             if self.generation % honkevery == 0:
                     a = self.getBest()
-                    self.genes["report"](a[1], a[0], self.generation, topgeneration)
+                    r = Data.make_report(a[1], a[0], self.generation, topgeneration, 0, 0)
+                    self.genes["report"](r)
             self.saveHistory()
         
         self.genelist.sort()
@@ -63,6 +66,7 @@ class Pool(BaseGA.BaseGA):
         BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength)
         self.poolsize = poolsize
         self.genelist = []
+        self.need_sort = True
         o = []
         if self.options["seeds"] is not None:
             for x in self.options["seeds"]:
@@ -88,7 +92,8 @@ class Pool(BaseGA.BaseGA):
             self.generation+=1
             if self.generation % honkevery == 0:
                 a = self.getBest()
-                self.genes["report"](a[1], a[0], self.generation, topgeneration)
+                r = Data.make_report(a[1], a[0], self.generation, topgeneration, 0, 0)
+                self.genes["report"](r)
             self.saveHistory()
         self.genelist.sort()
 
@@ -97,14 +102,22 @@ class HillClimb(BaseGA.BaseGA):
         BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength)
         self.genelist = []
         o = []
+        self.need_sort = False
         if self.options["seeds"] is not None:
             s = self.options["seeds"][0]
             self.genelist.append((self.genes["fitness"](s), s))
         else:
             o = self.options["fill"](1, self.genes)
             self.genelist = [(self.genes["fitness"](o[0]), o[0])]
-        
-    def doGeneration(self, number, honkevery):
+    
+    def doGeneration(self):
+        o = self.mutateInPlace(0)
+        fit = self.genes["fitness"](o)
+        if fit >= self.genelist[0][0]:
+            self.genelist[0] = (fit, o)
+        return
+    
+    """def doGeneration(self, number, honkevery):
         topgeneration = self.generation + number
         for i in xrange(number):
             o = self.mutateInPlace(0)
@@ -114,7 +127,8 @@ class HillClimb(BaseGA.BaseGA):
             self.generation += 1
             if self.generation % honkevery == 0:
                 a = self.getBest()
-                self.genes["report"](a[1], a[0], self.generation, topgeneration)
+                r = Data.make_report(a[1], a[0], self.generation, topgeneration, 0, 0)
+                self.genes["report"](r)
             self.saveHistory()
-        self.genelist.sort()
+        self.genelist.sort()"""
         
