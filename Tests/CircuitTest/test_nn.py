@@ -118,7 +118,7 @@ GA = GeneAlg.Algorithms.HillClimb(gene, op)
 
 reportc = GeneAlg.make_criteria(None, 100)
 savec = GeneAlg.make_criteria(None, 100)
-termc = GeneAlg.make_criteria(100, None)
+termc = GeneAlg.make_criteria(1000, None)
 
 GA.run(reportc, savec, termc)
 ab = GA.getBest()
