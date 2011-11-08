@@ -12,12 +12,12 @@ for ysize in images:
     for xsize in images:
         bgcolor = (r.random(), r.random(), r.random())
         im = ImageTools.Create.newImage(xsize, ysize, bgcolor)
-        icolor = ImageTools.ColorModels.invertColor(bgcolor)
+        c_color = ImageTools.ColorModels.complementRGB(bgcolor)
         for x in xrange(10000):
             xsm1 = xsize-1
             ysm1 = ysize-1
             #print(x)
-            ImageTools.Modify.pset(im, int(r.random()*xsm1), int(r.random()*ysm1), icolor)
-            ImageTools.Modify.drawLine(im, int(r.random()*xsm1), int(r.random()*ysm1), int(r.random()*xsm1), int(r.random()*ysm1), icolor)
+            ImageTools.Modify.pset(im, int(r.random()*xsm1), int(r.random()*ysm1), c_color)
+            ImageTools.Modify.drawLine(im, int(r.random()*xsm1), int(r.random()*ysm1), int(r.random()*xsm1), int(r.random()*ysm1), c_color)
 
 print("Time Taken: " + str(time.clock()-t0))
