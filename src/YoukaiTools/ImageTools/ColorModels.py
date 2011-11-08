@@ -66,3 +66,18 @@ def invertColor(color):
     for c in color:
         i_color.append(1.0-c)
     return i_color
+
+def complementHSI(hsi):
+    h, s, i = hsi
+    out_h = 0
+    if h < 0.5:
+        out_h = h + 0.5
+    else:
+        out_h = h - 0.5
+    return [out_h, s, i]
+
+def complementRGB(rgb):
+    hsi = RGB2HSI(rgb)
+    comp_hsi = complementHSI(hsi)
+    comp_rgb = HSI2RGB(comp_hsi)
+    return comp_rgb
