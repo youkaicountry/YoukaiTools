@@ -61,4 +61,8 @@ def HSI2RGB(hsi):
         r = 3*i - (g + b)
     return [r, g, b]
 
-
+def invertColor(color):
+    i_color = []
+    for c in color:
+        i_color.append(1.0-c)
+    return i_color
