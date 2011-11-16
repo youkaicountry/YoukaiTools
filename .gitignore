@@ -10,3 +10,4 @@
 .pydevproject
 .settings/
 *.marks
+*.profile
