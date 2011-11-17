@@ -37,7 +37,7 @@ class BaseChip:
         return
     
     def reset(self):
-        for k in self.inputs.keys():
+        for k in self.inputs:
             self.input_set[k] = False
         self.output_set = False
     
@@ -60,7 +60,7 @@ class BaseChip:
         if self.output_set:
             return False
         inp = True
-        for k in self.input_set.keys():
+        for k in self.input_set:
             if not self.input_set[k]:
                 inp = False 
                 break
@@ -71,7 +71,7 @@ class BaseChip:
             return False
         self.doCalculation()
         self.output_set = True
-        for k in self.inputs.keys():
+        for k in self.inputs:
             self.input_set[k] = False
         return True
     

@@ -88,7 +88,7 @@ class BreadBoard(BaseChip):
         for w in wires:
             internalinputpins.add(w[1])
         for k in chips.keys():
-            for inp in chips[k].inputs.keys():
+            for inp in chips[k].inputs:
                 thisi = k+"."+inp
                 if  (thisi not in internalinputpins) and (thisi not in constants):
                     missinginputpins.append(thisi)
@@ -104,7 +104,7 @@ class BreadBoard(BaseChip):
         
         #wiremap
         self.wiremap = {".in.":[]}
-        for n in chips.keys():
+        for n in chips:
             self.wiremap[n] = []
         for w in wires:
             n, o = self.__getIName(w[0])
@@ -126,7 +126,7 @@ class BreadBoard(BaseChip):
     def doCalculation(self):
         #prep the unresolved set
         unresolved = set()
-        for k in self.chips.keys():
+        for k in self.chips:
             unresolved.add(k)
         
         #reset all chips
@@ -195,12 +195,12 @@ class BreadBoard(BaseChip):
         return (".".join(sp[:-1]), sp[-1])
     
     def __getIName(self, name):
-        if name in self.inputs.keys():
+        if name in self.inputs:
             return (".in.", name)
         return self.__getTuple(name)
     
     def __getOName(self, name):
-        if name in self.outputs.keys():
+        if name in self.outputs:
             return (".out.", name)
         return self.__getTuple(name)
     
