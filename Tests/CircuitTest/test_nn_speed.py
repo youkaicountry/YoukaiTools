@@ -6,6 +6,7 @@ from YoukaiTools import GeneAlg
 import YoukaiTools.PyRange as PyRange
 import YoukaiTools.PyRange.Draw.Draw1D as Draw1D
 import math
+import sys
 
 fitnessx = []
 fitnessy = []
@@ -118,7 +119,7 @@ GA = GeneAlg.Algorithms.HillClimb(gene, op)
 
 reportc = GeneAlg.make_criteria(None, 100)
 savec = GeneAlg.make_criteria(None, 100)
-termc = GeneAlg.make_criteria(1000, None)
+termc = GeneAlg.make_criteria(None, 5000)
 
 GA.run(reportc, savec, termc)
 ab = GA.getBest()
