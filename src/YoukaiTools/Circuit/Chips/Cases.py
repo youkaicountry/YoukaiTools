@@ -56,18 +56,18 @@ class VariableChip(BaseChip):
     
     def doCalculation(self):
         #set variable values
-        for v in self.vinp.keys():
+        for v in self.vinp:
             self.chip.setInput(self.vinp[v], self.vval[v])
         #set constant values
-        for c in self.const.keys():
+        for c in self.const:
             self.chip.setInput(c, self.const[c])
         #carry through this chip's inputs to the contained chip's inputs
-        for k in self.inputs.keys():
+        for k in self.inputs:
             self.chip.setInput(k, self.inputs[k])
         #run calculate on the contained chip
         self.chip.calculate()
         #carry the outputs to this chip's outputs
-        for k in self.outputs.keys():
+        for k in self.outputs:
             self.outputs[k] = self.chip.getOutput(k)
         return
 
@@ -131,8 +131,8 @@ class BreadBoard(BaseChip):
         
         #reset all chips
         #TODO: THIS MAY NOT BE NEEDED ANYMORE.
-        for k in unresolved:
-            self.chips[k].reset()
+        #for k in unresolved:
+        #    self.chips[k].reset()
         
         #set all constant inputs
         for c in self.constants:

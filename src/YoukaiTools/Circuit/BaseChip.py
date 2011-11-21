@@ -24,6 +24,8 @@ class BaseChip:
     
     #The derived class should call this
     def setup(self, inputs, outputs):
+        self.bnuminputs = len(inputs)
+        self.binputstoset = self.bnuminputs
         self.inputs = {}
         self.input_set = {}
         for x in inputs:
@@ -39,7 +41,9 @@ class BaseChip:
     def reset(self):
         for k in self.inputs:
             self.input_set[k] = False
+        self.binputstoset = self.bnuminputs
         self.output_set = False
+        return
     
     def getInputList(self):
         return self.inputs.keys()
@@ -49,7 +53,9 @@ class BaseChip:
     
     def setInput(self, name, value):
         self.inputs[name] = value
-        self.input_set[name] = True
+        if not self.input_set[name]:
+            self.input_set[name] = True
+            self.binputstoset -= 1
         self.output_set = False
         return
     
@@ -59,11 +65,7 @@ class BaseChip:
     def needsCalc(self):
         if self.output_set:
             return False
-        inp = True
-        for k in self.input_set:
-            if not self.input_set[k]:
-                inp = False 
-                break
+        inp = self.binputstoset == 0
         return inp
     
     def calculate(self):
@@ -73,6 +75,7 @@ class BaseChip:
         self.output_set = True
         for k in self.inputs:
             self.input_set[k] = False
+        self.binputstoset = self.bnuminputs
         return True
     
     #override this. This is where the magic happens.

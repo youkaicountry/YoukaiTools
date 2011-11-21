@@ -21,7 +21,7 @@ for v in vs-ss:
 vc = Circuit.Chips.Cases.VariableChip(nn, vars)
 
 test_cases = []
-for i in range(110):
+for i in xrange(110):
     rgb = (random.random(), random.random(), random.random())
     hsi = ImageTools.ColorModels.RGB2HSI(rgb)
     test_cases.append((rgb, hsi))
@@ -68,7 +68,7 @@ def mutate(intensity, obj):
     d = {}
     nums = []
     chan = []
-    for i in range(len(ol)/3):
+    for i in xrange(len(ol)/3):
         nums.append(i+1)
         chan.append(1.0/(float(i)+1.0))
     n = AdvRandom.biasedChoice(nums, chan)
@@ -124,12 +124,12 @@ GA.run(reportc, savec, termc)
 ab = GA.getBest()
 print ab
 #test our function!
-for i in range(3):
+for i in xrange(3):
     rgb = (random.random(), random.random(), random.random())
     hsi = ImageTools.ColorModels.RGB2HSI(rgb)
     for k in ab[1].keys():
         vc.setVariable(k, ab[1][k])
-    for i in range(3):
+    for i in xrange(3):
         vc.setInput("in"+str(i), rgb[i])
     vc.doCalculation()
     nnhsi = (vc.getOutput("out0"), vc.getOutput("out1"), vc.getOutput("out2"))

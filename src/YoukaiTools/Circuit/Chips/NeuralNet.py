@@ -19,14 +19,14 @@
 #SOFTWARE.
 import Cases
 from ..BaseChip import BaseChip
-import math
+from math import tanh
 
 # Threshold functions.
 def thresh_spin(u, T):
     return 1.0 if u > T else -1.0
 
 def thresh_meanfield(u, T):
-    return math.tanh(u/T)
+    return tanh(u/T)
 
 def thresh_passthrough(u, T):
     return u
@@ -39,8 +39,8 @@ class ArtificalNeuron(BaseChip):
     def __init__(self, numinputs, threshold_const=1.0, threshold_func=thresh_meanfield):
         self.threshold_const = threshold_const
         self.threshold_func = threshold_func
-        self.inp = ["in"+str(i) for i in range(numinputs)]
-        self.weight = ["w"+str(i) for i in range(numinputs)]
+        self.inp = ["in"+str(i) for i in xrange(numinputs)]
+        self.weight = ["w"+str(i) for i in xrange(numinputs)]
         t = ["T"] if threshold_const is None else []
         self.setup(self.inp+self.weight+t, ["out"])
         self.numinputs = numinputs
@@ -48,8 +48,11 @@ class ArtificalNeuron(BaseChip):
     
     def doCalculation(self):
         u = 0
-        for i in range(self.numinputs):
-            u += (self.inputs[self.inp[i]] * self.inputs[self.weight[i]])
+        self_inputs = self.inputs
+        self_weight = self.weight
+        self_inp = self.inp
+        for i in xrange(self.numinputs):
+            u += (self_inputs[self_inp[i]] * self_inputs[self_weight[i]])
         T = self.inputs["T"] if self.threshold_const is None else self.threshold_const
         self.outputs["out"] = u if self.threshold_func is None else self.threshold_func(u, T)
         return
@@ -66,13 +69,13 @@ class ForwardFeedNeuralNetwork(BaseChip):
         inputs = []
         outputs = []
         order = []
-        for layer in range(len(layers)):
-            for chip in range(layers[layer]):
+        for layer in xrange(len(layers)):
+            for chip in xrange(layers[layer]):
                 name = "l"+str(layer)+"c"+str(chip)
                 order.append(name)
                 inpnum = 1 if layer == 0 else layers[layer-1]
                 chips[name] = ArtificalNeuron(inpnum, layer_tconst[layer], layer_tfunc[layer])
-                for inum in range(inpnum):
+                for inum in xrange(inpnum):
                     nw = name+"_w"+str(inum)
                     inputs.append(nw)
                     wires.append((nw, name+".w"+str(inum)))
@@ -91,7 +94,7 @@ class ForwardFeedNeuralNetwork(BaseChip):
                 else:
                     l = layer+1
                     ln = "l"+str(l)
-                    for c in range(layers[l]):
+                    for c in xrange(layers[l]):
                         wires.append((name+".out", ln+"c"+str(c)+".in"+str(chip)))
         self.bb = Cases.BreadBoard(chips, inputs, outputs, constants, wires, optimized_order=order)
         #inputs = ["in"+str(i) for i in range(layers[0])]
