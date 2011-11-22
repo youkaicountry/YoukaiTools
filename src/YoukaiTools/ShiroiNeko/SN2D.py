@@ -18,7 +18,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import math
+from math import sqrt
 
 class SN2D:
     def __init__(self):
@@ -111,7 +111,7 @@ class SN2D:
         if calclength:
             dx = self.xposition[p1] - self.xposition[p2]
             dy = self.yposition[p1] - self.yposition[p2]
-            self.length[name] = math.sqrt(dx*dx + dy*dy)
+            self.length[name] = sqrt(dx*dx + dy*dy)
         return name
 
     def removeBond(self, name):
@@ -140,7 +140,7 @@ class SN2D:
         for p in particles:
             vx = self.xvelocity[p]
             vy = self.yvelocity[p]
-            v = math.sqrt(vx*vx + vy*vy)
+            v = sqrt(vx*vx + vy*vy)
             v2 = v*v
             ke += self.mass[p] * v2
         return ke
@@ -160,7 +160,7 @@ class SN2D:
             p2 = self.p2[bid]
             dx = self.xposition[p1] - self.xposition[p2]
             dy = self.yposition[p1] - self.yposition[p2]
-            l = math.sqrt(dx*dx + dy*dy)
+            l = sqrt(dx*dx + dy*dy)
             diff = self.length[bid] - l
             nl = -(diff / l) * self.spring[bid]
             tempa = dx*nl
@@ -175,7 +175,7 @@ class SN2D:
                     if pid == pid2: continue
                     dx = self.xposition[pid] - self.xposition[pid2]
                     dy = self.yposition[pid] - self.yposition[pid2]
-                    dist = math.sqrt(dx*dx + dy*dy)
+                    dist = sqrt(dx*dx + dy*dy)
                     if dist == 0: continue
                     nx = (self.xposition[pid] - self.xposition[pid2]) / dist
                     ny = (self.yposition[pid] - self.yposition[pid2]) / dist

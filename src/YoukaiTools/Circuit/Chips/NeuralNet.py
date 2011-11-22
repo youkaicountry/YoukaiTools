@@ -48,11 +48,9 @@ class ArtificalNeuron(BaseChip):
     
     def doCalculation(self):
         u = 0
-        self_inputs = self.inputs
-        self_weight = self.weight
         self_inp = self.inp
         for i in xrange(self.numinputs):
-            u += (self_inputs[self_inp[i]] * self_inputs[self_weight[i]])
+            u += (self.inputs[self_inp[i]] * self.inputs[self.weight[i]])
         T = self.inputs["T"] if self.threshold_const is None else self.threshold_const
         self.outputs["out"] = u if self.threshold_func is None else self.threshold_func(u, T)
         return

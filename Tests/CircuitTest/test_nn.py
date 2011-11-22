@@ -14,7 +14,7 @@ mf = Circuit.Chips.NeuralNet.thresh_meanfield
 nn = Circuit.Chips.NeuralNet.ForwardFeedNeuralNetwork([3, 4, 4, 3], [1.0, 1.0, 1.0, 1.0], [mf, mf, mf, mf])
 #nn = Circuit.Chips.NeuralNet.ForwardFeedNeuralNetwork([3, 5, 3], [1.0, 1.0, 1.0], [mf, mf, mf])
 ss = set(["in0", "in1", "in2"])
-vs = set([x for x in nn.inputs.keys()])
+vs = set([x for x in nn.inputs])
 vars = {}
 for v in vs-ss:
     vars[v] = (v, 0)    
@@ -30,7 +30,7 @@ def fitness(obj):
     mindiff = .000001
     sum = 0
     for t in test_cases:
-        for k in obj.keys():
+        for k in obj:
             vc.setVariable(k, obj[k])
         for i, x in enumerate(t[0]):
             vc.setInput("in"+str(i), x)
@@ -51,7 +51,7 @@ def fitness(obj):
                 diff = max(diff, mindiff)
                 m = 1.0 if i == 1 else .5
                 sum += (1.0/diff)*m
-    return math.log(sum)
+    return sum
 
 def mate(obj1, obj2):
     d = {}
@@ -63,7 +63,7 @@ def mate(obj1, obj2):
     return d
 
 def mutate(intensity, obj):
-    ol = [k for k in obj.keys()]
+    ol = [k for k in obj]
     random.shuffle(ol)
     d = {}
     nums = []
@@ -116,9 +116,9 @@ GA = GeneAlg.Algorithms.HillClimb(gene, op)
 #op = GeneAlg.make_options(st, (2,), dt, (2,), fill, (), 1.0, .00, .75)
 #GA = GeneAlg.Algorithms.Community(gene, op, 15)
 
-reportc = GeneAlg.make_criteria(None, 100)
-savec = GeneAlg.make_criteria(None, 100)
-termc = GeneAlg.make_criteria(1000, None)
+reportc = GeneAlg.make_criteria(None, 300)
+savec = GeneAlg.make_criteria(None, 1000)
+termc = GeneAlg.make_criteria(5400, None)
 
 GA.run(reportc, savec, termc)
 ab = GA.getBest()
@@ -127,7 +127,7 @@ print ab
 for i in xrange(3):
     rgb = (random.random(), random.random(), random.random())
     hsi = ImageTools.ColorModels.RGB2HSI(rgb)
-    for k in ab[1].keys():
+    for k in ab[1]:
         vc.setVariable(k, ab[1][k])
     for i in xrange(3):
         vc.setInput("in"+str(i), rgb[i])
@@ -138,6 +138,6 @@ for i in xrange(3):
     print("NN HSI: " + str(nnhsi))
 
 #make a graph image
-#dg = PyRange.DataGraph1D(default_interp=PyRange.Interpolation.linear)
-#dg.setFromXY(fitnessx, fitnessy)
-#Draw1D.saveDataGraph1DFile("./hill6.png", dg)
+dg = PyRange.DataGraph1D(default_interp=PyRange.Interpolation.linear)
+dg.setFromXY(fitnessx, fitnessy)
+Draw1D.saveDataGraph1DFile("./hill6.png", dg)
