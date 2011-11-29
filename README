@@ -62,5 +62,3 @@ RollingDictionary - A simple tree data structure intended for storing actual
 ShiroiNeko - A simple 2d mass-spring physics engine.
 
 StateMachine - A simple state machine library.
-
- 
