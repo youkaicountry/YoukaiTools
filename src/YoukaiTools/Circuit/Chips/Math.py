@@ -18,8 +18,9 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-from ..BaseChip import BaseChip
 import itertools
+
+from ..BaseChip import BaseChip
 
 #A neuron that takes all of its input, and inverts them.
 class InvertNeuron(BaseChip):

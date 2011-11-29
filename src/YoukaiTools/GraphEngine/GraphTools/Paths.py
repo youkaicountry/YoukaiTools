@@ -19,76 +19,73 @@
 #SOFTWARE.
 
 import math
-
-import Modify
-import YoukaiTools.PyRange.Paths as PyRangePaths
-
+import heapq
 import collections
 from collections import deque
 
-#FUNCTIONS THAT INVOLVE PATHS, PATHFINDING, AND CONNECTIVITY
+import YoukaiTools.PyRange.Paths as PyRangePaths
 
-import heapq
+#FUNCTIONS THAT INVOLVE PATHS, PATHFINDING, AND CONNECTIVITY
 
 #returns a list of all verticeprint(s that can be travelled to
 def getReachableVertices(g, vertices):
-   queue = deque(vertices)
-   reachable = set(vertices)
-   while len(queue) > 0:
-      u = queue.popleft()
-      c = g.getAdjacentVertices(u)
-      for v in c:
-         if v not in reachable:
-            reachable.add(v)
-            queue.append(v)
-   return reachable
+    queue = deque(vertices)
+    reachable = set(vertices)
+    while len(queue) > 0:
+        u = queue.popleft()
+        c = g.getAdjacentVertices(u)
+        for v in c:
+            if v not in reachable:
+                reachable.add(v)
+                queue.append(v)
+    return reachable
 
 #returns list of all islands
 def findAllIslands(g):
-   outlist = []
-   appendlist = []
-   vl = g.getVertexList()
-   for v in vl: #for each vertex in the list
-      loc = len(outlist)
-      inside = False
-      for oi in range(len(outlist)):
-         if v in outlist[oi]:
-            loc = oi
-            inside = True
-            break
-      if not inside:
-         outlist.append(set([v]))
+    outlist = []
+    appendlist = []
+    vl = g.getVertexList()
+    for v in vl: #for each vertex in the list
+        loc = len(outlist)
+        inside = False
+        for oi in range(len(outlist)):
+            if v in outlist[oi]:
+                loc = oi
+                inside = True
+                break
+        if not inside:
+            outlist.append(set([v]))
 
-      for n in g.getAdjacentVertices(v):
-         inside = False
-         for oi in range(len(outlist)):
-            if n in outlist[oi]:
-               if oi != loc:
-                  appendlist.append(oi)
-                  inside = True
-                  break
-         if not inside:
-            if n not in outlist[loc]:
-               outlist[loc].add(n)
-      for i in appendlist:
-         if loc != i:
-            for x in outlist[i]:
-               if x not in outlist[loc]:
-                  outlist[loc].add(x)
-      newout = []
-      for oi in range(len(outlist)):
-         if oi not in appendlist:
-            newout.append(outlist[oi])
-      outlist = list(newout)
-      appendlist = []
-      #print(outlist)
-   return outlist
+        for n in g.getAdjacentVertices(v):
+            inside = False
+            for oi in range(len(outlist)):
+                if n in outlist[oi]:
+                    if oi != loc:
+                        appendlist.append(oi)
+                        inside = True
+                        break
+            if not inside:
+                if n not in outlist[loc]:
+                    outlist[loc].add(n)
+        for i in appendlist:
+            if loc != i:
+                for x in outlist[i]:
+                    if x not in outlist[loc]:
+                        outlist[loc].add(x)
+        newout = []
+        for oi in range(len(outlist)):
+            if oi not in appendlist:
+                newout.append(outlist[oi])
+        outlist = list(newout)
+        appendlist = []
+        #print(outlist)
+    return outlist
 
 #given the graph and 2 vertices, returns a boolean representing whether
 #there is a path from the start vertex to the end vertex
 def hasPath(g, startvertex, endvertex):
-   r = getReachableVertices(g, [startvertex])
-   return endvertex in r
+    r = getReachableVertices(g, [startvertex])
+    return endvertex in r
 
 #Bellman-Ford Pathfinding
 #Single source shortest path, allows negative weights, runs in O(vertices*edges) time
@@ -105,11 +102,6 @@ def bellmanFordTree(g, source, costdata=None):
             __relaxVertices(vdic, u, v, edge, dist)
             if direction == 0:
                 __relaxVertices(vdic, v, u, edge, dist)
-    #for edge in g.getEdgeList():
-    #    u, v, direction = g.getEdgeInfo(edge, True)
-    #    if vdic[v][0] > vdic[u][0] + g.getEdgeData(edge, weightdata): return None
-    #    if direction == 0:
-    #        if vdic[u][0] > vdic[v][0] + g.getEdgeData(edge, weightdata): return None
     return (source, vdic)
 
 def hEuclidean2D(g, source, destination, xdata, ydata):
@@ -123,38 +115,22 @@ def hManhattan2D(g, source, destination, xdata, ydata):
     return abs(dx) + abs(dy)*1000
 
 def AStarPath(g, source, destination, costdata=None, heuristic=hEuclidean2D, hparams=("x", "y")):
-    #vdic = __initSingleSourceVDic(g, source)
     vdic = {}
-    #vdic[source][0] = float('inf')
-    #S = set()
-    #Q is [cost, lastedge, current vertex]
-    #Q = [(vdic[v][0], None, v) for v in vdic]
     Q = [(heuristic(g, source, destination, *hparams), 0, None, source)]
     heapq.heapify(Q)
     while(len(Q) != 0):
         h, d, e, v = heapq.heappop(Q)
-        #if v in S: continue
         l = vdic.get(v)
-        #print("Got {0} from queue.".format((h, d, e, v)))
-        #print("   vdic[{0}] = {1}".format(v, l))
         if l is not None and d >= l[0]: continue
         vdic[v] = [d, g.getEdgeEnd(v, e) if e is not None else None, e]
-        #print("   vdic[{0}] set to {1}".format(v, vdic[v]))
         if v == destination: break
         outbound = getOutbound(g, v)
         for ae, av in outbound:
-            #print "   Processing edge {0}, vertex {1} from outbound".format(ae, av)
             c = 1 if costdata is None else g.getEdgeData(ae, costdata)
             herecost = d + c
             bestcostav = vdic.get(av)
-            #dbg_accept = "reject"
             if bestcostav is None or herecost <= bestcostav:
-                #print "      Inserting {0} into queue".format(bestcostav)
-                #dbg_accept = "accept"
                 heapq.heappush(Q, (herecost+heuristic(g, av, destination, *hparams), herecost, ae, av))
-            #print "      c={0}   herecost={1}   bestcostav={2}, {3}".format(
-            #    c, herecost, bestcostav, dbg_accept)
-    #print(vdic)
     return pathTree2Path((source, vdic), destination)
 
 #destinations can be iterable to have multiple destinations to reach.
@@ -167,9 +143,6 @@ def dijkstraPaths(g, source, destinations, costdata=None):
         it=False
     vdic = {}
     remaining = set(destinations)
-    #S = set()
-    #Q is [cost, lastedge, current vertex]
-    #Q = [(vdic[v][0], None, v) for v in vdic]
     Q = [(0, None, source)]
     heapq.heapify(Q)
     while(len(Q) != 0):
@@ -181,9 +154,6 @@ def dijkstraPaths(g, source, destinations, costdata=None):
         if v in remaining:
             if len(remaining) == 1: break
             remaining.remove(v)
-        #vdic[v][0] = d
-        #vdic[v][1] = g.getEdgeEnd(v, e) if e is not None else None
-        #vdic[v][2] = e
         outbound = getOutbound(g, v)
         for ae, av in outbound:
             c = 1 if costdata is None else g.getEdgeData(ae, costdata)
@@ -199,20 +169,13 @@ def dijkstraPaths(g, source, destinations, costdata=None):
 
 def dijkstraTree(g, source, costdata=None):
     vdic = {}
-    #S = set()
-    #Q is [cost, lastedge, current vertex]
-    #Q = [(vdic[v][0], None, v) for v in vdic]
     Q = [(0, None, source)]
     heapq.heapify(Q)
     while(len(Q) != 0):
         d, e, v = heapq.heappop(Q)
-        #if v in S: continue
         l = vdic.get(v)
         if l is not None and d >= l[0]: continue
         vdic[v] = [d, g.getEdgeEnd(v, e) if e is not None else None, e]
-        #vdic[v][0] = d
-        #vdic[v][1] = g.getEdgeEnd(v, e) if e is not None else None
-        #vdic[v][2] = e
         outbound = getOutbound(g, v)
         for ae, av in outbound:
             c = 1 if costdata is None else g.getEdgeData(ae, costdata)

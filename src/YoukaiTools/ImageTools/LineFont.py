@@ -18,17 +18,19 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+from math import ceil
+
 from YoukaiTools import PyRange
+
 from . import Create
 from . import Modify
-import math
 
 #have this go on given image if provided?
 def renderPath(path, width, height, image=None, position=(0, 0), backcolor=[0, 0, 0], pathcolor=[1.0, 1.0, 1.0]):
     rp = Create.newImage(width, height, backcolor) if image is None else image
     for p in path:
         d = p.getLength()
-        samples = max(int(math.ceil(d * max((width, height))) *.75 ), 5) 
+        samples = max(int(ceil(d * max((width, height))) *.75 ), 5) 
         ds = 1.0 / float(samples)
         nexti = ds
         nextv = p.getIValue(nexti)

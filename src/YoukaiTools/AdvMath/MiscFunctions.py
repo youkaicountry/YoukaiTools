@@ -18,7 +18,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import math
+from math import sqrt, sin, exp
 
 #bump
 #could be used for temperature of a planet from pole to pole
@@ -28,7 +28,7 @@ import math
 #mul does a multiplication before the sqrt, and rises and lowers it
 #w determines how wide the function is.
 def bump(x, mul=.5, p=5, w=1):
-    return math.sqrt(mul*pow(w+math.sin(x-1.6),p) )
+    return sqrt(mul*pow(w+sin(x-1.6),p) )
 
 def sigmoid(x):
-    return 1 / (1 + math.exp(-x))
+    return 1 / (1 + exp(-x))

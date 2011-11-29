@@ -36,4 +36,3 @@ Camera2D = __cam.Camera2D
 
 TileManager = __tm.TileManager
 SpriteSheet = __tm.SpriteSheet
-

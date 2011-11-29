@@ -17,10 +17,10 @@
 #LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
-
-from . import datatypes
-import YoukaiTools.AdvMath.Numbers
+from YoukaiTools.AdvMath.Numbers import isEven
 from YoukaiTools import LineLoader
+from . import datatypes
+
 
 #intype should be a string or None to have it automatic.
 #optimal will discard info in converting from block to maze, to
@@ -137,8 +137,8 @@ def blockMap2MazeMap(blockmap):
 def blockMap2MazeMapOptimal(blockmap):
     size = blockmap.getSize()
     #make the proper width and height
-    w = int(size[0]/2) if not YoukaiTools.AdvMath.Numbers.isEven(size[0]) else int(size[0]/2 - 1)
-    h = int(size[1]/2) if not YoukaiTools.AdvMath.Numbers.isEven(size[1]) else int(size[1]/2 - 1)
+    w = int(size[0]/2) if not isEven(size[0]) else int(size[0]/2 - 1)
+    h = int(size[1]/2) if not isEven(size[1]) else int(size[1]/2 - 1)
     m = datatypes.MazeMap(w, h)
     for y in range(h):
         yloc = y*2 + 1
@@ -211,4 +211,3 @@ types2funcs[("blockmap", "blockmap", True)] = []
 types2funcs[("mazemap", "array", True)] = [mazeMap2BlockMap, blockMap2Array]
 types2funcs[("mazemap", "blockmap", True)] = [mazeMap2BlockMap]
 types2funcs[("mazemap", "mazemap", True)] = []
-

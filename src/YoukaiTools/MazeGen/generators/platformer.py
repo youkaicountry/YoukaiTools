@@ -18,10 +18,10 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-from .. import baseGenerator
-from .. import datatypes
-import math
+from math import ceil, floor
 import random
+
+from .. import datatypes
 
 #this could be used for subregions of levels or other generators
 class basicGround():
@@ -39,7 +39,7 @@ class basicGround():
         self.land = datatypes.BlockMap(length, height, False)
         isRunning = False
         distSinceBreak = 0
-        distToRun = math.ceil(float(runlength) * ((1.0-difficulty)+1.0)) #distance we are assuming it will take to run 
+        distToRun = ceil(float(runlength) * ((1.0-difficulty)+1.0)) #distance we are assuming it will take to run 
         x = 0
         lastheight = startheight
       
@@ -65,9 +65,9 @@ class basicGround():
             if ispit:
                 i = self.r.triangular(0, 1, difficulty)
                 if isRunning:
-                    dist = math.floor(i*len(runarray))
+                    dist = floor(i*len(runarray))
                 else:
-                    dist = math.floor(i*len(walkarray))
+                    dist = floor(i*len(walkarray))
             if maxlength < dist:
                 dist = maxlength
             
@@ -81,9 +81,9 @@ class basicGround():
                 i = self.r.triangular(0, 1, (difficulty + flatness) / 2.0)
                 if ispit: print("I: "+str(i))
                 if isRunning:
-                    altchange = math.floor(i*runarray[dist])
+                    altchange = floor(i*runarray[dist])
                 else:
-                    altchange = math.floor(i*walkarray[dist])
+                    altchange = floor(i*walkarray[dist])
             if goingup:
                 if altchange > maxup: altchange = maxup
             else:

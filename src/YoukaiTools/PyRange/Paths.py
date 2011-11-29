@@ -20,6 +20,7 @@
 
 import math
 import bisect
+
 from . import Ranges
 
 class BasePath:

@@ -18,8 +18,9 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import YoukaiTools.AdvMath.Indices
+from YoukaiTools.AdvMath.Indices import arrayIndex2To1
 from YoukaiTools import PyRange
+
 from . import CombineFunctions
 from . import Metric
 
@@ -35,8 +36,8 @@ def overlay(under_image, over_image, x, y, combine=CombineFunctions.paint, cpara
         for ox in range(over_image[0]):
             #if ox + x < 0: continue
             #if ox + x > under_image[1]-1: continue
-            ui = YoukaiTools.AdvMath.Indices.arrayIndex2To1(ox+x, oy+y, under_image[0], 3)
-            oi = YoukaiTools.AdvMath.Indices.arrayIndex2To1(ox, oy, over_image[0], 3)
+            ui = arrayIndex2To1(ox+x, oy+y, under_image[0], 3)
+            oi = arrayIndex2To1(ox, oy, over_image[0], 3)
             #print(ignorecolor, over_image[oi])
             if over_image[oi] != ignorecolor: 
                 under_image[ui] = combine(under_image[ui], over_image[oi], *cparams)
@@ -61,7 +62,7 @@ def invertImage(image, channels=None, minv=0, maxv=1.0):
             channels.append(i)
     for oy in range(image[1]):
         for ox in range(image[0]):
-            i = YoukaiTools.AdvMath.Indices.arrayIndex2To1(ox, oy, image[0], 3)
+            i = arrayIndex2To1(ox, oy, image[0], 3)
             for ch in channels:
                 image[i][ch] = (maxv-image[i][ch])+minv
     return
@@ -81,7 +82,7 @@ def normalize(image, minv, maxv, channels=None, sameinrange=True):
         inmax = None
         for oy in range(image[1]):
             for ox in range(image[0]):
-                i = YoukaiTools.AdvMath.Indices.arrayIndex2To1(ox, oy, image[0], 3)
+                i = arrayIndex2To1(ox, oy, image[0], 3)
                 for ch in channels:
                     if inmin > image[i][ch]: inmin = image[i][ch]
                     if inmax < image[i][ch]: inmax = image[i][ch]
@@ -98,7 +99,7 @@ def normalize(image, minv, maxv, channels=None, sameinrange=True):
             inmax.append(None)
         for oy in range(image[1]):
             for ox in range(image[0]):
-                i = YoukaiTools.AdvMath.Indices.arrayIndex2To1(ox, oy, image[0], 3)
+                i = arrayIndex2To1(ox, oy, image[0], 3)
                 for i, ch in enumerate(channels):
                     if inmin[i] > image[i][ch]: inmin[i] = image[i][ch]
                     if inmax[i] < image[i][ch]: inmax[i] = image[i][ch]
@@ -106,13 +107,13 @@ def normalize(image, minv, maxv, channels=None, sameinrange=True):
         fmax = inmax
     for oy in range(image[1]):
         for ox in range(image[0]):
-            i = YoukaiTools.AdvMath.Indices.arrayIndex2To1(ox, oy, image[0], 3)
+            i = arrayIndex2To1(ox, oy, image[0], 3)
             for j, ch in enumerate(channels):
                 image[i][j] = PyRange.rangeToRange(image[i][j], fmin[j], fmax[j], minv[j], maxv[j])
     return
 
 def pset(image, x, y, color, combine=CombineFunctions.paint, cparams=[]):
-    i = YoukaiTools.AdvMath.Indices.arrayIndex2To1(x, y, image[0], 3)
+    i = arrayIndex2To1(x, y, image[0], 3)
     image[i] = combine(image[i], color, *cparams)
     return
 

@@ -18,13 +18,13 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import math
+from math import floor, ceil, round
 
 def roundDown(n):
-    return math.floor(n)
+    return floor(n)
     
 def roundUp(n):
-    return math.ceil(n)
+    return ceil(n)
     
 def roundEven(n):
     return round(n)
@@ -33,4 +33,4 @@ def roundLow(n):
     return int(n)
     
 def roundHigh(n):
-    return math.floor(n) if n < 0 else math.ceil(n)
+    return floor(n) if n < 0 else ceil(n)

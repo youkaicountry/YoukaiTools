@@ -18,8 +18,9 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+from math import cos, sin
+
 from . import Vector
-import math
 
 #remember that for some stupid reason matrices go (height, width)
 
@@ -109,9 +110,9 @@ def rotateOrientation3(result, mat, rotvec, rotangle, tolerance=.003):
         pointtemp[2]-=axisnormal[2]*dotproductvalue
         vectorlengthvalue = Vector.vectorLength3(pointtemp)
         
-        result[count][0] = axisnormal[0]*dotproductvalue+cosnormal[0]*math.cos(rotangle)*vectorlengthvalue+sinnormal[0]*math.sin(rotangle)*vectorlengthvalue
-        result[count][1] = axisnormal[1]*dotproductvalue+cosnormal[1]*math.cos(rotangle)*vectorlengthvalue+sinnormal[1]*math.sin(rotangle)*vectorlengthvalue
-        result[count][2] = axisnormal[2]*dotproductvalue+cosnormal[2]*math.cos(rotangle)*vectorlengthvalue+sinnormal[2]*math.sin(rotangle)*vectorlengthvalue
+        result[count][0] = axisnormal[0]*dotproductvalue+cosnormal[0]*cos(rotangle)*vectorlengthvalue+sinnormal[0]*sin(rotangle)*vectorlengthvalue
+        result[count][1] = axisnormal[1]*dotproductvalue+cosnormal[1]*cos(rotangle)*vectorlengthvalue+sinnormal[1]*sin(rotangle)*vectorlengthvalue
+        result[count][2] = axisnormal[2]*dotproductvalue+cosnormal[2]*cos(rotangle)*vectorlengthvalue+sinnormal[2]*sin(rotangle)*vectorlengthvalue
         
         Vector.normalizeVector3(result[count], result[count])
     return

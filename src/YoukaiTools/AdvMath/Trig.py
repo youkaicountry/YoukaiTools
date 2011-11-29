@@ -18,7 +18,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import math
+from math import pi, atan2
 
 #def atan2angle(y, x):
 #    a = math.atan2(y, x)
@@ -27,7 +27,7 @@ import math
 #    return a
 
 def atan2_angle(y, x):
-    v = math.atan2(y, x)
+    v = atan2(y, x)
     if v < 0:
-        return (math.pi-abs(v)) + math.pi
+        return (pi-abs(v)) + pi
     return v

@@ -18,9 +18,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-
 class Camera2D:
-    
     def __init__(self, camerabounds=(0, 0, 10, 10), screensize=(320, 280)):
         self.setCameraBounds(*camerabounds)
         self.setScreenSize(*screensize)

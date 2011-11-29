@@ -18,7 +18,9 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import Algorithms, BaseGA, SelectionTypes
+import Algorithms
+import BaseGA
+import SelectionTypes
 import FillTypes
 __all__ = ["Algorithms", "BaseGA"]
 

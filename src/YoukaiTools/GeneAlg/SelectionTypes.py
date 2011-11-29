@@ -43,5 +43,4 @@ def tourney_low_select(objectlist, tourneysize):
                 lowestval = objectlist[a][0]
                 lowesti = len(templist)-1
         return templist[lowesti][2]
-    
-#a = [(1.1, "yukkuri"), (4, "shitte"), (3.3, "itte"), (2.3, "ne"), (7, "touhou"), (2.7, "patchy"), (1.5, "aya"), (4.4, "suwako")] 
+     

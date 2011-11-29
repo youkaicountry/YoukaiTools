@@ -43,4 +43,3 @@ def newImage(width, height, initialcolor=[0, 0, 0], channels=None, indata=None):
     for i in range(width*height):
         body += [ic[:]]
     return head + body
-

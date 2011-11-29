@@ -24,7 +24,6 @@ DIR_WEST = 2
 DIR_EAST = 3
 
 class MazeMap:
-    
     def __init__(self, width, height, initval=None):
         self.width = width
         self.height = height
@@ -35,7 +34,6 @@ class MazeMap:
                 self.walls[y].append([])
                 self.walls[y][x].append(initval)
                 self.walls[y][x].append(initval)
-    
     
     def isInBounds(self, x, y):
         if x < -1: return False

@@ -18,8 +18,9 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-from .. import datatypes
 import random
+
+from .. import datatypes
 from .. import convert
 
 #a recursive backtracker maze
@@ -53,14 +54,12 @@ class recursiveBacktrackMaze():
         while len(self.path) > 0:
             self.found.setSpace(nx, ny, blocked)
             n = self.maze.getAllNeighbors(nx, ny)
-            #print "OUT: "+str(n)
             realn = []
             for o in n:
                 if self.found.getSpace(o[0], o[1]) is None:
                     realn.append(o)
             if len(realn) > 0:
                 self.path.append((nx, ny))
-                #self.r.shuffle(realn)
                 choice = self.r.randint(0, len(realn)-1)
                 if self.found.getSpace(realn[choice][0], realn[choice][1]) is None:
                     dir = self.maze.getDirection(nx, ny, realn[choice][0], realn[choice][1])

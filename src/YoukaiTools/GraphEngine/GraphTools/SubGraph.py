@@ -18,9 +18,11 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-from .. import Graphs
-import Paths
 from collections import deque
+
+from .. import Graphs
+
+import Paths
 
 def makeHistoryGraphs(g, history, graphtype=Graphs.BasicGraph, graphtypeinit=(), entries=None):
     out = {}

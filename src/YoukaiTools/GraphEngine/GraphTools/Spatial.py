@@ -18,10 +18,12 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-from YoukaiTools import ShiroiNeko
-from . import Data
 import random
 import math
+
+from YoukaiTools import ShiroiNeko
+
+from . import Data
 
 #have some kind of way to find the rotation that lines up the most edges
 def rotate2D(g, rad):

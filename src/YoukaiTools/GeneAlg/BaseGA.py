@@ -18,6 +18,7 @@
 
 import random
 import time
+
 import Data
 
 #the Base GA class

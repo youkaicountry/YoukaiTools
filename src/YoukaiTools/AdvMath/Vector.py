@@ -18,7 +18,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import math
+from math import sqrt
 
 #TODO: make it all in place
 
@@ -51,17 +51,17 @@ def crossProduct(result, vec1, vec2):
 # LENGTH
 ################################################################################
 def vectorLength2(vec):
-    return math.sqrt(vec[0]**2 + vec[1]**2)
+    return sqrt(vec[0]**2 + vec[1]**2)
     
 def vectorLength3(vec):
-    return math.sqrt(vec[0]**2 + vec[1]**2 + vec[2]**2)
+    return sqrt(vec[0]**2 + vec[1]**2 + vec[2]**2)
     
 def vectorLengthN(vec, n=None):
     if n is None: n = len(vec)
     add = 0
     for i in range(n):
         add += vec[i]**2
-    return math.sqrt(add)
+    return sqrt(add)
 
 ################################################################################
 # NORMALIZE

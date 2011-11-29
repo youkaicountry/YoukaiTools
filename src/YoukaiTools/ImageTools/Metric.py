@@ -18,7 +18,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import YoukaiTools.AdvMath.Indices
+from YoukaiTools.AdvMath.Indices import arrayIndex2To1
 
 #calculate different metrics about an image
 def calculateAverageColor(image):
@@ -32,6 +32,5 @@ def calculateAverageColor(image):
     return adder
 
 def getColorAt(image, x, y):
-    i = YoukaiTools.AdvMath.Indices.arrayIndex2To1(x, y, image[0], 3)
+    i = arrayIndex2To1(x, y, image[0], 3)
     return image[i]
-

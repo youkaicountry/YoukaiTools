@@ -18,12 +18,14 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+import bisect
+from math import floor, log
+
+from .. import LineLoader
+
 from . import Interpolation
 from . import Extrapolation
 from . import Ranges
-from .. import LineLoader
-import bisect
-import math
 
 #monotonic test:
 #give number of vals in, and if 0's in
@@ -177,17 +179,15 @@ class DataGraph1D:
             uyr = yr
         for i in range(xslices):
             x = Ranges.rangeToRange(i, 0, xslices-1, uxr[0], uxr[1])
-            y = self.getValue(x, interp, tension, bias)
-            #print(y)
+            y = self.getValue(x, interp, tension, bias)
             ycoord = Ranges.rangeToRange(y, uyr[0], uyr[1], 0, yslices-1)
-            ycoord = math.floor(((yslices-1) - ycoord)+.5)
-            #ycoord = math.floor(ycoord + .5)
+            ycoord = floor(((yslices-1) - ycoord)+.5)
             if ycoord >= yslices or ycoord < 0: 
                 if clip: continue
             output.append((i, ycoord))
         yaxis = Ranges.rangeToRange(0, uxr[0], uxr[1], 0, xslices-1)
         if yaxis > xslices-1 or yaxis < 0: yaxis = None
-        xaxis = math.floor(((yslices-1)-Ranges.rangeToRange(0, uyr[0], uyr[1], 0, yslices-1))+.5)
+        xaxis = floor(((yslices-1)-Ranges.rangeToRange(0, uyr[0], uyr[1], 0, yslices-1))+.5)
         if xaxis > yslices-1 or xaxis < 0: xaxis = None
         return (output, xaxis, yaxis)
         
@@ -222,10 +222,6 @@ class DataGraph1D:
         if x >= self.xvalues[-1]: return Extrapolation.linear(x, self.xvalues[-2], self.yvalues[-2], self.xvalues[-1], self.yvalues[-1])
         ui = bisect.bisect(self.xvalues, x)
         ys = self.yneighbors[ui]
-        
-        #y0 = Extrapolation.linear(self.xneighbors[ui][1]-(self.xneighbors[ui][2]-self.xneighbors[ui][1]), self.xneighbors[ui][0], self.yneighbors[ui][0], self.xneighbors[ui][1], self.yneighbors[ui][1])
-        #y3 = Extrapolation.linear(self.xneighbors[ui][2]+(self.xneighbors[ui][2]-self.xneighbors[ui][1]), self.xneighbors[ui][2], self.yneighbors[ui][2], self.xneighbors[ui][3], self.yneighbors[ui][3])
-        
         mu = Ranges.normalize(x, self.xvalues[ui-1], self.xvalues[ui])
         return interp(mu, ys[0], ys[1], ys[2], ys[3], tension, bias)
         
@@ -277,9 +273,7 @@ class DataGraph1D:
         reg = []
         for i in range(len(self.xvalues)-1):
             v = self.yvalues[i+1] - self.yvalues[i]
-            reg.append([i, i+1, v/abs(v) if v != 0 else v])
-        #print(reg)
-        #self.regions = reg
+            reg.append([i, i+1, v/abs(v) if v != 0 else v])
         rstart = 0
         rsymb = reg[0][2]
         rcombine = []
@@ -289,8 +283,7 @@ class DataGraph1D:
                 rstart = i
                 rsymb = reg[i][2]
         rcombine.append([reg[rstart][0], reg[len(reg)-1][1], rsymb])
-        self.regions = rcombine
-        #print(self.regions)
+        self.regions = rcombine
         return
     
     #needs regions to have been calculated already
@@ -320,9 +313,7 @@ class DataGraph1D:
                 else:
                     maxima.append(int((float(self.regions[i][0])+float(self.regions[i][1]))/2.0))
         self.minima = minima
-        self.maxima = maxima
-        #print(minima)
-        #print(maxima)
+        self.maxima = maxima
         return
     
 class PeriodicDataGraph1D:
@@ -336,11 +327,11 @@ class PeriodicDataGraph1D:
         domain = self.graph.getDomain()
         nx = Ranges.rangeToRange(x, domain[0], domain[1], 1.0, 2.0)
         if self.xscale == 1.0:
-            N = math.floor(nx)
+            N = floor(nx)
             norm = Ranges.normalize(nx, N, N+1)
             EN = N-1
         else:
-            N = math.floor(math.log(nx) / math.log(self.xscale))
+            N = floor(log(nx) / log(self.xscale))
             norm = Ranges.normalize(nx, pow(self.xscale, N), pow(self.xscale, N+1))
             EN = N
         #print(N)

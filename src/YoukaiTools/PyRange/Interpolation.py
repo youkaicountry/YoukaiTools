@@ -18,7 +18,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import math
+from math import cos, pi
 
 #The base interpolation functions. The interpolation happens
 #between y1 and y2. y0 and y3 are extra values
@@ -30,7 +30,7 @@ def linear(mu, y1, y2):
     return (y1*(1-mu)+y2*mu)
     
 def cosine(mu, y1, y2):
-    mu2 = (1-math.cos(mu*math.pi))/2;
+    mu2 = (1-cos(mu*pi))/2;
     return(y1*(1-mu2)+y2*mu2);
 
 def quadratic(mu, y1, y2):
