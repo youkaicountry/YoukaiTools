@@ -136,9 +136,9 @@ class ContainerPath(BasePath):
         self.size = 0
         return
     
-    #if start is none, it will offset the given path to the end of the last
+    #if offset is none, it will offset the given path to the end of the last
     #path
-    def addPiece(self, piece, offset=None):
+    def addPieceAndUpdate(self, piece, offset=None):
         self.pieces.append(piece)
         if len(self.starts) == 0:
             if offset is None:
@@ -155,9 +155,49 @@ class ContainerPath(BasePath):
                 lastend = offset
             self.starts.append(lastend)
             self.dpositions.append(self.length)
-            self.ipositions.append(self.length/(self.length+piece.length))
+            self.length += piece.length
+            self.__updateIPositions()
+            #self.ipositions.append(self.length/(self.length+piece.length))
+        self.size += 1
+        return
+    
+    def addPiece(self, piece, offset):
+        self.__add(piece, offset)
+        return
+    
+    def update(self):
+        self.__updateIPositions()
+        return
+    
+    def __add(self, piece, offset):
+        self.pieces.append(piece)
+        if len(self.starts) == 0:
+            if offset is None:
+                self.starts.append((0, 0))
+            else:
+                self.starts.append(offset)
+            self.dpositions.append(0)
+            self.ipositions.append(0)
+            self.length = piece.getLength()
+        else:
+            if offset is None:
+                lastend = self.getIValue(1.0)
+            else:
+                lastend = offset
+            self.starts.append(lastend)
+            self.dpositions.append(self.length)
             self.length += piece.length
         self.size += 1
+        return
+    
+    def __updateIPositions(self):
+        self.ipositions = []
+        ll = 0
+        here = 0
+        for piece in self.pieces:
+            here += ll
+            ll = piece.length/(self.length)
+            self.ipositions.append(here)
         return
     
     def getIValue(self, i):

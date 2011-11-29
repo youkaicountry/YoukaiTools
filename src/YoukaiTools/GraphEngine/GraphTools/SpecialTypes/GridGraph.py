@@ -55,6 +55,9 @@ def addVertexToGridGraph(g, vid):
             g.addEdge(vid, v)
     return
 
+def removeVertexFromGraph(g, vid):
+    return
+
 def gridInGrid(g, cg, size):
     gvl = []
     for v in cg.getVertexList():

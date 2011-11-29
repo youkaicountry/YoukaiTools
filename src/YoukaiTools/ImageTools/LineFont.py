@@ -129,6 +129,7 @@ def __makeContainerPath(pieces):
     cp = PyRange.Paths.ContainerPath()
     for p in pieces:
         cp.addPiece(p, (0, 0))
+    cp.update()
     return cp
 
 def __makeShape(components):

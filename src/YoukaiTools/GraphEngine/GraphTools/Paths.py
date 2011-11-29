@@ -21,6 +21,8 @@
 import math
 
 import Modify
+import YoukaiTools.PyRange.Paths as PyRangePaths
+
 import collections
 from collections import deque
 
@@ -307,6 +309,18 @@ def getConnectingEdges(g, vertexid1, vertexid2, directed=False):
             elif ei[1] == vertexid2 and (ei[2] == 0 or ei[2] == 1): out.apppend(i)
     return out
 
+def makeSpatialPath2D(g, path, xdata='x', ydata='y'):
+    cp = PyRangePaths.ContainerPath()
+    for i, p in enumerate(path[:-1]):
+        x0 = g.getVertexData(p[0], xdata)
+        y0 = g.getVertexData(p[0], ydata)
+        p2 = path[i+1][0]
+        x1 = g.getVertexData(p2, xdata)
+        y1 = g.getVertexData(p2, ydata)
+        lp = PyRangePaths.LinePath(start=(x0, y0), end=(x1, y1))
+        cp.addPiece(lp, (0,0))
+    cp.update()
+    return cp
 #initializes a vdic
 #[dist, lastvertex, lastedge]
 def __initSingleSourceVDic(g, source):
