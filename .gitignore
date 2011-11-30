@@ -11,3 +11,4 @@
 .settings/
 *.marks
 *.profile
+build/
