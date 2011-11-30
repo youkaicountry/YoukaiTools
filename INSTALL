@@ -1,0 +1,10 @@
+To install YoukaiTools, simply run from the command line:
+
+python setup.py install
+
+if you are installing it in Linux, you may need to run:
+
+sudo python setup.py install
+
+After it is installed, you can begin using it in your programs.
+Check the included examples, tests, and unit tests for some examples.
