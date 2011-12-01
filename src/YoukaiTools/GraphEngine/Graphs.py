@@ -45,11 +45,11 @@ class BasicGraph(BaseObjects.BaseGraph):
         a = self.vertices[vertexidold]
         del self.vertices[vertexidold]
         self.vertices[vertexidnew] = a
-        for v in self.vertices.keys():
+        for v in self.vertices:
             if vertexidold in self.vertices[v][0]:
                 self.vertices[v][0].remove(vertexidold)
                 self.vertices[v][0].add(vertexidnew)
-        for e in self.edges.keys():
+        for e in self.edges:
             if self.edges[e][0][0] == vertexidold:
                 self.edges[e][0][0] = vertexidnew
             if self.edges[e][0][1] == vertexidold:
@@ -177,7 +177,7 @@ class BasicGraph(BaseObjects.BaseGraph):
         return False
 
     def getVertexDataKeys(self, vertexid):
-        return [x for x in self.vertices[vertexid][2].keys()]
+        return [x for x in self.vertices[vertexid][2]]
       
     def getEdgeDataKeys(self, edgeid):
         return [x for x in self.edges[edgeid][1]]
@@ -208,4 +208,3 @@ class BasicGraph(BaseObjects.BaseGraph):
         ei = self.edges[edgeid][0]
         if ei[0] == vertexid: return ei[1]
         else: return ei[0]
-

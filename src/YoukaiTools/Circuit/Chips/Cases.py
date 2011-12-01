@@ -29,16 +29,16 @@ class VariableChip(BaseChip):
     #variables should be a dictionary {"vname": ("inputname", defaultval)}
     #constants should be a list: [ ("inputname", value), ...]
     def __init__(self, chip, variables={}, constants=[]):
-        vin = set([x for x in variables.keys()])
+        vin = set([x for x in variables])
         const = set([x[0] for x in constants])
         self.chip = chip
         inputs = [x for x in ((set(chip.inputs.keys())-vin)-const)]
-        outputs = [x for x in chip.outputs.keys()]
+        outputs = [x for x in chip.outputs]
         self.setup(inputs, outputs)
         self.vinp = {}
         self.vval = {}
         self.const = {}
-        for v in variables.keys():
+        for v in variables:
             self.vinp[v] = variables[v][0]
             self.vval[v] = variables[v][1]
         for c in constants:
@@ -87,7 +87,7 @@ class BreadBoard(BaseChip):
         #enumerate the internal pins, and missing problem pins
         for w in wires:
             internalinputpins.add(w[1])
-        for k in chips.keys():
+        for k in chips:
             for inp in chips[k].inputs:
                 thisi = k+"."+inp
                 if  (thisi not in internalinputpins) and (thisi not in constants):
@@ -111,16 +111,6 @@ class BreadBoard(BaseChip):
             self.wiremap[n].append((o, self.__getOName(w[1])))
         
         #construct the graph of the wires
-        #self.graph = GraphEngine.BasicGraph()
-        #for n in chips:
-        #    self.graph.addVertex(n)
-        #for w in wires:
-        #    outp = self.__getTuple(w[0])
-        #    inp = self.__getTuple(w[1])
-        #    e = self.graph.addEdge(outp[0], inp[0], True)
-        #    self.graph.setEdgeData(e, "outpin", outp[1])
-        #    self.graph.setEdgeData(e, "inpin", inp[1])
-        #    self.graph.setEdgeData(e, "end", inp[0])
         return
     
     def doCalculation(self):
@@ -170,10 +160,6 @@ class BreadBoard(BaseChip):
                 self.__carryWire(n)
     
         #carry through output_map pins to the case outputs
-        #for k in self.outputs.keys():
-        #    outf = self.output_map[k]
-        #    self.outputs[k] = self.chips[outf[0]].getOutput(outf[1])
-            
         return
     
     def __carryWire(self, chip):

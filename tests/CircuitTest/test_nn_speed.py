@@ -15,7 +15,7 @@ mf = Circuit.Chips.NeuralNet.thresh_meanfield
 nn = Circuit.Chips.NeuralNet.ForwardFeedNeuralNetwork([3, 4, 4, 3], [1.0, 1.0, 1.0, 1.0], [mf, mf, mf, mf])
 #nn = Circuit.Chips.NeuralNet.ForwardFeedNeuralNetwork([3, 5, 3], [1.0, 1.0, 1.0], [mf, mf, mf])
 ss = set(["in0", "in1", "in2"])
-vs = set([x for x in nn.inputs.keys()])
+vs = set([x for x in nn.inputs])
 vars = {}
 for v in vs-ss:
     vars[v] = (v, 0)    
@@ -31,7 +31,7 @@ def fitness(obj):
     mindiff = .000001
     sum = 0
     for t in test_cases:
-        for k in obj.keys():
+        for k in obj:
             vc.setVariable(k, obj[k])
         for i, x in enumerate(t[0]):
             vc.setInput("in"+str(i), x)
@@ -64,7 +64,7 @@ def mate(obj1, obj2):
     return d
 
 def mutate(intensity, obj):
-    ol = [k for k in obj.keys()]
+    ol = [k for k in obj]
     random.shuffle(ol)
     d = {}
     nums = []
@@ -128,7 +128,7 @@ print ab
 for i in range(3):
     rgb = (random.random(), random.random(), random.random())
     hsi = ImageTools.ColorModels.RGB2HSI(rgb)
-    for k in ab[1].keys():
+    for k in ab[1]:
         vc.setVariable(k, ab[1][k])
     for i in range(3):
         vc.setInput("in"+str(i), rgb[i])

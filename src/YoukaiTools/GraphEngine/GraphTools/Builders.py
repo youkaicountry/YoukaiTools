@@ -54,15 +54,14 @@ def buildGraph(g, vertices, edges=None, vdata={}, edata={}):
                     g.setEdgeData(e, i[0], i[1])
     
     #print(vdata)   
-    for vd in vdata.keys():
+    for vd in vdata:
         for i in vdata[vd]:
             #print(str(vd) + " " + str(i[0]) + " " + str(i[1]))
             g.setVertexData(vd, i[0], i[1])
    
-    for ed in edata.keys():
+    for ed in edata:
         for i in edata[ed]:
             g.setEdgeData(ed, i[0], i[1])
-   
     return
 
 #Builds the graphs from dictionaries
@@ -86,23 +85,23 @@ def buildGraphD(g, vertices, edges=None):
             o[v] = {"name":v}
         vertices = o
         
-    for key in vertices.keys():
+    for key in vertices:
         name = vertices[key]["name"] if "name" in vertices[key] else key
         datadic = vertices[key]["data"] if "data" in vertices[key] else None
         g.addVertex(name)
         if datadic is not None:
-            for k in datadic.keys():
+            for k in datadic:
                 g.setVertexData(name, k, datadic[k])
     
     if edges is not None:
-        for key in edges.keys():
+        for key in edges:
             name = edges[key]["name"] if "name" in edges[key] else key
             vertices = edges[key]["vertices"] 
             directed = edges[key]["directed"] if "directed" in edges[key] else 0
             datadic = edges[key]["data"] if "data" in edges[key] else None
             g.addEdge(vertices[0], vertices[1], directed, name)
             if datadic is not None:
-                for k in datadic.keys():
+                for k in datadic:
                     g.setEdgeData(name, k, datadic[k])
     return
 
@@ -133,5 +132,3 @@ def appendGraph(g, g2):
       for di in g2.getEdgeDataKeys(i):
          g.setEdgeData(n, di, g2.getEdgeData(i, di))
    return (vstart, estart)
-   
-
