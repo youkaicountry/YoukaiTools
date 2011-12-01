@@ -12,3 +12,4 @@
 *.marks
 *.profile
 build/
+html/
