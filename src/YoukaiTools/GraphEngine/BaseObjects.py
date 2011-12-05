@@ -26,18 +26,31 @@ class BaseGraph(object):
     def addVertex(self, vertexid=None):
         """
         Adds a new vertex to the graph.
-        @param vertexid: The id to use for the vertex. If None, an id will be automatically generated.
+        @param vertexid: The id to use for identifying the vertex. If None, an id will be automatically generated.
         @return: The id of the newly created vertex.
         """
         return
     
     def renameVertex(self, vertexidold, vertexidnew):
+        """
+        Changes the id of a vertex.
+        @param vertexidold: The id of the vertex to change.
+        @param vertexidnew: The new id of the vertex.
+        """
         return
        
     def removeVertex(self, vertexid):
+        """
+        Remove the given vertex from the graph.
+        @param vertexid: The id of the vertex to remove.
+        """
         return
         
     def getVertexList(self):
+        """
+        Get a list of vertices.
+        @return: A list containing the id of each vertex in the graph.
+        """
         return
         
     def getOrder(self):
@@ -58,9 +71,19 @@ class BaseGraph(object):
         return
        
     def getAdjacentVertices(self, vertexid):
+        """
+        Finds all vertices adjacent to the given vertex. Does not take into account directedness.
+        @param vertexid: The id of the vertex.
+        @return: A list of the ids of vertices adjacent to the given vertex.
+        """
         return
         
     def getAdjacentEdges(self, vertexid):
+        """
+        Finds all edges adjacent to the given vertex. Does not take into account directedness.
+        @param vertexid: The id of the vertex.
+        @return: A list of the ids of edges adjacent to the given vertex.
+        """
         return
     
     def getAdjacent(self, vertexid):
@@ -126,7 +149,3 @@ class BaseGraph(object):
     def setEdgeData(self, edgeid, index, data):
         return
     
-
-      
-
-
