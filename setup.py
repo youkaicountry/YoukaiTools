@@ -1,33 +1,15 @@
 from distutils.core import setup
+
+import packages
+
 setup(name='YoukaiTools',
-      version='0.1',
+      version='0.1a',
       description='Python utilities library.',
       author='Nathaniel Caldwell',
       author_email='nbcwell@gmail.com',
       url='http://www.youkaicountry.com',
       #packages=['YoukaiTools', ],
       package_dir={'':'src'},
-      packages=['YoukaiTools', 'YoukaiTools.AdvMath', 'YoukaiTools.AdvRandom',
-                'YoukaiTools.Circuit', 'YoukaiTools.Circuit.Chips',
-                'YoukaiTools.GameTools',
-                'YoukaiTools.GameTools.Animated',
-                'YoukaiTools.GameTools.Camera2D',
-                'YoukaiTools.GameTools.GameState',
-                'YoukaiTools.GameTools.KeyManager',
-                'YoukaiTools.GameTools.KeyManager',
-                'YoukaiTools.GameTools.TileManager',
-                'YoukaiTools.GeneAlg', 'YoukaiTools.GraphEngine',
-                'YoukaiTools.GraphEngine.Draw',
-                'YoukaiTools.GraphEngine.GraphTools',
-                'YoukaiTools.GraphEngine.GraphTools.Span',
-                'YoukaiTools.GraphEngine.GraphTools.SpecialTypes',
-                'YoukaiTools.ImageTools',
-                'YoukaiTools.ImageTools.FileHandlers',
-                'YoukaiTools.ImageTools.PowerTools',
-                'YoukaiTools.LineLoader',
-                'YoukaiTools.MazeGen', 'YoukaiTools.MazeGen.generators',
-                'YoukaiTools.PyRange', 'YoukaiTools.PyRange.Draw',
-                'YoukaiTools.QuadTree', 'YoukaiTools.Raycast',
-                'YoukaiTools.RollingDictionary',
-                'YoukaiTools.ShiroiNeko', 'YoukaiTools.StateMachine']
+      packages=packages.getPackages()
       )
+

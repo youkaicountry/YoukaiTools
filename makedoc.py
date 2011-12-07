@@ -1,2 +1,7 @@
 import os
-os.system("epydoc --html -o doc src/YoukaiTools/GraphEngine/BaseObjects.py src/YoukaiTools/GraphEngine/Graphs.py src/YoukaiTools/GraphEngine/__init__.py src/YoukaiTools/__init__.py")
+
+import packages
+
+files = " ".join(packages.getFiles())
+os.system("epydoc --html -o doc " + files)
+
