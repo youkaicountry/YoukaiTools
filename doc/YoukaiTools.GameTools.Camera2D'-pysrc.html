@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>YoukaiTools.GameTools.Camera2D'</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="YoukaiTools-module.html">Package&nbsp;YoukaiTools</a> ::
+        <a href="YoukaiTools.GameTools-module.html">Package&nbsp;GameTools</a> ::
+        Package&nbsp;Camera2D'
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="YoukaiTools.GameTools.Camera2D%27-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="YoukaiTools.GameTools.Camera2D%27-module.html" onclick="show_private();">Package YoukaiTools.GameTools.Camera2D'</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#Copyright (c) &lt;2011&gt; &lt;Nathaniel Caldwell&gt;</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment">#Permission is hereby granted, free of charge, to any person obtaining a copy</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment">#of this software and associated documentation files (the "Software"), to deal</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#in the Software without restriction, including without limitation the rights</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment">#copies of the Software, and to permit persons to whom the Software is</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment">#furnished to do so, subject to the following conditions:</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment">#The above copyright notice and this permission notice shall be included in all</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment">#copies or substantial portions of the Software.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment">#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment">#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment">#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment">#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment">#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment">#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment">#SOFTWARE.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="Camera2D"></a><div id="Camera2D-def"><a name="L21"></a><tt class="py-lineno"> 21</tt> <a class="py-toggle" href="#" id="Camera2D-toggle" onclick="return toggle('Camera2D');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html">Camera2D</a><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Camera2D-expanded"><a name="Camera2D.__init__"></a><div id="Camera2D.__init__-def"><a name="L22"></a><tt class="py-lineno"> 22</tt> <a class="py-toggle" href="#" id="Camera2D.__init__-toggle" onclick="return toggle('Camera2D.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">camerabounds</tt><tt class="py-op">=</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-number">10</tt><tt class="py-op">,</tt> <tt class="py-number">10</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-param">screensize</tt><tt class="py-op">=</tt><tt class="py-op">(</tt><tt class="py-number">320</tt><tt class="py-op">,</tt> <tt class="py-number">280</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.__init__-expanded"><a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Method YoukaiTools.GameTools.Camera2D'.Camera2D.setCameraBounds()=YoukaiTools.GameTools.Camera2D%27.Camera2D-class.html#setCameraBounds"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.setCameraBounds" class="py-name" href="#" onclick="return doclink('link-0', 'setCameraBounds', 'link-0');">setCameraBounds</a></tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-name">camerabounds</tt><tt class="py-op">)</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Method YoukaiTools.GameTools.Camera2D'.Camera2D.setScreenSize()=YoukaiTools.GameTools.Camera2D%27.Camera2D-class.html#setScreenSize"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.setScreenSize" class="py-name" href="#" onclick="return doclink('link-1', 'setScreenSize', 'link-1');">setScreenSize</a></tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-name">screensize</tt><tt class="py-op">)</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div><a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">         </tt>
+<a name="Camera2D.setScreenSize"></a><div id="Camera2D.setScreenSize-def"><a name="L27"></a><tt class="py-lineno"> 27</tt> <a class="py-toggle" href="#" id="Camera2D.setScreenSize-toggle" onclick="return toggle('Camera2D.setScreenSize');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#setScreenSize">setScreenSize</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">width</tt><tt class="py-op">,</tt> <tt class="py-param">height</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.setScreenSize-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.setScreenSize-expanded"><a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">screenwidth</tt> <tt class="py-op">=</tt> <tt class="py-name">width</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">screenheight</tt> <tt class="py-op">=</tt> <tt class="py-name">height</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div><a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">         </tt>
+<a name="Camera2D.setCameraBounds"></a><div id="Camera2D.setCameraBounds-def"><a name="L32"></a><tt class="py-lineno"> 32</tt> <a class="py-toggle" href="#" id="Camera2D.setCameraBounds-toggle" onclick="return toggle('Camera2D.setCameraBounds');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#setCameraBounds">setCameraBounds</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">xmin</tt><tt class="py-op">,</tt> <tt class="py-param">ymin</tt><tt class="py-op">,</tt> <tt class="py-param">xmax</tt><tt class="py-op">,</tt> <tt class="py-param">ymax</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.setCameraBounds-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.setCameraBounds-expanded"><a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmin</tt> <tt class="py-op">=</tt> <tt class="py-name">xmin</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymin</tt> <tt class="py-op">=</tt> <tt class="py-name">ymin</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmax</tt> <tt class="py-op">=</tt> <tt class="py-name">xmax</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymax</tt> <tt class="py-op">=</tt> <tt class="py-name">ymax</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div><a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">     </tt>
+<a name="Camera2D.getScreenX"></a><div id="Camera2D.getScreenX-def"><a name="L39"></a><tt class="py-lineno"> 39</tt> <a class="py-toggle" href="#" id="Camera2D.getScreenX-toggle" onclick="return toggle('Camera2D.getScreenX');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#getScreenX">getScreenX</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">worldx</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.getScreenX-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.getScreenX-expanded"><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">worldx</tt><tt class="py-op">-</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmin</tt><tt class="py-op">)</tt><tt class="py-op">/</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmax</tt><tt class="py-op">-</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmin</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">*</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">screenwidth</tt> </tt>
+</div><a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">     </tt>
+<a name="Camera2D.getScreenY"></a><div id="Camera2D.getScreenY-def"><a name="L42"></a><tt class="py-lineno"> 42</tt> <a class="py-toggle" href="#" id="Camera2D.getScreenY-toggle" onclick="return toggle('Camera2D.getScreenY');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#getScreenY">getScreenY</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">worldy</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.getScreenY-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.getScreenY-expanded"><a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">worldy</tt><tt class="py-op">-</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymin</tt><tt class="py-op">)</tt><tt class="py-op">/</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymax</tt><tt class="py-op">-</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymin</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">*</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">screenheight</tt> </tt>
+</div><a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">     </tt>
+<a name="Camera2D.getScreenLocation"></a><div id="Camera2D.getScreenLocation-def"><a name="L45"></a><tt class="py-lineno"> 45</tt> <a class="py-toggle" href="#" id="Camera2D.getScreenLocation-toggle" onclick="return toggle('Camera2D.getScreenLocation');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#getScreenLocation">getScreenLocation</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">worldloc</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.getScreenLocation-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.getScreenLocation-expanded"><a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Method YoukaiTools.GameTools.Camera2D'.Camera2D.getScreenX()=YoukaiTools.GameTools.Camera2D%27.Camera2D-class.html#getScreenX"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.getScreenX" class="py-name" href="#" onclick="return doclink('link-2', 'getScreenX', 'link-2');">getScreenX</a></tt><tt class="py-op">(</tt><tt class="py-name">worldloc</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Method YoukaiTools.GameTools.Camera2D'.Camera2D.getScreenY()=YoukaiTools.GameTools.Camera2D%27.Camera2D-class.html#getScreenY"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.getScreenY" class="py-name" href="#" onclick="return doclink('link-3', 'getScreenY', 'link-3');">getScreenY</a></tt><tt class="py-op">(</tt><tt class="py-name">worldloc</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">     </tt>
+<a name="Camera2D.getWorldX"></a><div id="Camera2D.getWorldX-def"><a name="L48"></a><tt class="py-lineno"> 48</tt> <a class="py-toggle" href="#" id="Camera2D.getWorldX-toggle" onclick="return toggle('Camera2D.getWorldX');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#getWorldX">getWorldX</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">screenx</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.getWorldX-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.getWorldX-expanded"><a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">screenx</tt><tt class="py-op">/</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">screenwidth</tt><tt class="py-op">)</tt><tt class="py-op">*</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmax</tt><tt class="py-op">-</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmin</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">*</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmin</tt> </tt>
+</div><a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">     </tt>
+<a name="Camera2D.getWorldY"></a><div id="Camera2D.getWorldY-def"><a name="L51"></a><tt class="py-lineno"> 51</tt> <a class="py-toggle" href="#" id="Camera2D.getWorldY-toggle" onclick="return toggle('Camera2D.getWorldY');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#getWorldY">getWorldY</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">screeny</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.getWorldY-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.getWorldY-expanded"><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">screeny</tt><tt class="py-op">/</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">screenheight</tt><tt class="py-op">)</tt><tt class="py-op">*</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymax</tt><tt class="py-op">-</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymin</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">*</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymin</tt> </tt>
+</div><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">     </tt>
+<a name="Camera2D.getWorldLocation"></a><div id="Camera2D.getWorldLocation-def"><a name="L54"></a><tt class="py-lineno"> 54</tt> <a class="py-toggle" href="#" id="Camera2D.getWorldLocation-toggle" onclick="return toggle('Camera2D.getWorldLocation');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#getWorldLocation">getWorldLocation</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">screenloc</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.getWorldLocation-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.getWorldLocation-expanded"><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method YoukaiTools.GameTools.Camera2D'.Camera2D.getWorldX()=YoukaiTools.GameTools.Camera2D%27.Camera2D-class.html#getWorldX"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.getWorldX" class="py-name" href="#" onclick="return doclink('link-4', 'getWorldX', 'link-4');">getWorldX</a></tt><tt class="py-op">(</tt><tt class="py-name">screenloc</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Method YoukaiTools.GameTools.Camera2D'.Camera2D.getWorldY()=YoukaiTools.GameTools.Camera2D%27.Camera2D-class.html#getWorldY"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.getWorldY" class="py-name" href="#" onclick="return doclink('link-5', 'getWorldY', 'link-5');">getWorldY</a></tt><tt class="py-op">(</tt><tt class="py-name">screenloc</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">     </tt>
+<a name="Camera2D.getScreenXDistance"></a><div id="Camera2D.getScreenXDistance-def"><a name="L57"></a><tt class="py-lineno"> 57</tt> <a class="py-toggle" href="#" id="Camera2D.getScreenXDistance-toggle" onclick="return toggle('Camera2D.getScreenXDistance');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#getScreenXDistance">getScreenXDistance</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">worldxdist</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.getScreenXDistance-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.getScreenXDistance-expanded"><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">abs</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.getScreenX" class="py-name" href="#" onclick="return doclink('link-6', 'getScreenX', 'link-2');">getScreenX</a></tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.getScreenX" class="py-name" href="#" onclick="return doclink('link-7', 'getScreenX', 'link-2');">getScreenX</a></tt><tt class="py-op">(</tt><tt class="py-name">worldxdist</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">     </tt>
+<a name="Camera2D.getScreenYDistance"></a><div id="Camera2D.getScreenYDistance-def"><a name="L60"></a><tt class="py-lineno"> 60</tt> <a class="py-toggle" href="#" id="Camera2D.getScreenYDistance-toggle" onclick="return toggle('Camera2D.getScreenYDistance');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#getScreenYDistance">getScreenYDistance</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">worldydist</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.getScreenYDistance-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.getScreenYDistance-expanded"><a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">abs</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.getScreenY" class="py-name" href="#" onclick="return doclink('link-8', 'getScreenY', 'link-3');">getScreenY</a></tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.getScreenY" class="py-name" href="#" onclick="return doclink('link-9', 'getScreenY', 'link-3');">getScreenY</a></tt><tt class="py-op">(</tt><tt class="py-name">worldydist</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">     </tt>
+<a name="Camera2D.getWorldXDistance"></a><div id="Camera2D.getWorldXDistance-def"><a name="L63"></a><tt class="py-lineno"> 63</tt> <a class="py-toggle" href="#" id="Camera2D.getWorldXDistance-toggle" onclick="return toggle('Camera2D.getWorldXDistance');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#getWorldXDistance">getWorldXDistance</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">screenxdist</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.getWorldXDistance-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.getWorldXDistance-expanded"><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">abs</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.getWorldX" class="py-name" href="#" onclick="return doclink('link-10', 'getWorldX', 'link-4');">getWorldX</a></tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.getWorldX" class="py-name" href="#" onclick="return doclink('link-11', 'getWorldX', 'link-4');">getWorldX</a></tt><tt class="py-op">(</tt><tt class="py-name">screenxdist</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">         </tt>
+<a name="Camera2D.getWorldYDistance"></a><div id="Camera2D.getWorldYDistance-def"><a name="L66"></a><tt class="py-lineno"> 66</tt> <a class="py-toggle" href="#" id="Camera2D.getWorldYDistance-toggle" onclick="return toggle('Camera2D.getWorldYDistance');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#getWorldYDistance">getWorldYDistance</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">screenydist</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.getWorldYDistance-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.getWorldYDistance-expanded"><a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">abs</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.getWorldY" class="py-name" href="#" onclick="return doclink('link-12', 'getWorldY', 'link-5');">getWorldY</a></tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.getWorldY" class="py-name" href="#" onclick="return doclink('link-13', 'getWorldY', 'link-5');">getWorldY</a></tt><tt class="py-op">(</tt><tt class="py-name">screenydist</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">     </tt>
+<a name="Camera2D.moveCamera"></a><div id="Camera2D.moveCamera-def"><a name="L69"></a><tt class="py-lineno"> 69</tt> <a class="py-toggle" href="#" id="Camera2D.moveCamera-toggle" onclick="return toggle('Camera2D.moveCamera');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#moveCamera">moveCamera</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">deltax</tt><tt class="py-op">,</tt> <tt class="py-param">deltay</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.moveCamera-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.moveCamera-expanded"><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmin</tt> <tt class="py-op">+=</tt> <tt class="py-name">deltax</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmax</tt> <tt class="py-op">+=</tt> <tt class="py-name">deltax</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymin</tt> <tt class="py-op">+=</tt> <tt class="py-name">deltay</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymax</tt> <tt class="py-op">+=</tt> <tt class="py-name">deltay</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div><a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">     </tt>
+<a name="Camera2D.scroll"></a><div id="Camera2D.scroll-def"><a name="L76"></a><tt class="py-lineno"> 76</tt> <a class="py-toggle" href="#" id="Camera2D.scroll-toggle" onclick="return toggle('Camera2D.scroll');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#scroll">scroll</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">dx</tt><tt class="py-op">,</tt> <tt class="py-param">dy</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.scroll-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.scroll-expanded"><a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-name">wdx</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmax</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmin</tt><tt class="py-op">)</tt> <tt class="py-op">*</tt> <tt class="py-name">dx</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">        <tt class="py-name">hdy</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymax</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymin</tt><tt class="py-op">)</tt> <tt class="py-op">*</tt> <tt class="py-name">dy</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Method YoukaiTools.GameTools.Camera2D'.Camera2D.moveCamera()=YoukaiTools.GameTools.Camera2D%27.Camera2D-class.html#moveCamera"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.moveCamera" class="py-name" href="#" onclick="return doclink('link-14', 'moveCamera', 'link-14');">moveCamera</a></tt><tt class="py-op">(</tt><tt class="py-name">wdx</tt><tt class="py-op">,</tt> <tt class="py-name">hdy</tt><tt class="py-op">)</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">     </tt>
+<a name="Camera2D.centerOn"></a><div id="Camera2D.centerOn-def"><a name="L82"></a><tt class="py-lineno"> 82</tt> <a class="py-toggle" href="#" id="Camera2D.centerOn-toggle" onclick="return toggle('Camera2D.centerOn');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#centerOn">centerOn</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">x</tt><tt class="py-op">,</tt> <tt class="py-param">y</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.centerOn-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.centerOn-expanded"><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-name">cx</tt> <tt class="py-op">=</tt> <tt class="py-number">.5</tt> <tt class="py-op">*</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmin</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmax</tt><tt class="py-op">)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-name">cy</tt> <tt class="py-op">=</tt> <tt class="py-number">.5</tt> <tt class="py-op">*</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymin</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymax</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-name">dx</tt> <tt class="py-op">=</tt> <tt class="py-name">x</tt> <tt class="py-op">-</tt> <tt class="py-name">cx</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-name">dy</tt> <tt class="py-op">=</tt> <tt class="py-name">y</tt> <tt class="py-op">-</tt> <tt class="py-name">cy</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.moveCamera" class="py-name" href="#" onclick="return doclink('link-15', 'moveCamera', 'link-14');">moveCamera</a></tt><tt class="py-op">(</tt><tt class="py-name">dx</tt><tt class="py-op">,</tt> <tt class="py-name">dy</tt><tt class="py-op">)</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">     </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">    <tt class="py-comment">#factor &gt; 1.0 zooms in</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">    <tt class="py-comment">#factor &lt; 1.0 zooms out</tt> </tt>
+<a name="Camera2D.zoom"></a><div id="Camera2D.zoom-def"><a name="L92"></a><tt class="py-lineno"> 92</tt> <a class="py-toggle" href="#" id="Camera2D.zoom-toggle" onclick="return toggle('Camera2D.zoom');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.Camera2D'.Camera2D-class.html#zoom">zoom</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">factor</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Camera2D.zoom-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Camera2D.zoom-expanded"><a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">        <tt class="py-name">oldxl</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmax</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmin</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-name">oldyl</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymax</tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymin</tt><tt class="py-op">)</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">        <tt class="py-name">newxl</tt> <tt class="py-op">=</tt> <tt class="py-name">oldxl</tt><tt class="py-op">/</tt><tt class="py-name">factor</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-name">newyl</tt> <tt class="py-op">=</tt> <tt class="py-name">oldyl</tt><tt class="py-op">/</tt><tt class="py-name">factor</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-name">dx</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">oldxl</tt><tt class="py-op">-</tt><tt class="py-name">newxl</tt><tt class="py-op">)</tt><tt class="py-op">*</tt><tt class="py-number">.5</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-name">dy</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">oldyl</tt><tt class="py-op">-</tt><tt class="py-name">newyl</tt><tt class="py-op">)</tt><tt class="py-op">*</tt><tt class="py-number">.5</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D.setCameraBounds" class="py-name" href="#" onclick="return doclink('link-16', 'setCameraBounds', 'link-0');">setCameraBounds</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmin</tt><tt class="py-op">+</tt><tt class="py-name">dx</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymin</tt><tt class="py-op">+</tt><tt class="py-name">dy</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraxmax</tt><tt class="py-op">-</tt><tt class="py-name">dx</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">cameraymax</tt><tt class="py-op">-</tt><tt class="py-name">dy</tt><tt class="py-op">)</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div></div><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Dec  6 16:19:05 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

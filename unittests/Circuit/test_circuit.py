@@ -18,8 +18,9 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import YoukaiTools.Circuit as Circuit
 import unittest
+
+import YoukaiTools.Circuit as Circuit
 
 class TestBasic(unittest.TestCase):
     def test_basicoverride(self):

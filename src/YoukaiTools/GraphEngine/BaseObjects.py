@@ -18,7 +18,14 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+"""
+Base objects for GraphEngine.
+"""
+
 class BaseGraph(object):
+    """
+    The Base Graph object.
+    """
     def __init__(self):
         return
     

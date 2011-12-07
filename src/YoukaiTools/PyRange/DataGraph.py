@@ -179,9 +179,9 @@ class DataGraph1D:
             uyr = yr
         for i in range(xslices):
             x = Ranges.rangeToRange(i, 0, xslices-1, uxr[0], uxr[1])
-            y = self.getValue(x, interp, tension, bias)
+            y = self.getValue(x, interp, tension, bias)
             ycoord = Ranges.rangeToRange(y, uyr[0], uyr[1], 0, yslices-1)
-            ycoord = floor(((yslices-1) - ycoord)+.5)
+            ycoord = floor(((yslices-1) - ycoord)+.5)
             if ycoord >= yslices or ycoord < 0: 
                 if clip: continue
             output.append((i, ycoord))
@@ -273,7 +273,7 @@ class DataGraph1D:
         reg = []
         for i in range(len(self.xvalues)-1):
             v = self.yvalues[i+1] - self.yvalues[i]
-            reg.append([i, i+1, v/abs(v) if v != 0 else v])
+            reg.append([i, i+1, v/abs(v) if v != 0 else v])
         rstart = 0
         rsymb = reg[0][2]
         rcombine = []
@@ -283,7 +283,7 @@ class DataGraph1D:
                 rstart = i
                 rsymb = reg[i][2]
         rcombine.append([reg[rstart][0], reg[len(reg)-1][1], rsymb])
-        self.regions = rcombine
+        self.regions = rcombine
         return
     
     #needs regions to have been calculated already
@@ -313,7 +313,7 @@ class DataGraph1D:
                 else:
                     maxima.append(int((float(self.regions[i][0])+float(self.regions[i][1]))/2.0))
         self.minima = minima
-        self.maxima = maxima
+        self.maxima = maxima
         return
     
 class PeriodicDataGraph1D:

@@ -18,7 +18,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-from math import abs, sqrt
+from math import sqrt
 
 def manhattan2D(p1, p2):
     return abs(p2[0]-p1[0]) + abs(p2[1]-p1[1])

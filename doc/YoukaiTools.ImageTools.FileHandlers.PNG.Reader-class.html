@@ -1,0 +1,991 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>YoukaiTools.ImageTools.FileHandlers.PNG.Reader</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        YoukaiTools ::
+        ImageTools ::
+        FileHandlers ::
+        PNG ::
+        Reader ::
+        Class&nbsp;Reader
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Reader</h1><p class="nomargin-top"><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader">source&nbsp;code</a></span></p>
+<p>PNG decoder in pure Python.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">_guess</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">**kw</span>)</span><br />
+      Create a PNG decoder object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#chunk" class="summary-sig-name">chunk</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">seek</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Read the next PNG chunk from the input file; returns a 
+      (*type*,*data*) tuple.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.chunk">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="chunks"></a><span class="summary-sig-name">chunks</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Return an iterator that will yield each chunk as a (*chunktype*, 
+      *content*) pair.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.chunks">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#undo_filter" class="summary-sig-name">undo_filter</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">filter_type</span>,
+        <span class="summary-sig-arg">scanline</span>,
+        <span class="summary-sig-arg">previous</span>)</span><br />
+      Undo the filter for a scanline.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.undo_filter">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#deinterlace" class="summary-sig-name">deinterlace</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">raw</span>)</span><br />
+      Read raw pixel data, undo filters, deinterlace, and flatten.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.deinterlace">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#iterboxed" class="summary-sig-name">iterboxed</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">rows</span>)</span><br />
+      Iterator that yields each scanline in boxed row flat pixel format.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.iterboxed">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="serialtoflat"></a><span class="summary-sig-name">serialtoflat</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">bytes</span>,
+        <span class="summary-sig-arg">width</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Convert serial format (byte stream) pixel data to flat row flat 
+      pixel.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.serialtoflat">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#iterstraight" class="summary-sig-name">iterstraight</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">raw</span>)</span><br />
+      Iterator that undoes the effect of filtering, and yields each row in 
+      serialised format (as a sequence of bytes).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.iterstraight">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="validate_signature"></a><span class="summary-sig-name">validate_signature</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      If signature (header) has not been read then read and validate it; 
+      otherwise do nothing.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.validate_signature">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#preamble" class="summary-sig-name">preamble</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Extract the image metadata by reading the initial part of the PNG 
+      file up to the start of the ``IDAT`` chunk.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.preamble">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#chunklentype" class="summary-sig-name">chunklentype</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Reads just enough of the input to determine the next chunk's length 
+      and type, returned as a (*length*, *type*) pair where *type* is a 
+      string.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.chunklentype">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#process_chunk" class="summary-sig-name">process_chunk</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Process the next chunk and its data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.process_chunk">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#read" class="summary-sig-name">read</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Read the PNG file and decode it.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.read">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#read_flat" class="summary-sig-name">read_flat</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Read a PNG file and decode it into flat row flat pixel format.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.read_flat">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#palette" class="summary-sig-name">palette</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">alpha</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">natural</code><code class="variable-quote">'</code></span>)</span><br />
+      Returns a palette that is a sequence of 3-tuples or 4-tuples, 
+      synthesizing it from the ``PLTE`` and ``tRNS`` chunks.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.palette">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#asDirect" class="summary-sig-name">asDirect</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the image data as a direct representation of an ``x * y * 
+      planes`` array.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.asDirect">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="asFloat"></a><span class="summary-sig-name">asFloat</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">maxval</span>=<span class="summary-sig-default">1.0</span>)</span><br />
+      Return image pixels as per :meth:`asDirect` method, but scale all 
+      pixel values to be floating point values between 0.0 and *maxval*.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.asFloat">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_as_rescale"></a><span class="summary-sig-name">_as_rescale</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">get</span>,
+        <span class="summary-sig-arg">targetbitdepth</span>)</span><br />
+      Helper used by :meth:`asRGB8` and :meth:`asRGBA8`.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader._as_rescale">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#asRGB8" class="summary-sig-name">asRGB8</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Return the image data as an RGB pixels with 8-bits per sample.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.asRGB8">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#asRGBA8" class="summary-sig-name">asRGBA8</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Return the image data as RGBA pixels with 8-bits per sample.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.asRGBA8">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#asRGB" class="summary-sig-name">asRGB</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Return image as RGB pixels.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.asRGB">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Reader-class.html#asRGBA" class="summary-sig-name">asRGBA</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Return image as RGBA pixels.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.asRGBA">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">_guess</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">**kw</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Create a PNG decoder object.
+
+The constructor expects exactly one keyword argument. If you
+supply a positional argument instead, it will guess the input
+type. You can choose among the following keyword arguments:
+
+filename
+  Name of input file (a PNG file).
+file
+  A file-like object (object with a read() method).
+bytes
+  ``array`` or ``string`` with PNG data.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="chunk"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">chunk</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">seek</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.chunk">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Read the next PNG chunk from the input file; returns a (*type*,*data*)
+  tuple.  *type* is the chunk's type as a string (all PNG chunk types are 4
+  characters long).  *data* is the chunk's data content, as a string.</p>
+  <p>If the optional `seek` argument is specified then it will keep reading
+  chunks until it either runs out of file or finds the type specified by 
+  the argument.  Note that in general the order of chunks in PNGs is 
+  unspecified, so using `seek` can cause you to miss chunks.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="undo_filter"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">undo_filter</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">filter_type</span>,
+        <span class="sig-arg">scanline</span>,
+        <span class="sig-arg">previous</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.undo_filter">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Undo the filter for a scanline.  `scanline` is a sequence of bytes 
+  that does not include the initial filter type byte. `previous` is decoded
+  previous scanline (for straightlaced images this is the previous pixel 
+  row, but for interlaced images, it is the previous scanline in the 
+  reduced image, which in general is not the previous pixel row in the 
+  final image). When there is no previous scanline (the first row of a 
+  straightlaced image, or the first row in one of the passes in an 
+  interlaced image), then this argument should be ``None``.</p>
+  <p>The scanline will have the effects of filtering removed, and the 
+  result will be returned as a fresh sequence of bytes.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="deinterlace"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">deinterlace</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">raw</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.deinterlace">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Read raw pixel data, undo filters, deinterlace, and flatten. Return in
+  flat row flat pixel format.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="iterboxed"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">iterboxed</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">rows</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.iterboxed">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Iterator that yields each scanline in boxed row flat pixel format.  
+  `rows` should be an iterator that yields the bytes of each row in 
+  turn.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="iterstraight"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">iterstraight</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">raw</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.iterstraight">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Iterator that undoes the effect of filtering, and yields each row in 
+  serialised format (as a sequence of bytes).  Assumes input is 
+  straightlaced.  `raw` should be an iterable that yields the raw bytes in 
+  chunks of arbitrary size.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="preamble"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">preamble</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.preamble">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Extract the image metadata by reading the initial part of the PNG file
+  up to the start of the ``IDAT`` chunk.  All the chunks that precede the 
+  ``IDAT`` chunk are read and either processed for metadata or 
+  discarded.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="chunklentype"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">chunklentype</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.chunklentype">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Reads just enough of the input to determine the next chunk's length 
+  and type, returned as a (*length*, *type*) pair where *type* is a string.
+  If there are no more chunks, ``None`` is returned.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="process_chunk"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">process_chunk</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.process_chunk">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Process the next chunk and its data.  This only processes the 
+  following chunk types, all others are ignored: ``IHDR``, ``PLTE``, 
+  ``bKGD``, ``tRNS``, ``gAMA``, ``sBIT``.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="read"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">read</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.read">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Read the PNG file and decode it.  Returns (`width`, `height`, 
+  `pixels`, `metadata`).</p>
+  <p>May use excessive memory.</p>
+  <p>`pixels` are returned in boxed row flat pixel format.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="read_flat"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">read_flat</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.read_flat">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Read a PNG file and decode it into flat row flat pixel format. Returns
+  (*width*, *height*, *pixels*, *metadata*).</p>
+  <p>May use excessive memory.</p>
+  <p>`pixels` are returned in flat row flat pixel format.</p>
+  <p>See also the :meth:`read` method which returns pixels in the more 
+  stream-friendly boxed row flat pixel format.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="palette"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">palette</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">alpha</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">natural</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.palette">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a palette that is a sequence of 3-tuples or 4-tuples, 
+  synthesizing it from the ``PLTE`` and ``tRNS`` chunks.  These chunks 
+  should have already been processed (for example, by calling the 
+  :meth:`preamble` method).  All the tuples are the same size: 3-tuples if 
+  there is no ``tRNS`` chunk, 4-tuples when there is a ``tRNS`` chunk.  
+  Assumes that the image is colour type 3 and therefore a ``PLTE`` chunk is
+  required.</p>
+  <p>If the `alpha` argument is ``'force'`` then an alpha channel is always
+  added, forcing the result to be a sequence of 4-tuples.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="asDirect"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">asDirect</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.asDirect">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the image data as a direct representation of an ``x * y * 
+  planes`` array.  This method is intended to remove the need for callers 
+  to deal with palettes and transparency themselves.  Images with a palette
+  (colour type 3) are converted to RGB or RGBA; images with transparency (a
+  ``tRNS`` chunk) are converted to LA or RGBA as appropriate. When returned
+  in this format the pixel values represent the colour value directly 
+  without needing to refer to palettes or transparency information.</p>
+  <p>Like the :meth:`read` method this method returns a 4-tuple:</p>
+  <p>(*width*, *height*, *pixels*, *meta*)</p>
+  <p>This method normally returns pixel values with the bit depth they have
+  in the source image, but when the source PNG has an ``sBIT`` chunk it is 
+  inspected and can reduce the bit depth of the result pixels; pixel values
+  will be reduced according to the bit depth specified in the ``sBIT`` 
+  chunk (PNG nerds should note a single result bit depth is used for all 
+  channels; the maximum of the ones specified in the ``sBIT`` chunk.  An 
+  RGB565 image will be rescaled to 6-bit RGB666).</p>
+  <p>The *meta* dictionary that is returned reflects the `direct` format 
+  and not the original source image.  For example, an RGB source image with
+  a ``tRNS`` chunk to represent a transparent colour, will have 
+  ``planes=3`` and ``alpha=False`` for the source image, but the *meta* 
+  dictionary returned by this method will have ``planes=4`` and 
+  ``alpha=True`` because an alpha channel is synthesized and added.</p>
+  <p>*pixels* is the pixel data in boxed row flat pixel format (just like 
+  the :meth:`read` method).</p>
+  <p>All the other aspects of the image data are not changed.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="asRGB8"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">asRGB8</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.asRGB8">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return the image data as an RGB pixels with 8-bits per sample.  This 
+  is like the :meth:`asRGB` method except that this method additionally 
+  rescales the values so that they are all between 0 and 255 (8-bit).  In 
+  the case where the source image has a bit depth &lt; 8 the transformation
+  preserves all the information; where the source image has bit depth &gt; 
+  8, then rescaling to 8-bit values loses precision.  No dithering is 
+  performed.  Like :meth:`asRGB`, an alpha channel in the source image will
+  raise an exception.</p>
+  <p>This function returns a 4-tuple: (*width*, *height*, *pixels*, 
+  *metadata*). *width*, *height*, *metadata* are as per the :meth:`read` 
+  method.</p>
+  <p>*pixels* is the pixel data in boxed row flat pixel format.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="asRGBA8"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">asRGBA8</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.asRGBA8">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return the image data as RGBA pixels with 8-bits per sample.  This 
+  method is similar to :meth:`asRGB8` and :meth:`asRGBA`:  The result 
+  pixels have an alpha channel, *and* values are rescaled to the range 0 to
+  255.  The alpha channel is synthesized if necessary (with a small speed 
+  penalty).</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="asRGB"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">asRGB</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.asRGB">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return image as RGB pixels.  RGB colour images are passed through 
+  unchanged; greyscales are expanded into RGB triplets (there is a small 
+  speed overhead for doing this).</p>
+  <p>An alpha channel in the source image will raise an exception.</p>
+  <p>The return values are as for the :meth:`read` method except that the 
+  *metadata* reflect the returned pixels, not the source image.  In 
+  particular, for this method ``metadata['greyscale']`` will be 
+  ``False``.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="asRGBA"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">asRGBA</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Reader.asRGBA">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return image as RGBA pixels.  Greyscales are expanded into RGB 
+  triplets; an alpha channel is synthesized if necessary. The return values
+  are as for the :meth:`read` method except that the *metadata* reflect the
+  returned pixels, not the source image.  In particular, for this method 
+  ``metadata['greyscale']`` will be ``False``, and ``metadata['alpha']`` 
+  will be ``True``.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Dec  6 16:19:03 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

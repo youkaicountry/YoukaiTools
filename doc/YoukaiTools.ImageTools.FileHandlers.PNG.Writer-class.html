@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>YoukaiTools.ImageTools.FileHandlers.PNG.Writer</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        YoukaiTools ::
+        ImageTools ::
+        FileHandlers ::
+        PNG ::
+        Writer ::
+        Class&nbsp;Writer
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="YoukaiTools.ImageTools.FileHandlers.PNG.Writer-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Writer</h1><p class="nomargin-top"><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer">source&nbsp;code</a></span></p>
+<p>PNG encoder in pure Python.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Writer-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">width</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">height</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">size</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">greyscale</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">alpha</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">bitdepth</span>=<span class="summary-sig-default">8</span>,
+        <span class="summary-sig-arg">palette</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">transparent</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">background</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">gamma</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">compression</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">interlace</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">bytes_per_sample</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">planes</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">colormap</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">maxval</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">chunk_limit</span>=<span class="summary-sig-default">1048576</span>)</span><br />
+      Create a PNG encoder object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Writer-class.html#make_palette" class="summary-sig-name">make_palette</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Create the byte sequences for a ``PLTE`` and if necessary a ``tRNS`` 
+      chunk.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.make_palette">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Writer-class.html#write" class="summary-sig-name">write</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">outfile</span>,
+        <span class="summary-sig-arg">rows</span>)</span><br />
+      Write a PNG image to the output file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.write">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Writer-class.html#write_passes" class="summary-sig-name">write_passes</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">outfile</span>,
+        <span class="summary-sig-arg">rows</span>,
+        <span class="summary-sig-arg">packed</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Write a PNG image to the output file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.write_passes">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Writer-class.html#write_array" class="summary-sig-name">write_array</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">outfile</span>,
+        <span class="summary-sig-arg">pixels</span>)</span><br />
+      Write an array in flat row flat pixel format as a PNG file on the 
+      output file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.write_array">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Writer-class.html#write_packed" class="summary-sig-name">write_packed</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">outfile</span>,
+        <span class="summary-sig-arg">rows</span>)</span><br />
+      Write PNG file to `outfile`.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.write_packed">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Writer-class.html#convert_pnm" class="summary-sig-name">convert_pnm</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">infile</span>,
+        <span class="summary-sig-arg">outfile</span>)</span><br />
+      Convert a PNM file containing raw pixel data into a PNG file with the
+      parameters set in the writer object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.convert_pnm">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="convert_ppm_and_pgm"></a><span class="summary-sig-name">convert_ppm_and_pgm</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ppmfile</span>,
+        <span class="summary-sig-arg">pgmfile</span>,
+        <span class="summary-sig-arg">outfile</span>)</span><br />
+      Convert a PPM and PGM file containing raw pixel data into a PNG 
+      outfile with the parameters set in the writer object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.convert_ppm_and_pgm">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Writer-class.html#file_scanlines" class="summary-sig-name">file_scanlines</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">infile</span>)</span><br />
+      Generates boxed rows in flat pixel format, from the input file 
+      `infile`.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.file_scanlines">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="array_scanlines"></a><span class="summary-sig-name">array_scanlines</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">pixels</span>)</span><br />
+      Generates boxed rows (flat pixels) from flat rows (flat pixels) in an
+      array.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.array_scanlines">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.ImageTools.FileHandlers.PNG.Writer-class.html#array_scanlines_interlace" class="summary-sig-name">array_scanlines_interlace</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">pixels</span>)</span><br />
+      Generator for interlaced scanlines from an array.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.array_scanlines_interlace">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">width</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">height</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">size</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">greyscale</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">alpha</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">bitdepth</span>=<span class="sig-default">8</span>,
+        <span class="sig-arg">palette</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">transparent</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">background</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">gamma</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">compression</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">interlace</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">bytes_per_sample</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">planes</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">colormap</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">maxval</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">chunk_limit</span>=<span class="sig-default">1048576</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+
+Create a PNG encoder object.
+
+Arguments:
+
+width, height
+  Image size in pixels, as two separate arguments.
+size
+  Image size (w,h) in pixels, as single argument.
+greyscale
+  Input data is greyscale, not RGB.
+alpha
+  Input data has alpha channel (RGBA or LA).
+bitdepth
+  Bit depth: from 1 to 16.
+palette
+  Create a palette for a colour mapped image (colour type 3).
+transparent
+  Specify a transparent colour (create a ``tRNS`` chunk).
+background
+  Specify a default background colour (create a ``bKGD`` chunk).
+gamma
+  Specify a gamma value (create a ``gAMA`` chunk).
+compression
+  zlib compression level (1-9).
+interlace
+  Create an interlaced image.
+chunk_limit
+  Write multiple ``IDAT`` chunks to save memory.
+
+The image size (in pixels) can be specified either by using the
+`width` and `height` arguments, or with the single `size`
+argument.  If `size` is used it should be a pair (*width*,
+*height*).
+
+`greyscale` and `alpha` are booleans that specify whether
+an image is greyscale (or colour), and whether it has an
+alpha channel (or not).
+
+`bitdepth` specifies the bit depth of the source pixel values.
+Each source pixel value must be an integer between 0 and
+``2**bitdepth-1``.  For example, 8-bit images have values
+between 0 and 255.  PNG only stores images with bit depths of
+1,2,4,8, or 16.  When `bitdepth` is not one of these values,
+the next highest valid bit depth is selected, and an ``sBIT``
+(significant bits) chunk is generated that specifies the original
+precision of the source image.  In this case the supplied pixel
+values will be rescaled to fit the range of the selected bit depth.
+
+The details of which bit depth / colour model combinations the
+PNG file format supports directly, are somewhat arcane
+(refer to the PNG specification for full details).  Briefly:
+&quot;small&quot; bit depths (1,2,4) are only allowed with greyscale and
+colour mapped images; colour mapped images cannot have bit depth
+16.
+
+For colour mapped images (in other words, when the `palette`
+argument is specified) the `bitdepth` argument must match one of
+the valid PNG bit depths: 1, 2, 4, or 8.  (It is valid to have a
+PNG image with a palette and an ``sBIT`` chunk, but the meaning
+is slightly different; it would be awkward to press the
+`bitdepth` argument into service for this.)
+
+The `palette` option, when specified, causes a colour mapped image
+to be created: the PNG colour type is set to 3; greyscale
+must not be set; alpha must not be set; transparent must
+not be set; the bit depth must be 1,2,4, or 8.  When a colour
+mapped image is created, the pixel values are palette indexes
+and the `bitdepth` argument specifies the size of these indexes
+(not the size of the colour values in the palette).
+
+The palette argument value should be a sequence of 3- or
+4-tuples.  3-tuples specify RGB palette entries; 4-tuples
+specify RGBA palette entries.  If both 4-tuples and 3-tuples
+appear in the sequence then all the 4-tuples must come
+before all the 3-tuples.  A ``PLTE`` chunk is created; if there
+are 4-tuples then a ``tRNS`` chunk is created as well.  The
+``PLTE`` chunk will contain all the RGB triples in the same
+sequence; the ``tRNS`` chunk will contain the alpha channel for
+all the 4-tuples, in the same sequence.  Palette entries
+are always 8-bit.
+
+If specified, the `transparent` and `background` parameters must
+be a tuple with three integer values for red, green, blue, or
+a simple integer (or singleton tuple) for a greyscale image.
+
+If specified, the `gamma` parameter must be a positive number
+(generally, a float).  A ``gAMA`` chunk will be created.  Note that
+this will not change the values of the pixels as they appear in
+the PNG file, they are assumed to have already been converted
+appropriately for the gamma specified.
+
+The `compression` argument specifies the compression level
+to be used by the ``zlib`` module.  Higher values are likely
+to compress better, but will be slower to compress.  The
+default for this argument is ``None``; this does not mean
+no compression, rather it means that the default from the
+``zlib`` module is used (which is generally acceptable).
+
+If `interlace` is true then an interlaced image is created
+(using PNG's so far only interace method, *Adam7*).  This does not
+affect how the pixels should be presented to the encoder, rather
+it changes how they are arranged into the PNG file.  On slow
+connexions interlaced images can be partially decoded by the
+browser to give a rough view of the image that is successively
+refined as more image data appears.
+
+.. note ::
+
+  Enabling the `interlace` option requires the entire image
+  to be processed in working memory.
+
+`chunk_limit` is used to limit the amount of memory used whilst
+compressing the image.  In order to avoid using large amounts of
+memory, multiple ``IDAT`` chunks may be created.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="make_palette"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">make_palette</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.make_palette">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Create the byte sequences for a ``PLTE`` and if necessary a ``tRNS`` 
+  chunk.  Returned as a pair (*p*, *t*).  *t* will be ``None`` if no 
+  ``tRNS`` chunk is necessary.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="write"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">write</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">outfile</span>,
+        <span class="sig-arg">rows</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.write">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Write a PNG image to the output file.  `rows` should be an iterable 
+  that yields each row in boxed row flat pixel format. The rows should be 
+  the rows of the original image, so there should be ``self.height`` rows 
+  of ``self.width * self.planes`` values. If `interlace` is specified (when
+  creating the instance), then an interlaced PNG file will be written.  
+  Supply the rows in the normal image order; the interlacing is carried out
+  internally.</p>
+  <p>.. note :</p>
+<pre class="literalblock">
+ Interlacing will require the entire image to be in working memory.
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="write_passes"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">write_passes</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">outfile</span>,
+        <span class="sig-arg">rows</span>,
+        <span class="sig-arg">packed</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.write_passes">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Write a PNG image to the output file.</p>
+  <p>Most users are expected to find the :meth:`write` or 
+  :meth:`write_array` method more convenient.</p>
+  <p>The rows should be given to this method in the order that they appear 
+  in the output file.  For straightlaced images, this is the usual top to 
+  bottom ordering, but for interlaced images the rows should have already 
+  been interlaced before passing them to this function.</p>
+  <p>`rows` should be an iterable that yields each row.  When `packed` is 
+  ``False`` the rows should be in boxed row flat pixel format; when 
+  `packed` is ``True`` each row should be a packed sequence of bytes.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="write_array"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">write_array</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">outfile</span>,
+        <span class="sig-arg">pixels</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.write_array">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Write an array in flat row flat pixel format as a PNG file on the 
+  output file.  See also :meth:`write` method.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="write_packed"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">write_packed</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">outfile</span>,
+        <span class="sig-arg">rows</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.write_packed">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Write PNG file to `outfile`.  The pixel data comes from `rows` which 
+  should be in boxed row packed format.  Each row should be a sequence of 
+  packed bytes.</p>
+  <p>Technically, this method does work for interlaced images but it is 
+  best avoided.  For interlaced images, the rows should be presented in the
+  order that they appear in the file.</p>
+  <p>This method should not be used when the source image bit depth is not 
+  one naturally supported by PNG; the bit depth should be 1, 2, 4, 8, or 
+  16.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="convert_pnm"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">convert_pnm</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">infile</span>,
+        <span class="sig-arg">outfile</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.convert_pnm">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Convert a PNM file containing raw pixel data into a PNG file with the 
+  parameters set in the writer object.  Works for (binary) PGM, PPM, and 
+  PAM formats.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="file_scanlines"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">file_scanlines</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">infile</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.file_scanlines">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generates boxed rows in flat pixel format, from the input file 
+  `infile`.  It assumes that the input file is in a &quot;Netpbm-like&quot;
+  binary format, and is positioned at the beginning of the first pixel.  
+  The number of pixels to read is taken from the image dimensions (`width`,
+  `height`, `planes`) and the number of bytes per value is implied by the 
+  image `bitdepth`.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="array_scanlines_interlace"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">array_scanlines_interlace</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">pixels</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.ImageTools.FileHandlers.PNG-pysrc.html#Writer.array_scanlines_interlace">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Generator for interlaced scanlines from an array.  `pixels` is the 
+  full source image in flat row flat pixel format.  The generator yields 
+  each scanline of the reduced passes in turn, in boxed row flat pixel 
+  format.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Dec  6 16:19:04 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

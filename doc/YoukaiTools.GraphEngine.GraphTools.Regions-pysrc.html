@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>YoukaiTools.GraphEngine.GraphTools.Regions</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="YoukaiTools-module.html">Package&nbsp;YoukaiTools</a> ::
+        <a href="YoukaiTools.GraphEngine-module.html">Package&nbsp;GraphEngine</a> ::
+        <a href="YoukaiTools.GraphEngine.GraphTools-module.html">Package&nbsp;GraphTools</a> ::
+        Module&nbsp;Regions
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="YoukaiTools.GraphEngine.GraphTools.Regions-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="YoukaiTools.GraphEngine.GraphTools.Regions-module.html">Module YoukaiTools.GraphEngine.GraphTools.Regions</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#Copyright (c) &lt;2011&gt; &lt;Nathaniel Caldwell&gt;</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment">#Permission is hereby granted, free of charge, to any person obtaining a copy</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment">#of this software and associated documentation files (the "Software"), to deal</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#in the Software without restriction, including without limitation the rights</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment">#copies of the Software, and to permit persons to whom the Software is</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment">#furnished to do so, subject to the following conditions:</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment">#The above copyright notice and this permission notice shall be included in all</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment">#copies or substantial portions of the Software.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment">#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment">#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment">#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment">#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment">#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment">#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment">#SOFTWARE.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment">#FUNCTIONS THAT INVOLVE BREAKING UP A GRAPH INTO LOGICAL REGIONS</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-comment">#regionsize = 0 - 1.0 determining chance of keepin a region the same size</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment">#coherency = 0 - 1.0 determining chance of regions being broken up</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-comment">#startvertex = the vertex number to start from</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-comment">#random = a random object</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-comment">#regions = the number of regions. Set this to None or &lt; 0 to get the normalize 0.0 - 1.0</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-comment">#leveldataindex = what data index to shove the level data into</tt> </tt>
+<a name="setLevels"></a><div id="setLevels-def"><a name="L29"></a><tt class="py-lineno"> 29</tt> <a class="py-toggle" href="#" id="setLevels-toggle" onclick="return toggle('setLevels');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GraphEngine.GraphTools.Regions-module.html#setLevels">setLevels</a><tt class="py-op">(</tt><tt class="py-param">g</tt><tt class="py-op">,</tt> <tt class="py-param">random</tt><tt class="py-op">,</tt> <tt class="py-param">startvertex</tt><tt class="py-op">,</tt> <tt class="py-param">coherency</tt><tt class="py-op">,</tt> <tt class="py-param">regionsize</tt><tt class="py-op">,</tt>  <tt class="py-param">regions</tt><tt class="py-op">,</tt> <tt class="py-param">leveldataindex</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="setLevels-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="setLevels-expanded"><a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">    <tt class="py-comment">#set all levels</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">    <tt class="py-name">queue</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">startvertex</tt><tt class="py-op">]</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">    <tt class="py-name">neighbors</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">v</tt> <tt class="py-keyword">in</tt> <tt class="py-name">g</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Method YoukaiTools.GraphEngine.BaseObjects.BaseGraph.getVertexList()=YoukaiTools.GraphEngine.BaseObjects.BaseGraph-class.html#getVertexList,Method YoukaiTools.GraphEngine.Graphs.BasicGraph.getVertexList()=YoukaiTools.GraphEngine.Graphs.BasicGraph-class.html#getVertexList"><a title="YoukaiTools.GraphEngine.BaseObjects.BaseGraph.getVertexList
+YoukaiTools.GraphEngine.Graphs.BasicGraph.getVertexList" class="py-name" href="#" onclick="return doclink('link-0', 'getVertexList', 'link-0');">getVertexList</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-name">g</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Method YoukaiTools.GraphEngine.BaseObjects.BaseGraph.setVertexData()=YoukaiTools.GraphEngine.BaseObjects.BaseGraph-class.html#setVertexData,Method YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph.setVertexData()=YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph-class.html#setVertexData,Method YoukaiTools.GraphEngine.Graphs.BasicGraph.setVertexData()=YoukaiTools.GraphEngine.Graphs.BasicGraph-class.html#setVertexData"><a title="YoukaiTools.GraphEngine.BaseObjects.BaseGraph.setVertexData
+YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph.setVertexData
+YoukaiTools.GraphEngine.Graphs.BasicGraph.setVertexData" class="py-name" href="#" onclick="return doclink('link-1', 'setVertexData', 'link-1');">setVertexData</a></tt><tt class="py-op">(</tt><tt class="py-name">v</tt><tt class="py-op">,</tt> <tt class="py-name">leveldataindex</tt><tt class="py-op">,</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">    <tt class="py-name">last</tt> <tt class="py-op">=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">    <tt class="py-comment">#regionsize = 0</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">    <tt class="py-keyword">while</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">queue</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-name">here</tt> <tt class="py-op">=</tt> <tt class="py-name">queue</tt><tt class="py-op">.</tt><tt class="py-name">pop</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-name">random</tt><tt class="py-op">.</tt><tt class="py-name">shuffle</tt><tt class="py-op">(</tt><tt class="py-name">queue</tt><tt class="py-op">)</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">n</tt> <tt class="py-keyword">in</tt> <tt class="py-name">g</tt><tt class="py-op">.</tt><tt class="py-name">getConnections</tt><tt class="py-op">(</tt><tt class="py-name">here</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">g</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Method YoukaiTools.GraphEngine.BaseObjects.BaseGraph.getVertexData()=YoukaiTools.GraphEngine.BaseObjects.BaseGraph-class.html#getVertexData,Method YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph.getVertexData()=YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph-class.html#getVertexData,Method YoukaiTools.GraphEngine.Graphs.BasicGraph.getVertexData()=YoukaiTools.GraphEngine.Graphs.BasicGraph-class.html#getVertexData"><a title="YoukaiTools.GraphEngine.BaseObjects.BaseGraph.getVertexData
+YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph.getVertexData
+YoukaiTools.GraphEngine.Graphs.BasicGraph.getVertexData" class="py-name" href="#" onclick="return doclink('link-2', 'getVertexData', 'link-2');">getVertexData</a></tt><tt class="py-op">(</tt><tt class="py-name">n</tt><tt class="py-op">,</tt> <tt class="py-name">leveldataindex</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">                <tt class="py-name">neighbors</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">n</tt><tt class="py-op">)</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">random</tt><tt class="py-op">.</tt><tt class="py-name">shuffle</tt><tt class="py-op">(</tt><tt class="py-name">neighbors</tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-name">stay</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-name">random</tt><tt class="py-op">.</tt><tt class="py-name">random</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">&lt;</tt> <tt class="py-name">coherency</tt><tt class="py-op">)</tt> <tt class="py-keyword">and</tt> <tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">neighbors</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> <tt class="py-comment">#pick from neighbors?</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">stay</tt><tt class="py-op">:</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">            <tt class="py-name">queue</tt><tt class="py-op">.</tt><tt class="py-name">insert</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">neighbors</tt><tt class="py-op">.</tt><tt class="py-name">pop</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-name">queue</tt> <tt class="py-op">=</tt> <tt class="py-name">queue</tt> <tt class="py-op">+</tt> <tt class="py-name">neighbors</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-name">neighbors</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">last</tt> <tt class="py-op">==</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">            <tt class="py-name">last</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">random</tt><tt class="py-op">.</tt><tt class="py-name">random</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-name">regionsize</tt><tt class="py-op">:</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">                <tt class="py-name">last</tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-name">g</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name"><a title="YoukaiTools.GraphEngine.BaseObjects.BaseGraph.setVertexData
+YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph.setVertexData
+YoukaiTools.GraphEngine.Graphs.BasicGraph.setVertexData" class="py-name" href="#" onclick="return doclink('link-3', 'setVertexData', 'link-1');">setVertexData</a></tt><tt class="py-op">(</tt><tt class="py-name">here</tt><tt class="py-op">,</tt> <tt class="py-name">leveldataindex</tt><tt class="py-op">,</tt> <tt class="py-name">last</tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">       </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">    <tt class="py-comment">#now last is the highest. Normalize everything from 0.0 - 1.0</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">    <tt class="py-name">last</tt> <tt class="py-op">=</tt> <tt class="py-name">float</tt><tt class="py-op">(</tt><tt class="py-name">last</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">v</tt> <tt class="py-keyword">in</tt> <tt class="py-name">g</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name"><a title="YoukaiTools.GraphEngine.BaseObjects.BaseGraph.getVertexList
+YoukaiTools.GraphEngine.Graphs.BasicGraph.getVertexList" class="py-name" href="#" onclick="return doclink('link-4', 'getVertexList', 'link-0');">getVertexList</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-name">g</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="YoukaiTools.GraphEngine.BaseObjects.BaseGraph.setVertexData
+YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph.setVertexData
+YoukaiTools.GraphEngine.Graphs.BasicGraph.setVertexData" class="py-name" href="#" onclick="return doclink('link-5', 'setVertexData', 'link-1');">setVertexData</a></tt><tt class="py-op">(</tt><tt class="py-name">v</tt><tt class="py-op">,</tt> <tt class="py-name">leveldataindex</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-name">float</tt><tt class="py-op">(</tt><tt class="py-name">g</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="YoukaiTools.GraphEngine.BaseObjects.BaseGraph.getVertexData
+YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph.getVertexData
+YoukaiTools.GraphEngine.Graphs.BasicGraph.getVertexData" class="py-name" href="#" onclick="return doclink('link-6', 'getVertexData', 'link-2');">getVertexData</a></tt><tt class="py-op">(</tt><tt class="py-name">v</tt><tt class="py-op">,</tt> <tt class="py-name">leveldataindex</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-op">/</tt> <tt class="py-name">last</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">regions</tt> <tt class="py-op">!=</tt> <tt class="py-name">None</tt> <tt class="py-keyword">and</tt> <tt class="py-name">regions</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">            <tt class="py-name">g</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="YoukaiTools.GraphEngine.BaseObjects.BaseGraph.setVertexData
+YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph.setVertexData
+YoukaiTools.GraphEngine.Graphs.BasicGraph.setVertexData" class="py-name" href="#" onclick="return doclink('link-7', 'setVertexData', 'link-1');">setVertexData</a></tt><tt class="py-op">(</tt><tt class="py-name">v</tt><tt class="py-op">,</tt> <tt class="py-name">leveldataindex</tt><tt class="py-op">,</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">regions</tt><tt class="py-op">*</tt><tt class="py-op">(</tt><tt class="py-name">float</tt><tt class="py-op">(</tt><tt class="py-name">g</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name"><a title="YoukaiTools.GraphEngine.BaseObjects.BaseGraph.getVertexData
+YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph.getVertexData
+YoukaiTools.GraphEngine.Graphs.BasicGraph.getVertexData" class="py-name" href="#" onclick="return doclink('link-8', 'getVertexData', 'link-2');">getVertexData</a></tt><tt class="py-op">(</tt><tt class="py-name">v</tt><tt class="py-op">,</tt> <tt class="py-name">leveldataindex</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> </tt>
+</div><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">    </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-comment">#calculates regions</tt> </tt>
+<a name="findGeometryRegions"></a><div id="findGeometryRegions-def"><a name="L66"></a><tt class="py-lineno"> 66</tt> <a class="py-toggle" href="#" id="findGeometryRegions-toggle" onclick="return toggle('findGeometryRegions');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GraphEngine.GraphTools.Regions-module.html#findGeometryRegions">findGeometryRegions</a><tt class="py-op">(</tt><tt class="py-param">g</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="findGeometryRegions-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="findGeometryRegions-expanded"><a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">    <tt class="py-name">regionnum</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt>   <tt class="py-comment">#vertex to regionnum (use for marking)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">    <tt class="py-name">regionlist</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt>  <tt class="py-comment">#regionnum to vertex</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">    <tt class="py-name">marked</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt>       <tt class="py-comment">#number of marked vertices</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">    <tt class="py-name">nextvertex</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt>   <tt class="py-comment">#next vertex to start with</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">    <tt class="py-keyword">while</tt> <tt class="py-name">marked</tt> <tt class="py-op">&lt;</tt> <tt class="py-name">g</tt><tt class="py-op">.</tt><tt class="py-name">getVertexNum</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> <tt class="py-comment">#do the stuff here.</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-comment">#pick a vertex</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt class="py-comment">#spread until criteria is met</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-comment">#advance regionnum one, pick new region</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-comment">#returns list of vertices and edges</tt> </tt>
+<a name="expandFromVertex"></a><div id="expandFromVertex-def"><a name="L79"></a><tt class="py-lineno"> 79</tt> <a class="py-toggle" href="#" id="expandFromVertex-toggle" onclick="return toggle('expandFromVertex');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GraphEngine.GraphTools.Regions-module.html#expandFromVertex">expandFromVertex</a><tt class="py-op">(</tt><tt class="py-param">g</tt><tt class="py-op">,</tt> <tt class="py-param">starts</tt><tt class="py-op">,</tt> <tt class="py-param">levels</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="expandFromVertex-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="expandFromVertex-expanded"><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">    <tt class="py-name">border</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">    <tt class="py-name">bordern</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">    <tt class="py-name">border</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Method YoukaiTools.ImageTools.FileHandlers.PNG._array_shim.extend()=YoukaiTools.ImageTools.FileHandlers.PNG._array_shim-class.html#extend"><a title="YoukaiTools.ImageTools.FileHandlers.PNG._array_shim.extend" class="py-name" href="#" onclick="return doclink('link-9', 'extend', 'link-9');">extend</a></tt><tt class="py-op">(</tt><tt class="py-name">starts</tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">    <tt class="py-name">edges</tt> <tt class="py-op">=</tt> <tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">    <tt class="py-name">vertices</tt> <tt class="py-op">=</tt> <tt class="py-name">set</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt id="link-10" class="py-name" targets="Variable YoukaiTools.ImageTools.__utils__.i=YoukaiTools.ImageTools.__utils__-module.html#i"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-10', 'i', 'link-10');">i</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">levels</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">v</tt> <tt class="py-keyword">in</tt> <tt class="py-name">border</tt><tt class="py-op">:</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">            <tt class="py-name">vertices</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Function YoukaiTools.ImageTools.CombineFunctions.add()=YoukaiTools.ImageTools.CombineFunctions-module.html#add"><a title="YoukaiTools.ImageTools.CombineFunctions.add" class="py-name" href="#" onclick="return doclink('link-11', 'add', 'link-11');">add</a></tt><tt class="py-op">(</tt><tt class="py-name">v</tt><tt class="py-op">)</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">            <tt class="py-name">adj</tt> <tt class="py-op">=</tt> <tt class="py-name">g</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Method YoukaiTools.GraphEngine.BaseObjects.BaseGraph.getAdjacent()=YoukaiTools.GraphEngine.BaseObjects.BaseGraph-class.html#getAdjacent,Method YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph.getAdjacent()=YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph-class.html#getAdjacent,Method YoukaiTools.GraphEngine.Graphs.BasicGraph.getAdjacent()=YoukaiTools.GraphEngine.Graphs.BasicGraph-class.html#getAdjacent"><a title="YoukaiTools.GraphEngine.BaseObjects.BaseGraph.getAdjacent
+YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph.getAdjacent
+YoukaiTools.GraphEngine.Graphs.BasicGraph.getAdjacent" class="py-name" href="#" onclick="return doclink('link-12', 'getAdjacent', 'link-12');">getAdjacent</a></tt><tt class="py-op">(</tt><tt class="py-name">v</tt><tt class="py-op">)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">a</tt> <tt class="py-keyword">in</tt> <tt class="py-name">adj</tt><tt class="py-op">:</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">a</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> <tt class="py-keyword">not</tt> <tt class="py-keyword">in</tt> <tt class="py-name">vertices</tt><tt class="py-op">:</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">                    <tt class="py-name">bordern</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">a</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">                    <tt class="py-name">vertices</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="YoukaiTools.ImageTools.CombineFunctions.add" class="py-name" href="#" onclick="return doclink('link-13', 'add', 'link-11');">add</a></tt><tt class="py-op">(</tt><tt class="py-name">a</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">                <tt class="py-name">edges</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="YoukaiTools.ImageTools.CombineFunctions.add" class="py-name" href="#" onclick="return doclink('link-14', 'add', 'link-11');">add</a></tt><tt class="py-op">(</tt><tt class="py-name">a</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-name">border</tt> <tt class="py-op">=</tt> <tt class="py-name">bordern</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">        <tt class="py-name">bordern</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">    <tt class="py-comment">#finish up edges on border vertices</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt class="py-name">v</tt> <tt class="py-keyword">in</tt> <tt class="py-name">border</tt><tt class="py-op">:</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-name">adj</tt> <tt class="py-op">=</tt> <tt class="py-name">g</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="YoukaiTools.GraphEngine.BaseObjects.BaseGraph.getAdjacent
+YoukaiTools.GraphEngine.GraphTools.SpecialTypes.AdjacencyGraph.BaseAdjacencyGraph.getAdjacent
+YoukaiTools.GraphEngine.Graphs.BasicGraph.getAdjacent" class="py-name" href="#" onclick="return doclink('link-15', 'getAdjacent', 'link-12');">getAdjacent</a></tt><tt class="py-op">(</tt><tt class="py-name">v</tt><tt class="py-op">)</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">a</tt> <tt class="py-keyword">in</tt> <tt class="py-name">adj</tt><tt class="py-op">:</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">a</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> <tt class="py-keyword">in</tt> <tt class="py-name">vertices</tt><tt class="py-op">:</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">                <tt class="py-name">edges</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="YoukaiTools.ImageTools.CombineFunctions.add" class="py-name" href="#" onclick="return doclink('link-16', 'add', 'link-11');">add</a></tt><tt class="py-op">(</tt><tt class="py-name">a</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">edges</tt><tt class="py-op">,</tt> <tt class="py-name">vertices</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Dec  6 16:19:05 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

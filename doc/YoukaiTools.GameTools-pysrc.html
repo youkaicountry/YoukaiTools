@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>YoukaiTools.GameTools</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="YoukaiTools-module.html">Package&nbsp;YoukaiTools</a> ::
+        Package&nbsp;GameTools
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="YoukaiTools.GameTools-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="YoukaiTools.GameTools-module.html">Package YoukaiTools.GameTools</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment">#Copyright (c) &lt;2011&gt; &lt;Nathaniel Caldwell&gt;</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment">#Permission is hereby granted, free of charge, to any person obtaining a copy</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment">#of this software and associated documentation files (the "Software"), to deal</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment">#in the Software without restriction, including without limitation the rights</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment">#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment">#copies of the Software, and to permit persons to whom the Software is</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment">#furnished to do so, subject to the following conditions:</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment">#The above copyright notice and this permission notice shall be included in all</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment">#copies or substantial portions of the Software.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment">#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment">#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment">#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-comment">#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-comment">#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment">#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-comment">#SOFTWARE.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt> <tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Package YoukaiTools.GameTools.Animated=YoukaiTools.GameTools.Animated-module.html"><a title="YoukaiTools.GameTools.Animated" class="py-name" href="#" onclick="return doclink('link-0', 'Animated', 'link-0');">Animated</a></tt> <tt class="py-keyword">as</tt> <tt class="py-name">__anim</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Class YoukaiTools.GameTools.GameState'.GameState=YoukaiTools.GameTools.GameState%27.GameState-class.html"><a title="YoukaiTools.GameTools.GameState'.GameState" class="py-name" href="#" onclick="return doclink('link-1', 'GameState', 'link-1');">GameState</a></tt> <tt class="py-keyword">as</tt> <tt class="py-name">__gs</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Class YoukaiTools.GameTools.KeyManager'.KeyManager=YoukaiTools.GameTools.KeyManager%27.KeyManager-class.html"><a title="YoukaiTools.GameTools.KeyManager'.KeyManager" class="py-name" href="#" onclick="return doclink('link-2', 'KeyManager', 'link-2');">KeyManager</a></tt> <tt class="py-keyword">as</tt> <tt class="py-name">__km</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Class YoukaiTools.GameTools.TileManager'.TileManager=YoukaiTools.GameTools.TileManager%27.TileManager-class.html"><a title="YoukaiTools.GameTools.TileManager'.TileManager" class="py-name" href="#" onclick="return doclink('link-3', 'TileManager', 'link-3');">TileManager</a></tt> <tt class="py-keyword">as</tt> <tt class="py-name">__tm</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt> <tt class="py-keyword">import</tt> <tt id="link-4" class="py-name" targets="Class YoukaiTools.GameTools.Camera2D'.Camera2D=YoukaiTools.GameTools.Camera2D%27.Camera2D-class.html"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D" class="py-name" href="#" onclick="return doclink('link-4', 'Camera2D', 'link-4');">Camera2D</a></tt> <tt class="py-keyword">as</tt> <tt class="py-name">__cam</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt id="link-5" class="py-name" targets="Class YoukaiTools.GameTools.Animated.AnimationSet=YoukaiTools.GameTools.Animated.AnimationSet-class.html"><a title="YoukaiTools.GameTools.Animated.AnimationSet" class="py-name" href="#" onclick="return doclink('link-5', 'AnimationSet', 'link-5');">AnimationSet</a></tt> <tt class="py-op">=</tt> <tt class="py-name">__anim</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="YoukaiTools.GameTools.Animated.AnimationSet" class="py-name" href="#" onclick="return doclink('link-6', 'AnimationSet', 'link-5');">AnimationSet</a></tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt id="link-7" class="py-name" targets="Class YoukaiTools.GameTools.Animated.AnimatedObject=YoukaiTools.GameTools.Animated.AnimatedObject-class.html"><a title="YoukaiTools.GameTools.Animated.AnimatedObject" class="py-name" href="#" onclick="return doclink('link-7', 'AnimatedObject', 'link-7');">AnimatedObject</a></tt> <tt class="py-op">=</tt> <tt class="py-name">__anim</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name"><a title="YoukaiTools.GameTools.Animated.AnimatedObject" class="py-name" href="#" onclick="return doclink('link-8', 'AnimatedObject', 'link-7');">AnimatedObject</a></tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt id="link-9" class="py-name"><a title="YoukaiTools.GameTools.KeyManager'.KeyManager" class="py-name" href="#" onclick="return doclink('link-9', 'KeyManager', 'link-2');">KeyManager</a></tt> <tt class="py-op">=</tt> <tt class="py-name">__km</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="YoukaiTools.GameTools.KeyManager'.KeyManager" class="py-name" href="#" onclick="return doclink('link-10', 'KeyManager', 'link-2');">KeyManager</a></tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt id="link-11" class="py-name" targets="Class YoukaiTools.GameTools.GameState'.GameStateManager=YoukaiTools.GameTools.GameState%27.GameStateManager-class.html"><a title="YoukaiTools.GameTools.GameState'.GameStateManager" class="py-name" href="#" onclick="return doclink('link-11', 'GameStateManager', 'link-11');">GameStateManager</a></tt> <tt class="py-op">=</tt> <tt class="py-name">__gs</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="YoukaiTools.GameTools.GameState'.GameStateManager" class="py-name" href="#" onclick="return doclink('link-12', 'GameStateManager', 'link-11');">GameStateManager</a></tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"><tt id="link-13" class="py-name"><a title="YoukaiTools.GameTools.GameState'.GameState" class="py-name" href="#" onclick="return doclink('link-13', 'GameState', 'link-1');">GameState</a></tt> <tt class="py-op">=</tt> <tt class="py-name">__gs</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="YoukaiTools.GameTools.GameState'.GameState" class="py-name" href="#" onclick="return doclink('link-14', 'GameState', 'link-1');">GameState</a></tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"><tt id="link-15" class="py-name"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D" class="py-name" href="#" onclick="return doclink('link-15', 'Camera2D', 'link-4');">Camera2D</a></tt> <tt class="py-op">=</tt> <tt class="py-name">__cam</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="YoukaiTools.GameTools.Camera2D'.Camera2D" class="py-name" href="#" onclick="return doclink('link-16', 'Camera2D', 'link-4');">Camera2D</a></tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"><tt id="link-17" class="py-name"><a title="YoukaiTools.GameTools.TileManager'.TileManager" class="py-name" href="#" onclick="return doclink('link-17', 'TileManager', 'link-3');">TileManager</a></tt> <tt class="py-op">=</tt> <tt class="py-name">__tm</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="YoukaiTools.GameTools.TileManager'.TileManager" class="py-name" href="#" onclick="return doclink('link-18', 'TileManager', 'link-3');">TileManager</a></tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"><tt id="link-19" class="py-name" targets="Class YoukaiTools.GameTools.TileManager'.SpriteSheet=YoukaiTools.GameTools.TileManager%27.SpriteSheet-class.html"><a title="YoukaiTools.GameTools.TileManager'.SpriteSheet" class="py-name" href="#" onclick="return doclink('link-19', 'SpriteSheet', 'link-19');">SpriteSheet</a></tt> <tt class="py-op">=</tt> <tt class="py-name">__tm</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="YoukaiTools.GameTools.TileManager'.SpriteSheet" class="py-name" href="#" onclick="return doclink('link-20', 'SpriteSheet', 'link-19');">SpriteSheet</a></tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Dec  6 16:19:06 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

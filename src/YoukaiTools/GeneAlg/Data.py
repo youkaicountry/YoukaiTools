@@ -11,7 +11,7 @@ def make_report(top_object, top_fitness, generation, termination_generation, tim
     d["termination_time"] = termination_time
     return d
 
-def make_gene(fitness, mate, mutate, random_dna, basic_dna, report=lambda obj,fitness,generation,topgeneration:1):
+def make_gene(fitness, mate, mutate, random_dna, basic_dna, report=lambda (obj,fitness,generation,topgeneration):1):
     d = {}
     d["fitness"] = fitness
     d["mate"] = mate

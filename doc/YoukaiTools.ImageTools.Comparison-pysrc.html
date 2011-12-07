@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>YoukaiTools.ImageTools.Comparison</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="YoukaiTools-module.html">Package&nbsp;YoukaiTools</a> ::
+        <a href="YoukaiTools.ImageTools-module.html">Package&nbsp;ImageTools</a> ::
+        Module&nbsp;Comparison
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="YoukaiTools.ImageTools.Comparison-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="YoukaiTools.ImageTools.Comparison-module.html">Module YoukaiTools.ImageTools.Comparison</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment">#Copyright (c) &lt;2011&gt; &lt;Nathaniel Caldwell&gt;</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment">#Permission is hereby granted, free of charge, to any person obtaining a copy</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment">#of this software and associated documentation files (the "Software"), to deal</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment">#in the Software without restriction, including without limitation the rights</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment">#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment">#copies of the Software, and to permit persons to whom the Software is</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment">#furnished to do so, subject to the following conditions:</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment">#The above copyright notice and this permission notice shall be included in all</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment">#copies or substantial portions of the Software.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment">#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment">#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment">#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-comment">#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-comment">#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment">#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-comment">#SOFTWARE.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt> <tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module YoukaiTools.ImageTools.Metric=YoukaiTools.ImageTools.Metric-module.html"><a title="YoukaiTools.ImageTools.Metric" class="py-name" href="#" onclick="return doclink('link-0', 'Metric', 'link-0');">Metric</a></tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Module YoukaiTools.ImageTools.SubImage=YoukaiTools.ImageTools.SubImage-module.html"><a title="YoukaiTools.ImageTools.SubImage" class="py-name" href="#" onclick="return doclink('link-1', 'SubImage', 'link-1');">SubImage</a></tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-comment">#OPTIMIZE: HAVE PRECOMPUTED VALUES ABLE TO BE FED IN TO THESE FUNCTIONS</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-comment">#returns the manhattan distance between the two images of the same width and height</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-comment">#and number of channels</tt> </tt>
+<a name="manhattanDistance"></a><div id="manhattanDistance-def"><a name="L28"></a><tt class="py-lineno">28</tt> <a class="py-toggle" href="#" id="manhattanDistance-toggle" onclick="return toggle('manhattanDistance');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.ImageTools.Comparison-module.html#manhattanDistance">manhattanDistance</a><tt class="py-op">(</tt><tt class="py-param">image1</tt><tt class="py-op">,</tt> <tt class="py-param">image2</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="manhattanDistance-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="manhattanDistance-expanded"><a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">    <tt class="py-name">adder</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt id="link-2" class="py-name" targets="Variable YoukaiTools.ImageTools.__utils__.i=YoukaiTools.ImageTools.__utils__-module.html#i"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-2', 'i', 'link-2');">i</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-number">3</tt><tt class="py-op">,</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">image1</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">j</tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">image1</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">            <tt class="py-name">adder</tt> <tt class="py-op">+=</tt> <tt class="py-name">abs</tt><tt class="py-op">(</tt><tt class="py-name">image1</tt><tt class="py-op">[</tt><tt id="link-3" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-3', 'i', 'link-2');">i</a></tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-name">j</tt><tt class="py-op">]</tt> <tt class="py-op">-</tt> <tt class="py-name">image2</tt><tt class="py-op">[</tt><tt id="link-4" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-4', 'i', 'link-2');">i</a></tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-name">j</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">adder</tt> </tt>
+</div><a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">     </tt>
+<a name="manhattanAverageDistance"></a><div id="manhattanAverageDistance-def"><a name="L35"></a><tt class="py-lineno">35</tt> <a class="py-toggle" href="#" id="manhattanAverageDistance-toggle" onclick="return toggle('manhattanAverageDistance');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.ImageTools.Comparison-module.html#manhattanAverageDistance">manhattanAverageDistance</a><tt class="py-op">(</tt><tt class="py-param">image1</tt><tt class="py-op">,</tt> <tt class="py-param">image2</tt><tt class="py-op">,</tt> <tt class="py-param">div</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="manhattanAverageDistance-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="manhattanAverageDistance-expanded"><a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">    <tt class="py-name">adder</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">div</tt><tt class="py-op">==</tt><tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">        <tt class="py-name">div</tt> <tt class="py-op">=</tt> <tt class="py-name">image1</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">*</tt><tt class="py-name">image1</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt id="link-5" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-5', 'i', 'link-2');">i</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-number">3</tt><tt class="py-op">,</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">image1</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">j</tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">image1</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">            <tt class="py-name">adder</tt> <tt class="py-op">+=</tt> <tt class="py-name">abs</tt><tt class="py-op">(</tt><tt class="py-name">image1</tt><tt class="py-op">[</tt><tt id="link-6" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-6', 'i', 'link-2');">i</a></tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-name">j</tt><tt class="py-op">]</tt> <tt class="py-op">-</tt> <tt class="py-name">image2</tt><tt class="py-op">[</tt><tt id="link-7" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-7', 'i', 'link-2');">i</a></tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-name">j</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">adder</tt><tt class="py-op">/</tt><tt class="py-name">div</tt> </tt>
+</div><a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line"><tt class="py-comment">#must have same number of channels</tt> </tt>
+<a name="averageColorDist"></a><div id="averageColorDist-def"><a name="L45"></a><tt class="py-lineno">45</tt> <a class="py-toggle" href="#" id="averageColorDist-toggle" onclick="return toggle('averageColorDist');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.ImageTools.Comparison-module.html#averageColorDist">averageColorDist</a><tt class="py-op">(</tt><tt class="py-param">image1</tt><tt class="py-op">,</tt> <tt class="py-param">image2</tt><tt class="py-op">,</tt> <tt class="py-param">averagecolor1</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">averagecolor2</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="averageColorDist-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="averageColorDist-expanded"><a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">    <tt class="py-name">a1</tt> <tt class="py-op">=</tt> <tt id="link-8" class="py-name"><a title="YoukaiTools.ImageTools.Metric" class="py-name" href="#" onclick="return doclink('link-8', 'Metric', 'link-0');">Metric</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Function YoukaiTools.ImageTools.Metric.calculateAverageColor()=YoukaiTools.ImageTools.Metric-module.html#calculateAverageColor"><a title="YoukaiTools.ImageTools.Metric.calculateAverageColor" class="py-name" href="#" onclick="return doclink('link-9', 'calculateAverageColor', 'link-9');">calculateAverageColor</a></tt><tt class="py-op">(</tt><tt class="py-name">image1</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">averagecolor1</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt> <tt class="py-keyword">else</tt> <tt class="py-name">averagecolor1</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">    <tt class="py-name">a2</tt> <tt class="py-op">=</tt> <tt id="link-10" class="py-name"><a title="YoukaiTools.ImageTools.Metric" class="py-name" href="#" onclick="return doclink('link-10', 'Metric', 'link-0');">Metric</a></tt><tt class="py-op">.</tt><tt id="link-11" class="py-name"><a title="YoukaiTools.ImageTools.Metric.calculateAverageColor" class="py-name" href="#" onclick="return doclink('link-11', 'calculateAverageColor', 'link-9');">calculateAverageColor</a></tt><tt class="py-op">(</tt><tt class="py-name">image2</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">averagecolor2</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt> <tt class="py-keyword">else</tt> <tt class="py-name">averagecolor2</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">    <tt class="py-name">adder</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt id="link-12" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-12', 'i', 'link-2');">i</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">a1</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">        <tt class="py-name">adder</tt> <tt class="py-op">+=</tt> <tt class="py-name">abs</tt><tt class="py-op">(</tt><tt class="py-name">a1</tt><tt class="py-op">[</tt><tt id="link-13" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-13', 'i', 'link-2');">i</a></tt><tt class="py-op">]</tt> <tt class="py-op">-</tt> <tt class="py-name">a2</tt><tt class="py-op">[</tt><tt id="link-14" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-14', 'i', 'link-2');">i</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">adder</tt> </tt>
+</div><a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line"> </tt>
+<a name="averageValueDist"></a><div id="averageValueDist-def"><a name="L53"></a><tt class="py-lineno">53</tt> <a class="py-toggle" href="#" id="averageValueDist-toggle" onclick="return toggle('averageValueDist');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.ImageTools.Comparison-module.html#averageValueDist">averageValueDist</a><tt class="py-op">(</tt><tt class="py-param">image1</tt><tt class="py-op">,</tt> <tt class="py-param">image2</tt><tt class="py-op">,</tt> <tt class="py-param">valueimage1</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">valueimage2</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">averagevcolor1</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">averagevcolor2</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="averageValueDist-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="averageValueDist-expanded"><a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">    <tt class="py-name">ni1</tt> <tt class="py-op">=</tt> <tt id="link-15" class="py-name"><a title="YoukaiTools.ImageTools.SubImage" class="py-name" href="#" onclick="return doclink('link-15', 'SubImage', 'link-1');">SubImage</a></tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Function YoukaiTools.ImageTools.SubImage.averageChannels()=YoukaiTools.ImageTools.SubImage-module.html#averageChannels"><a title="YoukaiTools.ImageTools.SubImage.averageChannels" class="py-name" href="#" onclick="return doclink('link-16', 'averageChannels', 'link-16');">averageChannels</a></tt><tt class="py-op">(</tt><tt class="py-name">image1</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">valueimage1</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt> <tt class="py-keyword">else</tt> <tt class="py-name">valueimage1</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">    <tt class="py-name">ni2</tt> <tt class="py-op">=</tt> <tt id="link-17" class="py-name"><a title="YoukaiTools.ImageTools.SubImage" class="py-name" href="#" onclick="return doclink('link-17', 'SubImage', 'link-1');">SubImage</a></tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="YoukaiTools.ImageTools.SubImage.averageChannels" class="py-name" href="#" onclick="return doclink('link-18', 'averageChannels', 'link-16');">averageChannels</a></tt><tt class="py-op">(</tt><tt class="py-name">image2</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">valueimage2</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt> <tt class="py-keyword">else</tt> <tt class="py-name">valueimage2</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">    <tt class="py-name">a1</tt> <tt class="py-op">=</tt> <tt id="link-19" class="py-name"><a title="YoukaiTools.ImageTools.Metric" class="py-name" href="#" onclick="return doclink('link-19', 'Metric', 'link-0');">Metric</a></tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="YoukaiTools.ImageTools.Metric.calculateAverageColor" class="py-name" href="#" onclick="return doclink('link-20', 'calculateAverageColor', 'link-9');">calculateAverageColor</a></tt><tt class="py-op">(</tt><tt class="py-name">ni1</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">averagevcolor1</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt> <tt class="py-keyword">else</tt> <tt class="py-name">averagevcolor1</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">    <tt class="py-name">a2</tt> <tt class="py-op">=</tt> <tt id="link-21" class="py-name"><a title="YoukaiTools.ImageTools.Metric" class="py-name" href="#" onclick="return doclink('link-21', 'Metric', 'link-0');">Metric</a></tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="YoukaiTools.ImageTools.Metric.calculateAverageColor" class="py-name" href="#" onclick="return doclink('link-22', 'calculateAverageColor', 'link-9');">calculateAverageColor</a></tt><tt class="py-op">(</tt><tt class="py-name">ni2</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">averagevcolor2</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt> <tt class="py-keyword">else</tt> <tt class="py-name">averagevcolor2</tt> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-23" class="py-name" targets="Function YoukaiTools.ImageTools.Comparison.averageColorDist()=YoukaiTools.ImageTools.Comparison-module.html#averageColorDist"><a title="YoukaiTools.ImageTools.Comparison.averageColorDist" class="py-name" href="#" onclick="return doclink('link-23', 'averageColorDist', 'link-23');">averageColorDist</a></tt><tt class="py-op">(</tt><tt class="py-name">ni1</tt><tt class="py-op">,</tt> <tt class="py-name">ni2</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line"> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line"><tt class="py-comment">#given an image and an image pool, return the (index,fitvalue) of the image that fits best</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line"><tt class="py-comment">#they should all be the same size</tt> </tt>
+<a name="matchImages"></a><div id="matchImages-def"><a name="L62"></a><tt class="py-lineno">62</tt> <a class="py-toggle" href="#" id="matchImages-toggle" onclick="return toggle('matchImages');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.ImageTools.Comparison-module.html#matchImages">matchImages</a><tt class="py-op">(</tt><tt class="py-param">image</tt><tt class="py-op">,</tt> <tt class="py-param">imagepool</tt><tt class="py-op">,</tt> <tt class="py-param">manhattan</tt><tt class="py-op">=</tt><tt class="py-number">1.0</tt><tt class="py-op">,</tt> <tt class="py-param">average_color</tt><tt class="py-op">=</tt><tt class="py-number">.25</tt><tt class="py-op">,</tt> <tt class="py-param">average_value</tt><tt class="py-op">=</tt><tt class="py-number">.25</tt><tt class="py-op">,</tt> <tt class="py-param">iaveragecolor</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">poolaveragecolor</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">ivalueimage</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">iaveragevcolor</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">poolvalueimage</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">poolaveragevcolor</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-param">manhattanaverage</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="matchImages-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="matchImages-expanded"><a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line">    <tt class="py-name">first</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line">    <tt class="py-name">bestfitindex</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">    <tt class="py-name">bestfitvalue</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">manhattanaverage</tt><tt class="py-op">:</tt> <tt class="py-name">div</tt> <tt class="py-op">=</tt> <tt class="py-name">image</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">*</tt><tt class="py-name">image</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">    <tt class="py-name">pac</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-name">None</tt><tt class="py-op">]</tt><tt class="py-op">*</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">imagepool</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">poolaveragecolor</tt><tt class="py-op">==</tt><tt class="py-name">None</tt> <tt class="py-keyword">else</tt> <tt class="py-name">poolaveragecolor</tt> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">    <tt class="py-name">pvi</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-name">None</tt><tt class="py-op">]</tt><tt class="py-op">*</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">imagepool</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">poolvalueimage</tt><tt class="py-op">==</tt><tt class="py-name">None</tt> <tt class="py-keyword">else</tt> <tt class="py-name">poolvalueimage</tt> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line">    <tt class="py-name">pavc</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-name">None</tt><tt class="py-op">]</tt><tt class="py-op">*</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">imagepool</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-name">poolaveragevcolor</tt><tt class="py-op">==</tt><tt class="py-name">None</tt> <tt class="py-keyword">else</tt> <tt class="py-name">poolaveragevcolor</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">    <tt class="py-keyword">for</tt> <tt id="link-24" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-24', 'i', 'link-2');">i</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">range</tt><tt class="py-op">(</tt><tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">imagepool</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line">        <tt class="py-name">v</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">manhattan</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">            <tt class="py-name">v</tt> <tt class="py-op">+=</tt> <tt class="py-op">(</tt><tt class="py-op">(</tt><tt id="link-25" class="py-name" targets="Function YoukaiTools.ImageTools.Comparison.manhattanDistance()=YoukaiTools.ImageTools.Comparison-module.html#manhattanDistance"><a title="YoukaiTools.ImageTools.Comparison.manhattanDistance" class="py-name" href="#" onclick="return doclink('link-25', 'manhattanDistance', 'link-25');">manhattanDistance</a></tt><tt class="py-op">(</tt><tt class="py-name">image</tt><tt class="py-op">,</tt> <tt class="py-name">imagepool</tt><tt class="py-op">[</tt><tt id="link-26" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-26', 'i', 'link-2');">i</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-op">*</tt> <tt class="py-op">(</tt><tt class="py-number">1.0</tt><tt class="py-op">/</tt><tt class="py-name">manhattan</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">manhattanaverage</tt> <tt class="py-keyword">else</tt> <tt id="link-27" class="py-name" targets="Function YoukaiTools.ImageTools.Comparison.manhattanAverageDistance()=YoukaiTools.ImageTools.Comparison-module.html#manhattanAverageDistance"><a title="YoukaiTools.ImageTools.Comparison.manhattanAverageDistance" class="py-name" href="#" onclick="return doclink('link-27', 'manhattanAverageDistance', 'link-27');">manhattanAverageDistance</a></tt><tt class="py-op">(</tt><tt class="py-name">image</tt><tt class="py-op">,</tt> <tt class="py-name">imagepool</tt><tt class="py-op">[</tt><tt id="link-28" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-28', 'i', 'link-2');">i</a></tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">div</tt><tt class="py-op">)</tt> <tt class="py-op">*</tt> <tt class="py-op">(</tt><tt class="py-number">1.0</tt><tt class="py-op">/</tt><tt class="py-name">manhattan</tt><tt class="py-op">)</tt> </tt>
+<a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">average_color</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line">            <tt class="py-name">v</tt> <tt class="py-op">+=</tt> <tt class="py-op">(</tt><tt class="py-op">(</tt><tt id="link-29" class="py-name"><a title="YoukaiTools.ImageTools.Comparison.averageColorDist" class="py-name" href="#" onclick="return doclink('link-29', 'averageColorDist', 'link-23');">averageColorDist</a></tt><tt class="py-op">(</tt><tt class="py-name">image</tt><tt class="py-op">,</tt> <tt class="py-name">imagepool</tt><tt class="py-op">[</tt><tt id="link-30" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-30', 'i', 'link-2');">i</a></tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">iaveragecolor</tt><tt class="py-op">,</tt> <tt class="py-name">pac</tt><tt class="py-op">[</tt><tt id="link-31" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-31', 'i', 'link-2');">i</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-op">*</tt> <tt class="py-op">(</tt><tt class="py-number">1.0</tt><tt class="py-op">/</tt><tt class="py-name">average_color</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">average_value</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line">            <tt class="py-name">v</tt> <tt class="py-op">+=</tt> <tt class="py-op">(</tt><tt class="py-op">(</tt><tt id="link-32" class="py-name" targets="Function YoukaiTools.ImageTools.Comparison.averageValueDist()=YoukaiTools.ImageTools.Comparison-module.html#averageValueDist"><a title="YoukaiTools.ImageTools.Comparison.averageValueDist" class="py-name" href="#" onclick="return doclink('link-32', 'averageValueDist', 'link-32');">averageValueDist</a></tt><tt class="py-op">(</tt><tt class="py-name">image</tt><tt class="py-op">,</tt> <tt class="py-name">imagepool</tt><tt class="py-op">[</tt><tt id="link-33" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-33', 'i', 'link-2');">i</a></tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">ivalueimage</tt><tt class="py-op">,</tt> <tt class="py-name">pvi</tt><tt class="py-op">[</tt><tt id="link-34" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-34', 'i', 'link-2');">i</a></tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">iaveragevcolor</tt><tt class="py-op">,</tt> <tt class="py-name">pavc</tt><tt class="py-op">[</tt><tt id="link-35" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-35', 'i', 'link-2');">i</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-op">*</tt> <tt class="py-op">(</tt><tt class="py-number">1.0</tt><tt class="py-op">/</tt><tt class="py-name">average_value</tt><tt class="py-op">)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">v</tt> <tt class="py-op">&lt;</tt> <tt class="py-name">bestfitvalue</tt> <tt class="py-keyword">or</tt> <tt class="py-name">first</tt> <tt class="py-op">==</tt> <tt class="py-name">True</tt><tt class="py-op">:</tt> </tt>
+<a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line">            <tt class="py-name">first</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L80"></a><tt class="py-lineno">80</tt>  <tt class="py-line">            <tt class="py-name">bestfitvalue</tt> <tt class="py-op">=</tt> <tt class="py-name">v</tt> </tt>
+<a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line">            <tt class="py-name">bestfitindex</tt> <tt class="py-op">=</tt> <tt id="link-36" class="py-name"><a title="YoukaiTools.ImageTools.__utils__.i" class="py-name" href="#" onclick="return doclink('link-36', 'i', 'link-2');">i</a></tt> </tt>
+<a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">bestfitindex</tt><tt class="py-op">,</tt> <tt class="py-name">bestfitvalue</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L83"></a><tt class="py-lineno">83</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Dec  6 16:19:06 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

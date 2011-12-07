@@ -18,9 +18,16 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+"""
+    Implementations of Graphs.
+"""
+
 from . import BaseObjects
 
 class BasicGraph(BaseObjects.BaseGraph):
+    """
+        A basic graph.
+    """
     def __init__(self):
         self.clearGraph()
 

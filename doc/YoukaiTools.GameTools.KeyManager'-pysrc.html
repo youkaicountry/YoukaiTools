@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>YoukaiTools.GameTools.KeyManager'</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="YoukaiTools-module.html">Package&nbsp;YoukaiTools</a> ::
+        <a href="YoukaiTools.GameTools-module.html">Package&nbsp;GameTools</a> ::
+        Package&nbsp;KeyManager'
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="YoukaiTools.GameTools.KeyManager%27-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="YoukaiTools.GameTools.KeyManager%27-module.html" onclick="show_private();">Package YoukaiTools.GameTools.KeyManager'</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment">#Copyright (c) &lt;2011&gt; &lt;Nathaniel Caldwell&gt;</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment">#Permission is hereby granted, free of charge, to any person obtaining a copy</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment">#of this software and associated documentation files (the "Software"), to deal</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment">#in the Software without restriction, including without limitation the rights</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment">#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment">#copies of the Software, and to permit persons to whom the Software is</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment">#furnished to do so, subject to the following conditions:</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment">#The above copyright notice and this permission notice shall be included in all</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment">#copies or substantial portions of the Software.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment">#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment">#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment">#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-comment">#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-comment">#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment">#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-comment">#SOFTWARE.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-comment">#This class allows tracking of keyup and keydown events</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"> </tt>
+<a name="KeyManager"></a><div id="KeyManager-def"><a name="L23"></a><tt class="py-lineno">23</tt> <a class="py-toggle" href="#" id="KeyManager-toggle" onclick="return toggle('KeyManager');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="YoukaiTools.GameTools.KeyManager'.KeyManager-class.html">KeyManager</a><tt class="py-op">:</tt> </tt>
+</div><div id="KeyManager-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="KeyManager-expanded"><a name="KeyManager.__init__"></a><div id="KeyManager.__init__-def"><a name="L24"></a><tt class="py-lineno">24</tt> <a class="py-toggle" href="#" id="KeyManager.__init__-toggle" onclick="return toggle('KeyManager.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.KeyManager'.KeyManager-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">keylist</tt><tt class="py-op">,</tt> <tt class="py-param">initial_state</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeyManager.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="KeyManager.__init__-expanded"><a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">keylist</tt> <tt class="py-op">=</tt> <tt class="py-name">keylist</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">key_events</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">initial_state</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">            <tt class="py-name">istate</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">key</tt> <tt class="py-keyword">in</tt> <tt class="py-name">keylist</tt><tt class="py-op">:</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">                <tt class="py-name">istate</tt><tt class="py-op">[</tt><tt class="py-name">key</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">            <tt class="py-name">istate</tt> <tt class="py-op">=</tt> <tt class="py-name">initial_state</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">keysdown</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">key</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">keylist</tt><tt class="py-op">:</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">keysdown</tt><tt class="py-op">[</tt><tt class="py-name">key</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">istate</tt><tt class="py-op">[</tt><tt class="py-name">key</tt><tt class="py-op">]</tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div><a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">     </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">    <tt class="py-comment">#keyset should be a set of keys that are down</tt> </tt>
+<a name="KeyManager.update_from_keyset"></a><div id="KeyManager.update_from_keyset-def"><a name="L39"></a><tt class="py-lineno">39</tt> <a class="py-toggle" href="#" id="KeyManager.update_from_keyset-toggle" onclick="return toggle('KeyManager.update_from_keyset');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.KeyManager'.KeyManager-class.html#update_from_keyset">update_from_keyset</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">keyset</tt><tt class="py-op">,</tt> <tt class="py-param">fetch_events</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeyManager.update_from_keyset-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="KeyManager.update_from_keyset-expanded"><a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">key</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">keylist</tt><tt class="py-op">:</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">            <tt class="py-name">kin</tt> <tt class="py-op">=</tt> <tt class="py-name">key</tt> <tt class="py-keyword">in</tt> <tt class="py-name">keyset</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Method YoukaiTools.GameTools.KeyManager'.KeyManager.__delta_key()=YoukaiTools.GameTools.KeyManager%27.KeyManager-class.html#__delta_key"><a title="YoukaiTools.GameTools.KeyManager'.KeyManager.__delta_key" class="py-name" href="#" onclick="return doclink('link-0', '__delta_key', 'link-0');">__delta_key</a></tt><tt class="py-op">(</tt><tt class="py-name">key</tt><tt class="py-op">,</tt> <tt class="py-name">kin</tt><tt class="py-op">)</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Method YoukaiTools.GameTools.KeyManager'.KeyManager.fetch_events()=YoukaiTools.GameTools.KeyManager%27.KeyManager-class.html#fetch_events"><a title="YoukaiTools.GameTools.KeyManager'.KeyManager.fetch_events" class="py-name" href="#" onclick="return doclink('link-1', 'fetch_events', 'link-1');">fetch_events</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt id="link-2" class="py-name"><a title="YoukaiTools.GameTools.KeyManager'.KeyManager.fetch_events" class="py-name" href="#" onclick="return doclink('link-2', 'fetch_events', 'link-1');">fetch_events</a></tt> <tt class="py-keyword">else</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Method YoukaiTools.GameTools.KeyManager'.KeyManager.peek_events()=YoukaiTools.GameTools.KeyManager%27.KeyManager-class.html#peek_events"><a title="YoukaiTools.GameTools.KeyManager'.KeyManager.peek_events" class="py-name" href="#" onclick="return doclink('link-3', 'peek_events', 'link-3');">peek_events</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">     </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">    <tt class="py-comment">#keystate should represent (in a dictionary) all keys, and be True if pressed,</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">    <tt class="py-comment">#False if not pressed. You can express delta updates this way, by</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">    <tt class="py-comment">#only having keys that have changed in the keystate, with True for keydown,</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">    <tt class="py-comment">#and False for keyup</tt> </tt>
+<a name="KeyManager.update_from_keystate"></a><div id="KeyManager.update_from_keystate-def"><a name="L49"></a><tt class="py-lineno">49</tt> <a class="py-toggle" href="#" id="KeyManager.update_from_keystate-toggle" onclick="return toggle('KeyManager.update_from_keystate');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.KeyManager'.KeyManager-class.html#update_from_keystate">update_from_keystate</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">keystate</tt><tt class="py-op">,</tt> <tt class="py-param">fetch_events</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeyManager.update_from_keystate-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="KeyManager.update_from_keystate-expanded"><a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">key</tt> <tt class="py-keyword">in</tt> <tt class="py-name">keystate</tt><tt class="py-op">:</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name"><a title="YoukaiTools.GameTools.KeyManager'.KeyManager.__delta_key" class="py-name" href="#" onclick="return doclink('link-4', '__delta_key', 'link-0');">__delta_key</a></tt><tt class="py-op">(</tt><tt class="py-name">key</tt><tt class="py-op">,</tt> <tt class="py-name">keystate</tt><tt class="py-op">[</tt><tt class="py-name">key</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="YoukaiTools.GameTools.KeyManager'.KeyManager.fetch_events" class="py-name" href="#" onclick="return doclink('link-5', 'fetch_events', 'link-1');">fetch_events</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-keyword">if</tt> <tt id="link-6" class="py-name"><a title="YoukaiTools.GameTools.KeyManager'.KeyManager.fetch_events" class="py-name" href="#" onclick="return doclink('link-6', 'fetch_events', 'link-1');">fetch_events</a></tt> <tt class="py-keyword">else</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="YoukaiTools.GameTools.KeyManager'.KeyManager.peek_events" class="py-name" href="#" onclick="return doclink('link-7', 'peek_events', 'link-3');">peek_events</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">     </tt>
+<a name="KeyManager.peek_events"></a><div id="KeyManager.peek_events-def"><a name="L54"></a><tt class="py-lineno">54</tt> <a class="py-toggle" href="#" id="KeyManager.peek_events-toggle" onclick="return toggle('KeyManager.peek_events');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.KeyManager'.KeyManager-class.html#peek_events">peek_events</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeyManager.peek_events-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="KeyManager.peek_events-expanded"><a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">key_events</tt> </tt>
+</div><a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">     </tt>
+<a name="KeyManager.fetch_events"></a><div id="KeyManager.fetch_events-def"><a name="L57"></a><tt class="py-lineno">57</tt> <a class="py-toggle" href="#" id="KeyManager.fetch_events-toggle" onclick="return toggle('KeyManager.fetch_events');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.KeyManager'.KeyManager-class.html#fetch_events">fetch_events</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeyManager.fetch_events-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="KeyManager.fetch_events-expanded"><a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">        <tt class="py-name">out</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">key_events</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">key_events</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">out</tt> </tt>
+</div><a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">         </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">     </tt>
+<a name="KeyManager.__delta_key"></a><div id="KeyManager.__delta_key-def"><a name="L63"></a><tt class="py-lineno">63</tt> <a class="py-toggle" href="#" id="KeyManager.__delta_key-toggle" onclick="return toggle('KeyManager.__delta_key');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.GameTools.KeyManager'.KeyManager-class.html#__delta_key">__delta_key</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">key</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="KeyManager.__delta_key-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="KeyManager.__delta_key-expanded"><a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">keysdown</tt><tt class="py-op">[</tt><tt class="py-name">key</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-name">value</tt><tt class="py-op">:</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">key_events</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">key</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt id="link-8" class="py-name" targets="Variable YoukaiTools.GameTools.KeyManager'.vtable=YoukaiTools.GameTools.KeyManager%27-module.html#vtable"><a title="YoukaiTools.GameTools.KeyManager'.vtable" class="py-name" href="#" onclick="return doclink('link-8', 'vtable', 'link-8');">vtable</a></tt><tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">keysdown</tt><tt class="py-op">[</tt><tt class="py-name">key</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">value</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">keysdown</tt><tt class="py-op">[</tt><tt class="py-name">key</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">value</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> </tt>
+</div></div><a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line"> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line"><tt id="link-9" class="py-name"><a title="YoukaiTools.GameTools.KeyManager'.vtable" class="py-name" href="#" onclick="return doclink('link-9', 'vtable', 'link-8');">vtable</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line"><tt id="link-10" class="py-name"><a title="YoukaiTools.GameTools.KeyManager'.vtable" class="py-name" href="#" onclick="return doclink('link-10', 'vtable', 'link-8');">vtable</a></tt><tt class="py-op">[</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">False</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-string">"_up"</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line"><tt id="link-11" class="py-name"><a title="YoukaiTools.GameTools.KeyManager'.vtable" class="py-name" href="#" onclick="return doclink('link-11', 'vtable', 'link-8');">vtable</a></tt><tt class="py-op">[</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-name">True</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-string">"_down"</tt> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Tue Dec  6 16:19:05 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -302,4 +302,3 @@ def __relaxVertices(vdic, u, v, edge, weight):
         vdic[v][1] = u
         vdic[v][2] = edge
     return
-
