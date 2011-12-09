@@ -35,10 +35,10 @@ graph = GraphEngine.BasicGraph()
 # To do this, we will use the BlockMap class from
 # MazeGen.
 # First, import it
-import YoukaiTools.MazeGen.datatypes
+import YoukaiTools.MapData.datatypes
 
 # Make a small 5x5 world for this example
-bmap = YoukaiTools.MazeGen.datatypes.BlockMap(5, 5)
+bmap = YoukaiTools.MapData.datatypes.BlockMap(5, 5)
 
 # Put some walls in it by setting them to True
 bmap.setSpaces([(2, 0), (2, 1), (2, 2), (2, 4)], True)

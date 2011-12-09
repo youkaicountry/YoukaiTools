@@ -22,7 +22,7 @@ import math
 from . import Base
 from YoukaiTools import PyRange
 import YoukaiTools.AdvMath.Trig
-from YoukaiTools import MazeGen
+from YoukaiTools import MapData
 
 pi_o_2 = math.pi / 2
 

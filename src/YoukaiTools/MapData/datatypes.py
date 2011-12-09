@@ -18,6 +18,9 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+from YoukaiTools import GraphEngine
+from YoukaiTools.GraphEngine.GraphTools.SpecialTypes import GridGraph
+
 DIR_NORTH = 0
 DIR_SOUTH = 1
 DIR_WEST = 2
@@ -132,7 +135,15 @@ class MazeMap:
         return None
     
 class BlockMap:
+    """
+    A 2d tile based map data structure, with some useful utility functions.
+    """
     def __init__(self, width, height, initval=None):
+        """
+        @param width: The width of the map.
+        @param height: The height of the map.
+        @param initval: The initial value of the spaces of the map. Defaults to None.
+        """
         self.map = []
         for y in range(height):
             self.map.append([])
@@ -142,6 +153,13 @@ class BlockMap:
         self.height = height
     
     def isInBounds(self, x, y):
+        """
+        Checks if the given coordinates are in the bounds of the map.
+        @param x: The x coordinate to check.
+        @param y: The y coordinate to check.
+        @return: Whether the coordinates are in bounds.
+        @rtype: C{bool}
+        """
         if x < 0: return False
         if x >= self.width: return False
         if y < 0: return False
@@ -149,20 +167,82 @@ class BlockMap:
         return True
     
     def getSize(self):
+        """
+        Returns a tuple with the size of the map.
+        @return: A tuple containing the size of the map.
+        @rtype: C{iterable}
+        """
         return (self.width, self.height)
     
     def getSpace(self, x, y):
+        """
+        Gets the value of the space at the given coordinates.
+        @param x: The x coordinate.
+        @param y: The y coordinate.
+        @return: The value of the space.
+        """
         return self.map[y][x]
     
     def setSpace(self, x, y, val):
+        """
+        Sets the value of the space at the given coordinates.
+        @param x: The x coordinate.
+        @param y: The y coordinate.
+        @param val: The value to set for the space.
+        """
         self.map[y][x] = val
     
     # spaces should be a list of tuples (x, y, val),
     # if they are only (x, y), then default_val will be used
     def setSpaces(self, spaces, default_val=True):
+        """
+        Sets a list of spaces.
+        @param spaces: A list to spaces to set. The value for each space should be either a 2 long tuple with (x, y), in which case the default_val is used, or it should be (x, y, val).
+        @type spaces: C{iterable}
+        @default_val: The default value to set if only coordinates are given for a space.
+        """
         for space in spaces:
             if len(space) == 3:
                 self.map[space[1]][space[0]] = space[2]
             else:
                 self.map[space[1]][space[0]] = default_val
         return
+
+class BlockMapPathing(BlockMap):
+    """
+    An instance of BlockMap that has a pathfinding graph built in.
+    """
+    def __init__(self, width, height, initval=None, blocked_condition=lambda x: x is True, diagonals=False, wrap=False):
+        BlockMap.__init__(self, width, height, initval)
+        self.graph = GraphEngine.Graphs.BasicGraph()
+        self.blocked_condition = blocked_condition
+        self.diagonals = diagonals
+        self.wrap = wrap
+        self.__constructMap()
+        return
+    
+    def setSpace(self, x, y, val):
+        BlockMap.setSpace(self, x, y, val)
+        self.__constructSpace(x, y)
+        return
+    
+    def setSpaces(self, spaces, default_val=True):
+        BlockMap.setSpaces(self, spaces, default_val)
+        for space in spaces:
+            self.__constructSpace(space[0], space[1])
+        return
+    
+    def __constructMap(self):
+        for y in xrange(self.height):
+            for x in xrange(self.width):
+                self.__constructSpace(x, y)
+        return
+    
+    def __constructSpace(self, x, y):
+        #we need tp remove else.
+        if not self.blocked_condition(self.getSpace(x, y)):
+            GridGraph.addVertexToGridGraph(self.graph, (x, y))
+        else:
+            GridGraph.removeVertexFromGraph(self.graph, (x, y))
+        return
+    

@@ -42,7 +42,7 @@ ImageTools - A pure python image processing library. Presently supports BMP
 LineLoader - Some functions for doing some of the mundane work when loading 
    human readable files.
 
-MazeGen - A library that has become somewhat obsolete because of GraphEngine,
+MapData - A library that has become somewhat obsolete because of GraphEngine,
    but it still has a few features that are of some use involving grid based
    maze data structures.
 

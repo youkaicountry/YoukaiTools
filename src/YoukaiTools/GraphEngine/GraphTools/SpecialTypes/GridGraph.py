@@ -18,8 +18,6 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-from YoukaiTools import MazeGen
-
 #id_list should be like [(1,2), (1,3), (2,2), ...]
 def buildGridGraph(g, id_list=None, dimensions=None):
     if (id_list is None) and (dimensions is None):
@@ -56,6 +54,8 @@ def addVertexToGridGraph(g, vid):
     return
 
 def removeVertexFromGraph(g, vid):
+    if not g.containsVertex(vid): return
+    g.removeVertex(vid)
     return
 
 def gridInGrid(g, cg, size):

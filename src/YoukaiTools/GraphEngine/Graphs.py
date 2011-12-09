@@ -111,7 +111,6 @@ class BasicGraph(BaseObjects.BaseGraph):
     def removeVertex(self, vertexid):
         l = [x for x in self.vertices[vertexid][1]]
         for x in l:
-            print("ll:" + str(x))
             self.removeEdge(x)
         del self.vertices[vertexid]
         return
