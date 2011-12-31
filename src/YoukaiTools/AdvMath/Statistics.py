@@ -20,4 +20,3 @@
 
 def mean(values):
     return sum(values, 0.0) / len(values)
-
