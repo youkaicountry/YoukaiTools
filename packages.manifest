@@ -18,8 +18,8 @@ YoukaiTools.ImageTools
 YoukaiTools.ImageTools.FileHandlers
 YoukaiTools.ImageTools.PowerTools
 YoukaiTools.LineLoader
-YoukaiTools.MazeGen
-YoukaiTools.MazeGen.generators
+YoukaiTools.MapData
+YoukaiTools.MapData.generators
 YoukaiTools.PyRange
 YoukaiTools.PyRange.Draw
 YoukaiTools.QuadTree
