@@ -30,9 +30,20 @@ class TestLatLon(unittest.TestCase):
         #around 1418 miles.
         #KIAH is at 29°59′04″N 095°20′29″W
         #KJFK is at 40°38′23″N 073°46′44″W
-        kiah = ((29, 59, 4), (95, 20, 29))
-        kjfk = ((40, 38, 23), (73, 46, 44))
+        kiah = ((29, 59, 4, "N"), (95, 20, 29, "W"))
+        kjfk = ((40, 38, 23, "N"), (73, 46, 44, "W"))
         self.assertAlmostEquals(LatLong.dist(kiah, kjfk, 3963.14), 1418.0, delta=5.0)
+        
+        gkiah = (LatLong.toGlobal(kiah[0]), LatLong.toGlobal(kiah[1]))
+        gkjfk = (LatLong.toGlobal(kjfk[0]), LatLong.toGlobal(kjfk[1]))
+        self.assertAlmostEquals(LatLong.dist(gkiah, gkjfk, 3963.14), 1418.0, delta=5.0)
+        
+        #George Bush International in Houston (ICAO: KIAH) to Haneda International in Tokyo (ICAO: RJTT) is
+        #around 6670 miles.
+        #KIAH is at 29°59′04″N 095°20′29″W
+        #RJTT is at 35°33′12″N 139°46′52″E
+        rjtt = ((35, 33, 12, "N"), (139, 46, 52, "E"))
+        print(LatLong.dist(kiah, rjtt, 3963.14))
         return
         
 if __name__ == '__main__':

@@ -18,6 +18,16 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+"""
+Utilities for dealing with latitude and longitude values.
+This module deals with 3 core types of objects:
+1. Position is a basic lat or lon position. It is a tuple of length 4, with (degrees, minutes, seconds, direction).
+   Direction is given as a string of a single letter "N", "S", "E", or "W".
+2. Global Position is a numerically corrected position that has no direction string, It is a tuple
+   of length 3, with (degrees, minutes, seconds). The function globalLatLon can produce these.
+3. Radial Position is a given position in polar coordinates. It is simply a float. toRadians can produce these.
+"""
+
 from math import pi
 from math import acos, sin, cos
 
@@ -28,7 +38,7 @@ def toDecimal(pos):
     return newdeg
 
 def toRadians(pos):
-    dec = toDecimal(pos)
+    dec = toDecimal(toGlobal(pos))
     return dec * pi / 180.0
 
 def dist(latlon1, latlon2, radius):
@@ -42,9 +52,22 @@ def dist(latlon1, latlon2, radius):
     @param radius: The radius of the sphere.  The earth is 6378.1 km, or 3963.14 miles.
     @rtype: C{float}
     """
-    r1 = (toRadians(latlon1[0]), toRadians(latlon1[1]))
-    r2 = (toRadians(latlon2[0]), toRadians(latlon2[1]))
+    r1 = (toRadians(toGlobal(latlon1[0])), toRadians(toGlobal(latlon1[1])))
+    r2 = (toRadians(toGlobal(latlon2[0])), toRadians(toGlobal(latlon2[1])))
     return radDist(r1, r2, radius)
+
+def toGlobal(pos):
+    """
+    Takes a position (degrees, minutes, seconds) or (degrees, minutes, seconds, direction)
+    Direction is a string with a letter "E", "W", "N" or "S".
+    This function then converts it to a single global position without the direction.
+    """
+    if len(pos) == 3:
+        return pos
+    direction = pos[3].lower()
+    if direction == 'w' or direction == 's':
+        return (180.0-pos[0], 60.0-pos[1], 60.0-pos[2])
+    return (pos[0]+180.0, pos[1], pos[2])
 
 def radDist(rpos1, rpos2, radius):
     return radius * acos(sin(rpos1[0]) * sin(rpos2[0]) + cos(rpos1[0]) * cos(rpos2[0]) * cos(rpos2[1] - rpos1[1]))
