@@ -28,18 +28,18 @@ def toDecimal(pos):
     return newdeg
 
 def toRadians(pos):
-    dec = toDecimal(*pos)
+    dec = toDecimal(pos)
     return dec * pi / 180.0
 
 def dist(latlon1, latlon2, radius):
     """
-    Returns the distance between 2 latitude and longitudes on a sphere with radius radius.
+    Returns the distance between 2 latitude and longitudes on a sphere with a given radius.
     Latitude and longitude pairs should be given in tuples like: ((latdegree, latminute, latsecond), (londegree, lonminute, lonsecond))
     @param latlon1: The first latitude longitude pair.
     @type latlon1: C{Iterable}
     @param latlon2: The second latitude longitude pair.
     @type latlon2: C{Iterable}
-    @param radius: The radius of the sphere.  The earth is 6378.1 km, or 3961.3 miles.
+    @param radius: The radius of the sphere.  The earth is 6378.1 km, or 3963.14 miles.
     @rtype: C{float}
     """
     r1 = (toRadians(latlon1[0]), toRadians(latlon1[1]))
@@ -47,7 +47,7 @@ def dist(latlon1, latlon2, radius):
     return radDist(r1, r2, radius)
 
 def radDist(rpos1, rpos2, radius):
-    return radius * acos[sin(rpos1[0]) * sin(rpos2[0]) + cos(rpos1[0]) * cos(rpos2[0]) * cos(rpos2[1] - rpos1[1])]
+    return radius * acos(sin(rpos1[0]) * sin(rpos2[0]) + cos(rpos1[0]) * cos(rpos2[0]) * cos(rpos2[1] - rpos1[1]))
 
 def __t60(base, val):
     return base + (val / 60.0)
