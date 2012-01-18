@@ -1,4 +1,4 @@
-#Copyright (c) <2011> <Nathaniel Caldwell>
+#Copyright (c) <2011-2012> <Nathaniel Caldwell>
 
 #Permission is hereby granted, free of charge, to any person obtaining a copy
 #of this software and associated documentation files (the "Software"), to deal
@@ -53,9 +53,10 @@ def getVertexDataRange(g, index, vertexids=None):
     low = AdvMath.POSITIVE_INFINITY
     high = AdvMath.NEGATIVE_INFINITY
     for v in vertexids:
-        vd = g.getVertexData(v, index)
-        if vd < low: low = vd
-        if vd > high: high = vd
+        if index in g.getVertexDataKeys(v):
+            vd = g.getVertexData(v, index)
+            if vd < low: low = vd
+            if vd > high: high = vd
     return (low, high)
 
 def normalizeVertexData(g, index, vertexids=None, nrange=(0.0, 1.0), lohi=None):

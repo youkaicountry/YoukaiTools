@@ -1,4 +1,4 @@
-#Copyright (c) <2011> <Nathaniel Caldwell>
+#Copyright (c) <2011-2012> <Nathaniel Caldwell>
 
 #Permission is hereby granted, free of charge, to any person obtaining a copy
 #of this software and associated documentation files (the "Software"), to deal
@@ -44,10 +44,10 @@ def drawSimple(g, imagename=None, locindices=("x", "y"), layers=[["edge", (None,
     
     if xw < yw:
         width = int(smallwidth)
-        height = int((yw/xw)*smallwidth)
+        height = int((yw/xw)*smallwidth) if xw != 0 else 1
     else:
         height = int(smallwidth)
-        width = int((xw/yw)*smallwidth)
+        width = int((xw/yw)*smallwidth) if yw != 0 else 1
     image = ImageTools.Create.newImage(width, height, [0, 0, 0])
     bordersize = int(smallwidth*border)
     xir = (bordersize, width-bordersize)
@@ -56,22 +56,24 @@ def drawSimple(g, imagename=None, locindices=("x", "y"), layers=[["edge", (None,
     #make location lookup
     for v in g.getVertexList():
         p = []
-        p.append(int(PyRange.Ranges.rangeToRange(g.getVertexData(v, locindices[0]), float(xr[0]), float(xr[1]), float(xir[0]), float(xir[1]))))
-        p.append(int(PyRange.Ranges.rangeToRange(g.getVertexData(v, locindices[1]), float(yr[0]), float(yr[1]), float(yir[0]), float(yir[1]))))
-        ploc[v] = p
+        if (locindices[0] in g.getVertexDataKeys(v)) and (locindices[1] in g.getVertexDataKeys(v)):
+            p.append(int(PyRange.Ranges.rangeToRange(g.getVertexData(v, locindices[0]), float(xr[0]), float(xr[1]), float(xir[0]), float(xir[1]))))
+            p.append(int(PyRange.Ranges.rangeToRange(g.getVertexData(v, locindices[1]), float(yr[0]), float(yr[1]), float(yir[0]), float(yir[1]))))
+            ploc[v] = p
     for layer in layers:
         if layer[0] == "vertex":
             radius = int(smallwidth*layer[1])
             for v in g.getVertexList():
-                if layer[2][0] is None:
-                    c = layer[2][1]
-                else:
-                    if layer[2][0] in g.getVertexDataKeys(v):
-                        c = g.getVertexData(v, layer[2][0])
-                    else:
+                if v in ploc:
+                    if layer[2][0] is None:
                         c = layer[2][1]
-                p = ploc[v]
-                ImageTools.Modify.drawCircle(image, p[0], p[1], radius, c)
+                    else:
+                        if layer[2][0] in g.getVertexDataKeys(v):
+                            c = g.getVertexData(v, layer[2][0])
+                        else:
+                            c = layer[2][1]
+                    p = ploc[v]
+                    ImageTools.Modify.drawCircle(image, p[0], p[1], radius, c)
         elif layer[0] == "edge":
             for e in g.getEdgeList():
                 ei = g.getEdgeInfo(e)

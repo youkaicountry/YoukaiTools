@@ -39,8 +39,12 @@ def graphToPhysics(graph, globaldef=None, particledef=None, bonddef=None):
         bonddef = getBasicBondDef()
     sn2d = SN2D.SN2D()
     for vertex in graph.getVertexList():
+        print(vertex, graph.getVertexDataKeys(vertex))
+        if 'type' not in graph.getVertexDataKeys(vertex): continue
         d = graph.getVertexData(vertex, particledef['type'])
+        print(vertex, d)
         if d == particledef['typeval']: #then we have a particle
+            print("vertex", vertex)
             p = sn2d.newParticle([vertex])[0]
             sn2d.xposition[p] = graph.getVertexData(vertex, particledef['xposition'])
             sn2d.yposition[p] = graph.getVertexData(vertex, particledef['yposition'])
@@ -52,29 +56,85 @@ def graphToPhysics(graph, globaldef=None, particledef=None, bonddef=None):
             sn2d.mass[p] = graph.getVertexData(vertex, particledef['mass'])
             sn2d.charge[p] = graph.getVertexData(vertex, particledef['charge'])
     for edge in graph.getEdgeList():
+        if 'type' not in graph.getEdgeDataKeys(edge): continue
         d = graph.getEdgeData(edge, bonddef['type'])
         if d == bonddef['typeval']: #then we have a bond
-            calclength = 'length' in graph.getEdgeDataKeys()
-            p = sn2d.newBond([edge], calclength = calclength)[0]
-            sn2d.p1[p] = graph.getEdgeData(edge, bonddef['p1'])
-            sn2d.p2[p] = graph.getEdgeData(edge, bonddef['p2'])
+            calclength = bonddef['length'] not in graph.getEdgeDataKeys(edge)
+            ei = graph.getEdgeInfo(edge)
+            p = sn2d.newBond(ei[0], ei[1], edge, calclength = calclength)
             sn2d.breakforce[p] = graph.getEdgeData(edge, bonddef['breakforce'])
             sn2d.spring[p] = graph.getEdgeData(edge, bonddef['spring'])
             if not calclength: 
                 sn2d.length[p] = graph.getEdgeData(edge, bonddef['length'])
     vid = globaldef['id']
     sn2d.dt = graph.getVertexData(vid, globaldef['dt'])
-    sn2d.macrogravity = graph.getVertexData(vid, globaldef['macrogravity'])
+    sn2d.macrogravityon = graph.getVertexData(vid, globaldef['macrogravityon'])
     sn2d.time = graph.getVertexData(vid, globaldef['time'])
     sn2d.collisionson = graph.getVertexData(vid, globaldef['collisionson'])
     sn2d.macrogravity = graph.getVertexData(vid, globaldef['macrogravity'])
     sn2d.fluidfriction = graph.getVertexData(vid, globaldef['fluidfriction'])
-    sn2d.coulombon = graph.getVertexData(vid, globaldef['coulombconstant'])
+    sn2d.coulombon = graph.getVertexData(vid, globaldef['coulomb_constant'])
     return sn2d
+
+def physicsToGraph(sn2d, graph, globaldef=None, particledef=None, bonddef=None):
+    if globaldef is None:
+        globaldef = getBasicGlobalDef()
+    if particledef is None:
+        particledef = getBasicParticleDef()
+    if bonddef is None:
+        bonddef = getBasicBondDef()
+    addGlobalToGraph(graph, sn2d.dt, sn2d.macrogravityon, sn2d.macrogravity, sn2d.time, sn2d.collisionson, sn2d.fluidfriction, sn2d.coulombon, sn2d.coulomb_constant, globaldef)
+    for p in sn2d.particlelist:
+        addParticleToGraph(graph, sn2d.xposition[p], sn2d.yposition[p], sn2d.xvelocity[p], sn2d.yvelocity[p], sn2d.xacceleration[p], sn2d.yacceleration[p], sn2d.mass[p], sn2d.fixed[p], sn2d.charge[p], particledef)
+    for b in sn2d.bondlist:
+        addBondToGraph(graph, sn2d.p1[b], sn2d.p2[b], sn2d.spring[b], sn2d.breakforce[b], sn2d.length[b], bonddef)
+    return
+    
+
+def addGlobalToGraph(graph, dt, macrogravityon, macrogravity, time, collisionson, fluidfriction, coulombon, coulomb_constant, globaldef=None):
+    if globaldef is None:
+        globaldef = getBasicGlobalDef()
+    vid = graph.addVertex(globaldef['id'])
+    graph.setVertexData(vid, globaldef['dt'], dt)
+    graph.setVertexData(vid, globaldef['macrogravityon'], macrogravityon)
+    graph.setVertexData(vid, globaldef['macrogravity'], macrogravity)
+    graph.setVertexData(vid, globaldef['time'], time)
+    graph.setVertexData(vid, globaldef['collisionson'], collisionson)
+    graph.setVertexData(vid, globaldef['fluidfriction'], fluidfriction)
+    graph.setVertexData(vid, globaldef['coulombon'], coulombon)
+    graph.setVertexData(vid, globaldef['coulomb_constant'], coulomb_constant)
+    return vid
+
+def addParticleToGraph(graph, xposition, yposition, xvelocity, yvelocity, xacceleration, yacceleration, mass, fixed, charge, particledef=None):
+    if particledef is None:
+        particledef = getBasicParticleDef()
+    vid = graph.addVertex()
+    graph.setVertexData(vid, particledef['xposition'], xposition)
+    graph.setVertexData(vid, particledef['yposition'], yposition)
+    graph.setVertexData(vid, particledef['xvelocity'], xvelocity)
+    graph.setVertexData(vid, particledef['yvelocity'], xvelocity)
+    graph.setVertexData(vid, particledef['xacceleration'], xacceleration)
+    graph.setVertexData(vid, particledef['yacceleration'], yacceleration)
+    graph.setVertexData(vid, particledef['mass'], mass)
+    graph.setVertexData(vid, particledef['fixed'], fixed)
+    graph.setVertexData(vid, particledef['charge'], charge)
+    graph.setVertexData(vid, 'type', particledef['typeval'])
+    return vid
+
+def addBondToGraph(graph, p1, p2, spring, breakforce, length = None, bonddef=None):
+    if bonddef is None:
+        bonddef = getBasicBondDef()
+    eid = graph.addEdge(p1, p2)
+    graph.setEdgeData(eid, bonddef['spring'], spring)
+    graph.setEdgeData(eid, bonddef['breakforce'], breakforce)
+    if length is not None:
+        graph.setEdgeData(eid, bonddef['length'], length)
+    graph.setEdgeData(eid, 'type', bonddef['typeval'])
+    return eid
 
 def getBasicGlobalDef():
     out = {}
-    names = ['macrogravity', 'time', 'collisionson', 'macrogravity', 'fluidfriction', 'coulombon', 'coulombconstant', 'dt']
+    names = ['macrogravityon', 'time', 'collisionson', 'macrogravity', 'fluidfriction', 'coulombon', 'coulomb_constant', 'dt']
     for name in names:
         out[name] = name
     out["id"] = "global"
@@ -90,7 +150,7 @@ def getBasicParticleDef():
 
 def getBasicBondDef():
     out = {}
-    names = ['type', 'p1', 'p2', 'spring', 'length', 'breakforce']
+    names = ['type', 'spring', 'length', 'breakforce']
     for name in names:
         out[name] = name
     out['typeval'] = 'bond'

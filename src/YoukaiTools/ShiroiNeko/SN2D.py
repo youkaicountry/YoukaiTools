@@ -158,6 +158,7 @@ class SN2D:
                 self.yacceleration[pid] += self.macrogravity
             
         #bonds
+        removebond = []
         for bid in self.bondlist:
             p1 = self.p1[bid]
             p2 = self.p2[bid]
@@ -176,10 +177,13 @@ class SN2D:
                     tempb *= mul
                     self.applyForce(p2, tempa, tempb)
                     self.applyForce(p1, -tempa, -tempb)
-                    self.removeBond(bid)
+                    #self.removeBond(bid)
+                    removebond.append(bid)
                     continue
             self.applyForce(p2, tempa, tempb)
             self.applyForce(p1, -tempa, -tempb)
+        for bid in removebond:
+            self.removeBond(bid)
       
         #coulomb
         if self.coulombon:

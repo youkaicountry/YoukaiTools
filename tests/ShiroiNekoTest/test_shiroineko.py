@@ -1,4 +1,4 @@
-import YoukaiTools.ShiroiNeko as ShiroiNeko
+
 
 sn2d = ShiroiNeko.SN2D()
 sn2d.newParticle(["one", "two", "three", "four"])

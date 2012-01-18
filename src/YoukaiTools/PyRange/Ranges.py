@@ -1,4 +1,4 @@
-#Copyright (c) <2011> <Nathaniel Caldwell>
+#Copyright (c) <2011-2012> <Nathaniel Caldwell>
 
 #Permission is hereby granted, free of charge, to any person obtaining a copy
 #of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,8 @@ def rangeToRange(value, min_source, max_source, min_target, max_target):
     return (normalize(value, min_source, max_source) * (max_target - min_target)) + min_target
 
 def normalize(value, min_source, max_source):
-    return ((value - min_source) / (max_source - min_source))
+    bottom = max_source - min_source
+    return ((value - min_source) / bottom) if bottom != 0 else max_source
     
 #finds min and max of a given list, and returns range converted values
 def histogramConvert(values, min_target, max_target):
