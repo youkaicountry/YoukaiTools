@@ -1,4 +1,4 @@
-#Copyright (c) <2011> <Nathaniel Caldwell>
+#Copyright (c) <2011-2012> <Nathaniel Caldwell>
 
 #Permission is hereby granted, free of charge, to any person obtaining a copy
 #of this software and associated documentation files (the "Software"), to deal
@@ -77,7 +77,7 @@ class SN2D:
             self.xacceleration[x] = 0
             self.yacceleration[x] = 0
             self.fixed[x] = False
-            self.mass[x] = 1
+            self.mass[x] = 1.0
             self.charge[x] = 0
             out.append(x)
         return out
