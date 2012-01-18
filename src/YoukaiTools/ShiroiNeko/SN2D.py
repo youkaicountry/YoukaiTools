@@ -57,6 +57,7 @@ class SN2D:
         self.p2 = {}
         self.spring = {}
         self.length = {}
+        self.breakforce = {}
 
     def newParticle(self, names=None, num=1):
         if names is None:
@@ -108,6 +109,7 @@ class SN2D:
         self.p2[name] = p2
         self.spring[name] = 0
         self.length[name] = 0
+        self.breakforce[name] = 0
         if calclength:
             dx = self.xposition[p1] - self.xposition[p2]
             dy = self.yposition[p1] - self.yposition[p2]
@@ -121,6 +123,7 @@ class SN2D:
         del self.p2[name]
         del self.spring[name]
         del self.length[name]
+        del self.breakforce[name]
         return
       
     def applyForce(self, pid, forcex, forcey):
@@ -165,6 +168,16 @@ class SN2D:
             nl = -(diff / l) * self.spring[bid]
             tempa = dx*nl
             tempb = dy*nl
+            if self.breakforce[bid] > 0:
+                force = sqrt(tempa*tempa + tempb*tempb)
+                if force >= self.breakforce[bid]:
+                    mul = self.breakforce[bid] / force
+                    tempa *= mul
+                    tempb *= mul
+                    self.applyForce(p2, tempa, tempb)
+                    self.applyForce(p1, -tempa, -tempb)
+                    self.removeBond(bid)
+                    continue
             self.applyForce(p2, tempa, tempb)
             self.applyForce(p1, -tempa, -tempb)
       

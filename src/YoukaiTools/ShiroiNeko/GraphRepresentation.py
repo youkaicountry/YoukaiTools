@@ -53,6 +53,7 @@ def graphToPhysics(graph, globaldef=None, particledef=None, bonddef=None):
             p = sn2d.newBond([edge], calclength = calclength)[0]
             sn2d.p1[p] = graph.getEdgeData(edge, bonddef['p1'])
             sn2d.p2[p] = graph.getEdgeData(edge, bonddef['p2'])
+            sn2d.breakforce[p] = graph.getEdgeData(edge, bonddef['breakforce'])
             sn2d.spring[p] = graph.getEdgeData(edge, bonddef['spring'])
             if not calclength: 
                 sn2d.length[p] = graph.getEdgeData(edge, bonddef['length'])
@@ -60,13 +61,15 @@ def graphToPhysics(graph, globaldef=None, particledef=None, bonddef=None):
     sn2d.dt = graph.getVertexData(vid, globaldef['dt'])
     sn2d.macrogravity = graph.getVertexData(vid, globaldef['macrogravity'])
     sn2d.time = graph.getVertexData(vid, globaldef['time'])
-                
-            
-            
+    sn2d.collisionson = graph.getVertexData(vid, globaldef['collisionson'])
+    sn2d.macrogravity = graph.getVertexData(vid, globaldef['macrogravity'])
+    sn2d.fluidfriction = graph.getVertexData(vid, globaldef['fluidfriction'])
+    sn2d.coulombon = graph.getVertexData(vid, globaldef['coulombconstant'])
+    return sn2d
 
 def getBasicGlobalDef():
     out = {}
-    names = ['macrogravity', 'time', 'collisionson', 'macrogravity', 'fluidfriction', 'coulonbon', 'coulombconstant', 'dt']
+    names = ['macrogravity', 'time', 'collisionson', 'macrogravity', 'fluidfriction', 'coulombon', 'coulombconstant', 'dt']
     for name in names:
         out[name] = name
     out["id"] = "global"
@@ -82,7 +85,7 @@ def getBasicParticleDef():
 
 def getBasicBondDef():
     out = {}
-    names = ['type', 'p1', 'p2', 'spring', 'length']
+    names = ['type', 'p1', 'p2', 'spring', 'length', 'breakforce']
     for name in names:
         out[name] = name
     out['typeval'] = 'bond'
