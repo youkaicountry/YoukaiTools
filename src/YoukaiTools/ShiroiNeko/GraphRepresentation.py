@@ -18,6 +18,11 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+import random
+from math import sqrt, cos, sin
+import math
+twopi = math.pi*2.0
+
 import SN2D
 
 """
@@ -90,3 +95,70 @@ def getBasicBondDef():
         out[name] = name
     out['typeval'] = 'bond'
     return out
+
+def randomAddBond(graph, maxdist, r=None, globaldef=None, particledef=None):
+    if r is None:
+        r = random.Random()
+    if globaldef is None:
+        globaldef = getBasicGlobalDef()
+    if particledef is None:
+        particledef = getBasicParticleDef()
+    n = graph.getOrder() - 1
+    maxbonds = n * (n-1) / 2
+    if maxbonds == graph.getSize():
+        return None
+    bondlist = [x for x in graph.getVertexList() if ((len(graph.getAdjacentEdges(x)) < (n-1)) and x != globaldef['id'])]
+    if len(bondlist) < 2: raise Exception("Nonsensical input.")
+    r.shuffle(bondlist)
+    for one in xrange(len(bondlist)-1):
+        for two in xrange(one+1, len(bondlist)):
+            p1 = bondlist[one]
+            p2 = bondlist[two]
+            dx = graph.getVertexData(p1, particledef['xposition']) - graph.getVertexData(p2, particledef['xposition'])
+            dy = graph.getVertexData(p1, particledef['yposition']) - graph.getVertexData(p2, particledef['yposition'])
+            dist = sqrt(dx*dx + dy*dy)
+            if dist <= maxdist:
+                return (p1, p2)
+    return None
+
+def randomDelBond(graph, r=None, particledef=None):
+    if graph.getSize() < 1:
+        return None
+    if r is None:
+        r = random.Random()
+    if particledef is None:
+        particledef = getBasicParticleDef()
+    bonds = graph.getEdgeList()
+    r.shuffle(bonds)
+    bond = bonds[0]
+    bi = graph.getEdgeInfo(bond)
+    p1 = bi[0]
+    p2 = bi[1]
+    graph.removeEdge(bond)
+    if len(graph.getAdjacentEdges(p1)) < 1:
+        if not graph.getVertexData(p1, particledef['fixed']):
+            graph.removeVertex(p1)
+    if len(graph.getAdjacentEdges(p2)) < 1:
+        if not graph.getVertexData(p2, particledef['fixed']):
+            graph.removeVertex(p2)
+    return True
+
+def randomAddParticle(graph, maxdist, r=None, globaldef=None, particledef=None):
+    if r is None:
+        r = random.Random()
+    if globaldef is None:
+        globaldef = getBasicGlobalDef()
+    if particledef is None:
+        particledef = getBasicParticleDef()
+    if graph.getOrder() < 2:
+        return None
+    vertices = [x for x in graph.getVertexList() if x != globaldef['id']]
+    if len(vertices) < 1:
+        return None
+    r.shuffle(vertices)
+    vertex = vertices[0]
+    dist = r.random()*maxdist
+    angle = r.random()*twopi
+    newx = graph.getVertexData(vertex, particledef['xposition']) + (cos(angle)*dist)
+    newy = graph.getVertexData(vertex, particledef['yposition']) + (cos(angle)*dist)
+    return (vertex, newx, newy)
