@@ -44,10 +44,10 @@ def drawSimple(g, imagename=None, locindices=("x", "y"), layers=[["edge", (None,
     
     if xw < yw:
         width = int(smallwidth)
-        height = int((yw/xw)*smallwidth) if xw != 0 else 1
+        height = int((yw/xw)*smallwidth) if xw != 0 else 2
     else:
         height = int(smallwidth)
-        width = int((xw/yw)*smallwidth) if yw != 0 else 1
+        width = int((xw/yw)*smallwidth) if yw != 0 else 2
     image = ImageTools.Create.newImage(width, height, [0, 0, 0])
     bordersize = int(smallwidth*border)
     xir = (bordersize, width-bordersize)
