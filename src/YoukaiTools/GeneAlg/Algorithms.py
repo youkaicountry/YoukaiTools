@@ -39,7 +39,7 @@ class Community(BaseGA.BaseGA):
         self.genelist.sort()        
             
         
-    def doGeneration(self, number, honkevery):
+    def doGeneration(self):
         oldlist = self.genelist
         self.genelist = []
         for j in xrange(self.communitysize):
@@ -64,7 +64,7 @@ class Pool(BaseGA.BaseGA):
         for i in range(len(o)):
             self.genelist.append((self.genes["fitness"](o[i]), o[i]))
         
-    def doGeneration(self, number, honkevery):
+    def doGeneration(self):
         s1 = self.getSelectionInPlace()
         s2 = self.getSelectionInPlace()
         o = self.mateInPlace(s1, s2)
@@ -89,9 +89,92 @@ class HillClimb(BaseGA.BaseGA):
             self.genelist = [(self.genes["fitness"](o[0]), o[0])]
     
     def doGeneration(self):
-        o = self.mutateInPlace(0)
+        o = self.mutateGeneListObject(0)
         fit = self.genes["fitness"](o)
         if fit >= self.genelist[0][0]:
             self.genelist[0] = (fit, o)
         return
+
+
+# keeps some number of genes, each doing a hillclimb type procedure. Whenever one jumps, if the old fitness is higher than
+# anything in experimental threads, then the lowest experimental is replaced with that.
+# If an experimental ever jumps, if there is anything in the main list lower than it AND with greater time since jump, then they are switched.
+class MultiHillClimb(BaseGA.BaseGA):
+    def __init__(self, genes, options, savehistoryperiod=10000, maxhistorylength=10, threads=4, experimental_threads=3, mixupmult = 3, maxmixuptime=100000):
+        BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength)
+        self.need_sort = True
+        self.genelist = []
+        self.time_since_jump = []
+        
+        self.time_since_highest_jump = None
+        self.last_highest = 0
+        self.last_highest_time_ago = 0
+        # if there was no jump in highest, add 1 to time_ago
+        # if there was a jump, time since highest = time_ago, and time_ago = 0
+        # if time ago is min (mult times last_highest, maxmixuptime):
+        #     a mixup occurs:
+        #     dumbly replace any main with an experimental that is higher than it.
+        #     Take the now lowest experimental, and replace it with a straight mating
+        
+        for i in xrange(threads):
+            self.time_since_jump.append(0)
+            if self.options["seeds"] is not None:
+                s = self.options["seeds"][0]
+                self.genelist.append((self.genes["fitness"](s), s))
+            else:
+                o = self.options["fill"](1, self.genes)
+                self.genelist = [(self.genes["fitness"](o[0]), o[0])]
+        
+        self.experimental_genelist = []
+        self.experimental_time_since_jump = []
+        for i in xrange(experimental_threads):
+            self.experimental_genelist.append((0, None))
+            self.experimental_time_since_jump.append(0)
+        
+    def doGeneration(self):
+        for i in xrange(len(self.genelist)):
+            o = self.mutateGeneListObject(i)
+            fit = self.genes["fitness"](o)
+            if fit > self.genelist[i][0]:
+                old = self.genelist[i]
+                self.genelist[i] = (fit, o)
+                self.__checkReplaceExperimental(old)
+                self.time_since_jump[i] = 0
+            else:
+                self.time_since_jump[i] += 1
+                
+        for i in xrange(len(self.experimental_genelist)):
+            if self.experimental_genelist[i][1] is not None:
+                o = self.mutateNew(self.experimental_genelist[i][1])
+                fit = self.genes["fitness"](o)
+                if fit > self.experimental_genelist[i][0]:
+                    rm = self.__checkReplaceMain((fit, o), self.experimental_time_since_jump[i])
+                    if rm[0]:
+                        print("REPLACE MAIN")
+                        temp = self.genelist[rm[1]]
+                        self.genelist[rm[1]] = (fit, o)
+                        self.time_since_jump[rm[1]] = 0
+                        self.experimental_genelist[i] = temp
+                        self.experimental_time_since_jump[i] = 0
+                    else:
+                        self.experimental_genelist[i] = (fit, o)
+                        self.experimental_time_since_jump[i] = 0
+                else:
+                    self.experimental_time_since_jump[i] += 1
+        return
+    
+    def __checkReplaceExperimental(self, gene):
+        lowest = min([(self.experimental_genelist[i][0], i) for i in xrange(len(self.experimental_genelist))])
+        if gene[0] > lowest[0]:
+            print("NEW EXPERIMENTAL")
+            self.experimental_genelist[lowest[1]] = gene
+            self.experimental_time_since_jump[lowest[1]] = 0
+        return
+    
+    def __checkReplaceMain(self, gene, jumps):
+        lower = [(self.genelist[i], i) for i in xrange(len(self.genelist)) if ((gene[0] > self.genelist[i][0]) and (jumps < self.time_since_jump[i]))]
+        if len(lower) < 1:
+            return (False, 0)
+        lower.sort()
+        return (True, lower[0][1])
     
