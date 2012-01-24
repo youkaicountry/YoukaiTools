@@ -90,7 +90,7 @@ class BaseGA:
         return self.options["deletion"](objectlist, *self.options["deletion_settings"])
     
     #returns the mutated object genelist object (fitness, obj)
-    def mutateInPlace(self, index):
+    def mutateGeneListObject(self, index):
         r = random.random()
         if r <= self.options["mutation_chance"]:
             c = random.random()
