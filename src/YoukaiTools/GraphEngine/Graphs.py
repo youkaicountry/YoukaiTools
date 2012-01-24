@@ -39,13 +39,14 @@ class BasicGraph(BaseObjects.BaseGraph):
 
     def addVertex(self, vertexid=None):
         #the list is: connected vertices, connected edges, and data
-        if (vertexid is None): 
+        if (vertexid is None) or self.containsVertex(vertexid):
+            while(self.containsVertex(self.vertextop)):
+                self.vertextop += 1
             usev = self.vertextop
             self.vertextop += 1
         else:
             usev = vertexid
-        self.vertices[usev] = [set(), set(), {}]
-        out = self.vertextop
+        self.vertices[usev] = [{}, set(), {}]
         return usev
   
     def renameVertex(self, vertexidold, vertexidnew):
@@ -65,7 +66,9 @@ class BasicGraph(BaseObjects.BaseGraph):
 
     def addEdge(self, vertex1, vertex2, direction=0, edgeid=None):
         #the list is: connection info, and data
-        if (edgeid is None): 
+        if (edgeid is None) or self.containsEdge(edgeid):
+            while(self.containsEdge(self.edgetop)):
+                self.edgetop += 1
             usev = self.edgetop
             self.edgetop += 1
         else:
@@ -116,8 +119,23 @@ class BasicGraph(BaseObjects.BaseGraph):
         return
 
     def removeEdge(self, edgeid):
-        self.__clearedgeinfo(self.edges[edgeid][0][0], edgeid)
-        self.__clearedgeinfo(self.edges[edgeid][0][1], edgeid)
+        #print(edgeid, self.getEdgeInfo(edgeid))
+        vertex1, vertex2, direction = self.getEdgeInfo(edgeid)
+        if direction == 0:
+            self.__decConnection(vertex1, vertex2)
+            self.vertices[vertex1][1].remove(edgeid)
+            self.__decConnection(vertex2, vertex1)
+            self.vertices[vertex2][1].remove(edgeid)
+        elif direction == 1:
+            self.__decConnection(vertex1, vertex2)
+            self.vertices[vertex1][1].remove(edgeid)
+            self.vertices[vertex2][1].remove(edgeid)
+        elif direction == -1:
+            self.vertices[vertex1][1].remove(edgeid)
+            self.__decConnection(vertex2, vertex1)
+            self.vertices[vertex2][1].remove(edgeid)
+        #self.__clearedgeinfo(self.edges[edgeid][0][0], edgeid)
+        #self.__clearedgeinfo(self.edges[edgeid][0][1], edgeid))
         del self.edges[edgeid]
         return
 
@@ -133,19 +151,33 @@ class BasicGraph(BaseObjects.BaseGraph):
         self.edges[edgeid] = [[vertex1, vertex2, direction], {}]
         #add the connection information to the vertices
         if direction == 0:
-            self.vertices[vertex1][0].add(vertex2)
+            self.__incConnection(vertex1, vertex2)
             self.vertices[vertex1][1].add(edgeid)
-            self.vertices[vertex2][0].add(vertex1)
+            self.__incConnection(vertex2, vertex1)
             self.vertices[vertex2][1].add(edgeid)
         elif direction == 1:
-            self.vertices[vertex1][0].add(vertex2)
+            self.__incConnection(vertex1, vertex2)
             self.vertices[vertex1][1].add(edgeid)
             self.vertices[vertex2][1].add(edgeid)
         elif direction == -1:
             self.vertices[vertex1][1].add(edgeid)
-            self.vertices[vertex2][0].add(vertex1)
+            self.__incConnection(vertex2, vertex1)
             self.vertices[vertex2][1].add(edgeid)
-
+    
+    def __incConnection(self, vertex1, vertex2):
+        if vertex2 in self.vertices[vertex1][0]:
+            self.vertices[vertex1][0][vertex2] = self.vertices[vertex1][0][vertex2] + 1
+        else:
+            self.vertices[vertex1][0][vertex2] = 1
+        return
+    
+    def __decConnection(self, vertex1, vertex2):
+        if vertex2 in self.vertices[vertex1][0]:
+            self.vertices[vertex1][0][vertex2] = self.vertices[vertex1][0][vertex2] - 1
+        if self.vertices[vertex1][0][vertex2] == 0:
+            del self.vertices[vertex1][0][vertex2]
+        return    
+    
     def __clearedgeinfo(self, vertexid, edgeid):
         self.vertices[vertexid][1].remove(edgeid)
         v1 = self.edges[edgeid][0][0]
@@ -165,6 +197,7 @@ class BasicGraph(BaseObjects.BaseGraph):
         return
 
     def __isconnected(self, sourcev, targetv, edgeid):
+        print(edgeid, self.containsEdge(edgeid))
         if self.edges[edgeid][0][2] == 0:
             if self.edges[edgeid][0][0] == sourcev:
                 if self.edges[edgeid][0][1] == targetv:
@@ -183,10 +216,10 @@ class BasicGraph(BaseObjects.BaseGraph):
         return False
 
     def getVertexDataKeys(self, vertexid):
-        return [x for x in self.vertices[vertexid][2]]
+        return self.vertices[vertexid][2].keys()
       
     def getEdgeDataKeys(self, edgeid):
-        return [x for x in self.edges[edgeid][1]]
+        return self.edges[edgeid][1].keys()
 
     #should return a list (vertex1, vertex2, direction)
     def getEdgeInfo(self, edgeid, normalized=False):
