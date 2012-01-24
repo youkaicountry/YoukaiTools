@@ -23,6 +23,10 @@ from math import sqrt, cos, sin
 import math
 twopi = math.pi*2.0
 
+basic_global = None
+basic_particle = None
+basic_bond = None
+
 import SN2D
 
 """
@@ -39,12 +43,9 @@ def graphToPhysics(graph, globaldef=None, particledef=None, bonddef=None):
         bonddef = getBasicBondDef()
     sn2d = SN2D.SN2D()
     for vertex in graph.getVertexList():
-        print(vertex, graph.getVertexDataKeys(vertex))
         if 'type' not in graph.getVertexDataKeys(vertex): continue
         d = graph.getVertexData(vertex, particledef['type'])
-        print(vertex, d)
         if d == particledef['typeval']: #then we have a particle
-            print("vertex", vertex)
             p = sn2d.newParticle([vertex])[0]
             sn2d.xposition[p] = graph.getVertexData(vertex, particledef['xposition'])
             sn2d.yposition[p] = graph.getVertexData(vertex, particledef['yposition'])
@@ -105,7 +106,7 @@ def addGlobalToGraph(graph, dt, macrogravityon, macrogravity, time, collisionson
     graph.setVertexData(vid, globaldef['coulomb_constant'], coulomb_constant)
     return vid
 
-def addParticleToGraph(graph, xposition, yposition, xvelocity, yvelocity, xacceleration, yacceleration, mass, fixed, charge, particledef=None):
+def addParticleToGraph(graph, xposition, yposition, xvelocity, yvelocity, xacceleration, yacceleration, mass, fixed, charge, important = False, particledef=None):
     if particledef is None:
         particledef = getBasicParticleDef()
     vid = graph.addVertex()
@@ -119,9 +120,11 @@ def addParticleToGraph(graph, xposition, yposition, xvelocity, yvelocity, xaccel
     graph.setVertexData(vid, particledef['fixed'], fixed)
     graph.setVertexData(vid, particledef['charge'], charge)
     graph.setVertexData(vid, 'type', particledef['typeval'])
+    if important:
+        graph.setVertexData(vid, 'important', True)
     return vid
 
-def addBondToGraph(graph, p1, p2, spring, breakforce, length = None, bonddef=None):
+def addBondToGraph(graph, p1, p2, spring, breakforce, important = False, length = None, bonddef=None):
     if bonddef is None:
         bonddef = getBasicBondDef()
     eid = graph.addEdge(p1, p2)
@@ -130,31 +133,39 @@ def addBondToGraph(graph, p1, p2, spring, breakforce, length = None, bonddef=Non
     if length is not None:
         graph.setEdgeData(eid, bonddef['length'], length)
     graph.setEdgeData(eid, 'type', bonddef['typeval'])
+    if important:
+        graph.setEdgeData(eid, 'important', True)
     return eid
 
 def getBasicGlobalDef():
-    out = {}
-    names = ['macrogravityon', 'time', 'collisionson', 'macrogravity', 'fluidfriction', 'coulombon', 'coulomb_constant', 'dt']
-    for name in names:
-        out[name] = name
-    out["id"] = "global"
-    return out
+    global basic_global
+    if basic_global is None:
+        basic_global = {}
+        names = ['macrogravityon', 'time', 'collisionson', 'macrogravity', 'fluidfriction', 'coulombon', 'coulomb_constant', 'dt']
+        for name in names:
+            basic_global[name] = name
+        basic_global["id"] = "global"
+    return basic_global
 
 def getBasicParticleDef():
-    out = {}
-    names = ['type', 'xposition', 'yposition', 'xvelocity', 'yvelocity', 'xacceleration', 'yacceleration', 'mass', 'fixed', 'charge']
-    for name in names:
-        out[name] = name
-    out['typeval'] = 'particle'
-    return out
+    global basic_particle
+    if basic_particle is None:
+        basic_particle = {}
+        names = ['type', 'xposition', 'yposition', 'xvelocity', 'yvelocity', 'xacceleration', 'yacceleration', 'mass', 'fixed', 'charge']
+        for name in names:
+            basic_particle[name] = name
+        basic_particle['typeval'] = 'particle'
+    return basic_particle
 
 def getBasicBondDef():
-    out = {}
-    names = ['type', 'spring', 'length', 'breakforce']
-    for name in names:
-        out[name] = name
-    out['typeval'] = 'bond'
-    return out
+    global basic_bond
+    if basic_bond is None:
+        basic_bond = {}
+        names = ['type', 'spring', 'length', 'breakforce']
+        for name in names:
+            basic_bond[name] = name
+        basic_bond['typeval'] = 'bond'
+    return basic_bond
 
 def randomAddBond(graph, maxdist, r=None, globaldef=None, particledef=None):
     if r is None:
@@ -168,12 +179,18 @@ def randomAddBond(graph, maxdist, r=None, globaldef=None, particledef=None):
     if maxbonds == graph.getSize():
         return None
     bondlist = [x for x in graph.getVertexList() if ((len(graph.getAdjacentEdges(x)) < (n-1)) and x != globaldef['id'])]
-    if len(bondlist) < 2: raise Exception("Nonsensical input.")
+    #if len(bondlist) < 2: raise Exception("Nonsensical input.")
+    if len(bondlist) < 2: return None
     r.shuffle(bondlist)
     for one in xrange(len(bondlist)-1):
         for two in xrange(one+1, len(bondlist)):
+            if one == two: continue
             p1 = bondlist[one]
             p2 = bondlist[two]
+            if graph.getVertexData(p1, particledef['fixed']) and graph.getVertexData(p2, particledef['fixed']):
+                continue 
+            if p2 in graph.getAdjacentVertices(p1):
+                continue
             dx = graph.getVertexData(p1, particledef['xposition']) - graph.getVertexData(p2, particledef['xposition'])
             dy = graph.getVertexData(p1, particledef['yposition']) - graph.getVertexData(p2, particledef['yposition'])
             dist = sqrt(dx*dx + dy*dy)
@@ -188,7 +205,8 @@ def randomDelBond(graph, r=None, particledef=None):
         r = random.Random()
     if particledef is None:
         particledef = getBasicParticleDef()
-    bonds = graph.getEdgeList()
+    bonds = [x for x in graph.getEdgeList() if 'important' not in graph.getEdgeDataKeys(x)]
+    if len(bonds) < 1: return None
     r.shuffle(bonds)
     bond = bonds[0]
     bi = graph.getEdgeInfo(bond)
@@ -196,14 +214,14 @@ def randomDelBond(graph, r=None, particledef=None):
     p2 = bi[1]
     graph.removeEdge(bond)
     if len(graph.getAdjacentEdges(p1)) < 1:
-        if not graph.getVertexData(p1, particledef['fixed']):
+        if 'important' not in graph.getVertexDataKeys(p1):
             graph.removeVertex(p1)
     if len(graph.getAdjacentEdges(p2)) < 1:
-        if not graph.getVertexData(p2, particledef['fixed']):
+        if 'important' not in graph.getVertexDataKeys(p2):
             graph.removeVertex(p2)
     return True
 
-def randomAddParticle(graph, maxdist, r=None, globaldef=None, particledef=None):
+def randomAddParticle(graph, mindist, maxdist, r=None, globaldef=None, particledef=None):
     if r is None:
         r = random.Random()
     if globaldef is None:
@@ -217,8 +235,51 @@ def randomAddParticle(graph, maxdist, r=None, globaldef=None, particledef=None):
         return None
     r.shuffle(vertices)
     vertex = vertices[0]
-    dist = r.random()*maxdist
+    dist = (r.random()*(maxdist-mindist)) + mindist
     angle = r.random()*twopi
     newx = graph.getVertexData(vertex, particledef['xposition']) + (cos(angle)*dist)
-    newy = graph.getVertexData(vertex, particledef['yposition']) + (cos(angle)*dist)
+    newy = graph.getVertexData(vertex, particledef['yposition']) + (sin(angle)*dist)
     return (vertex, newx, newy)
+
+def randomJostleParticle(graph, mindist, maxdist, minedgedist, maxedgedist, retries = 3, r=None, globaldef=None, particledef=None):
+    if r is None:
+        r = random.Random()
+    if globaldef is None:
+        globaldef = getBasicGlobalDef()
+    if particledef is None:
+        particledef = getBasicParticleDef()
+    if graph.getOrder() < 2:
+        return None
+    vertices = [x for x in graph.getVertexList() if ((x != globaldef['id']) and (not graph.getVertexData(x, particledef['fixed'])) and ('important' not in graph.getVertexDataKeys(x)))]
+    if len(vertices) < 1:
+        return None
+    r.shuffle(vertices)
+    vertex = vertices[0]
+    edges = graph.getAdjacentEdges(vertex)
+    tries = 0
+    while True:
+        dist = (r.random()*(maxdist-mindist)) + mindist
+        angle = r.random()*twopi
+        newx = graph.getVertexData(vertex, particledef['xposition']) + (cos(angle)*dist)
+        newy = graph.getVertexData(vertex, particledef['yposition']) + (sin(angle)*dist)
+        done = False
+        for edge in edges:
+            #vertex1, vertex2, direction = graph.getEdgeInfo(edge)
+            #print("   EDGE " + str(edge) + ": " + str(vertex1) + ", " + str(vertex2) + " dir: " + str(direction))
+            
+            othervertex = graph.getEdgeEnd(vertex, edge)
+            dx = newx - graph.getVertexData(othervertex, particledef['xposition'])
+            dy = newy - graph.getVertexData(othervertex, particledef['yposition'])
+            tdist = sqrt(dx*dx + dy*dy)
+            if tdist >= minedgedist and tdist <= maxedgedist:
+                done = True
+                break
+        if done:
+            break
+        tries += 1
+        if tries >= retries:
+            return None
+    #print(graph.getVertexData(vertex, particledef['xposition']), graph.getVertexData(othervertex, particledef['yposition']), " -> ", newx, newy)
+    graph.setVertexData(vertex, particledef['xposition'], newx)
+    graph.setVertexData(vertex, particledef['yposition'], newy)
+    return
