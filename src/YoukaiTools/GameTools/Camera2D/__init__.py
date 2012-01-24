@@ -18,6 +18,8 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
+from collections import deque
+
 class Camera2D:
     def __init__(self, camerabounds=(0, 0, 10, 10), screensize=(320, 280)):
         self.setCameraBounds(*camerabounds)
@@ -98,3 +100,9 @@ class Camera2D:
         dy = (oldyl-newyl)*.5
         self.setCameraBounds(self.cameraxmin+dx, self.cameraymin+dy, self.cameraxmax-dx, self.cameraymax-dy)
         return
+
+class Camera2DController:
+    def __init__(self, camera2d=None):
+        
+        return
+    
