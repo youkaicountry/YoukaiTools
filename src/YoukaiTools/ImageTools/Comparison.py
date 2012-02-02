@@ -27,8 +27,8 @@ from . import SubImage
 #and number of channels
 def manhattanDistance(image1, image2):
     adder = 0
-    for i in range(3, len(image1)):
-        for j in range(image1[2]):
+    for i in xrange(3, len(image1)):
+        for j in xrange(image1[2]):
             adder += abs(image1[i][j] - image2[i][j])
     return adder
     
@@ -37,7 +37,7 @@ def manhattanAverageDistance(image1, image2, div=None):
     if div==None:
         div = image1[0]*image1[1]
     for i in range(3, len(image1)):
-        for j in range(image1[2]):
+        for j in xrange(image1[2]):
             adder += abs(image1[i][j] - image2[i][j])
     return adder/div
 
@@ -46,7 +46,7 @@ def averageColorDist(image1, image2, averagecolor1=None, averagecolor2=None):
     a1 = Metric.calculateAverageColor(image1) if averagecolor1 is None else averagecolor1
     a2 = Metric.calculateAverageColor(image2) if averagecolor2 is None else averagecolor2
     adder = 0
-    for i in range(len(a1)):
+    for i in xrange(len(a1)):
         adder += abs(a1[i] - a2[i])
     return adder
 
@@ -67,7 +67,7 @@ def matchImages(image, imagepool, manhattan=1.0, average_color=.25, average_valu
     pac=[None]*len(imagepool) if poolaveragecolor==None else poolaveragecolor
     pvi=[None]*len(imagepool) if poolvalueimage==None else poolvalueimage
     pavc=[None]*len(imagepool) if poolaveragevcolor==None else poolaveragevcolor
-    for i in range(len(imagepool)):
+    for i in xrange(len(imagepool)):
         v = 0
         if manhattan > 0:
             v += ((manhattanDistance(image, imagepool[i]))) * (1.0/manhattan) if not manhattanaverage else manhattanAverageDistance(image, imagepool[i], div) * (1.0/manhattan)

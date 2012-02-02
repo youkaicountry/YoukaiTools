@@ -43,3 +43,12 @@ def add(p1, p2, top=1.0):
         if a > top: a = top
         out.append(a)
     return out
+
+def sub(p1, p2, bottom=0.0):
+    out = []
+    for i,c in enumerate(p1):
+        #print(i, c, p2[i])
+        a = c-p2[i]
+        if a < bottom: a = bottom
+        out.append(a)
+    return out

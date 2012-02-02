@@ -40,6 +40,6 @@ def newImage(width, height, initialcolor=[0, 0, 0], channels=None, indata=None):
         number_channels = channels
     head = [width, height, number_channels]
     body = []
-    for i in range(width*height):
+    for i in xrange(width*height):
         body += [ic[:]]
     return head + body

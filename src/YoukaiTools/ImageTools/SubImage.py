@@ -35,7 +35,7 @@ def averageChannels(image, channels=None):
         use_channels = channels
     div = len(use_channels)
     outimage = Create.newImage(image[0], image[1], [0])
-    for i in range(image[0]*image[1]):
+    for i in xrange(image[0]*image[1]):
         j = i+3
         adder = 0.0
         for c in use_channels:
@@ -47,8 +47,8 @@ def averageChannels(image, channels=None):
 def getSubImage(image, x, y, width, height):
     outimage = Create.newImage(width, height, 0, image[2])
     oi = 3
-    for ty in range(height):
-        for tx in range(width):
+    for ty in xrange(height):
+        for tx in xrange(width):
             i = arrayIndex2To1(tx+x, ty+y, image[0], 3)
             outimage[oi] = image[i][:]
             oi += 1
@@ -66,8 +66,8 @@ def clone(image):
 #TODO: Have tilesx and tilesy = None revert to the maximum allowed
 def getTiles(image, tilexsize, tileysize, tilesx, tilesy, xbordersize=0, ybordersize=0, xboundarysize=0, yboundarysize=0):
     imagepool = []
-    for ytile in range(tilesy):
-        for xtile in range(tilesx):
+    for ytile in xrange(tilesy):
+        for xtile in xrange(tilesx):
             x = xbordersize + (xtile*tilexsize) + (xtile*xboundarysize)
             y = ybordersize + (ytile*tileysize) + (ytile*yboundarysize)
             print(x, y)
@@ -79,8 +79,8 @@ def getTiles(image, tilexsize, tileysize, tilesx, tilesy, xbordersize=0, yborder
 #of images in the imagepool
 def tileImage(imagepool, tile_map, colormap=None, tintcombine=CombineFunctions.multiply, tintcparams=[]):
     outimage = Create.newImage(tile_map[0]*imagepool[0][0], tile_map[1]*imagepool[0][1], initialcolor=0, channels=imagepool[0][2])
-    for tmy in range(tile_map[1]):
-        for tmx in range(tile_map[0]):
+    for tmy in xrange(tile_map[1]):
+        for tmx in xrange(tile_map[0]):
             i = arrayIndex2To1(tmx, tmy, tile_map[0], 3)
             if colormap != None:
                 tile = clone(imagepool[tile_map[i][0]])
@@ -92,9 +92,9 @@ def tileImage(imagepool, tile_map, colormap=None, tintcombine=CombineFunctions.m
 
 def verticalFlip(image):
     outimage = Create.newImage(image[0], image[1], 0, image[2])
-    for y in range(image[1]):
+    for y in xrange(image[1]):
         ny = (image[1]-1) - y
-        for x in range(image[0]):
+        for x in xrange(image[0]):
             inew = arrayIndex2To1(x, ny, image[0], 3)
             iold = arrayIndex2To1(x, y, image[0], 3)
             outimage[iold] = image[inew][:]
@@ -104,7 +104,7 @@ def verticalFlip(image):
 #for example, splitparams=([0,2], [1], [1,2]) would make 3 images
 def splitChannels(image, splitparams):
     outpool = []
-    for i in range(len(splitparams)):
+    for i in xrange(len(splitparams)):
         outpool.append(Create.newImage(image[0], image[1], 0, len(splitparams[i])))
     for i, x in enumerate(image[3:]):
         for j, sp in enumerate(splitparams):
@@ -127,15 +127,15 @@ def shrinkImage(image, newwidth, newheight):
     outimage = Create.newImage(newwidth, newheight, 0, image[2])
     t = []
     div = xgridsize*ygridsize
-    for gy in range(newheight):
-        for gx in range(newwidth):
+    for gy in xrange(newheight):
+        for gx in xrange(newwidth):
             xstart = gx * xgridsize
             xend = xstart + xgridsize
             ystart = gy * ygridsize
             yend = ystart + ygridsize
             t = [0 for x in range(image[2])]
-            for py in range(ystart, yend):
-                for px in range(xstart, xend):
+            for py in xrange(ystart, yend):
+                for px in xrange(xstart, xend):
                     index = arrayIndex2To1(px, py, image[0], 3)
                     for i, c in enumerate(image[index]):
                         t[i] += c
