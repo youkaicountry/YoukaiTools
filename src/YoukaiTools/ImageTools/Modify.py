@@ -114,7 +114,8 @@ def normalize(image, minv, maxv, channels=None, sameinrange=True):
     return
 
 def pset(image, x, y, color, combine=CombineFunctions.paint, cparams=[]):
-    i = arrayIndex2To1(x, y, image[0], 3)
+    i = y*image[0] + x + 3
+    #i = arrayIndex2To1(x, y, image[0], 3)
     image[i] = combine(image[i], color, *cparams)
     return
 
@@ -246,7 +247,7 @@ def drawPolygon(image, points, color, combine=CombineFunctions.paint, cparams=[]
 
 def drawFilledTriangle(image, xi1, yi1, xi2, yi2, xi3, yi3, color, combine=CombineFunctions.paint, cparams=[]):
         x0, y0, x1, y1, x2, y2 = __sortTri([ (yi1, xi1), (yi2, xi2), (yi3, xi3) ])
-        
+        #print(x0, y0, x1, y1, x2, y2)
         d0  = 0
         d1  = 0
         d2  = 0
@@ -300,7 +301,7 @@ def drawFilledTriangle(image, xi1, yi1, xi2, yi2, xi3, yi3, color, combine=Combi
             if sx < ex : drawHorizontalLine(image, sx, i, ex - sx, color, combine, cparams)
             else : drawHorizontalLine(image, ex, i, sx - ex, color, combine, cparams)
   
-        for i in xrange(int(y1), y2):
+        for i in xrange(int(y1), int(y2)):
             sx = int(x0 + ((i - y0) * d2))
             ex = int(x1 + ((i - y1) * d1))
   
