@@ -14,5 +14,6 @@
 *.zip
 *.gz
 *.pickle
+*.xcf
 build/
 html/

@@ -20,6 +20,7 @@
 
 import random
 import itertools
+from bisect import bisect
 
 class AdvRandom:
     def __init__(self, r=None):
@@ -54,3 +55,27 @@ class AdvRandom:
 _inst = AdvRandom()
 biasedChoice = _inst.biasedChoice
 
+class BiasedChoice():
+    def __init__(self, sequence, probabilities=None, r=None):
+        if probabilities is None:
+            probabilities = [1 for x in sequence]
+        if r is None:
+            r = random.Random()
+        self.r = r
+        psum = float(sum([x for x in probabilities]))
+        pseq = [float(x)/psum for x in probabilities]
+        self.prob = []
+        adder = 0
+        for x in pseq:
+            self.prob.append(x+adder)
+            adder += x
+        self.seq = sequence
+        return
+    
+    def getChoice(self):
+        i = bisect(self.prob, self.r.random())
+        return self.seq[i]
+
+    def getChoiceIndex(self):
+        return bisect(self.prob, self.r.random())
+        

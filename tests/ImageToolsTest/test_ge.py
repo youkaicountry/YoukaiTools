@@ -42,11 +42,11 @@ input_pickle = sys.argv[4] if len(sys.argv) > 4 else None
 
 # -------- OPTIONS
 #The number of elements to use in creating the image
-tris = 220
+tris = 50
 #Whether to resize laoded arrays or not
 resize_arrays = True
 #The maximum mutation intensity
-max_mutation_intensity = .1
+max_mutation_intensity = .2
 #Can the elements warp, or only move?
 warp = True
 #Chance of a warp
@@ -56,22 +56,22 @@ max_mutates = 3
 #The mix method to use for painting
 mix_method = "subtract"
 #Number of hours to run the simulation
-hours_to_run = 2.5
+hours_to_run = .5
 #Report every how many generations?
-report_every = 20
+report_every = 50
 #draw after an improvement of:
-history_after = 1.002
+history_after = 1.001
 
 draw_mode = "triangle" #line or triangle
 
-start_element_color_min = [1.0, 1.0, 1.0]
-start_element_color_max = [1.0, 1.0, 1.0]
+start_element_color_min = [0.0, 1.0, 1.0]
+start_element_color_max = [0.0, 1.0, 1.0]
 start_background_color = [1.0, 1.0, 1.0]
 start_element_range = ((0.0, 1.0), (0.0, 1.0))
 #start_element_offset = ((-1.0, 1.0), (-1.0, 1.0))
 start_element_offset = ((-.2, .2), (-.2, .2))
 
-element_color_locked = False
+element_color_locked = True
 # --------
 
 max_fitness = float(target_image[0]*target_image[1]*target_image[2])
