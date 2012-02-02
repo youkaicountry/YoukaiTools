@@ -13,6 +13,13 @@ import YoukaiTools.ShiroiNeko.GraphRepresentation as GR
 import YoukaiTools.ShiroiNeko.Game as Game
 import YoukaiTools.GraphEngine.GraphTools.SubGraph as SubGraph
 
+bspring = 2000
+bforce = 3200
+udt = .013
+
+mindist = .5
+maxdist = 1.99
+
 fitnessx = []
 fitnessy = []
 
@@ -27,7 +34,7 @@ def fitness(obj):
         return 0
     #return Game.scoreAverageHeight(sn2d)
     #return Game.scoreHeight(sn2d)
-    return Game.scoreWeightHeight(sn2d)
+    return Game.scoreHeight(sn2d)
 
 def mate(obj1, obj2):
     a = [obj1, obj2]
@@ -43,23 +50,23 @@ def mutate(intensity, obj):
     for i in xrange(ui):
         ri = r.randint(0,3)
         if ri == 0:
-            ab = GR.randomAddBond(graph, 2, r)
+            ab = GR.randomAddBond(graph, maxdist, r)
             if ab is not None:
-                GR.addBondToGraph(graph, ab[0], ab[1], 1200, 8000)
+                GR.addBondToGraph(graph, ab[0], ab[1], bspring, bforce)
         elif ri == 1:
             GR.randomDelBond(graph, r)
         elif ri == 2:
-            ab = GR.randomAddParticle(graph, 1.0, 2.0, r)
+            ab = GR.randomAddParticle(graph, mindist, maxdist, r)
             if ab is not None:
                 np = GR.addParticleToGraph(graph, ab[1], ab[2], 0, 0, 0, 0, 1, False, 0)
-                GR.addBondToGraph(graph, ab[0], np, 1200, 8000)
+                GR.addBondToGraph(graph, ab[0], np, bspring, bforce)
         elif ri == 3:
-            ab = GR.randomJostleParticle(graph, 0.0, .2, .5, 3.0)
+            ab = GR.randomJostleParticle(graph, 0.0, mindist, mindist, maxdist)
     return graph
 
 def random_dna():
     graph = GraphEngine.BasicGraph()
-    GR.addGlobalToGraph(graph, .02, True, 9.81, 0.0, False, .98, False, 0)
+    GR.addGlobalToGraph(graph, udt, True, 9.81, 0.0, False, .98, False, 0)
     p1 = GR.addParticleToGraph(graph, 0, 0, 0, 0, 0, 0, 1, True, 0, important=True)
     p1 = GR.addParticleToGraph(graph, .5, 0, 0, 0, 0, 0, 1, True, 0, important=True)
     p2 = GR.addParticleToGraph(graph, 1, 0, 0, 0, 0, 0, 1, True, 0, important=True)
@@ -72,7 +79,7 @@ def random_dna():
     
 def basic_dna():
     graph = GraphEngine.BasicGraph()
-    GR.addGlobalToGraph(graph, .02, True, 9.81, 0.0, False, .98, False, 0)
+    GR.addGlobalToGraph(graph, udt, True, 9.81, 0.0, False, .98, False, 0)
     p1 = GR.addParticleToGraph(graph, 0, 0, 0, 0, 0, 0, 1, True, 0, important=True)
     p1 = GR.addParticleToGraph(graph, .5, 0, 0, 0, 0, 0, 1, True, 0, important=True)
     p2 = GR.addParticleToGraph(graph, 1, 0, 0, 0, 0, 0, 1, True, 0, important=True)
@@ -99,8 +106,8 @@ dt = GeneAlg.SelectionTypes.tourney_low_select
 fill = GeneAlg.FillTypes.random_fill
 gene = GeneAlg.make_gene(fitness, mate, mutate, random_dna, basic_dna, report = report)
 
-op = GeneAlg.make_options(st, (6,), dt, (6,), fill, (), 1.0, .00, 1.0)
-GA = GeneAlg.Algorithms.Pool(gene, op, 400)
+op = GeneAlg.make_options(st, (7,), dt, (7,), fill, (), 1.0, .00, 1.0)
+GA = GeneAlg.Algorithms.Pool(gene, op, 300)
 
 #op = GeneAlg.make_options(st, (1,), dt, (1,), fill, (), 1.0, .00, 1.0)
 #GA = GeneAlg.Algorithms.HillClimb(gene, op)
@@ -111,9 +118,9 @@ GA = GeneAlg.Algorithms.Pool(gene, op, 400)
 #op = GeneAlg.make_options(st, (2,), dt, (2,), fill, (), 1.0, .00, .75)
 #GA = GeneAlg.Algorithms.Community(gene, op, 15)
 
-reportc = GeneAlg.make_criteria(None, 50)
+reportc = GeneAlg.make_criteria(None, 20)
 savec = GeneAlg.make_criteria(None, 1000)
-termc = GeneAlg.make_criteria(1, None)
+termc = GeneAlg.make_criteria(60*60*1.5, None)
 
 GA.run(reportc, savec, termc)
 ab = GA.getBest()

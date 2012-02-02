@@ -1,9 +1,10 @@
 import random
 import math
+import sys
+import gzip
+import cPickle
 
-import YoukaiTools.Circuit as Circuit
 import YoukaiTools.ImageTools as ImageTools
-import YoukaiTools.AdvRandom as AdvRandom
 from YoukaiTools import GeneAlg
 import YoukaiTools.PyRange as PyRange
 import YoukaiTools.PyRange.Draw.Draw1D as Draw1D
@@ -22,6 +23,20 @@ udt = .013
 
 mindist = .5
 maxdist = 1.99
+
+use = None
+out = "bridge.gz"
+time = 60*5
+initobj = None
+if len(sys.argv) > 1:
+    time = int(float(sys.argv[1])*60.0*60.0)
+    print("TIME: " + str(time) + " seconds.")
+    use = sys.argv[2]
+    out = sys.argv[3]
+    f = gzip.open(use, "r")
+    initobj = cPickle.load(f)
+    f.close()
+    
 
 r = random.Random()
 #r = random.Random(1135)
@@ -45,6 +60,7 @@ def fitness(obj):
     #return Game.scoreHeight(sn2d)
     vertices = [v for v in obj.getVertexList() if ((v != 'global') and (not obj.getVertexData(v, 'fixed')))]
     return Game.scoreWeight(sn2d, vertices=vertices)
+    #return Game.scoreWeight(sn2d, vertices=vertices) / Game.scoreCost(sn2d)
 
 def mate(obj1, obj2):
     a = [obj1, obj2]
@@ -76,63 +92,78 @@ def mutate(intensity, obj):
 
 def random_dna():
     graph = GraphEngine.BasicGraph()
-    GR.addGlobalToGraph(graph, udt, True, 9.81, 0.0, False, .98, False, 0)
-    pbase1 = GR.addParticleToGraph(graph, -1, 0, 0, 0, 0, 0, 1, True, 0, important=True)
-    pbase2 = GR.addParticleToGraph(graph, 8, 0, 0, 0, 0, 0, 1, True, 0, important=True)
-    pbase3 = GR.addParticleToGraph(graph, -1, -1, 0, 0, 0, 0, 1, True, 0, important=True)
-    pbase4 = GR.addParticleToGraph(graph, 8, -1, 0, 0, 0, 0, 1, True, 0, important=True)
-    pbase1 = GR.addParticleToGraph(graph, 0, 1, 0, 0, 0, 0, 1, True, 0, important=True)
-    pbase1 = GR.addParticleToGraph(graph, 0, 2, 0, 0, 0, 0, 1, True, 0, important=True)
-    pbase1 = GR.addParticleToGraph(graph, 8, 1, 0, 0, 0, 0, 1, True, 0, important=True)
-    pbase1 = GR.addParticleToGraph(graph, 8, 2, 0, 0, 0, 0, 1, True, 0, important=True)
-    
-    p1 = GR.addParticleToGraph(graph, 0, 0, 0, 0, 0, 0, 1, True, 0, important=True)
-    p2 = GR.addParticleToGraph(graph, 1, 0, 0, 0, 0, 0, 1, False, 0, important=True)
-    GR.addBondToGraph(graph, p1, p2, bspring, bforce, important=True)
-    
-    p3 = GR.addParticleToGraph(graph, 2, 0, 0, 0, 0, 0, 1, False, 0, important=True)
-    GR.addBondToGraph(graph, p2, p3, bspring, bforce, important=True)
-    
-    p4 = GR.addParticleToGraph(graph, 3, 0, 0, 0, 0, 0, 1, False, 0, important=True)
-    GR.addBondToGraph(graph, p3, p4, bspring, bforce, important=True)
-    
-    p5 = GR.addParticleToGraph(graph, 4, 0, 0, 0, 0, 0, 1, False, 0, important=True)
-    GR.addBondToGraph(graph, p4, p5, bspring, bforce, important=True)
-    
-    p6 = GR.addParticleToGraph(graph, 5, 0, 0, 0, 0, 0, 1, False, 0, important=True)
-    GR.addBondToGraph(graph, p5, p6, bspring, bforce, important=True)
-    
-    p7 = GR.addParticleToGraph(graph, 6, 0, 0, 0, 0, 0, 1, False, 0, important=True)
-    GR.addBondToGraph(graph, p6, p7, bspring, bforce, important=True)
-    
-    p8 = GR.addParticleToGraph(graph, 7, 0, 0, 0, 0, 0, 1, True, 0, important=True)
-    GR.addBondToGraph(graph, p7, p8, bspring, bforce, important=True)
+    if initobj is None:
+        GR.addGlobalToGraph(graph, udt, True, 9.81, 0.0, False, .98, False, 0)
+        pbase1 = GR.addParticleToGraph(graph, -1, 0, 0, 0, 0, 0, 1, True, 0, important=True)
+        pbase2 = GR.addParticleToGraph(graph, 8, 0, 0, 0, 0, 0, 1, True, 0, important=True)
+        pbase3 = GR.addParticleToGraph(graph, -1, -1, 0, 0, 0, 0, 1, True, 0, important=True)
+        pbase4 = GR.addParticleToGraph(graph, 8, -1, 0, 0, 0, 0, 1, True, 0, important=True)
+        pbase1 = GR.addParticleToGraph(graph, 0, 1, 0, 0, 0, 0, 1, True, 0, important=True)
+        pbase1 = GR.addParticleToGraph(graph, 0, 2, 0, 0, 0, 0, 1, True, 0, important=True)
+        pbase1 = GR.addParticleToGraph(graph, 8, 1, 0, 0, 0, 0, 1, True, 0, important=True)
+        pbase1 = GR.addParticleToGraph(graph, 8, 2, 0, 0, 0, 0, 1, True, 0, important=True)
+        
+        p1 = GR.addParticleToGraph(graph, 0, 0, 0, 0, 0, 0, 1, True, 0, important=True)
+        p2 = GR.addParticleToGraph(graph, 1, 0, 0, 0, 0, 0, 1, False, 0, important=True)
+        GR.addBondToGraph(graph, p1, p2, bspring, bforce, important=True)
+        
+        p3 = GR.addParticleToGraph(graph, 2, 0, 0, 0, 0, 0, 1, False, 0, important=True)
+        GR.addBondToGraph(graph, p2, p3, bspring, bforce, important=True)
+        
+        p4 = GR.addParticleToGraph(graph, 3, 0, 0, 0, 0, 0, 1, False, 0, important=True)
+        GR.addBondToGraph(graph, p3, p4, bspring, bforce, important=True)
+        
+        p5 = GR.addParticleToGraph(graph, 4, 0, 0, 0, 0, 0, 1, False, 0, important=True)
+        GR.addBondToGraph(graph, p4, p5, bspring, bforce, important=True)
+        
+        p6 = GR.addParticleToGraph(graph, 5, 0, 0, 0, 0, 0, 1, False, 0, important=True)
+        GR.addBondToGraph(graph, p5, p6, bspring, bforce, important=True)
+        
+        p7 = GR.addParticleToGraph(graph, 6, 0, 0, 0, 0, 0, 1, False, 0, important=True)
+        GR.addBondToGraph(graph, p6, p7, bspring, bforce, important=True)
+        
+        p8 = GR.addParticleToGraph(graph, 7, 0, 0, 0, 0, 0, 1, True, 0, important=True)
+        GR.addBondToGraph(graph, p7, p8, bspring, bforce, important=True)
+    else:
+        SubGraph.copyGraph(graph, initobj)
     return graph
     
 def basic_dna():
     graph = GraphEngine.BasicGraph()
-    GR.addGlobalToGraph(graph, udt, True, 9.81, 0.0, False, .98, False, 0)
-    p1 = GR.addParticleToGraph(graph, 0, 0, 0, 0, 0, 0, 1, True, 0, important=True)
-    p2 = GR.addParticleToGraph(graph, 1, 0, 0, 0, 0, 0, 1, False, 0, important=True)
-    GR.addBondToGraph(graph, p1, p2, bspring, bforce, important=True)
-    
-    p3 = GR.addParticleToGraph(graph, 2, 0, 0, 0, 0, 0, 1, False, 0, important=True)
-    GR.addBondToGraph(graph, p2, p3, bspring, bforce, important=True)
-    
-    p4 = GR.addParticleToGraph(graph, 3, 0, 0, 0, 0, 0, 1, False, 0, important=True)
-    GR.addBondToGraph(graph, p3, p4, bspring, bforce, important=True)
-    
-    p5 = GR.addParticleToGraph(graph, 4, 0, 0, 0, 0, 0, 1, False, 0, important=True)
-    GR.addBondToGraph(graph, p4, p5, bspring, bforce, important=True)
-    
-    p6 = GR.addParticleToGraph(graph, 5, 0, 0, 0, 0, 0, 1, False, 0, important=True)
-    GR.addBondToGraph(graph, p5, p6, bspring, bforce, important=True)
-    
-    p7 = GR.addParticleToGraph(graph, 6, 0, 0, 0, 0, 0, 1, False, 0, important=True)
-    GR.addBondToGraph(graph, p6, p7, bspring, bforce, important=True)
-    
-    p8 = GR.addParticleToGraph(graph, 7, 0, 0, 0, 0, 0, 1, True, 0, important=True)
-    GR.addBondToGraph(graph, p7, p8, bspring, bforce, important=True)
+    if initobj is None:
+        GR.addGlobalToGraph(graph, udt, True, 9.81, 0.0, False, .98, False, 0)
+        pbase1 = GR.addParticleToGraph(graph, -1, 0, 0, 0, 0, 0, 1, True, 0, important=True)
+        pbase2 = GR.addParticleToGraph(graph, 8, 0, 0, 0, 0, 0, 1, True, 0, important=True)
+        pbase3 = GR.addParticleToGraph(graph, -1, -1, 0, 0, 0, 0, 1, True, 0, important=True)
+        pbase4 = GR.addParticleToGraph(graph, 8, -1, 0, 0, 0, 0, 1, True, 0, important=True)
+        pbase1 = GR.addParticleToGraph(graph, 0, 1, 0, 0, 0, 0, 1, True, 0, important=True)
+        pbase1 = GR.addParticleToGraph(graph, 0, 2, 0, 0, 0, 0, 1, True, 0, important=True)
+        pbase1 = GR.addParticleToGraph(graph, 8, 1, 0, 0, 0, 0, 1, True, 0, important=True)
+        pbase1 = GR.addParticleToGraph(graph, 8, 2, 0, 0, 0, 0, 1, True, 0, important=True)
+        
+        p1 = GR.addParticleToGraph(graph, 0, 0, 0, 0, 0, 0, 1, True, 0, important=True)
+        p2 = GR.addParticleToGraph(graph, 1, 0, 0, 0, 0, 0, 1, False, 0, important=True)
+        GR.addBondToGraph(graph, p1, p2, bspring, bforce, important=True)
+        
+        p3 = GR.addParticleToGraph(graph, 2, 0, 0, 0, 0, 0, 1, False, 0, important=True)
+        GR.addBondToGraph(graph, p2, p3, bspring, bforce, important=True)
+        
+        p4 = GR.addParticleToGraph(graph, 3, 0, 0, 0, 0, 0, 1, False, 0, important=True)
+        GR.addBondToGraph(graph, p3, p4, bspring, bforce, important=True)
+        
+        p5 = GR.addParticleToGraph(graph, 4, 0, 0, 0, 0, 0, 1, False, 0, important=True)
+        GR.addBondToGraph(graph, p4, p5, bspring, bforce, important=True)
+        
+        p6 = GR.addParticleToGraph(graph, 5, 0, 0, 0, 0, 0, 1, False, 0, important=True)
+        GR.addBondToGraph(graph, p5, p6, bspring, bforce, important=True)
+        
+        p7 = GR.addParticleToGraph(graph, 6, 0, 0, 0, 0, 0, 1, False, 0, important=True)
+        GR.addBondToGraph(graph, p6, p7, bspring, bforce, important=True)
+        
+        p8 = GR.addParticleToGraph(graph, 7, 0, 0, 0, 0, 0, 1, True, 0, important=True)
+        GR.addBondToGraph(graph, p7, p8, bspring, bforce, important=True)
+    else:
+        SubGraph.copyGraph(graph, initobj)
     return graph
 
 def report(report):
@@ -152,8 +183,8 @@ dt = GeneAlg.SelectionTypes.tourney_low_select
 fill = GeneAlg.FillTypes.random_fill
 gene = GeneAlg.make_gene(fitness, mate, mutate, random_dna, basic_dna, report = report)
 
-op = GeneAlg.make_options(st, (6,), dt, (6,), fill, (), 1.0, .00, 1.0)
-GA = GeneAlg.Algorithms.Pool(gene, op, 400)
+op = GeneAlg.make_options(st, (8,), dt, (8,), fill, (), 1.0, .00, 1.0)
+GA = GeneAlg.Algorithms.Pool(gene, op, 300)
 
 #op = GeneAlg.make_options(st, (1,), dt, (1,), fill, (), 1.0, .00, 1.0)
 #GA = GeneAlg.Algorithms.HillClimb(gene, op)
@@ -166,7 +197,7 @@ GA = GeneAlg.Algorithms.Pool(gene, op, 400)
 
 reportc = GeneAlg.make_criteria(None, 20)
 savec = GeneAlg.make_criteria(None, 1000)
-termc = GeneAlg.make_criteria(60*60, None)
+termc = GeneAlg.make_criteria(time, None)
 
 GA.run(reportc, savec, termc)
 ab = GA.getBest()
@@ -179,3 +210,10 @@ print(ab[1].getSize())
 
 dg.setFromXY(fitnessx, fitnessy)
 Draw1D.saveDataGraph1DFile("./bridge_score.png", dg)
+
+#f = open("out.pickle", "w")
+f = gzip.open(out, "w")
+cPickle.dump(ab[1], f)
+f.close()
+
+Draw.drawSimple(ab[1], "pickle.png", ("xposition", "yposition"))
