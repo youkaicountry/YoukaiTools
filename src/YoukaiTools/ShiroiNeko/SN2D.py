@@ -58,6 +58,7 @@ class SN2D:
         self.spring = {}
         self.length = {}
         self.breakforce = {}
+        self.broken = set()
 
     def newParticle(self, names=None, num=1):
         if names is None:
@@ -147,8 +148,7 @@ class SN2D:
             v2 = v*v
             ke += self.mass[p] * v2
         return ke
-
-
+    
     def update(self):
         self.time += self.dt
       

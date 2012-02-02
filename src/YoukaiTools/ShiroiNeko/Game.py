@@ -100,7 +100,7 @@ def scoreWeightHeight(sn2d, points_per_height=30000, points_per_average_height=1
     adder += force*points_per_force
     return adder
 
-def scoreWeight(sn2d, points_per_force=1, force_inc=30, vertices=None):
+def scoreWeight(sn2d, points_per_force=1, force_inc=30, vertices=None, breakbonds=None):
     bonds = sn2d.numbonds
     if bonds < 1:
         return 0
@@ -110,6 +110,10 @@ def scoreWeight(sn2d, points_per_force=1, force_inc=30, vertices=None):
     
     if vertices is None:
         vertices = sn2d.particlelist
+    #if breakbonds is None:
+    #    breakbonds = set(sn2d.bondlist)
+    #else:
+    #    breakbonds = set(breakbonds)
     
     adder = 0
     force = 0
@@ -120,4 +124,10 @@ def scoreWeight(sn2d, points_per_force=1, force_inc=30, vertices=None):
         #adder += uppf
         sn2d.update()
     adder += force*points_per_force
+    return adder
+
+def scoreCost(sn2d, points_per_dist=.00001, points_per_spring=.00001):
+    adder = 0
+    for b in sn2d.bondlist:
+        adder += (points_per_dist*sn2d.length[b])*(points_per_spring*sn2d.spring[b])
     return adder
