@@ -31,16 +31,8 @@ class AdvRandom:
         return
         
     def biasedChoice(self, seq, probseq=None):
-        #Chooses an element from seq at random
-        #Probability of each element given in probseq
-        if probseq is None:
-            probseq = itertools.repeat(1.0)
-        total = sum(p for e,p in zip(seq, probseq))
-        r = random.uniform(0.0, total)
-        for e,p in zip(seq, self.__partialsum(probseq)):
-            if p >= r:
-                return e
-        raise RuntimeError("Could not find element (total="+str(total)+", r="+str(r))
+        bc = BiasedChoice(seq, probseq, self.r)
+        return bc.getChoice()
     
     def distribution(self, dist_func):
         return dist_func(self.r.random())
