@@ -24,6 +24,7 @@ class Camera2D:
     def __init__(self, camerabounds=(0, 0, 10, 10), screensize=(320, 280)):
         self.setCameraBounds(*camerabounds)
         self.setScreenSize(*screensize)
+        self.setZoom1x(camerabounds[2]-camerabounds[0], camerabounds[3]-camerabounds[1])
         return
         
     def setScreenSize(self, width, height):
@@ -32,10 +33,17 @@ class Camera2D:
         return
         
     def setCameraBounds(self, xmin, ymin, xmax, ymax):
+        #Must change zoom info when this changes
         self.cameraxmin = xmin
         self.cameraymin = ymin
         self.cameraxmax = xmax
         self.cameraymax = ymax
+        return
+    
+    def setZoom1x(self, worldwidth, worldheight):
+        self.zoom1xwidth = worldwidth
+        self.zoom1xheight = worldheight
+        self.zoomfactor = 1.0
         return
     
     def getScreenX(self, worldx):
@@ -91,14 +99,28 @@ class Camera2D:
     
     #factor > 1.0 zooms in
     #factor < 1.0 zooms out
-    def zoom(self, factor):
+    def zoomRelative(self, factor):
         oldxl = (self.cameraxmax - self.cameraxmin)
         oldyl = (self.cameraymax - self.cameraymin)
         newxl = oldxl/factor
         newyl = oldyl/factor
-        dx = (oldxl-newxl)*.5
-        dy = (oldyl-newyl)*.5
-        self.setCameraBounds(self.cameraxmin+dx, self.cameraymin+dy, self.cameraxmax-dx, self.cameraymax-dy)
+        dx = (oldxl-newxl)
+        dy = (oldyl-newyl)
+        return self.__zoomBy(dx, dy)
+    
+    def zoomAbsolute(self, factor):
+        
+        return
+
+    def __zoomBy(self, dx, dy):
+        ndx = dx*.5
+        ndy = dy*.5
+        self.setCameraBounds(self.cameraxmin+ndx, self.cameraymin+ndy, self.cameraxmax-ndx, self.cameraymax-ndy)
+        self.__computeCurrentZoomFactor()
+        return self.zoomfactor
+
+    def __computeCurrentZoomFactor(self):
+        self.zoomfactor = self.zoom1xwidth / (self.cameraxmax-self.cameraxmin)
         return
 
 class Camera2DController:
