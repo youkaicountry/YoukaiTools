@@ -207,8 +207,11 @@ def drawHorizontalLine(image, x, y, size, color, combine=CombineFunctions.paint,
         if x + size < xsize : top = locx + size;
         else : top = locx + size - (locx + size - xsize)
         
+        i = y*image[0] + locx + 3
         for tx in xrange(locx, top):
-            pset(image, tx, locy, color, combine, cparams)
+            image[i] = combine(image[i], color, *cparams)
+            i+=1
+            #pset(image, tx, locy, color, combine, cparams)
 
 def drawPath(image, path, color, pieces=None, combine=CombineFunctions.paint, cparams=[]):
     pl = path.getLength()
@@ -251,17 +254,6 @@ def drawFilledTriangle(image, xi1, yi1, xi2, yi2, xi3, yi3, color, combine=Combi
         d0  = 0
         d1  = 0
         d2  = 0
-  
-        dx0 = 0
-        dx1 = 0
-        dx2 = 0
-  
-        dy0 = 0
-        dy1 = 0
-        dy2 = 0
-        
-        dy = [0,0,0]
-        d  = [0,0,0]
 
         dt = 0
         i = 0
@@ -290,13 +282,12 @@ def drawFilledTriangle(image, xi1, yi1, xi2, yi2, xi3, yi3, color, combine=Combi
         
         sx = 0
         ex = 0
-        id = 0
   
         for i in xrange(int(y0), int(y1)):
-            id = float(i)
+            ide = float(i)
   
-            sx = int(x0 + ((id - y0) * d2))
-            ex = int(x0 + ((id - y0) * d0))
+            sx = int(x0 + ((ide - y0) * d2))
+            ex = int(x0 + ((ide - y0) * d0))
   
             if sx < ex : drawHorizontalLine(image, sx, i, ex - sx, color, combine, cparams)
             else : drawHorizontalLine(image, ex, i, sx - ex, color, combine, cparams)
