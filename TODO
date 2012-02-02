@@ -8,6 +8,10 @@ A list of upcoming additions:
 -Rewrite GeneAlg
 -Document stuff!
 
+-GeneAlg takes random object, and passes out instance of itself to all functions
+-Move drawing routines in ImageTools from Modify to Draw or Modify.Draw
+-Make drawing take points as tuples instead of x, y?
+
 Upcoming examples:
 -GameTools
 -QuadTree

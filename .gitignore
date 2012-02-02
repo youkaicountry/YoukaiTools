@@ -11,5 +11,8 @@
 .settings/
 *.marks
 *.profile
+*.zip
+*.gz
+*.pickle
 build/
 html/
