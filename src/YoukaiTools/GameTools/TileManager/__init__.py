@@ -50,15 +50,15 @@ class TileManager:
 #tilexparams = (tilewidth, tilewidthborder, tilewidthgrid, tilesacross)
 #tileyparams = (tileheight, tileheightborder, tileheightgrid, tilesdown)
 class SpriteSheet:
-    """
+    """ 
     """
     def __init__(self, tilexparams, tileyparams, cache = False, sheet=None):
         self.tilewidth, self.tilewidthborder, self.tilewidthgrid, self.tilesacross = tilexparams
         self.tileheight, self.tileheightborder, self.tileheightgrid, self.tilesdown = tileyparams
         self.sheet = sheet
         if cache: 
-            self.generateCache(tilexparams[3]*tileyparams[3])
-            self.getSprite = self.getSpriteFromCache
+            self.__generateCache(tilexparams[3]*tileyparams[3])
+            self.getSprite = self.__getSpriteFromCache
         return
     
     def getSprite(self, index):
@@ -66,10 +66,10 @@ class SpriteSheet:
         y = index//self.tilesacross
         return (self.tilewidthborder+(self.tilewidth+self.tilewidthgrid)*x, self.tileheightborder+(self.tileheight+self.tileheightgrid)*y)
     
-    def getSpriteFromCache(self, index):
+    def __getSpriteFromCache(self, index):
         return self.cache[index]
     
-    def generateCache(self, sprites):
+    def __generateCache(self, sprites):
         self.cache = []
         for i in xrange(sprites):
             self.cache.append(self.getSprite(i))
