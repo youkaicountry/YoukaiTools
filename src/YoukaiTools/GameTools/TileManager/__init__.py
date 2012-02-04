@@ -50,9 +50,24 @@ class TileManager:
 #tilexparams = (tilewidth, tilewidthborder, tilewidthgrid, tilesacross)
 #tileyparams = (tileheight, tileheightborder, tileheightgrid, tilesdown)
 class SpriteSheet:
-    """ 
     """
-    def __init__(self, tilexparams, tileyparams, cache = False, sheet=None):
+    Represents an image with sprites arranged in a grid.
+    """
+    def __init__(self, tilexparams, tileyparams, cache = True, sheet=None):
+        """
+        Initializes the sprite sheet objects. It takes tilexparams and tileyparams, which specify the layout of the
+        sprites in the image. Each one should be a tuple with the following data:
+        (tilewidth, widthborder, widthgrid, num)
+        tilewidth - how many pixels wide each sprite is
+        widthborder - how many pixels wide/tall the border is (0 if no border)
+        widthgrid - how many pixels wide/tall the grid between sprites is (0 if no grid)
+        num - how many sprites across/down the image contains
+        @param tilexparams: A tuple as described above, specifying the x axis
+        @param tileyparams: A tuple as described above, specifying the y axis
+        @param cache: Whether to cache the tiles lookup, which gives a small speed gain
+        @type cache: C{bool}
+        @param sheet: Arbitrary data (such as the image object) can be attached here.
+        """
         self.tilewidth, self.tilewidthborder, self.tilewidthgrid, self.tilesacross = tilexparams
         self.tileheight, self.tileheightborder, self.tileheightgrid, self.tilesdown = tileyparams
         self.sheet = sheet
@@ -62,6 +77,12 @@ class SpriteSheet:
         return
     
     def getSprite(self, index):
+        """
+        Given the index of a sprite, returns the x and y location of the upper left on the sprite sheet
+        @param index: The index of sprite for which to retrieve coordinates.
+        @return: The location of the upper-left of the requested tile.
+        @rtype: C{iterable}
+        """
         x = index%self.tilesacross
         y = index//self.tilesacross
         return (self.tilewidthborder+(self.tilewidth+self.tilewidthgrid)*x, self.tileheightborder+(self.tileheight+self.tileheightgrid)*y)
