@@ -23,7 +23,11 @@ import Data
 
 #the Base GA class
 class BaseGA:
-    def __init__(self, genes, options, savehistoryperiod=10000, maxhistorylength=10):
+    def __init__(self, genes, options, savehistoryperiod=10000, maxhistorylength=10, r = None):
+        if r is None:
+            self.r = random.Random()
+        else:
+            self.r = r
         self.genes = genes
         self.options = options
         self.genelist = []
@@ -50,8 +54,8 @@ class BaseGA:
                 c["generations"] += gdelta
                 c["time"] += tdelta
             a = self.getBest()
-            r = Data.make_report(a[1], a[0], self.generation, termination_criteria["generations"], self.time, termination_criteria["time"])
-            if self.checkCriteria(report_criteria, crit_objs[0]): self.genes["report"](r)
+            rep = Data.make_report(a[1], a[0], self.generation, termination_criteria["generations"], self.time, termination_criteria["time"])
+            if self.checkCriteria(report_criteria, crit_objs[0]): self.genes["report"](rep)
             if self.checkCriteria(save_criteria, crit_objs[1]): self.saveHistory()
             if self.checkCriteria(termination_criteria, crit_objs[2]): break
         return
@@ -91,24 +95,22 @@ class BaseGA:
     
     #returns the mutated object genelist object (fitness, obj)
     def mutateGeneListObject(self, index):
-        r = random.random()
-        if r <= self.options["mutation_chance"]:
-            c = random.random()
+        if self.r.random() <= self.options["mutation_chance"]:
+            c = self.r.random()
             c *= self.options["mutation_intensity_max"]-self.options["mutation_intensity_min"]
             c += self.options["mutation_intensity_min"]
-            o = self.genes["mutate"](c, self.genelist[index][1])
+            o = self.genes["mutate"](c, self.genelist[index][1], self.r)
             return o
         return self.genelist[index][1]
     
     #returns the mutated object genelist object (fitness, obj)
     def mutateNew(self, obj):
-        r = random.random()
-        if r <= self.options["mutation_chance"]:
+        if self.r.random() <= self.options["mutation_chance"]:
             #print "chance"
-            c = random.random()
+            c = self.r.random()
             c *= self.options["mutation_intensity_max"]-self.options["mutation_intensity_min"]
             c += self.options["mutation_intensity_min"]
-            o = self.genes["mutate"](c, obj)
+            o = self.genes["mutate"](c, obj, self.r)
             return o
         return obj
     
@@ -122,10 +124,10 @@ class BaseGA:
     
     #returns the mated object(object only)
     def mateInPlace(self, index1, index2):
-        return self.genes["mate"](self.genelist[index1][1], self.genelist[index2][1])
+        return self.genes["mate"](self.genelist[index1][1], self.genelist[index2][1], self.r)
     
     def mateNew(self, obj1, obj2):
-        return self.genes["mate"](obj1, obj2)    
+        return self.genes["mate"](obj1, obj2, self.r)    
     
     #does a single generation
     def doGeneration(self, number, honkevery):

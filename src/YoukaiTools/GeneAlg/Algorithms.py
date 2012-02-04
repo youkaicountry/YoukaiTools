@@ -19,23 +19,23 @@
 #SOFTWARE.
 
 import BaseGA
-import Data
 
 class Community(BaseGA.BaseGA):
-    def __init__(self, genes, options, communitysize, savehistoryperiod=10000, maxhistorylength=10):
-        BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength) #call super constructor
+    def __init__(self, genes, options, communitysize, savehistoryperiod=10000, maxhistorylength=10, r=None):
+        BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength, r) #call super constructor
         self.communitysize = communitysize
         self.genelist = []
         self.need_sort = True
         o = []
         if self.options["seeds"] is not None:
             for x in self.options["seeds"]:
-                self.genelist.append((self.genes["fitness"](x), x))
+                self.genelist.append((self.genes["fitness"](x, self.r), x))
         left = communitysize - len(self.options["seeds"])
         if left < 0: left = 0
-        o = self.options["fill"](left, self.genes)
+        for l in xrange(left):
+            o.append(self.genes["generate"](self.r))
         for i in range(len(o)):
-            self.genelist.append((self.genes["fitness"](o[i]), o[i]))
+            self.genelist.append((self.genes["fitness"](o[i], self.r), o[i]))
         self.genelist.sort()        
             
         
@@ -47,22 +47,22 @@ class Community(BaseGA.BaseGA):
             s2 = self.getSelectionNew(oldlist)
             o = self.mateNew(oldlist[s1][1], oldlist[s2][1])
             f = self.mutateNew(o)
-            self.genelist.append((self.genes["fitness"](f), f))
+            self.genelist.append((self.genes["fitness"](f, self.r), f))
 
 class Pool(BaseGA.BaseGA):
-    def __init__(self, genes, options, poolsize, savehistoryperiod=10000, maxhistorylength=10):
-        BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength)
+    def __init__(self, genes, options, poolsize, savehistoryperiod=10000, maxhistorylength=10, r=None):
+        BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength, r)
         self.poolsize = poolsize
         self.genelist = []
         self.need_sort = True
         o = []
         if self.options["seeds"] is not None:
             for x in self.options["seeds"]:
-                self.genelist.append((self.genes["fitness"](x), x))
+                self.genelist.append((self.genes["fitness"](x, self.r), x))
         else:
-            o = self.options["fill"](1, self.genes)
+            o.append(self.genes["generate"](self.r))
         for i in range(len(o)):
-            self.genelist.append((self.genes["fitness"](o[i]), o[i]))
+            self.genelist.append((self.genes["fitness"](o[i], self.r), o[i]))
         
     def doGeneration(self):
         s1 = self.getSelectionInPlace()
@@ -70,27 +70,28 @@ class Pool(BaseGA.BaseGA):
         o = self.mateInPlace(s1, s2)
         f = self.mutateNew(o)
         if len(self.genelist) < self.poolsize:
-            self.genelist.append((self.genes["fitness"](f), f))
+            self.genelist.append((self.genes["fitness"](f, self.r), f))
         else:
             d = self.getDeletionInPlace()
-            self.genelist[d] = (self.genes["fitness"](f), f)
+            self.genelist[d] = (self.genes["fitness"](f, self.r), f)
 
 class HillClimb(BaseGA.BaseGA):
-    def __init__(self, genes, options, savehistoryperiod=10000, maxhistorylength=10):
-        BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength)
+    def __init__(self, genes, options, savehistoryperiod=10000, maxhistorylength=10, r=None):
+        BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength, r)
         self.genelist = []
         o = []
         self.need_sort = False
         if self.options["seeds"] is not None:
             s = self.options["seeds"][0]
-            self.genelist.append((self.genes["fitness"](s), s))
+            self.genelist.append((self.genes["fitness"](s, self.r), s))
         else:
-            o = self.options["fill"](1, self.genes)
-            self.genelist = [(self.genes["fitness"](o[0]), o[0])]
+            o.append(self.genes["generate"](self.r))
+            self.genelist = [(self.genes["fitness"](o[0], self.r), o[0])]
     
     def doGeneration(self):
         o = self.mutateGeneListObject(0)
-        fit = self.genes["fitness"](o)
+        fit = self.genes["fitness"](o, self.r)
+        #print(fit, self.genelist[0][0])
         if fit >= self.genelist[0][0]:
             self.genelist[0] = (fit, o)
         return
@@ -100,8 +101,8 @@ class HillClimb(BaseGA.BaseGA):
 # anything in experimental threads, then the lowest experimental is replaced with that.
 # If an experimental ever jumps, if there is anything in the main list lower than it AND with greater time since jump, then they are switched.
 class MultiHillClimb(BaseGA.BaseGA):
-    def __init__(self, genes, options, savehistoryperiod=10000, maxhistorylength=10, threads=4, experimental_threads=3, mixupmult = 3, maxmixuptime=100000):
-        BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength)
+    def __init__(self, genes, options, savehistoryperiod=10000, maxhistorylength=10, threads=4, experimental_threads=3, mixupmult = 3, maxmixuptime=100000, r=None):
+        BaseGA.BaseGA.__init__(self, genes, options, savehistoryperiod, maxhistorylength, r)
         self.need_sort = True
         self.genelist = []
         self.time_since_jump = []
@@ -115,15 +116,15 @@ class MultiHillClimb(BaseGA.BaseGA):
         #     a mixup occurs:
         #     dumbly replace any main with an experimental that is higher than it.
         #     Take the now lowest experimental, and replace it with a straight mating
-        
+        o = []
         for i in xrange(threads):
             self.time_since_jump.append(0)
             if self.options["seeds"] is not None:
                 s = self.options["seeds"][0]
-                self.genelist.append((self.genes["fitness"](s), s))
+                self.genelist.append((self.genes["fitness"](s, self.r), s))
             else:
-                o = self.options["fill"](1, self.genes)
-                self.genelist = [(self.genes["fitness"](o[0]), o[0])]
+                o.append(self.options["generate"]())
+                self.genelist = [(self.genes["fitness"](o[0], self.r), o[0])]
         
         self.experimental_genelist = []
         self.experimental_time_since_jump = []
@@ -134,7 +135,7 @@ class MultiHillClimb(BaseGA.BaseGA):
     def doGeneration(self):
         for i in xrange(len(self.genelist)):
             o = self.mutateGeneListObject(i)
-            fit = self.genes["fitness"](o)
+            fit = self.genes["fitness"](o, self.r)
             if fit > self.genelist[i][0]:
                 old = self.genelist[i]
                 self.genelist[i] = (fit, o)
@@ -146,7 +147,7 @@ class MultiHillClimb(BaseGA.BaseGA):
         for i in xrange(len(self.experimental_genelist)):
             if self.experimental_genelist[i][1] is not None:
                 o = self.mutateNew(self.experimental_genelist[i][1])
-                fit = self.genes["fitness"](o)
+                fit = self.genes["fitness"](o, self.r)
                 if fit > self.experimental_genelist[i][0]:
                     rm = self.__checkReplaceMain((fit, o), self.experimental_time_since_jump[i])
                     if rm[0]:
