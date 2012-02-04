@@ -1,4 +1,4 @@
-#Copyright (c) <2011> <Nathaniel Caldwell>
+#Copyright (c) <2011-2012> <Nathaniel Caldwell>
 
 #Permission is hereby granted, free of charge, to any person obtaining a copy
 #of this software and associated documentation files (the "Software"), to deal
@@ -50,11 +50,15 @@ class TileManager:
 #tilexparams = (tilewidth, tilewidthborder, tilewidthgrid, tilesacross)
 #tileyparams = (tileheight, tileheightborder, tileheightgrid, tilesdown)
 class SpriteSheet:
+    """
+    """
     def __init__(self, tilexparams, tileyparams, cache = False, sheet=None):
         self.tilewidth, self.tilewidthborder, self.tilewidthgrid, self.tilesacross = tilexparams
         self.tileheight, self.tileheightborder, self.tileheightgrid, self.tilesdown = tileyparams
         self.sheet = sheet
-        if cache: self.generateCache(tilexparams[3]*tileyparams[3])
+        if cache: 
+            self.generateCache(tilexparams[3]*tileyparams[3])
+            self.getSprite = self.getSpriteFromCache
         return
     
     def getSprite(self, index):
