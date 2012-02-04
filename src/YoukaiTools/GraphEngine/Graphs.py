@@ -36,7 +36,15 @@ class BasicGraph(BaseObjects.BaseGraph):
         self.edges = {}
         self.vertextop = 0
         self.edgetop = 0
+        self.graphdata = {}
+    
+    def getGlobalData(self, index):
+        return self.graphdata[index]
 
+    def setGlobalData(self, index, data):
+        self.graphdata[index] = data
+        return
+    
     def addVertex(self, vertexid=None):
         #the list is: connected vertices, connected edges, and data
         if (vertexid is None) or self.containsVertex(vertexid):
@@ -214,7 +222,10 @@ class BasicGraph(BaseObjects.BaseGraph):
                 if self.edges[edgeid][0][1] == sourcev:
                     return True
         return False
-
+    
+    def getGlobalDataKeys(self):
+        return self.graphdata.keys()
+    
     def getVertexDataKeys(self, vertexid):
         return self.vertices[vertexid][2].keys()
       

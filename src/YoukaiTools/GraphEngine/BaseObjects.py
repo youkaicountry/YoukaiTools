@@ -1,4 +1,4 @@
-#Copyright (c) <2011> <Nathaniel Caldwell>
+#Copyright (c) <2011-2012> <Nathaniel Caldwell>
 
 #Permission is hereby granted, free of charge, to any person obtaining a copy
 #of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +27,30 @@ class BaseGraph(object):
     The Base Graph object.
     """
     def __init__(self):
+        return
+    
+    def setGlobalData(self, index, data):
+        """
+        Attaches data to the graph, under the given key.
+        @param index: The key to associate the data with.
+        @param data: The data to attach to the graph.
+        """
+        return
+    
+    def getGlobalDataKeys(self):
+        """
+        Gets all data keys from the global data.
+        @return: A list of data keys.
+        @rtype: C{iterable}
+        """
+        return
+    
+    def getGlobalData(self, index):
+        """
+        Retrieves the global data associated with the given key.
+        @param index: The key of the data to be retrieved.
+        @return: The data associated with the key.
+        """
         return
     
     #VERTEX METHODS
@@ -116,7 +140,7 @@ class BaseGraph(object):
         Retrieves the data associated with the given key.
         @param vertexid: The id of the vertex from which data will be retrieved.
         @param index: The key of the data to be retrieved.
-        #return: The data associated with the key.
+        @return: The data associated with the key.
         """
         return
 
@@ -225,7 +249,7 @@ class BaseGraph(object):
         Retrieves the data associated with the given key.
         @param edgeid: The id of the edge from which data will be retrieved.
         @param index: The key of the data to be retrieved.
-        #return: The data associated with the key.
+        @return: The data associated with the key.
         """
         return
 
