@@ -67,7 +67,7 @@ jostle_single_color_value_chance = 2
 
 max_translate_amount = .2
 max_scale_amount = .25
-max_rotate_amount = pi
+max_rotate_amount = pi/2.0
 max_jostle_amount = .2
 
 max_jostle_color_amount = .2
@@ -77,7 +77,7 @@ max_mutates = 4
 #The mix method to use for painting
 mix_method = "multiply"
 #Number of hours to run the simulation
-hours_to_run = 3.0
+hours_to_run = 3.5
 #Report every how many generations?
 report_every = 50
 #draw after an improvement of:
@@ -85,12 +85,12 @@ history_after = 1.0005
 
 draw_mode = "line" #line or triangle
 
-start_element_color_min = [1.0, 1.0, 1.0]
-start_element_color_max = [1.0, 1.0, 1.0]
+start_element_color_min = [0.0, 1.0, 1.0]
+start_element_color_max = [0.4, 1.0, 1.0]
 start_background_color = [1.0, 1.0, 1.0]
 start_element_range = ((0.0, 1.0), (0.0, 1.0))
-#start_element_offset = ((-1.0, 1.0), (-1.0, 1.0))
-start_element_offset = ((-.2, .2), (-.2, .2))
+start_element_offset = ((-1.0, 1.0), (-1.0, 1.0))
+#start_element_offset = ((-.2, .2), (-.2, .2))
 # --------
 
 action_bc = BiasedChoice(["location", "color", "both"], [change_location_chance, change_color_chance, change_both_chance])

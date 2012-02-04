@@ -67,6 +67,6 @@ class SpriteSheet:
     
     def generateCache(self, sprites):
         self.cache = []
-        for i in range(sprites):
+        for i in xrange(sprites):
             self.cache.append(self.getSprite(i))
         return
