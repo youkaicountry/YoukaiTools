@@ -18,26 +18,24 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import random
-
-def tourney_select(objectlist, tourneysize):
+def tourney_select(objectlist, tourneysize, r):
     templist = []
     highesti = 0
     highestval = None
     for x in range(tourneysize):
-        a = random.randint(0, len(objectlist)-1)
+        a = r.randint(0, len(objectlist)-1)
         templist.append((objectlist[a][0], objectlist[a][1], a))
         if objectlist[a][0] > highestval:
             highestval = objectlist[a][0]
             highesti = len(templist)-1
     return templist[highesti][2]
 
-def tourney_low_select(objectlist, tourneysize):
+def tourney_low_select(objectlist, tourneysize, r):
         templist = []
         lowesti = 0
         lowestval = ()
         for x in range(tourneysize):
-            a = random.randint(0, len(objectlist)-1)
+            a = r.randint(0, len(objectlist)-1)
             templist.append((objectlist[a][0], objectlist[a][1], a))
             if objectlist[a][0] < lowestval:
                 lowestval = objectlist[a][0]
