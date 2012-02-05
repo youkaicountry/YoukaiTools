@@ -21,7 +21,7 @@
 from collections import deque
 
 class Camera2D:
-    def __init__(self, camerabounds=(0, 0, 10, 10), screensize=(320, 280)):
+    def __init__(self, camerabounds=(0.0, 0.0, 10.0, 10.0), screensize=(320, 240)):
         self.setCameraBounds(*camerabounds)
         self.setScreenSize(*screensize)
         self.setZoom1x(camerabounds[2]-camerabounds[0], camerabounds[3]-camerabounds[1])
@@ -34,10 +34,10 @@ class Camera2D:
         
     def setCameraBounds(self, xmin, ymin, xmax, ymax):
         #Must change zoom info when this changes
-        self.cameraxmin = xmin
-        self.cameraymin = ymin
-        self.cameraxmax = xmax
-        self.cameraymax = ymax
+        self.cameraxmin = float(xmin)
+        self.cameraymin = float(ymin)
+        self.cameraxmax = float(xmax)
+        self.cameraymax = float(ymax)
         return
     
     def setZoom1x(self, worldwidth, worldheight):

@@ -183,8 +183,7 @@ class SN2D:
             self.applyForce(p2, tempa, tempb)
             self.applyForce(p1, -tempa, -tempb)
         for bid in removebond:
-            self.removeBond(bid)
-      
+            self.removeBond(bid)
         #coulomb
         if self.coulombon:
             for pid in self.particlelist:
