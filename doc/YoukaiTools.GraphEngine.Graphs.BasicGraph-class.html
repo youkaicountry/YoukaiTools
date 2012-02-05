@@ -125,6 +125,43 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.GraphEngine.Graphs.BasicGraph-class.html#getGlobalData" class="summary-sig-name">getGlobalData</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">index</span>)</span><br />
+      Retrieves the global data associated with the given key.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.GraphEngine.Graphs-pysrc.html#BasicGraph.getGlobalData">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.GraphEngine.Graphs.BasicGraph-class.html#setGlobalData" class="summary-sig-name">setGlobalData</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">index</span>,
+        <span class="summary-sig-arg">data</span>)</span><br />
+      Attaches data to the graph, under the given key.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.GraphEngine.Graphs-pysrc.html#BasicGraph.setGlobalData">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
           <td><span class="summary-sig"><a href="YoukaiTools.GraphEngine.Graphs.BasicGraph-class.html#addVertex" class="summary-sig-name">addVertex</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">vertexid</span>=<span class="summary-sig-default">None</span>)</span><br />
       Adds a new vertex to the graph.</td>
@@ -428,6 +465,42 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
+          <td><span class="summary-sig"><a name="__incConnection"></a><span class="summary-sig-name">__incConnection</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">vertex1</span>,
+        <span class="summary-sig-arg">vertex2</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.GraphEngine.Graphs-pysrc.html#BasicGraph.__incConnection">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__decConnection"></a><span class="summary-sig-name">__decConnection</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">vertex1</span>,
+        <span class="summary-sig-arg">vertex2</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.GraphEngine.Graphs-pysrc.html#BasicGraph.__decConnection">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
           <td><span class="summary-sig"><a name="__clearedgeinfo"></a><span class="summary-sig-name">__clearedgeinfo</span>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">vertexid</span>,
         <span class="summary-sig-arg">edgeid</span>)</span></td>
@@ -452,6 +525,23 @@
         <span class="summary-sig-arg">edgeid</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="YoukaiTools.GraphEngine.Graphs-pysrc.html#BasicGraph.__isconnected">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code>iterable</code></span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="YoukaiTools.GraphEngine.Graphs.BasicGraph-class.html#getGlobalDataKeys" class="summary-sig-name">getGlobalDataKeys</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Gets all data keys from the global data.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="YoukaiTools.GraphEngine.Graphs-pysrc.html#BasicGraph.getGlobalDataKeys">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -686,6 +776,66 @@
   <dl class="fields">
     <dt>Overrides:
         object.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getGlobalData"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getGlobalData</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">index</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.GraphEngine.Graphs-pysrc.html#BasicGraph.getGlobalData">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Retrieves the global data associated with the given key.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>index</code></strong> - The key of the data to be retrieved.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>The data associated with the key.</dd>
+    <dt>Overrides:
+        <a href="YoukaiTools.GraphEngine.BaseObjects.BaseGraph-class.html#getGlobalData">BaseObjects.BaseGraph.getGlobalData</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="setGlobalData"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">setGlobalData</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">index</span>,
+        <span class="sig-arg">data</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.GraphEngine.Graphs-pysrc.html#BasicGraph.setGlobalData">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Attaches data to the graph, under the given key.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>index</code></strong> - The key to associate the data with.</li>
+        <li><strong class="pname"><code>data</code></strong> - The data to attach to the graph.</li>
+    </ul></dd>
+    <dt>Overrides:
+        <a href="YoukaiTools.GraphEngine.BaseObjects.BaseGraph-class.html#setGlobalData">BaseObjects.BaseGraph.setGlobalData</a>
         <dd><em class="note">(inherited documentation)</em></dd>
     </dt>
   </dl>
@@ -963,9 +1113,10 @@
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>vertexid</code></strong> - The id of the vertex from which data will be retrieved.</li>
-        <li><strong class="pname"><code>index</code></strong> - The key of the data to be retrieved. #return: The data associated
-          with the key.</li>
+        <li><strong class="pname"><code>index</code></strong> - The key of the data to be retrieved.</li>
     </ul></dd>
+    <dt>Returns:</dt>
+        <dd>The data associated with the key.</dd>
     <dt>Overrides:
         <a href="YoukaiTools.GraphEngine.BaseObjects.BaseGraph-class.html#getVertexData">BaseObjects.BaseGraph.getVertexData</a>
         <dd><em class="note">(inherited documentation)</em></dd>
@@ -1026,9 +1177,10 @@
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>edgeid</code></strong> - The id of the edge from which data will be retrieved.</li>
-        <li><strong class="pname"><code>index</code></strong> - The key of the data to be retrieved. #return: The data associated
-          with the key.</li>
+        <li><strong class="pname"><code>index</code></strong> - The key of the data to be retrieved.</li>
     </ul></dd>
+    <dt>Returns:</dt>
+        <dd>The data associated with the key.</dd>
     <dt>Overrides:
         <a href="YoukaiTools.GraphEngine.BaseObjects.BaseGraph-class.html#getEdgeData">BaseObjects.BaseGraph.getEdgeData</a>
         <dd><em class="note">(inherited documentation)</em></dd>
@@ -1153,6 +1305,31 @@
     </ul></dd>
     <dt>Overrides:
         <a href="YoukaiTools.GraphEngine.BaseObjects.BaseGraph-class.html#modifyEdge">BaseObjects.BaseGraph.modifyEdge</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getGlobalDataKeys"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getGlobalDataKeys</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="YoukaiTools.GraphEngine.Graphs-pysrc.html#BasicGraph.getGlobalDataKeys">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Gets all data keys from the global data.</p>
+  <dl class="fields">
+    <dt>Returns: <code>iterable</code></dt>
+        <dd>A list of data keys.</dd>
+    <dt>Overrides:
+        <a href="YoukaiTools.GraphEngine.BaseObjects.BaseGraph-class.html#getGlobalDataKeys">BaseObjects.BaseGraph.getGlobalDataKeys</a>
         <dd><em class="note">(inherited documentation)</em></dd>
     </dt>
   </dl>
@@ -1411,7 +1588,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Thu Dec  8 19:56:58 2011
+    Generated by Epydoc 3.0.1 on Sat Feb  4 21:55:10 2012
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

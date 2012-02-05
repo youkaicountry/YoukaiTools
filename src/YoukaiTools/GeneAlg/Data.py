@@ -1,5 +1,4 @@
 from . import SelectionTypes
-from . import FillTypes
 
 def make_report(top_object, top_fitness, generation, termination_generation, time, termination_time):
     d = {}

@@ -18,9 +18,12 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import math
+from math import ceil
 
 class TileManager:
+    """
+    Manages a tile based map with a camera, for smooth scrolling and zooming.
+    """
     def __init__(self, camera2d, width, height, tilemap=None):
         self.camera2d = camera2d
         self.width = width
@@ -28,12 +31,24 @@ class TileManager:
         self.tilemap = tilemap
         return
     
+    #TODO: figure out why x and y differ...
     def getShownTiles(self):
+        """
+        Returns the data needed to draw the tiles visible by the camera.
+        It returns a tuple containing 2 more tuples, one for x and one for y.
+        Each contains the following:
+        first_tile - The first tile coordinate visible on that axis.
+        first_tile_screenloc - Where on the screen the first tile begins
+        num_tiles - how many tiles across/down should be drawn (counting the first tile)
+        tile_delta - how far in screen coordinates each tile should be.
+        @return: A tuple of tuples as described above.
+        @rtype C{iterable}
+        """
         first_x_tile = int(self.camera2d.cameraxmin)
         if first_x_tile < 0: first_x_tile = 0
         first_x_tile_screenloc = self.camera2d.getScreenX(float(first_x_tile))
         tile_dx = self.camera2d.getScreenXDistance(1.0)
-        last_x_tile = int(math.ceil(self.camera2d.cameraxmax))+1
+        last_x_tile = int(ceil(self.camera2d.cameraxmax))+1
         if last_x_tile >= self.width: last_x_tile = self.width-1
         num_x_tiles = last_x_tile - first_x_tile
         
@@ -41,8 +56,8 @@ class TileManager:
         if first_y_tile < 0: first_y_tile = 0
         first_y_tile_screenloc = self.camera2d.getScreenY(float(first_y_tile))
         tile_dy = self.camera2d.getScreenYDistance(1.0)
-        last_y_tile = math.ceil(self.camera2d.cameraymax)
-        if last_y_tile > self.height: last_y_tile = self.height
+        last_y_tile = ceil(self.camera2d.cameraymax)       #different
+        if last_y_tile > self.height: last_y_tile = self.height #different
         num_y_tiles = last_y_tile - first_y_tile
         
         return ((first_x_tile, first_x_tile_screenloc, num_x_tiles, tile_dx), (first_y_tile, first_y_tile_screenloc, num_y_tiles, tile_dy))

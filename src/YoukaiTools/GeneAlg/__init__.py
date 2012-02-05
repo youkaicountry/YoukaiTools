@@ -21,7 +21,6 @@
 import Algorithms
 import BaseGA
 import SelectionTypes
-import FillTypes
 __all__ = ["Algorithms", "BaseGA"]
 
 import Data

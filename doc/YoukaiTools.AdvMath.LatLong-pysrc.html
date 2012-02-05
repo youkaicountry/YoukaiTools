@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>YoukaiTools.AdvMath.LatLong</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="YoukaiTools-module.html">Package&nbsp;YoukaiTools</a> ::
+        <a href="YoukaiTools.AdvMath-module.html">Package&nbsp;AdvMath</a> ::
+        Module&nbsp;LatLong
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="YoukaiTools.AdvMath.LatLong-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="YoukaiTools.AdvMath.LatLong-module.html">Module YoukaiTools.AdvMath.LatLong</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment">#Copyright (c) &lt;2011&gt; &lt;Nathaniel Caldwell&gt;</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment">#Permission is hereby granted, free of charge, to any person obtaining a copy</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment">#of this software and associated documentation files (the "Software"), to deal</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment">#in the Software without restriction, including without limitation the rights</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment">#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment">#copies of the Software, and to permit persons to whom the Software is</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment">#furnished to do so, subject to the following conditions:</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment">#The above copyright notice and this permission notice shall be included in all</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment">#copies or substantial portions of the Software.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment">#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment">#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment">#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-comment">#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-comment">#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment">#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-comment">#SOFTWARE.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-docstring">Utilities for dealing with latitude and longitude values.</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-docstring">This module deals with 3 core types of objects:</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-docstring">1. Position is a basic lat or lon position. It is a tuple of length 4, with (degrees, minutes, seconds, direction).</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt class="py-docstring">   Direction is given as a string of a single letter "N", "S", "E", or "W".</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-docstring">2. Global Position is a numerically corrected position that has no direction string, It is a tuple</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-docstring">   of length 3, with (degrees, minutes, seconds). The function globalLatLon can produce these.</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-docstring">3. Radial Position is a given position in polar coordinates. It is simply a float. toRadians can produce these.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">math</tt> <tt class="py-keyword">import</tt> <tt class="py-name">pi</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">math</tt> <tt class="py-keyword">import</tt> <tt class="py-name">acos</tt><tt class="py-op">,</tt> <tt class="py-name">sin</tt><tt class="py-op">,</tt> <tt class="py-name">cos</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"><tt class="py-comment">#give as tuple (degrees, minutes, seconds)</tt> </tt>
+<a name="toDecimal"></a><div id="toDecimal-def"><a name="L35"></a><tt class="py-lineno">35</tt> <a class="py-toggle" href="#" id="toDecimal-toggle" onclick="return toggle('toDecimal');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.AdvMath.LatLong-module.html#toDecimal">toDecimal</a><tt class="py-op">(</tt><tt class="py-param">pos</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="toDecimal-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="toDecimal-expanded"><a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">    <tt class="py-name">newmin</tt> <tt class="py-op">=</tt> <tt id="link-0" class="py-name" targets="Function YoukaiTools.AdvMath.LatLong.__t60()=YoukaiTools.AdvMath.LatLong-module.html#__t60"><a title="YoukaiTools.AdvMath.LatLong.__t60" class="py-name" href="#" onclick="return doclink('link-0', '__t60', 'link-0');">__t60</a></tt><tt class="py-op">(</tt><tt class="py-name">pos</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">pos</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">    <tt class="py-name">newdeg</tt> <tt class="py-op">=</tt> <tt id="link-1" class="py-name"><a title="YoukaiTools.AdvMath.LatLong.__t60" class="py-name" href="#" onclick="return doclink('link-1', '__t60', 'link-0');">__t60</a></tt><tt class="py-op">(</tt><tt class="py-name">pos</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">newmin</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">newdeg</tt> </tt>
+</div><a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"> </tt>
+<a name="toRadians"></a><div id="toRadians-def"><a name="L40"></a><tt class="py-lineno">40</tt> <a class="py-toggle" href="#" id="toRadians-toggle" onclick="return toggle('toRadians');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.AdvMath.LatLong-module.html#toRadians">toRadians</a><tt class="py-op">(</tt><tt class="py-param">pos</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="toRadians-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="toRadians-expanded"><a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">    <tt class="py-name">dec</tt> <tt class="py-op">=</tt> <tt id="link-2" class="py-name" targets="Function YoukaiTools.AdvMath.LatLong.toDecimal()=YoukaiTools.AdvMath.LatLong-module.html#toDecimal"><a title="YoukaiTools.AdvMath.LatLong.toDecimal" class="py-name" href="#" onclick="return doclink('link-2', 'toDecimal', 'link-2');">toDecimal</a></tt><tt class="py-op">(</tt><tt id="link-3" class="py-name" targets="Function YoukaiTools.AdvMath.LatLong.toGlobal()=YoukaiTools.AdvMath.LatLong-module.html#toGlobal"><a title="YoukaiTools.AdvMath.LatLong.toGlobal" class="py-name" href="#" onclick="return doclink('link-3', 'toGlobal', 'link-3');">toGlobal</a></tt><tt class="py-op">(</tt><tt class="py-name">pos</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">dec</tt> <tt class="py-op">*</tt> <tt class="py-name">pi</tt> <tt class="py-op">/</tt> <tt class="py-number">180.0</tt> </tt>
+</div><a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"> </tt>
+<a name="dist"></a><div id="dist-def"><a name="L44"></a><tt class="py-lineno">44</tt> <a class="py-toggle" href="#" id="dist-toggle" onclick="return toggle('dist');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.AdvMath.LatLong-module.html#dist">dist</a><tt class="py-op">(</tt><tt class="py-param">latlon1</tt><tt class="py-op">,</tt> <tt class="py-param">latlon2</tt><tt class="py-op">,</tt> <tt class="py-param">radius</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="dist-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="dist-expanded"><a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line"><tt class="py-docstring">    Returns the distance between 2 latitude and longitudes on a sphere with a given radius.</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"><tt class="py-docstring">    Latitude and longitude pairs should be given in tuples like: ((latdegree, latminute, latsecond), (londegree, lonminute, lonsecond))</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line"><tt class="py-docstring">    @param latlon1: The first latitude longitude pair.</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line"><tt class="py-docstring">    @type latlon1: C{Iterable}</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"><tt class="py-docstring">    @param latlon2: The second latitude longitude pair.</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"><tt class="py-docstring">    @type latlon2: C{Iterable}</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line"><tt class="py-docstring">    @param radius: The radius of the sphere.  The earth is 6378.1 km, or 3963.14 miles.</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line"><tt class="py-docstring">    @rtype: C{float}</tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">    <tt class="py-name">r1</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt id="link-4" class="py-name" targets="Function YoukaiTools.AdvMath.LatLong.toRadians()=YoukaiTools.AdvMath.LatLong-module.html#toRadians"><a title="YoukaiTools.AdvMath.LatLong.toRadians" class="py-name" href="#" onclick="return doclink('link-4', 'toRadians', 'link-4');">toRadians</a></tt><tt class="py-op">(</tt><tt id="link-5" class="py-name"><a title="YoukaiTools.AdvMath.LatLong.toGlobal" class="py-name" href="#" onclick="return doclink('link-5', 'toGlobal', 'link-3');">toGlobal</a></tt><tt class="py-op">(</tt><tt class="py-name">latlon1</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt id="link-6" class="py-name"><a title="YoukaiTools.AdvMath.LatLong.toRadians" class="py-name" href="#" onclick="return doclink('link-6', 'toRadians', 'link-4');">toRadians</a></tt><tt class="py-op">(</tt><tt id="link-7" class="py-name"><a title="YoukaiTools.AdvMath.LatLong.toGlobal" class="py-name" href="#" onclick="return doclink('link-7', 'toGlobal', 'link-3');">toGlobal</a></tt><tt class="py-op">(</tt><tt class="py-name">latlon1</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">    <tt class="py-name">r2</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt id="link-8" class="py-name"><a title="YoukaiTools.AdvMath.LatLong.toRadians" class="py-name" href="#" onclick="return doclink('link-8', 'toRadians', 'link-4');">toRadians</a></tt><tt class="py-op">(</tt><tt id="link-9" class="py-name"><a title="YoukaiTools.AdvMath.LatLong.toGlobal" class="py-name" href="#" onclick="return doclink('link-9', 'toGlobal', 'link-3');">toGlobal</a></tt><tt class="py-op">(</tt><tt class="py-name">latlon2</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt id="link-10" class="py-name"><a title="YoukaiTools.AdvMath.LatLong.toRadians" class="py-name" href="#" onclick="return doclink('link-10', 'toRadians', 'link-4');">toRadians</a></tt><tt class="py-op">(</tt><tt id="link-11" class="py-name"><a title="YoukaiTools.AdvMath.LatLong.toGlobal" class="py-name" href="#" onclick="return doclink('link-11', 'toGlobal', 'link-3');">toGlobal</a></tt><tt class="py-op">(</tt><tt class="py-name">latlon2</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt id="link-12" class="py-name" targets="Function YoukaiTools.AdvMath.LatLong.radDist()=YoukaiTools.AdvMath.LatLong-module.html#radDist"><a title="YoukaiTools.AdvMath.LatLong.radDist" class="py-name" href="#" onclick="return doclink('link-12', 'radDist', 'link-12');">radDist</a></tt><tt class="py-op">(</tt><tt class="py-name">r1</tt><tt class="py-op">,</tt> <tt class="py-name">r2</tt><tt class="py-op">,</tt> <tt class="py-name">radius</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line"> </tt>
+<a name="toGlobal"></a><div id="toGlobal-def"><a name="L59"></a><tt class="py-lineno">59</tt> <a class="py-toggle" href="#" id="toGlobal-toggle" onclick="return toggle('toGlobal');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.AdvMath.LatLong-module.html#toGlobal">toGlobal</a><tt class="py-op">(</tt><tt class="py-param">pos</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="toGlobal-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="toGlobal-expanded"><a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line"><tt class="py-docstring">    Takes a position (degrees, minutes, seconds) or (degrees, minutes, seconds, direction)</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line"><tt class="py-docstring">    Direction is a string with a letter "E", "W", "N" or "S".</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line"><tt class="py-docstring">    This function then converts it to a single global position without the direction.</tt> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">pos</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-number">3</tt><tt class="py-op">:</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">pos</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">    <tt class="py-name">direction</tt> <tt class="py-op">=</tt> <tt class="py-name">pos</tt><tt class="py-op">[</tt><tt class="py-number">3</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">lower</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">direction</tt> <tt class="py-op">==</tt> <tt class="py-string">'w'</tt> <tt class="py-keyword">or</tt> <tt class="py-name">direction</tt> <tt class="py-op">==</tt> <tt class="py-string">'s'</tt><tt class="py-op">:</tt> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-number">180.0</tt><tt class="py-op">-</tt><tt class="py-name">pos</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-number">60.0</tt><tt class="py-op">-</tt><tt class="py-name">pos</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-number">60.0</tt><tt class="py-op">-</tt><tt class="py-name">pos</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-op">(</tt><tt class="py-name">pos</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">+</tt><tt class="py-number">180.0</tt><tt class="py-op">,</tt> <tt class="py-name">pos</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">pos</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line"> </tt>
+<a name="radDist"></a><div id="radDist-def"><a name="L72"></a><tt class="py-lineno">72</tt> <a class="py-toggle" href="#" id="radDist-toggle" onclick="return toggle('radDist');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.AdvMath.LatLong-module.html#radDist">radDist</a><tt class="py-op">(</tt><tt class="py-param">rpos1</tt><tt class="py-op">,</tt> <tt class="py-param">rpos2</tt><tt class="py-op">,</tt> <tt class="py-param">radius</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="radDist-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="radDist-expanded"><a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">radius</tt> <tt class="py-op">*</tt> <tt class="py-name">acos</tt><tt class="py-op">(</tt><tt class="py-name">sin</tt><tt class="py-op">(</tt><tt class="py-name">rpos1</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> <tt class="py-op">*</tt> <tt class="py-name">sin</tt><tt class="py-op">(</tt><tt class="py-name">rpos2</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-name">cos</tt><tt class="py-op">(</tt><tt class="py-name">rpos1</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> <tt class="py-op">*</tt> <tt class="py-name">cos</tt><tt class="py-op">(</tt><tt class="py-name">rpos2</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> <tt class="py-op">*</tt> <tt class="py-name">cos</tt><tt class="py-op">(</tt><tt class="py-name">rpos2</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> <tt class="py-op">-</tt> <tt class="py-name">rpos1</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line"> </tt>
+<a name="__t60"></a><div id="__t60-def"><a name="L75"></a><tt class="py-lineno">75</tt> <a class="py-toggle" href="#" id="__t60-toggle" onclick="return toggle('__t60');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="YoukaiTools.AdvMath.LatLong-module.html#__t60">__t60</a><tt class="py-op">(</tt><tt class="py-param">base</tt><tt class="py-op">,</tt> <tt class="py-param">val</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="__t60-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="__t60-expanded"><a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line">    <tt class="py-keyword">return</tt> <tt class="py-name">base</tt> <tt class="py-op">+</tt> <tt class="py-op">(</tt><tt class="py-name">val</tt> <tt class="py-op">/</tt> <tt class="py-number">60.0</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="YoukaiTools-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Feb  4 21:55:10 2012
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

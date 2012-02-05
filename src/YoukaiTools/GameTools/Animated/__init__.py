@@ -21,9 +21,21 @@
 import collections
 
 class AnimatedObject:
-    def __init__(self, animation_set, start_animation=None, start_time=0):
+    """
+    An animated object. This should correspond to a particular actor in the game, and keeps
+    track of its current state of animation.
+    """
+    def __init__(self, animation_set, start_animation=None, start_time=0, obj=None):
+        """
+        @param animation_set: An AnimationSet object containing the animations for the actor.
+        @type animation_set: C{AnimationSet}
+        @param start_animation: The name of the animation on which to start, If None, it won't be set.
+        @param start_time: The start time of the animation.
+        @param obj: The object can be attached here for convenience
+        """
         self.animation_set = animation_set
         self.setAnimation(start_animation, start_time)
+        self.obj = obj
         return
     
     def update(self, dt=1):
@@ -58,6 +70,9 @@ class AnimatedObject:
     
 #an animated object 
 class AnimationSet:
+    """
+    A set of animations. This represents actual animations, and can be used on multiple actors. 
+    """
     def __init__(self):
         self.frames = {}
         self.times = {}
@@ -70,12 +85,17 @@ class AnimationSet:
     #           if a number, will be that number for each frame 
     #loops - times to loop. <0 means infinite
     #next_animation - the name of the animation to go to after all loops. None means it just stops at the end         
-    def addAnimation(self, name, framedata, timedata=None, loops = -1, next_animation = None):
+    def addAnimation(self, name, framedata, timedata=1, loops = -1, next_animation = None):
+        """
+        Adds a new animation.
+        @param name: The name of the animation.
+        @param framedata: A list where each element is a frame of animation. A frame can be any kind of data.
+        @param timedata: The length of each frame. If a list, each element is the amount of time spent on each frame. If a single number, then each frame will be set to that length.
+        @param loops: The number of times to loop the animation. If less than 1, the animation will be repeated infinitely.
+        @param next_animation: The name of the animation to be played after all of the loops. If None, it will stop.
+        """
         if not isinstance(timedata, collections.Iterable):
-            if timedata is None:
-                k = 1
-            else:
-                k = timedata
+            k = timedata
             timedata = [k for x in range(len(framedata))]
         
         t = []
