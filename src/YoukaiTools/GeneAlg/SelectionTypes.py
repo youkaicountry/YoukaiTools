@@ -18,7 +18,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-def tourney_select(objectlist, tourneysize, r):
+def tourney_select(objectlist, r, tourneysize):
     templist = []
     highesti = 0
     highestval = None
@@ -30,7 +30,7 @@ def tourney_select(objectlist, tourneysize, r):
             highesti = len(templist)-1
     return templist[highesti][2]
 
-def tourney_low_select(objectlist, tourneysize, r):
+def tourney_low_select(objectlist, r, tourneysize):
         templist = []
         lowesti = 0
         lowestval = ()

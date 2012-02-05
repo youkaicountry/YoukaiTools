@@ -81,17 +81,17 @@ class BaseGA:
     
     #returns the index of the selected object
     def getSelectionInPlace(self):
-        return self.options["selection"](self.genelist, *self.options["selection_settings"], self.r)
+        return self.options["selection"](self.genelist, self.r, *self.options["selection_settings"])
     
     def getSelectionNew(self, objectlist):
-        return self.options["selection"](objectlist, *self.options["selection_settings"], self.r)
+        return self.options["selection"](objectlist, self.r, *self.options["selection_settings"])
     
     #returns the index of the object to be deleted
     def getDeletionInPlace(self):
-        return self.options["deletion"](self.genelist, *self.options["deletion_settings"], self.r)
+        return self.options["deletion"](self.genelist, self.r, *self.options["deletion_settings"])
     
     def getDeletionNew(self, objectlist):
-        return self.options["deletion"](objectlist, *self.options["deletion_settings"], self.r)
+        return self.options["deletion"](objectlist, self.r, *self.options["deletion_settings"])
     
     #returns the mutated object genelist object (fitness, obj)
     def mutateGeneListObject(self, index):
