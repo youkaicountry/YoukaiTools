@@ -44,7 +44,7 @@ input_pickle = sys.argv[4] if len(sys.argv) > 4 else None
 
 # -------- OPTIONS
 #The number of elements to use in creating the image
-tris = 1000
+tris = 420
 #Whether to resize laoded arrays or not
 resize_arrays = True
 #The maximum mutation intensity
@@ -73,24 +73,24 @@ max_jostle_amount = .2
 max_jostle_color_amount = .2
 
 #The maximum number of mutations to attempt each cycle
-max_mutates = 4
+max_mutates = 3
 #The mix method to use for painting
-mix_method = "multiply"
+mix_method = "add"
 #Number of hours to run the simulation
-hours_to_run = 3.5
+hours_to_run = 5.0
 #Report every how many generations?
-report_every = 50
+report_every = 40
 #draw after an improvement of:
 history_after = 1.0005
 
-draw_mode = "line" #line or triangle
+draw_mode = "triangle" #line or triangle
 
-start_element_color_min = [0.0, 1.0, 1.0]
-start_element_color_max = [0.4, 1.0, 1.0]
-start_background_color = [1.0, 1.0, 1.0]
+start_element_color_min = [.8, .8, .8]
+start_element_color_max = [1.0, 1.0, 1.0]
+start_background_color = [0.0, 0.0, 0.0]
 start_element_range = ((0.0, 1.0), (0.0, 1.0))
-start_element_offset = ((-1.0, 1.0), (-1.0, 1.0))
-#start_element_offset = ((-.2, .2), (-.2, .2))
+#start_element_offset = ((-1.0, 1.0), (-1.0, 1.0))
+start_element_offset = ((-.5, .5), (-.5, .5))
 # --------
 
 action_bc = BiasedChoice(["location", "color", "both"], [change_location_chance, change_color_chance, change_both_chance])

@@ -1,0 +1,8 @@
+a = 14
+b = [1, "hello", [44, 55]]
+nested:
+  a = "nested a"
+  b:
+     value = {"a": "aa", "b": "bb"}
+c = "98"
+

@@ -21,6 +21,9 @@
 #append things to end
 #block comments
 
+import json
+from collections import deque
+
 def loadLines(f, comments=["#"], lstrip=True, rstrip=True, killblanks=True):
     l = f.readlines()
     if comments==None: com=[]
@@ -87,3 +90,54 @@ def loadConfigFilename(filename, comments=["#"], lstrip=True, rstrip=True, killb
     f.close()
     return l
 
+def loadNestedConfig(f, comments=['#'], lstrip=False, rstrip=True, killblanks=True, nest=" ", assign="=", namestrip=True, valstrip=True):
+    lines = loadLines(f, comments, lstrip, rstrip, killblanks)
+    location = deque()
+    out = {}
+    out["data"] = {}
+    next = None
+    location.append((0, "data", out["data"]))
+    for l in lines:
+        level = __count_indent(l, nest)
+        if (level <= location[-1][0]) and next is not None:
+            print("expected indent, but got none...")
+        while level < location[-1][0]:
+            location.pop()
+        if level > location[-1][0]:
+            location[-1][2][next] = {}
+            location.append((level, next, location[-1][2][next]))
+            next = None
+        al = l[level:]
+            
+        sides = al.split(assign)
+        if len(sides) > 2:
+            sides = [sides[0], assign.join(sides[1:])]
+        if assign == ":":
+            if len(sides) > 1 and sides[1].strip() == "":
+                sides = [sides[0]]
+        if len(sides) == 1:
+            al = al.strip() if namestrip else al
+            next = al[:-1]
+        
+        
+        if len(sides) == 2:
+            d = location[-1][2]
+            ls = sides[0].strip() if namestrip else sides[0]
+            rs = sides[1].strip() if valstrip else sides[1]
+            try:
+                d[ls] = json.loads(rs)
+            except ValueError:
+                d[ls] = json.loads('"'+rs+'"')
+    return out["data"]
+
+def loadNestedConfigFilename(filename, comments=['#'], lstrip=False, rstrip=True, killblanks=True, nest=" ", assign="=", namestrip=True, valstrip=True):
+    f = open(filename, "r")
+    l = loadNestedConfig(f, comments, lstrip, rstrip, killblanks, nest, assign, namestrip, valstrip)
+    f.close()
+    return l
+
+def __count_indent(l, nest):
+    i = 0
+    while l[i] == nest:
+        i += 1
+    return i
