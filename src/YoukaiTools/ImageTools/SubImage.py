@@ -64,14 +64,19 @@ def clone(image):
 
 #breaks an image into tiles and returns an imagepool of them
 #TODO: Have tilesx and tilesy = None revert to the maximum allowed
-def getTiles(image, tilexsize, tileysize, tilesx, tilesy, xbordersize=0, ybordersize=0, xboundarysize=0, yboundarysize=0):
+def getTiles(image, tilexsize, tileysize, tilesx, tilesy, tileset = None, xbordersize=0, ybordersize=0, xboundarysize=0, yboundarysize=0):
     imagepool = []
+    if tileset is None:
+        tileset = set([t for t in xrange(tilesx*tilesy)])
+    i = 0
     for ytile in xrange(tilesy):
         for xtile in xrange(tilesx):
-            x = xbordersize + (xtile*tilexsize) + (xtile*xboundarysize)
-            y = ybordersize + (ytile*tileysize) + (ytile*yboundarysize)
-            print(x, y)
-            imagepool.append(getSubImage(image, x, y, tilexsize, tileysize))
+            if i in tileset:
+                x = xbordersize + (xtile*tilexsize) + (xtile*xboundarysize)
+                y = ybordersize + (ytile*tileysize) + (ytile*yboundarysize)
+                print(x, y)
+                imagepool.append(getSubImage(image, x, y, tilexsize, tileysize))
+            i += 1
     return imagepool
 
 #constructs an image of tiles

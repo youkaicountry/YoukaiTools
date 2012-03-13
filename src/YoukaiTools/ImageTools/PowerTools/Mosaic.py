@@ -29,6 +29,11 @@ import YoukaiTools.AdvMath
 #image size should be a multiple of the tile size
 def makeMosaic(image, imagepool, usecolor=True, manhattan=1.0, average_col=.25, average_val=.25, manhattanaverage=True):
     settings.vmessage("Mosaic Started.", 0)
+    #clip the image if needed
+    cwidth = int(image[0] / imagepool[0][0])
+    cheight = int(image[1] / imagepool[0][1])
+    if (cwidth != image[0]) or (cheight != image[1]):
+        image = SubImage.getSubImage(image, 0, 0, cwidth, cheight)
     tilesx = int(image[0] / imagepool[0][0]) #get the number of tiles wide
     tilesy = int(image[1] / imagepool[0][1]) #get the number of tiles high
     tilewidth = imagepool[0][0]
