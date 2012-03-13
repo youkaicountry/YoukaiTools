@@ -74,7 +74,6 @@ def getTiles(image, tilexsize, tileysize, tilesx, tilesy, xbordersize=0, yborder
             if i in tileset:
                 x = xbordersize + (xtile*tilexsize) + (xtile*xboundarysize)
                 y = ybordersize + (ytile*tileysize) + (ytile*yboundarysize)
-                print(x, y)
                 imagepool.append(getSubImage(image, x, y, tilexsize, tileysize))
             i += 1
     return imagepool
