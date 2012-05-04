@@ -77,7 +77,7 @@ max_mutates = 3
 #The mix method to use for painting
 mix_method = "add"
 #Number of hours to run the simulation
-hours_to_run = 5.0
+hours_to_run = .2
 #Report every how many generations?
 report_every = 40
 #draw after an improvement of:

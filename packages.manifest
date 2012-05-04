@@ -16,6 +16,7 @@ YoukaiTools.GraphEngine.GraphTools
 YoukaiTools.GraphEngine.GraphTools.SpecialTypes
 YoukaiTools.ImageTools
 YoukaiTools.ImageTools.FileHandlers
+YoukaiTools.ImageTools.FileHandlers.PNG
 YoukaiTools.ImageTools.PowerTools
 YoukaiTools.LineLoader
 YoukaiTools.MapData
