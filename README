@@ -52,10 +52,6 @@ PyRange - A library for interpolation and extrapolation. Allows the creation of
 
 QuadTree - A library for quadtrees.
 
-Raycast - A raycasting engine. Contains a module for using it with pygame, 
-   but it can also just output general data that can then be used with some
-   graphics engine (or other purposes).
-
 RollingDictionary - A simple tree data structure intended for storing actual
    human language dictionary entries somewhat space efficiently.
 
