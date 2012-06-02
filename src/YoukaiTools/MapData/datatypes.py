@@ -145,10 +145,8 @@ class BlockMap:
         @param initval: The initial value of the spaces of the map. Defaults to None.
         """
         self.map = []
-        for y in range(height):
-            self.map.append([])
-            for x in range(width):
-                self.map[y].append(initval)
+        for i in xrange(width*height):
+            self.map.append(initval)
         self.width = width
         self.height = height
     
@@ -181,7 +179,7 @@ class BlockMap:
         @param y: The y coordinate.
         @return: The value of the space.
         """
-        return self.map[y][x]
+        return self.map[y*self.width+x]
     
     def setSpace(self, x, y, val):
         """
@@ -190,7 +188,7 @@ class BlockMap:
         @param y: The y coordinate.
         @param val: The value to set for the space.
         """
-        self.map[y][x] = val
+        self.map[y*self.width+x] = val
     
     # spaces should be a list of tuples (x, y, val),
     # if they are only (x, y), then default_val will be used
@@ -202,10 +200,13 @@ class BlockMap:
         @default_val: The default value to set if only coordinates are given for a space.
         """
         for space in spaces:
+            x = space[0]
+            y = space[1]
             if len(space) == 3:
-                self.map[space[1]][space[0]] = space[2]
+                val = space[2]
             else:
-                self.map[space[1]][space[0]] = default_val
+                val = default_val
+            self.map[y*self.width+x] = val
         return
 
 class BlockMapPathing(BlockMap):
