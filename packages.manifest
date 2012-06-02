@@ -24,7 +24,6 @@ YoukaiTools.MapData.generators
 YoukaiTools.PyRange
 YoukaiTools.PyRange.Draw
 YoukaiTools.QuadTree
-YoukaiTools.Raycast
 YoukaiTools.RollingDictionary
 YoukaiTools.ShiroiNeko
 YoukaiTools.StateMachine
